@@ -1277,10 +1277,11 @@ impl<'a> FieldGen<'a> {
         };
         let type_name_for_fn = protobuf_name(self.proto_type);
         w.write_line(&format!(
-            "::protobuf::rt::read_{}_{}{}_into(wire_type, is, &mut self.{})?;",
+            "::protobuf::rt::read_{}_{}{}_into(wire_type, is, &mut self.{}, &mut self.{}_offset)?;",
             singular_or_repeated,
             carllerche,
             type_name_for_fn,
+            self.rust_name,
             self.rust_name
         ));
     }

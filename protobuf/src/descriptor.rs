@@ -25,6 +25,7 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct FileDescriptorSet {
     // message fields
     file: ::protobuf::RepeatedField<FileDescriptorProto>,
+    pub file_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -76,7 +77,7 @@ impl ::protobuf::Message for FileDescriptorSet {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file, &mut self.file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -121,13 +122,13 @@ impl ::protobuf::Message for FileDescriptorSet {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -195,17 +196,27 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorSet {
 pub struct FileDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     package: ::protobuf::SingularField<::std::string::String>,
+    pub package_offset: u64,
     dependency: ::protobuf::RepeatedField<::std::string::String>,
+    pub dependency_offset: ::std::vec::Vec<u64>,
     public_dependency: ::std::vec::Vec<i32>,
     weak_dependency: ::std::vec::Vec<i32>,
     message_type: ::protobuf::RepeatedField<DescriptorProto>,
+    pub message_type_offset: ::std::vec::Vec<u64>,
     enum_type: ::protobuf::RepeatedField<EnumDescriptorProto>,
+    pub enum_type_offset: ::std::vec::Vec<u64>,
     service: ::protobuf::RepeatedField<ServiceDescriptorProto>,
+    pub service_offset: ::std::vec::Vec<u64>,
     extension: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub extension_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<FileOptions>,
+    pub options_offset: u64,
     source_code_info: ::protobuf::SingularPtrField<SourceCodeInfo>,
+    pub source_code_info_offset: u64,
     syntax: ::protobuf::SingularField<::std::string::String>,
+    pub syntax_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -606,13 +617,13 @@ impl ::protobuf::Message for FileDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.package, &mut self.package_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.dependency)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.dependency, &mut self.dependency_offset)?;
                 },
                 10 => {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.public_dependency)?;
@@ -621,25 +632,25 @@ impl ::protobuf::Message for FileDescriptorProto {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.weak_dependency)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.message_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.message_type, &mut self.message_type_offset)?;
                 },
                 5 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type, &mut self.enum_type_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.service)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.service, &mut self.service_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension, &mut self.extension_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 9 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.source_code_info)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.source_code_info, &mut self.source_code_info_offset)?;
                 },
                 12 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.syntax)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.syntax, &mut self.syntax_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -765,13 +776,13 @@ impl ::protobuf::Message for FileDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -905,15 +916,25 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorProto {
 pub struct DescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     field: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub field_offset: ::std::vec::Vec<u64>,
     extension: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub extension_offset: ::std::vec::Vec<u64>,
     nested_type: ::protobuf::RepeatedField<DescriptorProto>,
+    pub nested_type_offset: ::std::vec::Vec<u64>,
     enum_type: ::protobuf::RepeatedField<EnumDescriptorProto>,
+    pub enum_type_offset: ::std::vec::Vec<u64>,
     extension_range: ::protobuf::RepeatedField<DescriptorProto_ExtensionRange>,
+    pub extension_range_offset: ::std::vec::Vec<u64>,
     oneof_decl: ::protobuf::RepeatedField<OneofDescriptorProto>,
+    pub oneof_decl_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<MessageOptions>,
+    pub options_offset: u64,
     reserved_range: ::protobuf::RepeatedField<DescriptorProto_ReservedRange>,
+    pub reserved_range_offset: ::std::vec::Vec<u64>,
     reserved_name: ::protobuf::RepeatedField<::std::string::String>,
+    pub reserved_name_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -1244,34 +1265,34 @@ impl ::protobuf::Message for DescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.field)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.field, &mut self.field_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension, &mut self.extension_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.nested_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.nested_type, &mut self.nested_type_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type, &mut self.enum_type_offset)?;
                 },
                 5 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension_range)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension_range, &mut self.extension_range_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.oneof_decl)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.oneof_decl, &mut self.oneof_decl_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 9 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.reserved_range)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.reserved_range, &mut self.reserved_range_offset)?;
                 },
                 10 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.reserved_name)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.reserved_name, &mut self.reserved_name_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -1391,13 +1412,13 @@ impl ::protobuf::Message for DescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -1638,13 +1659,13 @@ impl ::protobuf::Message for DescriptorProto_ExtensionRange {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -1837,13 +1858,13 @@ impl ::protobuf::Message for DescriptorProto_ReservedRange {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -1917,15 +1938,21 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ReservedRange {
 pub struct FieldDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     number: ::std::option::Option<i32>,
     label: ::std::option::Option<FieldDescriptorProto_Label>,
     field_type: ::std::option::Option<FieldDescriptorProto_Type>,
     type_name: ::protobuf::SingularField<::std::string::String>,
+    pub type_name_offset: u64,
     extendee: ::protobuf::SingularField<::std::string::String>,
+    pub extendee_offset: u64,
     default_value: ::protobuf::SingularField<::std::string::String>,
+    pub default_value_offset: u64,
     oneof_index: ::std::option::Option<i32>,
     json_name: ::protobuf::SingularField<::std::string::String>,
+    pub json_name_offset: u64,
     options: ::protobuf::SingularPtrField<FieldOptions>,
+    pub options_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -2241,7 +2268,7 @@ impl ::protobuf::Message for FieldDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 3 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -2257,13 +2284,13 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 5, &mut self.unknown_fields)?
                 },
                 6 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.type_name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.type_name, &mut self.type_name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.extendee)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.extendee, &mut self.extendee_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.default_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.default_value, &mut self.default_value_offset)?;
                 },
                 9 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -2273,10 +2300,10 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     self.oneof_index = ::std::option::Option::Some(tmp);
                 },
                 10 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.json_name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.json_name, &mut self.json_name_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2375,13 +2402,13 @@ impl ::protobuf::Message for FieldDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -2652,7 +2679,9 @@ impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Label {
 pub struct OneofDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     options: ::protobuf::SingularPtrField<OneofOptions>,
+    pub options_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -2748,10 +2777,10 @@ impl ::protobuf::Message for OneofDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2802,13 +2831,13 @@ impl ::protobuf::Message for OneofDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -2882,8 +2911,11 @@ impl ::protobuf::reflect::ProtobufValue for OneofDescriptorProto {
 pub struct EnumDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     value: ::protobuf::RepeatedField<EnumValueDescriptorProto>,
+    pub value_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<EnumOptions>,
+    pub options_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -3009,13 +3041,13 @@ impl ::protobuf::Message for EnumDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.value)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.value, &mut self.value_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3075,13 +3107,13 @@ impl ::protobuf::Message for EnumDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -3161,8 +3193,10 @@ impl ::protobuf::reflect::ProtobufValue for EnumDescriptorProto {
 pub struct EnumValueDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     number: ::std::option::Option<i32>,
     options: ::protobuf::SingularPtrField<EnumValueOptions>,
+    pub options_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -3277,7 +3311,7 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -3287,7 +3321,7 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
                     self.number = ::std::option::Option::Some(tmp);
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3344,13 +3378,13 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -3430,8 +3464,11 @@ impl ::protobuf::reflect::ProtobufValue for EnumValueDescriptorProto {
 pub struct ServiceDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     method: ::protobuf::RepeatedField<MethodDescriptorProto>,
+    pub method_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<ServiceOptions>,
+    pub options_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -3557,13 +3594,13 @@ impl ::protobuf::Message for ServiceDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.method)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.method, &mut self.method_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3623,13 +3660,13 @@ impl ::protobuf::Message for ServiceDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -3709,9 +3746,13 @@ impl ::protobuf::reflect::ProtobufValue for ServiceDescriptorProto {
 pub struct MethodDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     input_type: ::protobuf::SingularField<::std::string::String>,
+    pub input_type_offset: u64,
     output_type: ::protobuf::SingularField<::std::string::String>,
+    pub output_type_offset: u64,
     options: ::protobuf::SingularPtrField<MethodOptions>,
+    pub options_offset: u64,
     client_streaming: ::std::option::Option<bool>,
     server_streaming: ::std::option::Option<bool>,
     // special fields
@@ -3919,16 +3960,16 @@ impl ::protobuf::Message for MethodDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.input_type)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.input_type, &mut self.input_type_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.output_type)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.output_type, &mut self.output_type_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 5 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4017,13 +4058,13 @@ impl ::protobuf::Message for MethodDescriptorProto {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -4121,20 +4162,26 @@ impl ::protobuf::reflect::ProtobufValue for MethodDescriptorProto {
 pub struct FileOptions {
     // message fields
     java_package: ::protobuf::SingularField<::std::string::String>,
+    pub java_package_offset: u64,
     java_outer_classname: ::protobuf::SingularField<::std::string::String>,
+    pub java_outer_classname_offset: u64,
     java_multiple_files: ::std::option::Option<bool>,
     java_generate_equals_and_hash: ::std::option::Option<bool>,
     java_string_check_utf8: ::std::option::Option<bool>,
     optimize_for: ::std::option::Option<FileOptions_OptimizeMode>,
     go_package: ::protobuf::SingularField<::std::string::String>,
+    pub go_package_offset: u64,
     cc_generic_services: ::std::option::Option<bool>,
     java_generic_services: ::std::option::Option<bool>,
     py_generic_services: ::std::option::Option<bool>,
     deprecated: ::std::option::Option<bool>,
     cc_enable_arenas: ::std::option::Option<bool>,
     objc_class_prefix: ::protobuf::SingularField<::std::string::String>,
+    pub objc_class_prefix_offset: u64,
     csharp_namespace: ::protobuf::SingularField<::std::string::String>,
+    pub csharp_namespace_offset: u64,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -4537,10 +4584,10 @@ impl ::protobuf::Message for FileOptions {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_package, &mut self.java_package_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_outer_classname)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_outer_classname, &mut self.java_outer_classname_offset)?;
                 },
                 10 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4567,7 +4614,7 @@ impl ::protobuf::Message for FileOptions {
                     ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.optimize_for, 9, &mut self.unknown_fields)?
                 },
                 11 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.go_package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.go_package, &mut self.go_package_offset)?;
                 },
                 16 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4605,13 +4652,13 @@ impl ::protobuf::Message for FileOptions {
                     self.cc_enable_arenas = ::std::option::Option::Some(tmp);
                 },
                 36 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.objc_class_prefix)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.objc_class_prefix, &mut self.objc_class_prefix_offset)?;
                 },
                 37 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.csharp_namespace)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.csharp_namespace, &mut self.csharp_namespace_offset)?;
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -4740,13 +4787,13 @@ impl ::protobuf::Message for FileOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -4954,6 +5001,7 @@ pub struct MessageOptions {
     deprecated: ::std::option::Option<bool>,
     map_entry: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -5109,7 +5157,7 @@ impl ::protobuf::Message for MessageOptions {
                     self.map_entry = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5178,13 +5226,13 @@ impl ::protobuf::Message for MessageOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -5282,6 +5330,7 @@ pub struct FieldOptions {
     deprecated: ::std::option::Option<bool>,
     weak: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -5481,7 +5530,7 @@ impl ::protobuf::Message for FieldOptions {
                     self.weak = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5562,13 +5611,13 @@ impl ::protobuf::Message for FieldOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -5776,6 +5825,7 @@ impl ::protobuf::reflect::ProtobufValue for FieldOptions_JSType {
 pub struct OneofOptions {
     // message fields
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -5827,7 +5877,7 @@ impl ::protobuf::Message for OneofOptions {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5872,13 +5922,13 @@ impl ::protobuf::Message for OneofOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -5948,6 +5998,7 @@ pub struct EnumOptions {
     allow_alias: ::std::option::Option<bool>,
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -6051,7 +6102,7 @@ impl ::protobuf::Message for EnumOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6108,13 +6159,13 @@ impl ::protobuf::Message for EnumOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -6195,6 +6246,7 @@ pub struct EnumValueOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -6272,7 +6324,7 @@ impl ::protobuf::Message for EnumValueOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6323,13 +6375,13 @@ impl ::protobuf::Message for EnumValueOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -6404,6 +6456,7 @@ pub struct ServiceOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -6481,7 +6534,7 @@ impl ::protobuf::Message for ServiceOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6532,13 +6585,13 @@ impl ::protobuf::Message for ServiceOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -6613,6 +6666,7 @@ pub struct MethodOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -6690,7 +6744,7 @@ impl ::protobuf::Message for MethodOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6741,13 +6795,13 @@ impl ::protobuf::Message for MethodOptions {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -6821,12 +6875,16 @@ impl ::protobuf::reflect::ProtobufValue for MethodOptions {
 pub struct UninterpretedOption {
     // message fields
     name: ::protobuf::RepeatedField<UninterpretedOption_NamePart>,
+    pub name_offset: ::std::vec::Vec<u64>,
     identifier_value: ::protobuf::SingularField<::std::string::String>,
+    pub identifier_value_offset: u64,
     positive_int_value: ::std::option::Option<u64>,
     negative_int_value: ::std::option::Option<i64>,
     double_value: ::std::option::Option<f64>,
     string_value: ::protobuf::SingularField<::std::vec::Vec<u8>>,
+    pub string_value_offset: u64,
     aggregate_value: ::protobuf::SingularField<::std::string::String>,
+    pub aggregate_value_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -7043,10 +7101,10 @@ impl ::protobuf::Message for UninterpretedOption {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.identifier_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.identifier_value, &mut self.identifier_value_offset)?;
                 },
                 4 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -7070,10 +7128,10 @@ impl ::protobuf::Message for UninterpretedOption {
                     self.double_value = ::std::option::Option::Some(tmp);
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.string_value)?;
+                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.string_value, &mut self.string_value_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.aggregate_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.aggregate_value, &mut self.aggregate_value_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7154,13 +7212,13 @@ impl ::protobuf::Message for UninterpretedOption {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -7264,6 +7322,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption {
 pub struct UninterpretedOption_NamePart {
     // message fields
     name_part: ::protobuf::SingularField<::std::string::String>,
+    pub name_part_offset: u64,
     is_extension: ::std::option::Option<bool>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
@@ -7347,7 +7406,7 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name_part)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name_part, &mut self.name_part_offset)?;
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -7402,13 +7461,13 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -7482,6 +7541,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption_NamePart {
 pub struct SourceCodeInfo {
     // message fields
     location: ::protobuf::RepeatedField<SourceCodeInfo_Location>,
+    pub location_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -7533,7 +7593,7 @@ impl ::protobuf::Message for SourceCodeInfo {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.location)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.location, &mut self.location_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7578,13 +7638,13 @@ impl ::protobuf::Message for SourceCodeInfo {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -7654,8 +7714,11 @@ pub struct SourceCodeInfo_Location {
     path: ::std::vec::Vec<i32>,
     span: ::std::vec::Vec<i32>,
     leading_comments: ::protobuf::SingularField<::std::string::String>,
+    pub leading_comments_offset: u64,
     trailing_comments: ::protobuf::SingularField<::std::string::String>,
+    pub trailing_comments_offset: u64,
     leading_detached_comments: ::protobuf::RepeatedField<::std::string::String>,
+    pub leading_detached_comments_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -7830,13 +7893,13 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.span)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.leading_comments)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.leading_comments, &mut self.leading_comments_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.trailing_comments)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.trailing_comments, &mut self.trailing_comments_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.leading_detached_comments)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.leading_detached_comments, &mut self.leading_detached_comments_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7912,13 +7975,13 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -8010,6 +8073,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo_Location {
 pub struct GeneratedCodeInfo {
     // message fields
     annotation: ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation>,
+    pub annotation_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -8061,7 +8125,7 @@ impl ::protobuf::Message for GeneratedCodeInfo {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.annotation)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.annotation, &mut self.annotation_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -8106,13 +8170,13 @@ impl ::protobuf::Message for GeneratedCodeInfo {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -8181,6 +8245,7 @@ pub struct GeneratedCodeInfo_Annotation {
     // message fields
     path: ::std::vec::Vec<i32>,
     source_file: ::protobuf::SingularField<::std::string::String>,
+    pub source_file_offset: u64,
     begin: ::std::option::Option<i32>,
     end: ::std::option::Option<i32>,
     // special fields
@@ -8306,7 +8371,7 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.path)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.source_file)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.source_file, &mut self.source_file_offset)?;
                 },
                 3 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -8385,13 +8450,13 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -8621,7 +8686,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x14\n\x05begin\x18\x03\x20\x01(\x05R\x05begin\x12\x10\n\x03end\x18\x04\
     \x20\x01(\x05R\x03endBX\n\x13com.google.protobufB\x10DescriptorProtosH\
     \x01Z\ndescriptor\xa2\x02\x03GPB\xaa\x02\x1aGoogle.Protobuf.ReflectionJ\
-    \xfe\xa4\x02\n\x07\x12\x05'\0\xa3\x06\x01\n\xaa\x0f\n\x01\x0c\x12\x03'\0\
+    \xb3\x9f\x02\n\x07\x12\x05'\0\xa3\x06\x01\n\xaa\x0f\n\x01\x0c\x12\x03'\0\
     \x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google's\x20data\x20interch\
     ange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20ri\
     ghts\x20reserved.\n\x20https://developers.google.com/protocol-buffers/\n\
@@ -8662,40 +8727,22 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     finitions\x20found\x20in\x20.proto\x20files.\n\x20A\x20valid\x20.proto\
     \x20file\x20can\x20be\x20translated\x20directly\x20to\x20a\x20FileDescri\
     ptorProto\n\x20without\x20any\x20other\x20information\x20(e.g.\x20withou\
-    t\x20reading\x20its\x20imports).\n\n\x08\n\x01\x02\x12\x03)\x08\x17\n\
-    \x08\n\x01\x08\x12\x03*\0!\n\x0b\n\x04\x08\xe7\x07\0\x12\x03*\0!\n\x0c\n\
-    \x05\x08\xe7\x07\0\x02\x12\x03*\x07\x11\n\r\n\x06\x08\xe7\x07\0\x02\0\
-    \x12\x03*\x07\x11\n\x0e\n\x07\x08\xe7\x07\0\x02\0\x01\x12\x03*\x07\x11\n\
-    \x0c\n\x05\x08\xe7\x07\0\x07\x12\x03*\x14\x20\n\x08\n\x01\x08\x12\x03+\0\
-    ,\n\x0b\n\x04\x08\xe7\x07\x01\x12\x03+\0,\n\x0c\n\x05\x08\xe7\x07\x01\
-    \x02\x12\x03+\x07\x13\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03+\x07\x13\n\
-    \x0e\n\x07\x08\xe7\x07\x01\x02\0\x01\x12\x03+\x07\x13\n\x0c\n\x05\x08\
-    \xe7\x07\x01\x07\x12\x03+\x16+\n\x08\n\x01\x08\x12\x03,\01\n\x0b\n\x04\
-    \x08\xe7\x07\x02\x12\x03,\01\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x03,\
-    \x07\x1b\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x03,\x07\x1b\n\x0e\n\x07\
-    \x08\xe7\x07\x02\x02\0\x01\x12\x03,\x07\x1b\n\x0c\n\x05\x08\xe7\x07\x02\
-    \x07\x12\x03,\x1e0\n\x08\n\x01\x08\x12\x03-\07\n\x0b\n\x04\x08\xe7\x07\
-    \x03\x12\x03-\07\n\x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03-\x07\x17\n\r\n\
-    \x06\x08\xe7\x07\x03\x02\0\x12\x03-\x07\x17\n\x0e\n\x07\x08\xe7\x07\x03\
-    \x02\0\x01\x12\x03-\x07\x17\n\x0c\n\x05\x08\xe7\x07\x03\x07\x12\x03-\x1a\
-    6\n\x08\n\x01\x08\x12\x03.\0!\n\x0b\n\x04\x08\xe7\x07\x04\x12\x03.\0!\n\
-    \x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03.\x07\x18\n\r\n\x06\x08\xe7\x07\
-    \x04\x02\0\x12\x03.\x07\x18\n\x0e\n\x07\x08\xe7\x07\x04\x02\0\x01\x12\
-    \x03.\x07\x18\n\x0c\n\x05\x08\xe7\x07\x04\x07\x12\x03.\x1b\x20\n\x08\n\
-    \x01\x08\x12\x032\0\x1c\n\x81\x01\n\x04\x08\xe7\x07\x05\x12\x032\0\x1c\
-    \x1at\x20descriptor.proto\x20must\x20be\x20optimized\x20for\x20speed\x20\
-    because\x20reflection-based\n\x20algorithms\x20don't\x20work\x20during\
-    \x20bootstrapping.\n\n\x0c\n\x05\x08\xe7\x07\x05\x02\x12\x032\x07\x13\n\
-    \r\n\x06\x08\xe7\x07\x05\x02\0\x12\x032\x07\x13\n\x0e\n\x07\x08\xe7\x07\
-    \x05\x02\0\x01\x12\x032\x07\x13\n\x0c\n\x05\x08\xe7\x07\x05\x03\x12\x032\
-    \x16\x1b\nj\n\x02\x04\0\x12\x046\08\x01\x1a^\x20The\x20protocol\x20compi\
-    ler\x20can\x20output\x20a\x20FileDescriptorSet\x20containing\x20the\x20.\
-    proto\n\x20files\x20it\x20parses.\n\n\n\n\x03\x04\0\x01\x12\x036\x08\x19\
-    \n\x0b\n\x04\x04\0\x02\0\x12\x037\x02(\n\x0c\n\x05\x04\0\x02\0\x04\x12\
-    \x037\x02\n\n\x0c\n\x05\x04\0\x02\0\x06\x12\x037\x0b\x1e\n\x0c\n\x05\x04\
-    \0\x02\0\x01\x12\x037\x1f#\n\x0c\n\x05\x04\0\x02\0\x03\x12\x037&'\n/\n\
-    \x02\x04\x01\x12\x04;\0X\x01\x1a#\x20Describes\x20a\x20complete\x20.prot\
-    o\x20file.\n\n\n\n\x03\x04\x01\x01\x12\x03;\x08\x1b\n9\n\x04\x04\x01\x02\
+    t\x20reading\x20its\x20imports).\n\n\x08\n\x01\x02\x12\x03)\0\x18\n\x08\
+    \n\x01\x08\x12\x03*\0!\n\t\n\x02\x08\x0b\x12\x03*\0!\n\x08\n\x01\x08\x12\
+    \x03+\0,\n\t\n\x02\x08\x01\x12\x03+\0,\n\x08\n\x01\x08\x12\x03,\01\n\t\n\
+    \x02\x08\x08\x12\x03,\01\n\x08\n\x01\x08\x12\x03-\07\n\t\n\x02\x08%\x12\
+    \x03-\07\n\x08\n\x01\x08\x12\x03.\0!\n\t\n\x02\x08$\x12\x03.\0!\n\x08\n\
+    \x01\x08\x12\x032\0\x1c\n\x7f\n\x02\x08\t\x12\x032\0\x1c\x1at\x20descrip\
+    tor.proto\x20must\x20be\x20optimized\x20for\x20speed\x20because\x20refle\
+    ction-based\n\x20algorithms\x20don't\x20work\x20during\x20bootstrapping.\
+    \n\nj\n\x02\x04\0\x12\x046\08\x01\x1a^\x20The\x20protocol\x20compiler\
+    \x20can\x20output\x20a\x20FileDescriptorSet\x20containing\x20the\x20.pro\
+    to\n\x20files\x20it\x20parses.\n\n\n\n\x03\x04\0\x01\x12\x036\x08\x19\n\
+    \x0b\n\x04\x04\0\x02\0\x12\x037\x02(\n\x0c\n\x05\x04\0\x02\0\x04\x12\x03\
+    7\x02\n\n\x0c\n\x05\x04\0\x02\0\x06\x12\x037\x0b\x1e\n\x0c\n\x05\x04\0\
+    \x02\0\x01\x12\x037\x1f#\n\x0c\n\x05\x04\0\x02\0\x03\x12\x037&'\n/\n\x02\
+    \x04\x01\x12\x04;\0X\x01\x1a#\x20Describes\x20a\x20complete\x20.proto\
+    \x20file.\n\n\n\n\x03\x04\x01\x01\x12\x03;\x08\x1b\n9\n\x04\x04\x01\x02\
     \0\x12\x03<\x02\x1b\",\x20file\x20name,\x20relative\x20to\x20root\x20of\
     \x20source\x20tree\n\n\x0c\n\x05\x04\x01\x02\0\x04\x12\x03<\x02\n\n\x0c\
     \n\x05\x04\x01\x02\0\x05\x12\x03<\x0b\x11\n\x0c\n\x05\x04\x01\x02\0\x01\
@@ -9095,605 +9142,593 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20option\x20does\x20nothing.\n\n\r\n\x05\x04\t\x02\x03\x04\x12\x04\xb4\
     \x02\x02\n\n\r\n\x05\x04\t\x02\x03\x05\x12\x04\xb4\x02\x0b\x0f\n\r\n\x05\
     \x04\t\x02\x03\x01\x12\x04\xb4\x02\x10-\n\r\n\x05\x04\t\x02\x03\x03\x12\
-    \x04\xb4\x0202\n\r\n\x05\x04\t\x02\x03\x08\x12\x04\xb4\x023D\n\x10\n\x08\
-    \x04\t\x02\x03\x08\xe7\x07\0\x12\x04\xb4\x024C\n\x11\n\t\x04\t\x02\x03\
-    \x08\xe7\x07\0\x02\x12\x04\xb4\x024>\n\x12\n\n\x04\t\x02\x03\x08\xe7\x07\
-    \0\x02\0\x12\x04\xb4\x024>\n\x13\n\x0b\x04\t\x02\x03\x08\xe7\x07\0\x02\0\
-    \x01\x12\x04\xb4\x024>\n\x11\n\t\x04\t\x02\x03\x08\xe7\x07\0\x03\x12\x04\
-    \xb4\x02?C\n\xe6\x02\n\x04\x04\t\x02\x04\x12\x04\xbc\x02\x02<\x1a\xd7\
-    \x02\x20If\x20set\x20true,\x20then\x20the\x20Java2\x20code\x20generator\
-    \x20will\x20generate\x20code\x20that\n\x20throws\x20an\x20exception\x20w\
-    henever\x20an\x20attempt\x20is\x20made\x20to\x20assign\x20a\x20non-UTF-8\
-    \n\x20byte\x20sequence\x20to\x20a\x20string\x20field.\n\x20Message\x20re\
-    flection\x20will\x20do\x20the\x20same.\n\x20However,\x20an\x20extension\
-    \x20field\x20still\x20accepts\x20non-UTF-8\x20byte\x20sequences.\n\x20Th\
-    is\x20option\x20has\x20no\x20effect\x20on\x20when\x20used\x20with\x20the\
-    \x20lite\x20runtime.\n\n\r\n\x05\x04\t\x02\x04\x04\x12\x04\xbc\x02\x02\n\
-    \n\r\n\x05\x04\t\x02\x04\x05\x12\x04\xbc\x02\x0b\x0f\n\r\n\x05\x04\t\x02\
-    \x04\x01\x12\x04\xbc\x02\x10&\n\r\n\x05\x04\t\x02\x04\x03\x12\x04\xbc\
-    \x02)+\n\r\n\x05\x04\t\x02\x04\x08\x12\x04\xbc\x02,;\n\r\n\x05\x04\t\x02\
-    \x04\x07\x12\x04\xbc\x025:\nL\n\x04\x04\t\x04\0\x12\x06\xc0\x02\x02\xc5\
-    \x02\x03\x1a<\x20Generated\x20classes\x20can\x20be\x20optimized\x20for\
-    \x20speed\x20or\x20code\x20size.\n\n\r\n\x05\x04\t\x04\0\x01\x12\x04\xc0\
-    \x02\x07\x13\nD\n\x06\x04\t\x04\0\x02\0\x12\x04\xc1\x02\x04\x0e\"4\x20Ge\
-    nerate\x20complete\x20code\x20for\x20parsing,\x20serialization,\n\n\x0f\
-    \n\x07\x04\t\x04\0\x02\0\x01\x12\x04\xc1\x02\x04\t\n\x0f\n\x07\x04\t\x04\
-    \0\x02\0\x02\x12\x04\xc1\x02\x0c\r\nG\n\x06\x04\t\x04\0\x02\x01\x12\x04\
-    \xc3\x02\x04\x12\x1a\x06\x20etc.\n\"/\x20Use\x20ReflectionOps\x20to\x20i\
-    mplement\x20these\x20methods.\n\n\x0f\n\x07\x04\t\x04\0\x02\x01\x01\x12\
-    \x04\xc3\x02\x04\r\n\x0f\n\x07\x04\t\x04\0\x02\x01\x02\x12\x04\xc3\x02\
-    \x10\x11\nG\n\x06\x04\t\x04\0\x02\x02\x12\x04\xc4\x02\x04\x15\"7\x20Gene\
-    rate\x20code\x20using\x20MessageLite\x20and\x20the\x20lite\x20runtime.\n\
-    \n\x0f\n\x07\x04\t\x04\0\x02\x02\x01\x12\x04\xc4\x02\x04\x10\n\x0f\n\x07\
-    \x04\t\x04\0\x02\x02\x02\x12\x04\xc4\x02\x13\x14\n\x0c\n\x04\x04\t\x02\
-    \x05\x12\x04\xc6\x02\x029\n\r\n\x05\x04\t\x02\x05\x04\x12\x04\xc6\x02\
-    \x02\n\n\r\n\x05\x04\t\x02\x05\x06\x12\x04\xc6\x02\x0b\x17\n\r\n\x05\x04\
-    \t\x02\x05\x01\x12\x04\xc6\x02\x18$\n\r\n\x05\x04\t\x02\x05\x03\x12\x04\
-    \xc6\x02'(\n\r\n\x05\x04\t\x02\x05\x08\x12\x04\xc6\x02)8\n\r\n\x05\x04\t\
-    \x02\x05\x07\x12\x04\xc6\x0227\n\xe2\x02\n\x04\x04\t\x02\x06\x12\x04\xcd\
-    \x02\x02\"\x1a\xd3\x02\x20Sets\x20the\x20Go\x20package\x20where\x20struc\
-    ts\x20generated\x20from\x20this\x20.proto\x20will\x20be\n\x20placed.\x20\
-    If\x20omitted,\x20the\x20Go\x20package\x20will\x20be\x20derived\x20from\
-    \x20the\x20following:\n\x20\x20\x20-\x20The\x20basename\x20of\x20the\x20\
-    package\x20import\x20path,\x20if\x20provided.\n\x20\x20\x20-\x20Otherwis\
-    e,\x20the\x20package\x20statement\x20in\x20the\x20.proto\x20file,\x20if\
-    \x20present.\n\x20\x20\x20-\x20Otherwise,\x20the\x20basename\x20of\x20th\
-    e\x20.proto\x20file,\x20without\x20extension.\n\n\r\n\x05\x04\t\x02\x06\
-    \x04\x12\x04\xcd\x02\x02\n\n\r\n\x05\x04\t\x02\x06\x05\x12\x04\xcd\x02\
-    \x0b\x11\n\r\n\x05\x04\t\x02\x06\x01\x12\x04\xcd\x02\x12\x1c\n\r\n\x05\
-    \x04\t\x02\x06\x03\x12\x04\xcd\x02\x1f!\n\xd4\x04\n\x04\x04\t\x02\x07\
-    \x12\x04\xdb\x02\x029\x1a\xc5\x04\x20Should\x20generic\x20services\x20be\
-    \x20generated\x20in\x20each\x20language?\x20\x20\"Generic\"\x20services\
-    \n\x20are\x20not\x20specific\x20to\x20any\x20particular\x20RPC\x20system\
-    .\x20\x20They\x20are\x20generated\x20by\x20the\n\x20main\x20code\x20gene\
-    rators\x20in\x20each\x20language\x20(without\x20additional\x20plugins).\
-    \n\x20Generic\x20services\x20were\x20the\x20only\x20kind\x20of\x20servic\
-    e\x20generation\x20supported\x20by\n\x20early\x20versions\x20of\x20googl\
-    e.protobuf.\n\n\x20Generic\x20services\x20are\x20now\x20considered\x20de\
-    precated\x20in\x20favor\x20of\x20using\x20plugins\n\x20that\x20generate\
-    \x20code\x20specific\x20to\x20your\x20particular\x20RPC\x20system.\x20\
-    \x20Therefore,\n\x20these\x20default\x20to\x20false.\x20\x20Old\x20code\
-    \x20which\x20depends\x20on\x20generic\x20services\x20should\n\x20explici\
-    tly\x20set\x20them\x20to\x20true.\n\n\r\n\x05\x04\t\x02\x07\x04\x12\x04\
-    \xdb\x02\x02\n\n\r\n\x05\x04\t\x02\x07\x05\x12\x04\xdb\x02\x0b\x0f\n\r\n\
-    \x05\x04\t\x02\x07\x01\x12\x04\xdb\x02\x10#\n\r\n\x05\x04\t\x02\x07\x03\
-    \x12\x04\xdb\x02&(\n\r\n\x05\x04\t\x02\x07\x08\x12\x04\xdb\x02)8\n\r\n\
-    \x05\x04\t\x02\x07\x07\x12\x04\xdb\x0227\n\x0c\n\x04\x04\t\x02\x08\x12\
-    \x04\xdc\x02\x02;\n\r\n\x05\x04\t\x02\x08\x04\x12\x04\xdc\x02\x02\n\n\r\
-    \n\x05\x04\t\x02\x08\x05\x12\x04\xdc\x02\x0b\x0f\n\r\n\x05\x04\t\x02\x08\
-    \x01\x12\x04\xdc\x02\x10%\n\r\n\x05\x04\t\x02\x08\x03\x12\x04\xdc\x02(*\
-    \n\r\n\x05\x04\t\x02\x08\x08\x12\x04\xdc\x02+:\n\r\n\x05\x04\t\x02\x08\
-    \x07\x12\x04\xdc\x0249\n\x0c\n\x04\x04\t\x02\t\x12\x04\xdd\x02\x029\n\r\
-    \n\x05\x04\t\x02\t\x04\x12\x04\xdd\x02\x02\n\n\r\n\x05\x04\t\x02\t\x05\
-    \x12\x04\xdd\x02\x0b\x0f\n\r\n\x05\x04\t\x02\t\x01\x12\x04\xdd\x02\x10#\
-    \n\r\n\x05\x04\t\x02\t\x03\x12\x04\xdd\x02&(\n\r\n\x05\x04\t\x02\t\x08\
-    \x12\x04\xdd\x02)8\n\r\n\x05\x04\t\x02\t\x07\x12\x04\xdd\x0227\n\xf3\x01\
-    \n\x04\x04\t\x02\n\x12\x04\xe3\x02\x020\x1a\xe4\x01\x20Is\x20this\x20fil\
-    e\x20deprecated?\n\x20Depending\x20on\x20the\x20target\x20platform,\x20t\
-    his\x20can\x20emit\x20Deprecated\x20annotations\n\x20for\x20everything\
-    \x20in\x20the\x20file,\x20or\x20it\x20will\x20be\x20completely\x20ignore\
-    d;\x20in\x20the\x20very\n\x20least,\x20this\x20is\x20a\x20formalization\
-    \x20for\x20deprecating\x20files.\n\n\r\n\x05\x04\t\x02\n\x04\x12\x04\xe3\
-    \x02\x02\n\n\r\n\x05\x04\t\x02\n\x05\x12\x04\xe3\x02\x0b\x0f\n\r\n\x05\
-    \x04\t\x02\n\x01\x12\x04\xe3\x02\x10\x1a\n\r\n\x05\x04\t\x02\n\x03\x12\
-    \x04\xe3\x02\x1d\x1f\n\r\n\x05\x04\t\x02\n\x08\x12\x04\xe3\x02\x20/\n\r\
-    \n\x05\x04\t\x02\n\x07\x12\x04\xe3\x02).\n\x7f\n\x04\x04\t\x02\x0b\x12\
-    \x04\xe7\x02\x026\x1aq\x20Enables\x20the\x20use\x20of\x20arenas\x20for\
-    \x20the\x20proto\x20messages\x20in\x20this\x20file.\x20This\x20applies\n\
-    \x20only\x20to\x20generated\x20classes\x20for\x20C++.\n\n\r\n\x05\x04\t\
-    \x02\x0b\x04\x12\x04\xe7\x02\x02\n\n\r\n\x05\x04\t\x02\x0b\x05\x12\x04\
-    \xe7\x02\x0b\x0f\n\r\n\x05\x04\t\x02\x0b\x01\x12\x04\xe7\x02\x10\x20\n\r\
-    \n\x05\x04\t\x02\x0b\x03\x12\x04\xe7\x02#%\n\r\n\x05\x04\t\x02\x0b\x08\
-    \x12\x04\xe7\x02&5\n\r\n\x05\x04\t\x02\x0b\x07\x12\x04\xe7\x02/4\n\x92\
-    \x01\n\x04\x04\t\x02\x0c\x12\x04\xec\x02\x02)\x1a\x83\x01\x20Sets\x20the\
-    \x20objective\x20c\x20class\x20prefix\x20which\x20is\x20prepended\x20to\
-    \x20all\x20objective\x20c\n\x20generated\x20classes\x20from\x20this\x20.\
-    proto.\x20There\x20is\x20no\x20default.\n\n\r\n\x05\x04\t\x02\x0c\x04\
-    \x12\x04\xec\x02\x02\n\n\r\n\x05\x04\t\x02\x0c\x05\x12\x04\xec\x02\x0b\
-    \x11\n\r\n\x05\x04\t\x02\x0c\x01\x12\x04\xec\x02\x12#\n\r\n\x05\x04\t\
-    \x02\x0c\x03\x12\x04\xec\x02&(\nI\n\x04\x04\t\x02\r\x12\x04\xef\x02\x02(\
-    \x1a;\x20Namespace\x20for\x20generated\x20classes;\x20defaults\x20to\x20\
-    the\x20package.\n\n\r\n\x05\x04\t\x02\r\x04\x12\x04\xef\x02\x02\n\n\r\n\
-    \x05\x04\t\x02\r\x05\x12\x04\xef\x02\x0b\x11\n\r\n\x05\x04\t\x02\r\x01\
-    \x12\x04\xef\x02\x12\"\n\r\n\x05\x04\t\x02\r\x03\x12\x04\xef\x02%'\nO\n\
-    \x04\x04\t\x02\x0e\x12\x04\xf2\x02\x02:\x1aA\x20The\x20parser\x20stores\
-    \x20options\x20it\x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\
-    \r\n\x05\x04\t\x02\x0e\x04\x12\x04\xf2\x02\x02\n\n\r\n\x05\x04\t\x02\x0e\
-    \x06\x12\x04\xf2\x02\x0b\x1e\n\r\n\x05\x04\t\x02\x0e\x01\x12\x04\xf2\x02\
-    \x1f3\n\r\n\x05\x04\t\x02\x0e\x03\x12\x04\xf2\x0269\nZ\n\x03\x04\t\x05\
-    \x12\x04\xf5\x02\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20o\
-    ptions\x20in\x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\
-    \n\x0c\n\x04\x04\t\x05\0\x12\x04\xf5\x02\r\x18\n\r\n\x05\x04\t\x05\0\x01\
-    \x12\x04\xf5\x02\r\x11\n\r\n\x05\x04\t\x05\0\x02\x12\x04\xf5\x02\x15\x18\
-    \n\x0c\n\x02\x04\n\x12\x06\xfa\x02\0\xb8\x03\x01\n\x0b\n\x03\x04\n\x01\
-    \x12\x04\xfa\x02\x08\x16\n\xd8\x05\n\x04\x04\n\x02\0\x12\x04\x8d\x03\x02\
-    <\x1a\xc9\x05\x20Set\x20true\x20to\x20use\x20the\x20old\x20proto1\x20Mes\
-    sageSet\x20wire\x20format\x20for\x20extensions.\n\x20This\x20is\x20provi\
-    ded\x20for\x20backwards-compatibility\x20with\x20the\x20MessageSet\x20wi\
-    re\n\x20format.\x20\x20You\x20should\x20not\x20use\x20this\x20for\x20any\
-    \x20other\x20reason:\x20\x20It's\x20less\n\x20efficient,\x20has\x20fewer\
-    \x20features,\x20and\x20is\x20more\x20complicated.\n\n\x20The\x20message\
-    \x20must\x20be\x20defined\x20exactly\x20as\x20follows:\n\x20\x20\x20mess\
-    age\x20Foo\x20{\n\x20\x20\x20\x20\x20option\x20message_set_wire_format\
-    \x20=\x20true;\n\x20\x20\x20\x20\x20extensions\x204\x20to\x20max;\n\x20\
-    \x20\x20}\n\x20Note\x20that\x20the\x20message\x20cannot\x20have\x20any\
-    \x20defined\x20fields;\x20MessageSets\x20only\n\x20have\x20extensions.\n\
-    \n\x20All\x20extensions\x20of\x20your\x20type\x20must\x20be\x20singular\
-    \x20messages;\x20e.g.\x20they\x20cannot\n\x20be\x20int32s,\x20enums,\x20\
-    or\x20repeated\x20messages.\n\n\x20Because\x20this\x20is\x20an\x20option\
-    ,\x20the\x20above\x20two\x20restrictions\x20are\x20not\x20enforced\x20by\
-    \n\x20the\x20protocol\x20compiler.\n\n\r\n\x05\x04\n\x02\0\x04\x12\x04\
-    \x8d\x03\x02\n\n\r\n\x05\x04\n\x02\0\x05\x12\x04\x8d\x03\x0b\x0f\n\r\n\
-    \x05\x04\n\x02\0\x01\x12\x04\x8d\x03\x10'\n\r\n\x05\x04\n\x02\0\x03\x12\
-    \x04\x8d\x03*+\n\r\n\x05\x04\n\x02\0\x08\x12\x04\x8d\x03,;\n\r\n\x05\x04\
-    \n\x02\0\x07\x12\x04\x8d\x035:\n\xeb\x01\n\x04\x04\n\x02\x01\x12\x04\x92\
-    \x03\x02D\x1a\xdc\x01\x20Disables\x20the\x20generation\x20of\x20the\x20s\
-    tandard\x20\"descriptor()\"\x20accessor,\x20which\x20can\n\x20conflict\
-    \x20with\x20a\x20field\x20of\x20the\x20same\x20name.\x20\x20This\x20is\
-    \x20meant\x20to\x20make\x20migration\n\x20from\x20proto1\x20easier;\x20n\
-    ew\x20code\x20should\x20avoid\x20fields\x20named\x20\"descriptor\".\n\n\
-    \r\n\x05\x04\n\x02\x01\x04\x12\x04\x92\x03\x02\n\n\r\n\x05\x04\n\x02\x01\
-    \x05\x12\x04\x92\x03\x0b\x0f\n\r\n\x05\x04\n\x02\x01\x01\x12\x04\x92\x03\
-    \x10/\n\r\n\x05\x04\n\x02\x01\x03\x12\x04\x92\x0323\n\r\n\x05\x04\n\x02\
-    \x01\x08\x12\x04\x92\x034C\n\r\n\x05\x04\n\x02\x01\x07\x12\x04\x92\x03=B\
-    \n\xee\x01\n\x04\x04\n\x02\x02\x12\x04\x98\x03\x02/\x1a\xdf\x01\x20Is\
-    \x20this\x20message\x20deprecated?\n\x20Depending\x20on\x20the\x20target\
-    \x20platform,\x20this\x20can\x20emit\x20Deprecated\x20annotations\n\x20f\
-    or\x20the\x20message,\x20or\x20it\x20will\x20be\x20completely\x20ignored\
-    ;\x20in\x20the\x20very\x20least,\n\x20this\x20is\x20a\x20formalization\
-    \x20for\x20deprecating\x20messages.\n\n\r\n\x05\x04\n\x02\x02\x04\x12\
-    \x04\x98\x03\x02\n\n\r\n\x05\x04\n\x02\x02\x05\x12\x04\x98\x03\x0b\x0f\n\
-    \r\n\x05\x04\n\x02\x02\x01\x12\x04\x98\x03\x10\x1a\n\r\n\x05\x04\n\x02\
-    \x02\x03\x12\x04\x98\x03\x1d\x1e\n\r\n\x05\x04\n\x02\x02\x08\x12\x04\x98\
-    \x03\x1f.\n\r\n\x05\x04\n\x02\x02\x07\x12\x04\x98\x03(-\n\x9e\x06\n\x04\
-    \x04\n\x02\x03\x12\x04\xaf\x03\x02\x1e\x1a\x8f\x06\x20Whether\x20the\x20\
-    message\x20is\x20an\x20automatically\x20generated\x20map\x20entry\x20typ\
-    e\x20for\x20the\n\x20maps\x20field.\n\n\x20For\x20maps\x20fields:\n\x20\
-    \x20\x20\x20\x20map<KeyType,\x20ValueType>\x20map_field\x20=\x201;\n\x20\
-    The\x20parsed\x20descriptor\x20looks\x20like:\n\x20\x20\x20\x20\x20messa\
-    ge\x20MapFieldEntry\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20option\x20\
-    map_entry\x20=\x20true;\n\x20\x20\x20\x20\x20\x20\x20\x20\x20optional\
-    \x20KeyType\x20key\x20=\x201;\n\x20\x20\x20\x20\x20\x20\x20\x20\x20optio\
-    nal\x20ValueType\x20value\x20=\x202;\n\x20\x20\x20\x20\x20}\n\x20\x20\
-    \x20\x20\x20repeated\x20MapFieldEntry\x20map_field\x20=\x201;\n\n\x20Imp\
-    lementations\x20may\x20choose\x20not\x20to\x20generate\x20the\x20map_ent\
-    ry=true\x20message,\x20but\n\x20use\x20a\x20native\x20map\x20in\x20the\
-    \x20target\x20language\x20to\x20hold\x20the\x20keys\x20and\x20values.\n\
-    \x20The\x20reflection\x20APIs\x20in\x20such\x20implementions\x20still\
-    \x20need\x20to\x20work\x20as\n\x20if\x20the\x20field\x20is\x20a\x20repea\
-    ted\x20message\x20field.\n\n\x20NOTE:\x20Do\x20not\x20set\x20the\x20opti\
-    on\x20in\x20.proto\x20files.\x20Always\x20use\x20the\x20maps\x20syntax\n\
-    \x20instead.\x20The\x20option\x20should\x20only\x20be\x20implicitly\x20s\
-    et\x20by\x20the\x20proto\x20compiler\n\x20parser.\n\n\r\n\x05\x04\n\x02\
-    \x03\x04\x12\x04\xaf\x03\x02\n\n\r\n\x05\x04\n\x02\x03\x05\x12\x04\xaf\
-    \x03\x0b\x0f\n\r\n\x05\x04\n\x02\x03\x01\x12\x04\xaf\x03\x10\x19\n\r\n\
-    \x05\x04\n\x02\x03\x03\x12\x04\xaf\x03\x1c\x1d\nO\n\x04\x04\n\x02\x04\
-    \x12\x04\xb2\x03\x02:\x1aA\x20The\x20parser\x20stores\x20options\x20it\
-    \x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\n\x02\
-    \x04\x04\x12\x04\xb2\x03\x02\n\n\r\n\x05\x04\n\x02\x04\x06\x12\x04\xb2\
-    \x03\x0b\x1e\n\r\n\x05\x04\n\x02\x04\x01\x12\x04\xb2\x03\x1f3\n\r\n\x05\
-    \x04\n\x02\x04\x03\x12\x04\xb2\x0369\nZ\n\x03\x04\n\x05\x12\x04\xb5\x03\
-    \x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20options\x20in\x20\
-    extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\x0c\n\x04\x04\
-    \n\x05\0\x12\x04\xb5\x03\r\x18\n\r\n\x05\x04\n\x05\0\x01\x12\x04\xb5\x03\
-    \r\x11\n\r\n\x05\x04\n\x05\0\x02\x12\x04\xb5\x03\x15\x18\n\x0c\n\x02\x04\
-    \x0b\x12\x06\xba\x03\0\x93\x04\x01\n\x0b\n\x03\x04\x0b\x01\x12\x04\xba\
-    \x03\x08\x14\n\xa3\x02\n\x04\x04\x0b\x02\0\x12\x04\xbf\x03\x02.\x1a\x94\
-    \x02\x20The\x20ctype\x20option\x20instructs\x20the\x20C++\x20code\x20gen\
-    erator\x20to\x20use\x20a\x20different\n\x20representation\x20of\x20the\
-    \x20field\x20than\x20it\x20normally\x20would.\x20\x20See\x20the\x20speci\
-    fic\n\x20options\x20below.\x20\x20This\x20option\x20is\x20not\x20yet\x20\
-    implemented\x20in\x20the\x20open\x20source\n\x20release\x20--\x20sorry,\
-    \x20we'll\x20try\x20to\x20include\x20it\x20in\x20a\x20future\x20version!\
-    \n\n\r\n\x05\x04\x0b\x02\0\x04\x12\x04\xbf\x03\x02\n\n\r\n\x05\x04\x0b\
-    \x02\0\x06\x12\x04\xbf\x03\x0b\x10\n\r\n\x05\x04\x0b\x02\0\x01\x12\x04\
-    \xbf\x03\x11\x16\n\r\n\x05\x04\x0b\x02\0\x03\x12\x04\xbf\x03\x19\x1a\n\r\
-    \n\x05\x04\x0b\x02\0\x08\x12\x04\xbf\x03\x1b-\n\r\n\x05\x04\x0b\x02\0\
-    \x07\x12\x04\xbf\x03&,\n\x0e\n\x04\x04\x0b\x04\0\x12\x06\xc0\x03\x02\xc7\
-    \x03\x03\n\r\n\x05\x04\x0b\x04\0\x01\x12\x04\xc0\x03\x07\x0c\n\x1f\n\x06\
-    \x04\x0b\x04\0\x02\0\x12\x04\xc2\x03\x04\x0f\x1a\x0f\x20Default\x20mode.\
-    \n\n\x0f\n\x07\x04\x0b\x04\0\x02\0\x01\x12\x04\xc2\x03\x04\n\n\x0f\n\x07\
-    \x04\x0b\x04\0\x02\0\x02\x12\x04\xc2\x03\r\x0e\n\x0e\n\x06\x04\x0b\x04\0\
-    \x02\x01\x12\x04\xc4\x03\x04\r\n\x0f\n\x07\x04\x0b\x04\0\x02\x01\x01\x12\
-    \x04\xc4\x03\x04\x08\n\x0f\n\x07\x04\x0b\x04\0\x02\x01\x02\x12\x04\xc4\
-    \x03\x0b\x0c\n\x0e\n\x06\x04\x0b\x04\0\x02\x02\x12\x04\xc6\x03\x04\x15\n\
-    \x0f\n\x07\x04\x0b\x04\0\x02\x02\x01\x12\x04\xc6\x03\x04\x10\n\x0f\n\x07\
-    \x04\x0b\x04\0\x02\x02\x02\x12\x04\xc6\x03\x13\x14\n\xda\x02\n\x04\x04\
-    \x0b\x02\x01\x12\x04\xcd\x03\x02\x1b\x1a\xcb\x02\x20The\x20packed\x20opt\
-    ion\x20can\x20be\x20enabled\x20for\x20repeated\x20primitive\x20fields\
-    \x20to\x20enable\n\x20a\x20more\x20efficient\x20representation\x20on\x20\
-    the\x20wire.\x20Rather\x20than\x20repeatedly\n\x20writing\x20the\x20tag\
-    \x20and\x20type\x20for\x20each\x20element,\x20the\x20entire\x20array\x20\
-    is\x20encoded\x20as\n\x20a\x20single\x20length-delimited\x20blob.\x20In\
-    \x20proto3,\x20only\x20explicit\x20setting\x20it\x20to\n\x20false\x20wil\
-    l\x20avoid\x20using\x20packed\x20encoding.\n\n\r\n\x05\x04\x0b\x02\x01\
-    \x04\x12\x04\xcd\x03\x02\n\n\r\n\x05\x04\x0b\x02\x01\x05\x12\x04\xcd\x03\
-    \x0b\x0f\n\r\n\x05\x04\x0b\x02\x01\x01\x12\x04\xcd\x03\x10\x16\n\r\n\x05\
-    \x04\x0b\x02\x01\x03\x12\x04\xcd\x03\x19\x1a\n\xe4\x04\n\x04\x04\x0b\x02\
-    \x02\x12\x04\xd8\x03\x023\x1a\xd5\x04\x20The\x20jstype\x20option\x20dete\
-    rmines\x20the\x20JavaScript\x20type\x20used\x20for\x20values\x20of\x20th\
-    e\n\x20field.\x20\x20The\x20option\x20is\x20permitted\x20only\x20for\x20\
-    64\x20bit\x20integral\x20and\x20fixed\x20types\n\x20(int64,\x20uint64,\
-    \x20sint64,\x20fixed64,\x20sfixed64).\x20\x20By\x20default\x20these\x20t\
-    ypes\x20are\n\x20represented\x20as\x20JavaScript\x20strings.\x20\x20This\
-    \x20avoids\x20loss\x20of\x20precision\x20that\x20can\n\x20happen\x20when\
-    \x20a\x20large\x20value\x20is\x20converted\x20to\x20a\x20floating\x20poi\
-    nt\x20JavaScript\n\x20numbers.\x20\x20Specifying\x20JS_NUMBER\x20for\x20\
-    the\x20jstype\x20causes\x20the\x20generated\n\x20JavaScript\x20code\x20t\
-    o\x20use\x20the\x20JavaScript\x20\"number\"\x20type\x20instead\x20of\x20\
-    strings.\n\x20This\x20option\x20is\x20an\x20enum\x20to\x20permit\x20addi\
-    tional\x20types\x20to\x20be\x20added,\n\x20e.g.\x20goog.math.Integer.\n\
-    \n\r\n\x05\x04\x0b\x02\x02\x04\x12\x04\xd8\x03\x02\n\n\r\n\x05\x04\x0b\
-    \x02\x02\x06\x12\x04\xd8\x03\x0b\x11\n\r\n\x05\x04\x0b\x02\x02\x01\x12\
-    \x04\xd8\x03\x12\x18\n\r\n\x05\x04\x0b\x02\x02\x03\x12\x04\xd8\x03\x1b\
-    \x1c\n\r\n\x05\x04\x0b\x02\x02\x08\x12\x04\xd8\x03\x1d2\n\r\n\x05\x04\
-    \x0b\x02\x02\x07\x12\x04\xd8\x03(1\n\x0e\n\x04\x04\x0b\x04\x01\x12\x06\
-    \xd9\x03\x02\xe2\x03\x03\n\r\n\x05\x04\x0b\x04\x01\x01\x12\x04\xd9\x03\
-    \x07\r\n'\n\x06\x04\x0b\x04\x01\x02\0\x12\x04\xdb\x03\x04\x12\x1a\x17\
-    \x20Use\x20the\x20default\x20type.\n\n\x0f\n\x07\x04\x0b\x04\x01\x02\0\
-    \x01\x12\x04\xdb\x03\x04\r\n\x0f\n\x07\x04\x0b\x04\x01\x02\0\x02\x12\x04\
-    \xdb\x03\x10\x11\n)\n\x06\x04\x0b\x04\x01\x02\x01\x12\x04\xde\x03\x04\
-    \x12\x1a\x19\x20Use\x20JavaScript\x20strings.\n\n\x0f\n\x07\x04\x0b\x04\
-    \x01\x02\x01\x01\x12\x04\xde\x03\x04\r\n\x0f\n\x07\x04\x0b\x04\x01\x02\
-    \x01\x02\x12\x04\xde\x03\x10\x11\n)\n\x06\x04\x0b\x04\x01\x02\x02\x12\
-    \x04\xe1\x03\x04\x12\x1a\x19\x20Use\x20JavaScript\x20numbers.\n\n\x0f\n\
-    \x07\x04\x0b\x04\x01\x02\x02\x01\x12\x04\xe1\x03\x04\r\n\x0f\n\x07\x04\
-    \x0b\x04\x01\x02\x02\x02\x12\x04\xe1\x03\x10\x11\n\xef\x0c\n\x04\x04\x0b\
-    \x02\x03\x12\x04\x80\x04\x02)\x1a\xe0\x0c\x20Should\x20this\x20field\x20\
-    be\x20parsed\x20lazily?\x20\x20Lazy\x20applies\x20only\x20to\x20message-\
-    type\n\x20fields.\x20\x20It\x20means\x20that\x20when\x20the\x20outer\x20\
-    message\x20is\x20initially\x20parsed,\x20the\n\x20inner\x20message's\x20\
-    contents\x20will\x20not\x20be\x20parsed\x20but\x20instead\x20stored\x20i\
-    n\x20encoded\n\x20form.\x20\x20The\x20inner\x20message\x20will\x20actual\
-    ly\x20be\x20parsed\x20when\x20it\x20is\x20first\x20accessed.\n\n\x20This\
-    \x20is\x20only\x20a\x20hint.\x20\x20Implementations\x20are\x20free\x20to\
-    \x20choose\x20whether\x20to\x20use\n\x20eager\x20or\x20lazy\x20parsing\
-    \x20regardless\x20of\x20the\x20value\x20of\x20this\x20option.\x20\x20How\
-    ever,\n\x20setting\x20this\x20option\x20true\x20suggests\x20that\x20the\
-    \x20protocol\x20author\x20believes\x20that\n\x20using\x20lazy\x20parsing\
-    \x20on\x20this\x20field\x20is\x20worth\x20the\x20additional\x20bookkeepi\
-    ng\n\x20overhead\x20typically\x20needed\x20to\x20implement\x20it.\n\n\
-    \x20This\x20option\x20does\x20not\x20affect\x20the\x20public\x20interfac\
-    e\x20of\x20any\x20generated\x20code;\n\x20all\x20method\x20signatures\
-    \x20remain\x20the\x20same.\x20\x20Furthermore,\x20thread-safety\x20of\
-    \x20the\n\x20interface\x20is\x20not\x20affected\x20by\x20this\x20option;\
-    \x20const\x20methods\x20remain\x20safe\x20to\n\x20call\x20from\x20multip\
-    le\x20threads\x20concurrently,\x20while\x20non-const\x20methods\x20conti\
-    nue\n\x20to\x20require\x20exclusive\x20access.\n\n\n\x20Note\x20that\x20\
-    implementations\x20may\x20choose\x20not\x20to\x20check\x20required\x20fi\
-    elds\x20within\n\x20a\x20lazy\x20sub-message.\x20\x20That\x20is,\x20call\
-    ing\x20IsInitialized()\x20on\x20the\x20outer\x20message\n\x20may\x20retu\
-    rn\x20true\x20even\x20if\x20the\x20inner\x20message\x20has\x20missing\
-    \x20required\x20fields.\n\x20This\x20is\x20necessary\x20because\x20other\
-    wise\x20the\x20inner\x20message\x20would\x20have\x20to\x20be\n\x20parsed\
-    \x20in\x20order\x20to\x20perform\x20the\x20check,\x20defeating\x20the\
-    \x20purpose\x20of\x20lazy\n\x20parsing.\x20\x20An\x20implementation\x20w\
-    hich\x20chooses\x20not\x20to\x20check\x20required\x20fields\n\x20must\
-    \x20be\x20consistent\x20about\x20it.\x20\x20That\x20is,\x20for\x20any\
-    \x20particular\x20sub-message,\x20the\n\x20implementation\x20must\x20eit\
-    her\x20*always*\x20check\x20its\x20required\x20fields,\x20or\x20*never*\
-    \n\x20check\x20its\x20required\x20fields,\x20regardless\x20of\x20whether\
-    \x20or\x20not\x20the\x20message\x20has\n\x20been\x20parsed.\n\n\r\n\x05\
-    \x04\x0b\x02\x03\x04\x12\x04\x80\x04\x02\n\n\r\n\x05\x04\x0b\x02\x03\x05\
-    \x12\x04\x80\x04\x0b\x0f\n\r\n\x05\x04\x0b\x02\x03\x01\x12\x04\x80\x04\
-    \x10\x14\n\r\n\x05\x04\x0b\x02\x03\x03\x12\x04\x80\x04\x17\x18\n\r\n\x05\
-    \x04\x0b\x02\x03\x08\x12\x04\x80\x04\x19(\n\r\n\x05\x04\x0b\x02\x03\x07\
-    \x12\x04\x80\x04\"'\n\xe8\x01\n\x04\x04\x0b\x02\x04\x12\x04\x86\x04\x02/\
-    \x1a\xd9\x01\x20Is\x20this\x20field\x20deprecated?\n\x20Depending\x20on\
+    \x04\xb4\x0202\n\r\n\x05\x04\t\x02\x03\x08\x12\x04\xb4\x023D\n\x0e\n\x06\
+    \x04\t\x02\x03\x08\x03\x12\x04\xb4\x024C\n\xe6\x02\n\x04\x04\t\x02\x04\
+    \x12\x04\xbc\x02\x02<\x1a\xd7\x02\x20If\x20set\x20true,\x20then\x20the\
+    \x20Java2\x20code\x20generator\x20will\x20generate\x20code\x20that\n\x20\
+    throws\x20an\x20exception\x20whenever\x20an\x20attempt\x20is\x20made\x20\
+    to\x20assign\x20a\x20non-UTF-8\n\x20byte\x20sequence\x20to\x20a\x20strin\
+    g\x20field.\n\x20Message\x20reflection\x20will\x20do\x20the\x20same.\n\
+    \x20However,\x20an\x20extension\x20field\x20still\x20accepts\x20non-UTF-\
+    8\x20byte\x20sequences.\n\x20This\x20option\x20has\x20no\x20effect\x20on\
+    \x20when\x20used\x20with\x20the\x20lite\x20runtime.\n\n\r\n\x05\x04\t\
+    \x02\x04\x04\x12\x04\xbc\x02\x02\n\n\r\n\x05\x04\t\x02\x04\x05\x12\x04\
+    \xbc\x02\x0b\x0f\n\r\n\x05\x04\t\x02\x04\x01\x12\x04\xbc\x02\x10&\n\r\n\
+    \x05\x04\t\x02\x04\x03\x12\x04\xbc\x02)+\n\r\n\x05\x04\t\x02\x04\x08\x12\
+    \x04\xbc\x02,;\n\r\n\x05\x04\t\x02\x04\x07\x12\x04\xbc\x025:\nL\n\x04\
+    \x04\t\x04\0\x12\x06\xc0\x02\x02\xc5\x02\x03\x1a<\x20Generated\x20classe\
+    s\x20can\x20be\x20optimized\x20for\x20speed\x20or\x20code\x20size.\n\n\r\
+    \n\x05\x04\t\x04\0\x01\x12\x04\xc0\x02\x07\x13\nD\n\x06\x04\t\x04\0\x02\
+    \0\x12\x04\xc1\x02\x04\x0e\"4\x20Generate\x20complete\x20code\x20for\x20\
+    parsing,\x20serialization,\n\n\x0f\n\x07\x04\t\x04\0\x02\0\x01\x12\x04\
+    \xc1\x02\x04\t\n\x0f\n\x07\x04\t\x04\0\x02\0\x02\x12\x04\xc1\x02\x0c\r\n\
+    G\n\x06\x04\t\x04\0\x02\x01\x12\x04\xc3\x02\x04\x12\x1a\x06\x20etc.\n\"/\
+    \x20Use\x20ReflectionOps\x20to\x20implement\x20these\x20methods.\n\n\x0f\
+    \n\x07\x04\t\x04\0\x02\x01\x01\x12\x04\xc3\x02\x04\r\n\x0f\n\x07\x04\t\
+    \x04\0\x02\x01\x02\x12\x04\xc3\x02\x10\x11\nG\n\x06\x04\t\x04\0\x02\x02\
+    \x12\x04\xc4\x02\x04\x15\"7\x20Generate\x20code\x20using\x20MessageLite\
+    \x20and\x20the\x20lite\x20runtime.\n\n\x0f\n\x07\x04\t\x04\0\x02\x02\x01\
+    \x12\x04\xc4\x02\x04\x10\n\x0f\n\x07\x04\t\x04\0\x02\x02\x02\x12\x04\xc4\
+    \x02\x13\x14\n\x0c\n\x04\x04\t\x02\x05\x12\x04\xc6\x02\x029\n\r\n\x05\
+    \x04\t\x02\x05\x04\x12\x04\xc6\x02\x02\n\n\r\n\x05\x04\t\x02\x05\x06\x12\
+    \x04\xc6\x02\x0b\x17\n\r\n\x05\x04\t\x02\x05\x01\x12\x04\xc6\x02\x18$\n\
+    \r\n\x05\x04\t\x02\x05\x03\x12\x04\xc6\x02'(\n\r\n\x05\x04\t\x02\x05\x08\
+    \x12\x04\xc6\x02)8\n\r\n\x05\x04\t\x02\x05\x07\x12\x04\xc6\x0227\n\xe2\
+    \x02\n\x04\x04\t\x02\x06\x12\x04\xcd\x02\x02\"\x1a\xd3\x02\x20Sets\x20th\
+    e\x20Go\x20package\x20where\x20structs\x20generated\x20from\x20this\x20.\
+    proto\x20will\x20be\n\x20placed.\x20If\x20omitted,\x20the\x20Go\x20packa\
+    ge\x20will\x20be\x20derived\x20from\x20the\x20following:\n\x20\x20\x20-\
+    \x20The\x20basename\x20of\x20the\x20package\x20import\x20path,\x20if\x20\
+    provided.\n\x20\x20\x20-\x20Otherwise,\x20the\x20package\x20statement\
+    \x20in\x20the\x20.proto\x20file,\x20if\x20present.\n\x20\x20\x20-\x20Oth\
+    erwise,\x20the\x20basename\x20of\x20the\x20.proto\x20file,\x20without\
+    \x20extension.\n\n\r\n\x05\x04\t\x02\x06\x04\x12\x04\xcd\x02\x02\n\n\r\n\
+    \x05\x04\t\x02\x06\x05\x12\x04\xcd\x02\x0b\x11\n\r\n\x05\x04\t\x02\x06\
+    \x01\x12\x04\xcd\x02\x12\x1c\n\r\n\x05\x04\t\x02\x06\x03\x12\x04\xcd\x02\
+    \x1f!\n\xd4\x04\n\x04\x04\t\x02\x07\x12\x04\xdb\x02\x029\x1a\xc5\x04\x20\
+    Should\x20generic\x20services\x20be\x20generated\x20in\x20each\x20langua\
+    ge?\x20\x20\"Generic\"\x20services\n\x20are\x20not\x20specific\x20to\x20\
+    any\x20particular\x20RPC\x20system.\x20\x20They\x20are\x20generated\x20b\
+    y\x20the\n\x20main\x20code\x20generators\x20in\x20each\x20language\x20(w\
+    ithout\x20additional\x20plugins).\n\x20Generic\x20services\x20were\x20th\
+    e\x20only\x20kind\x20of\x20service\x20generation\x20supported\x20by\n\
+    \x20early\x20versions\x20of\x20google.protobuf.\n\n\x20Generic\x20servic\
+    es\x20are\x20now\x20considered\x20deprecated\x20in\x20favor\x20of\x20usi\
+    ng\x20plugins\n\x20that\x20generate\x20code\x20specific\x20to\x20your\
+    \x20particular\x20RPC\x20system.\x20\x20Therefore,\n\x20these\x20default\
+    \x20to\x20false.\x20\x20Old\x20code\x20which\x20depends\x20on\x20generic\
+    \x20services\x20should\n\x20explicitly\x20set\x20them\x20to\x20true.\n\n\
+    \r\n\x05\x04\t\x02\x07\x04\x12\x04\xdb\x02\x02\n\n\r\n\x05\x04\t\x02\x07\
+    \x05\x12\x04\xdb\x02\x0b\x0f\n\r\n\x05\x04\t\x02\x07\x01\x12\x04\xdb\x02\
+    \x10#\n\r\n\x05\x04\t\x02\x07\x03\x12\x04\xdb\x02&(\n\r\n\x05\x04\t\x02\
+    \x07\x08\x12\x04\xdb\x02)8\n\r\n\x05\x04\t\x02\x07\x07\x12\x04\xdb\x0227\
+    \n\x0c\n\x04\x04\t\x02\x08\x12\x04\xdc\x02\x02;\n\r\n\x05\x04\t\x02\x08\
+    \x04\x12\x04\xdc\x02\x02\n\n\r\n\x05\x04\t\x02\x08\x05\x12\x04\xdc\x02\
+    \x0b\x0f\n\r\n\x05\x04\t\x02\x08\x01\x12\x04\xdc\x02\x10%\n\r\n\x05\x04\
+    \t\x02\x08\x03\x12\x04\xdc\x02(*\n\r\n\x05\x04\t\x02\x08\x08\x12\x04\xdc\
+    \x02+:\n\r\n\x05\x04\t\x02\x08\x07\x12\x04\xdc\x0249\n\x0c\n\x04\x04\t\
+    \x02\t\x12\x04\xdd\x02\x029\n\r\n\x05\x04\t\x02\t\x04\x12\x04\xdd\x02\
+    \x02\n\n\r\n\x05\x04\t\x02\t\x05\x12\x04\xdd\x02\x0b\x0f\n\r\n\x05\x04\t\
+    \x02\t\x01\x12\x04\xdd\x02\x10#\n\r\n\x05\x04\t\x02\t\x03\x12\x04\xdd\
+    \x02&(\n\r\n\x05\x04\t\x02\t\x08\x12\x04\xdd\x02)8\n\r\n\x05\x04\t\x02\t\
+    \x07\x12\x04\xdd\x0227\n\xf3\x01\n\x04\x04\t\x02\n\x12\x04\xe3\x02\x020\
+    \x1a\xe4\x01\x20Is\x20this\x20file\x20deprecated?\n\x20Depending\x20on\
     \x20the\x20target\x20platform,\x20this\x20can\x20emit\x20Deprecated\x20a\
-    nnotations\n\x20for\x20accessors,\x20or\x20it\x20will\x20be\x20completel\
-    y\x20ignored;\x20in\x20the\x20very\x20least,\x20this\n\x20is\x20a\x20for\
-    malization\x20for\x20deprecating\x20fields.\n\n\r\n\x05\x04\x0b\x02\x04\
-    \x04\x12\x04\x86\x04\x02\n\n\r\n\x05\x04\x0b\x02\x04\x05\x12\x04\x86\x04\
-    \x0b\x0f\n\r\n\x05\x04\x0b\x02\x04\x01\x12\x04\x86\x04\x10\x1a\n\r\n\x05\
-    \x04\x0b\x02\x04\x03\x12\x04\x86\x04\x1d\x1e\n\r\n\x05\x04\x0b\x02\x04\
-    \x08\x12\x04\x86\x04\x1f.\n\r\n\x05\x04\x0b\x02\x04\x07\x12\x04\x86\x04(\
-    -\n?\n\x04\x04\x0b\x02\x05\x12\x04\x89\x04\x02*\x1a1\x20For\x20Google-in\
-    ternal\x20migration\x20only.\x20Do\x20not\x20use.\n\n\r\n\x05\x04\x0b\
-    \x02\x05\x04\x12\x04\x89\x04\x02\n\n\r\n\x05\x04\x0b\x02\x05\x05\x12\x04\
-    \x89\x04\x0b\x0f\n\r\n\x05\x04\x0b\x02\x05\x01\x12\x04\x89\x04\x10\x14\n\
-    \r\n\x05\x04\x0b\x02\x05\x03\x12\x04\x89\x04\x17\x19\n\r\n\x05\x04\x0b\
-    \x02\x05\x08\x12\x04\x89\x04\x1a)\n\r\n\x05\x04\x0b\x02\x05\x07\x12\x04\
-    \x89\x04#(\nO\n\x04\x04\x0b\x02\x06\x12\x04\x8d\x04\x02:\x1aA\x20The\x20\
-    parser\x20stores\x20options\x20it\x20doesn't\x20recognize\x20here.\x20Se\
-    e\x20above.\n\n\r\n\x05\x04\x0b\x02\x06\x04\x12\x04\x8d\x04\x02\n\n\r\n\
-    \x05\x04\x0b\x02\x06\x06\x12\x04\x8d\x04\x0b\x1e\n\r\n\x05\x04\x0b\x02\
-    \x06\x01\x12\x04\x8d\x04\x1f3\n\r\n\x05\x04\x0b\x02\x06\x03\x12\x04\x8d\
-    \x0469\nZ\n\x03\x04\x0b\x05\x12\x04\x90\x04\x02\x19\x1aM\x20Clients\x20c\
-    an\x20define\x20custom\x20options\x20in\x20extensions\x20of\x20this\x20m\
-    essage.\x20See\x20above.\n\n\x0c\n\x04\x04\x0b\x05\0\x12\x04\x90\x04\r\
-    \x18\n\r\n\x05\x04\x0b\x05\0\x01\x12\x04\x90\x04\r\x11\n\r\n\x05\x04\x0b\
-    \x05\0\x02\x12\x04\x90\x04\x15\x18\n\x0c\n\x02\x04\x0c\x12\x06\x95\x04\0\
-    \x9b\x04\x01\n\x0b\n\x03\x04\x0c\x01\x12\x04\x95\x04\x08\x14\nO\n\x04\
-    \x04\x0c\x02\0\x12\x04\x97\x04\x02:\x1aA\x20The\x20parser\x20stores\x20o\
-    ptions\x20it\x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\r\n\
-    \x05\x04\x0c\x02\0\x04\x12\x04\x97\x04\x02\n\n\r\n\x05\x04\x0c\x02\0\x06\
-    \x12\x04\x97\x04\x0b\x1e\n\r\n\x05\x04\x0c\x02\0\x01\x12\x04\x97\x04\x1f\
-    3\n\r\n\x05\x04\x0c\x02\0\x03\x12\x04\x97\x0469\nZ\n\x03\x04\x0c\x05\x12\
-    \x04\x9a\x04\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20optio\
-    ns\x20in\x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\
-    \x0c\n\x04\x04\x0c\x05\0\x12\x04\x9a\x04\r\x18\n\r\n\x05\x04\x0c\x05\0\
-    \x01\x12\x04\x9a\x04\r\x11\n\r\n\x05\x04\x0c\x05\0\x02\x12\x04\x9a\x04\
-    \x15\x18\n\x0c\n\x02\x04\r\x12\x06\x9d\x04\0\xae\x04\x01\n\x0b\n\x03\x04\
-    \r\x01\x12\x04\x9d\x04\x08\x13\n`\n\x04\x04\r\x02\0\x12\x04\xa1\x04\x02\
-    \x20\x1aR\x20Set\x20this\x20option\x20to\x20true\x20to\x20allow\x20mappi\
-    ng\x20different\x20tag\x20names\x20to\x20the\x20same\n\x20value.\n\n\r\n\
-    \x05\x04\r\x02\0\x04\x12\x04\xa1\x04\x02\n\n\r\n\x05\x04\r\x02\0\x05\x12\
-    \x04\xa1\x04\x0b\x0f\n\r\n\x05\x04\r\x02\0\x01\x12\x04\xa1\x04\x10\x1b\n\
-    \r\n\x05\x04\r\x02\0\x03\x12\x04\xa1\x04\x1e\x1f\n\xe5\x01\n\x04\x04\r\
-    \x02\x01\x12\x04\xa7\x04\x02/\x1a\xd6\x01\x20Is\x20this\x20enum\x20depre\
-    cated?\n\x20Depending\x20on\x20the\x20target\x20platform,\x20this\x20can\
-    \x20emit\x20Deprecated\x20annotations\n\x20for\x20the\x20enum,\x20or\x20\
-    it\x20will\x20be\x20completely\x20ignored;\x20in\x20the\x20very\x20least\
-    ,\x20this\n\x20is\x20a\x20formalization\x20for\x20deprecating\x20enums.\
-    \n\n\r\n\x05\x04\r\x02\x01\x04\x12\x04\xa7\x04\x02\n\n\r\n\x05\x04\r\x02\
-    \x01\x05\x12\x04\xa7\x04\x0b\x0f\n\r\n\x05\x04\r\x02\x01\x01\x12\x04\xa7\
-    \x04\x10\x1a\n\r\n\x05\x04\r\x02\x01\x03\x12\x04\xa7\x04\x1d\x1e\n\r\n\
-    \x05\x04\r\x02\x01\x08\x12\x04\xa7\x04\x1f.\n\r\n\x05\x04\r\x02\x01\x07\
-    \x12\x04\xa7\x04(-\nO\n\x04\x04\r\x02\x02\x12\x04\xaa\x04\x02:\x1aA\x20T\
+    nnotations\n\x20for\x20everything\x20in\x20the\x20file,\x20or\x20it\x20w\
+    ill\x20be\x20completely\x20ignored;\x20in\x20the\x20very\n\x20least,\x20\
+    this\x20is\x20a\x20formalization\x20for\x20deprecating\x20files.\n\n\r\n\
+    \x05\x04\t\x02\n\x04\x12\x04\xe3\x02\x02\n\n\r\n\x05\x04\t\x02\n\x05\x12\
+    \x04\xe3\x02\x0b\x0f\n\r\n\x05\x04\t\x02\n\x01\x12\x04\xe3\x02\x10\x1a\n\
+    \r\n\x05\x04\t\x02\n\x03\x12\x04\xe3\x02\x1d\x1f\n\r\n\x05\x04\t\x02\n\
+    \x08\x12\x04\xe3\x02\x20/\n\r\n\x05\x04\t\x02\n\x07\x12\x04\xe3\x02).\n\
+    \x7f\n\x04\x04\t\x02\x0b\x12\x04\xe7\x02\x026\x1aq\x20Enables\x20the\x20\
+    use\x20of\x20arenas\x20for\x20the\x20proto\x20messages\x20in\x20this\x20\
+    file.\x20This\x20applies\n\x20only\x20to\x20generated\x20classes\x20for\
+    \x20C++.\n\n\r\n\x05\x04\t\x02\x0b\x04\x12\x04\xe7\x02\x02\n\n\r\n\x05\
+    \x04\t\x02\x0b\x05\x12\x04\xe7\x02\x0b\x0f\n\r\n\x05\x04\t\x02\x0b\x01\
+    \x12\x04\xe7\x02\x10\x20\n\r\n\x05\x04\t\x02\x0b\x03\x12\x04\xe7\x02#%\n\
+    \r\n\x05\x04\t\x02\x0b\x08\x12\x04\xe7\x02&5\n\r\n\x05\x04\t\x02\x0b\x07\
+    \x12\x04\xe7\x02/4\n\x92\x01\n\x04\x04\t\x02\x0c\x12\x04\xec\x02\x02)\
+    \x1a\x83\x01\x20Sets\x20the\x20objective\x20c\x20class\x20prefix\x20whic\
+    h\x20is\x20prepended\x20to\x20all\x20objective\x20c\n\x20generated\x20cl\
+    asses\x20from\x20this\x20.proto.\x20There\x20is\x20no\x20default.\n\n\r\
+    \n\x05\x04\t\x02\x0c\x04\x12\x04\xec\x02\x02\n\n\r\n\x05\x04\t\x02\x0c\
+    \x05\x12\x04\xec\x02\x0b\x11\n\r\n\x05\x04\t\x02\x0c\x01\x12\x04\xec\x02\
+    \x12#\n\r\n\x05\x04\t\x02\x0c\x03\x12\x04\xec\x02&(\nI\n\x04\x04\t\x02\r\
+    \x12\x04\xef\x02\x02(\x1a;\x20Namespace\x20for\x20generated\x20classes;\
+    \x20defaults\x20to\x20the\x20package.\n\n\r\n\x05\x04\t\x02\r\x04\x12\
+    \x04\xef\x02\x02\n\n\r\n\x05\x04\t\x02\r\x05\x12\x04\xef\x02\x0b\x11\n\r\
+    \n\x05\x04\t\x02\r\x01\x12\x04\xef\x02\x12\"\n\r\n\x05\x04\t\x02\r\x03\
+    \x12\x04\xef\x02%'\nO\n\x04\x04\t\x02\x0e\x12\x04\xf2\x02\x02:\x1aA\x20T\
     he\x20parser\x20stores\x20options\x20it\x20doesn't\x20recognize\x20here.\
-    \x20See\x20above.\n\n\r\n\x05\x04\r\x02\x02\x04\x12\x04\xaa\x04\x02\n\n\
-    \r\n\x05\x04\r\x02\x02\x06\x12\x04\xaa\x04\x0b\x1e\n\r\n\x05\x04\r\x02\
-    \x02\x01\x12\x04\xaa\x04\x1f3\n\r\n\x05\x04\r\x02\x02\x03\x12\x04\xaa\
-    \x0469\nZ\n\x03\x04\r\x05\x12\x04\xad\x04\x02\x19\x1aM\x20Clients\x20can\
+    \x20See\x20above.\n\n\r\n\x05\x04\t\x02\x0e\x04\x12\x04\xf2\x02\x02\n\n\
+    \r\n\x05\x04\t\x02\x0e\x06\x12\x04\xf2\x02\x0b\x1e\n\r\n\x05\x04\t\x02\
+    \x0e\x01\x12\x04\xf2\x02\x1f3\n\r\n\x05\x04\t\x02\x0e\x03\x12\x04\xf2\
+    \x0269\nZ\n\x03\x04\t\x05\x12\x04\xf5\x02\x02\x19\x1aM\x20Clients\x20can\
     \x20define\x20custom\x20options\x20in\x20extensions\x20of\x20this\x20mes\
-    sage.\x20See\x20above.\n\n\x0c\n\x04\x04\r\x05\0\x12\x04\xad\x04\r\x18\n\
-    \r\n\x05\x04\r\x05\0\x01\x12\x04\xad\x04\r\x11\n\r\n\x05\x04\r\x05\0\x02\
-    \x12\x04\xad\x04\x15\x18\n\x0c\n\x02\x04\x0e\x12\x06\xb0\x04\0\xbc\x04\
-    \x01\n\x0b\n\x03\x04\x0e\x01\x12\x04\xb0\x04\x08\x18\n\xf7\x01\n\x04\x04\
-    \x0e\x02\0\x12\x04\xb5\x04\x02/\x1a\xe8\x01\x20Is\x20this\x20enum\x20val\
-    ue\x20deprecated?\n\x20Depending\x20on\x20the\x20target\x20platform,\x20\
-    this\x20can\x20emit\x20Deprecated\x20annotations\n\x20for\x20the\x20enum\
-    \x20value,\x20or\x20it\x20will\x20be\x20completely\x20ignored;\x20in\x20\
-    the\x20very\x20least,\n\x20this\x20is\x20a\x20formalization\x20for\x20de\
-    precating\x20enum\x20values.\n\n\r\n\x05\x04\x0e\x02\0\x04\x12\x04\xb5\
-    \x04\x02\n\n\r\n\x05\x04\x0e\x02\0\x05\x12\x04\xb5\x04\x0b\x0f\n\r\n\x05\
-    \x04\x0e\x02\0\x01\x12\x04\xb5\x04\x10\x1a\n\r\n\x05\x04\x0e\x02\0\x03\
-    \x12\x04\xb5\x04\x1d\x1e\n\r\n\x05\x04\x0e\x02\0\x08\x12\x04\xb5\x04\x1f\
-    .\n\r\n\x05\x04\x0e\x02\0\x07\x12\x04\xb5\x04(-\nO\n\x04\x04\x0e\x02\x01\
-    \x12\x04\xb8\x04\x02:\x1aA\x20The\x20parser\x20stores\x20options\x20it\
-    \x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\x0e\
-    \x02\x01\x04\x12\x04\xb8\x04\x02\n\n\r\n\x05\x04\x0e\x02\x01\x06\x12\x04\
-    \xb8\x04\x0b\x1e\n\r\n\x05\x04\x0e\x02\x01\x01\x12\x04\xb8\x04\x1f3\n\r\
-    \n\x05\x04\x0e\x02\x01\x03\x12\x04\xb8\x0469\nZ\n\x03\x04\x0e\x05\x12\
-    \x04\xbb\x04\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20optio\
-    ns\x20in\x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\
-    \x0c\n\x04\x04\x0e\x05\0\x12\x04\xbb\x04\r\x18\n\r\n\x05\x04\x0e\x05\0\
-    \x01\x12\x04\xbb\x04\r\x11\n\r\n\x05\x04\x0e\x05\0\x02\x12\x04\xbb\x04\
-    \x15\x18\n\x0c\n\x02\x04\x0f\x12\x06\xbe\x04\0\xd0\x04\x01\n\x0b\n\x03\
-    \x04\x0f\x01\x12\x04\xbe\x04\x08\x16\n\xd9\x03\n\x04\x04\x0f\x02\0\x12\
-    \x04\xc9\x04\x020\x1a\xdf\x01\x20Is\x20this\x20service\x20deprecated?\n\
-    \x20Depending\x20on\x20the\x20target\x20platform,\x20this\x20can\x20emit\
-    \x20Deprecated\x20annotations\n\x20for\x20the\x20service,\x20or\x20it\
-    \x20will\x20be\x20completely\x20ignored;\x20in\x20the\x20very\x20least,\
-    \n\x20this\x20is\x20a\x20formalization\x20for\x20deprecating\x20services\
-    .\n2\xe8\x01\x20Note:\x20\x20Field\x20numbers\x201\x20through\x2032\x20a\
-    re\x20reserved\x20for\x20Google's\x20internal\x20RPC\n\x20\x20\x20framew\
-    ork.\x20\x20We\x20apologize\x20for\x20hoarding\x20these\x20numbers\x20to\
-    \x20ourselves,\x20but\n\x20\x20\x20we\x20were\x20already\x20using\x20the\
-    m\x20long\x20before\x20we\x20decided\x20to\x20release\x20Protocol\n\x20\
-    \x20\x20Buffers.\n\n\r\n\x05\x04\x0f\x02\0\x04\x12\x04\xc9\x04\x02\n\n\r\
-    \n\x05\x04\x0f\x02\0\x05\x12\x04\xc9\x04\x0b\x0f\n\r\n\x05\x04\x0f\x02\0\
-    \x01\x12\x04\xc9\x04\x10\x1a\n\r\n\x05\x04\x0f\x02\0\x03\x12\x04\xc9\x04\
-    \x1d\x1f\n\r\n\x05\x04\x0f\x02\0\x08\x12\x04\xc9\x04\x20/\n\r\n\x05\x04\
-    \x0f\x02\0\x07\x12\x04\xc9\x04).\nO\n\x04\x04\x0f\x02\x01\x12\x04\xcc\
+    sage.\x20See\x20above.\n\n\x0c\n\x04\x04\t\x05\0\x12\x04\xf5\x02\r\x18\n\
+    \r\n\x05\x04\t\x05\0\x01\x12\x04\xf5\x02\r\x11\n\r\n\x05\x04\t\x05\0\x02\
+    \x12\x04\xf5\x02\x15\x18\n\x0c\n\x02\x04\n\x12\x06\xfa\x02\0\xb8\x03\x01\
+    \n\x0b\n\x03\x04\n\x01\x12\x04\xfa\x02\x08\x16\n\xd8\x05\n\x04\x04\n\x02\
+    \0\x12\x04\x8d\x03\x02<\x1a\xc9\x05\x20Set\x20true\x20to\x20use\x20the\
+    \x20old\x20proto1\x20MessageSet\x20wire\x20format\x20for\x20extensions.\
+    \n\x20This\x20is\x20provided\x20for\x20backwards-compatibility\x20with\
+    \x20the\x20MessageSet\x20wire\n\x20format.\x20\x20You\x20should\x20not\
+    \x20use\x20this\x20for\x20any\x20other\x20reason:\x20\x20It's\x20less\n\
+    \x20efficient,\x20has\x20fewer\x20features,\x20and\x20is\x20more\x20comp\
+    licated.\n\n\x20The\x20message\x20must\x20be\x20defined\x20exactly\x20as\
+    \x20follows:\n\x20\x20\x20message\x20Foo\x20{\n\x20\x20\x20\x20\x20optio\
+    n\x20message_set_wire_format\x20=\x20true;\n\x20\x20\x20\x20\x20extensio\
+    ns\x204\x20to\x20max;\n\x20\x20\x20}\n\x20Note\x20that\x20the\x20message\
+    \x20cannot\x20have\x20any\x20defined\x20fields;\x20MessageSets\x20only\n\
+    \x20have\x20extensions.\n\n\x20All\x20extensions\x20of\x20your\x20type\
+    \x20must\x20be\x20singular\x20messages;\x20e.g.\x20they\x20cannot\n\x20b\
+    e\x20int32s,\x20enums,\x20or\x20repeated\x20messages.\n\n\x20Because\x20\
+    this\x20is\x20an\x20option,\x20the\x20above\x20two\x20restrictions\x20ar\
+    e\x20not\x20enforced\x20by\n\x20the\x20protocol\x20compiler.\n\n\r\n\x05\
+    \x04\n\x02\0\x04\x12\x04\x8d\x03\x02\n\n\r\n\x05\x04\n\x02\0\x05\x12\x04\
+    \x8d\x03\x0b\x0f\n\r\n\x05\x04\n\x02\0\x01\x12\x04\x8d\x03\x10'\n\r\n\
+    \x05\x04\n\x02\0\x03\x12\x04\x8d\x03*+\n\r\n\x05\x04\n\x02\0\x08\x12\x04\
+    \x8d\x03,;\n\r\n\x05\x04\n\x02\0\x07\x12\x04\x8d\x035:\n\xeb\x01\n\x04\
+    \x04\n\x02\x01\x12\x04\x92\x03\x02D\x1a\xdc\x01\x20Disables\x20the\x20ge\
+    neration\x20of\x20the\x20standard\x20\"descriptor()\"\x20accessor,\x20wh\
+    ich\x20can\n\x20conflict\x20with\x20a\x20field\x20of\x20the\x20same\x20n\
+    ame.\x20\x20This\x20is\x20meant\x20to\x20make\x20migration\n\x20from\x20\
+    proto1\x20easier;\x20new\x20code\x20should\x20avoid\x20fields\x20named\
+    \x20\"descriptor\".\n\n\r\n\x05\x04\n\x02\x01\x04\x12\x04\x92\x03\x02\n\
+    \n\r\n\x05\x04\n\x02\x01\x05\x12\x04\x92\x03\x0b\x0f\n\r\n\x05\x04\n\x02\
+    \x01\x01\x12\x04\x92\x03\x10/\n\r\n\x05\x04\n\x02\x01\x03\x12\x04\x92\
+    \x0323\n\r\n\x05\x04\n\x02\x01\x08\x12\x04\x92\x034C\n\r\n\x05\x04\n\x02\
+    \x01\x07\x12\x04\x92\x03=B\n\xee\x01\n\x04\x04\n\x02\x02\x12\x04\x98\x03\
+    \x02/\x1a\xdf\x01\x20Is\x20this\x20message\x20deprecated?\n\x20Depending\
+    \x20on\x20the\x20target\x20platform,\x20this\x20can\x20emit\x20Deprecate\
+    d\x20annotations\n\x20for\x20the\x20message,\x20or\x20it\x20will\x20be\
+    \x20completely\x20ignored;\x20in\x20the\x20very\x20least,\n\x20this\x20i\
+    s\x20a\x20formalization\x20for\x20deprecating\x20messages.\n\n\r\n\x05\
+    \x04\n\x02\x02\x04\x12\x04\x98\x03\x02\n\n\r\n\x05\x04\n\x02\x02\x05\x12\
+    \x04\x98\x03\x0b\x0f\n\r\n\x05\x04\n\x02\x02\x01\x12\x04\x98\x03\x10\x1a\
+    \n\r\n\x05\x04\n\x02\x02\x03\x12\x04\x98\x03\x1d\x1e\n\r\n\x05\x04\n\x02\
+    \x02\x08\x12\x04\x98\x03\x1f.\n\r\n\x05\x04\n\x02\x02\x07\x12\x04\x98\
+    \x03(-\n\x9e\x06\n\x04\x04\n\x02\x03\x12\x04\xaf\x03\x02\x1e\x1a\x8f\x06\
+    \x20Whether\x20the\x20message\x20is\x20an\x20automatically\x20generated\
+    \x20map\x20entry\x20type\x20for\x20the\n\x20maps\x20field.\n\n\x20For\
+    \x20maps\x20fields:\n\x20\x20\x20\x20\x20map<KeyType,\x20ValueType>\x20m\
+    ap_field\x20=\x201;\n\x20The\x20parsed\x20descriptor\x20looks\x20like:\n\
+    \x20\x20\x20\x20\x20message\x20MapFieldEntry\x20{\n\x20\x20\x20\x20\x20\
+    \x20\x20\x20\x20option\x20map_entry\x20=\x20true;\n\x20\x20\x20\x20\x20\
+    \x20\x20\x20\x20optional\x20KeyType\x20key\x20=\x201;\n\x20\x20\x20\x20\
+    \x20\x20\x20\x20\x20optional\x20ValueType\x20value\x20=\x202;\n\x20\x20\
+    \x20\x20\x20}\n\x20\x20\x20\x20\x20repeated\x20MapFieldEntry\x20map_fiel\
+    d\x20=\x201;\n\n\x20Implementations\x20may\x20choose\x20not\x20to\x20gen\
+    erate\x20the\x20map_entry=true\x20message,\x20but\n\x20use\x20a\x20nativ\
+    e\x20map\x20in\x20the\x20target\x20language\x20to\x20hold\x20the\x20keys\
+    \x20and\x20values.\n\x20The\x20reflection\x20APIs\x20in\x20such\x20imple\
+    mentions\x20still\x20need\x20to\x20work\x20as\n\x20if\x20the\x20field\
+    \x20is\x20a\x20repeated\x20message\x20field.\n\n\x20NOTE:\x20Do\x20not\
+    \x20set\x20the\x20option\x20in\x20.proto\x20files.\x20Always\x20use\x20t\
+    he\x20maps\x20syntax\n\x20instead.\x20The\x20option\x20should\x20only\
+    \x20be\x20implicitly\x20set\x20by\x20the\x20proto\x20compiler\n\x20parse\
+    r.\n\n\r\n\x05\x04\n\x02\x03\x04\x12\x04\xaf\x03\x02\n\n\r\n\x05\x04\n\
+    \x02\x03\x05\x12\x04\xaf\x03\x0b\x0f\n\r\n\x05\x04\n\x02\x03\x01\x12\x04\
+    \xaf\x03\x10\x19\n\r\n\x05\x04\n\x02\x03\x03\x12\x04\xaf\x03\x1c\x1d\nO\
+    \n\x04\x04\n\x02\x04\x12\x04\xb2\x03\x02:\x1aA\x20The\x20parser\x20store\
+    s\x20options\x20it\x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\
+    \r\n\x05\x04\n\x02\x04\x04\x12\x04\xb2\x03\x02\n\n\r\n\x05\x04\n\x02\x04\
+    \x06\x12\x04\xb2\x03\x0b\x1e\n\r\n\x05\x04\n\x02\x04\x01\x12\x04\xb2\x03\
+    \x1f3\n\r\n\x05\x04\n\x02\x04\x03\x12\x04\xb2\x0369\nZ\n\x03\x04\n\x05\
+    \x12\x04\xb5\x03\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20o\
+    ptions\x20in\x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\
+    \n\x0c\n\x04\x04\n\x05\0\x12\x04\xb5\x03\r\x18\n\r\n\x05\x04\n\x05\0\x01\
+    \x12\x04\xb5\x03\r\x11\n\r\n\x05\x04\n\x05\0\x02\x12\x04\xb5\x03\x15\x18\
+    \n\x0c\n\x02\x04\x0b\x12\x06\xba\x03\0\x93\x04\x01\n\x0b\n\x03\x04\x0b\
+    \x01\x12\x04\xba\x03\x08\x14\n\xa3\x02\n\x04\x04\x0b\x02\0\x12\x04\xbf\
+    \x03\x02.\x1a\x94\x02\x20The\x20ctype\x20option\x20instructs\x20the\x20C\
+    ++\x20code\x20generator\x20to\x20use\x20a\x20different\n\x20representati\
+    on\x20of\x20the\x20field\x20than\x20it\x20normally\x20would.\x20\x20See\
+    \x20the\x20specific\n\x20options\x20below.\x20\x20This\x20option\x20is\
+    \x20not\x20yet\x20implemented\x20in\x20the\x20open\x20source\n\x20releas\
+    e\x20--\x20sorry,\x20we'll\x20try\x20to\x20include\x20it\x20in\x20a\x20f\
+    uture\x20version!\n\n\r\n\x05\x04\x0b\x02\0\x04\x12\x04\xbf\x03\x02\n\n\
+    \r\n\x05\x04\x0b\x02\0\x06\x12\x04\xbf\x03\x0b\x10\n\r\n\x05\x04\x0b\x02\
+    \0\x01\x12\x04\xbf\x03\x11\x16\n\r\n\x05\x04\x0b\x02\0\x03\x12\x04\xbf\
+    \x03\x19\x1a\n\r\n\x05\x04\x0b\x02\0\x08\x12\x04\xbf\x03\x1b-\n\r\n\x05\
+    \x04\x0b\x02\0\x07\x12\x04\xbf\x03&,\n\x0e\n\x04\x04\x0b\x04\0\x12\x06\
+    \xc0\x03\x02\xc7\x03\x03\n\r\n\x05\x04\x0b\x04\0\x01\x12\x04\xc0\x03\x07\
+    \x0c\n\x1f\n\x06\x04\x0b\x04\0\x02\0\x12\x04\xc2\x03\x04\x0f\x1a\x0f\x20\
+    Default\x20mode.\n\n\x0f\n\x07\x04\x0b\x04\0\x02\0\x01\x12\x04\xc2\x03\
+    \x04\n\n\x0f\n\x07\x04\x0b\x04\0\x02\0\x02\x12\x04\xc2\x03\r\x0e\n\x0e\n\
+    \x06\x04\x0b\x04\0\x02\x01\x12\x04\xc4\x03\x04\r\n\x0f\n\x07\x04\x0b\x04\
+    \0\x02\x01\x01\x12\x04\xc4\x03\x04\x08\n\x0f\n\x07\x04\x0b\x04\0\x02\x01\
+    \x02\x12\x04\xc4\x03\x0b\x0c\n\x0e\n\x06\x04\x0b\x04\0\x02\x02\x12\x04\
+    \xc6\x03\x04\x15\n\x0f\n\x07\x04\x0b\x04\0\x02\x02\x01\x12\x04\xc6\x03\
+    \x04\x10\n\x0f\n\x07\x04\x0b\x04\0\x02\x02\x02\x12\x04\xc6\x03\x13\x14\n\
+    \xda\x02\n\x04\x04\x0b\x02\x01\x12\x04\xcd\x03\x02\x1b\x1a\xcb\x02\x20Th\
+    e\x20packed\x20option\x20can\x20be\x20enabled\x20for\x20repeated\x20prim\
+    itive\x20fields\x20to\x20enable\n\x20a\x20more\x20efficient\x20represent\
+    ation\x20on\x20the\x20wire.\x20Rather\x20than\x20repeatedly\n\x20writing\
+    \x20the\x20tag\x20and\x20type\x20for\x20each\x20element,\x20the\x20entir\
+    e\x20array\x20is\x20encoded\x20as\n\x20a\x20single\x20length-delimited\
+    \x20blob.\x20In\x20proto3,\x20only\x20explicit\x20setting\x20it\x20to\n\
+    \x20false\x20will\x20avoid\x20using\x20packed\x20encoding.\n\n\r\n\x05\
+    \x04\x0b\x02\x01\x04\x12\x04\xcd\x03\x02\n\n\r\n\x05\x04\x0b\x02\x01\x05\
+    \x12\x04\xcd\x03\x0b\x0f\n\r\n\x05\x04\x0b\x02\x01\x01\x12\x04\xcd\x03\
+    \x10\x16\n\r\n\x05\x04\x0b\x02\x01\x03\x12\x04\xcd\x03\x19\x1a\n\xe4\x04\
+    \n\x04\x04\x0b\x02\x02\x12\x04\xd8\x03\x023\x1a\xd5\x04\x20The\x20jstype\
+    \x20option\x20determines\x20the\x20JavaScript\x20type\x20used\x20for\x20\
+    values\x20of\x20the\n\x20field.\x20\x20The\x20option\x20is\x20permitted\
+    \x20only\x20for\x2064\x20bit\x20integral\x20and\x20fixed\x20types\n\x20(\
+    int64,\x20uint64,\x20sint64,\x20fixed64,\x20sfixed64).\x20\x20By\x20defa\
+    ult\x20these\x20types\x20are\n\x20represented\x20as\x20JavaScript\x20str\
+    ings.\x20\x20This\x20avoids\x20loss\x20of\x20precision\x20that\x20can\n\
+    \x20happen\x20when\x20a\x20large\x20value\x20is\x20converted\x20to\x20a\
+    \x20floating\x20point\x20JavaScript\n\x20numbers.\x20\x20Specifying\x20J\
+    S_NUMBER\x20for\x20the\x20jstype\x20causes\x20the\x20generated\n\x20Java\
+    Script\x20code\x20to\x20use\x20the\x20JavaScript\x20\"number\"\x20type\
+    \x20instead\x20of\x20strings.\n\x20This\x20option\x20is\x20an\x20enum\
+    \x20to\x20permit\x20additional\x20types\x20to\x20be\x20added,\n\x20e.g.\
+    \x20goog.math.Integer.\n\n\r\n\x05\x04\x0b\x02\x02\x04\x12\x04\xd8\x03\
+    \x02\n\n\r\n\x05\x04\x0b\x02\x02\x06\x12\x04\xd8\x03\x0b\x11\n\r\n\x05\
+    \x04\x0b\x02\x02\x01\x12\x04\xd8\x03\x12\x18\n\r\n\x05\x04\x0b\x02\x02\
+    \x03\x12\x04\xd8\x03\x1b\x1c\n\r\n\x05\x04\x0b\x02\x02\x08\x12\x04\xd8\
+    \x03\x1d2\n\r\n\x05\x04\x0b\x02\x02\x07\x12\x04\xd8\x03(1\n\x0e\n\x04\
+    \x04\x0b\x04\x01\x12\x06\xd9\x03\x02\xe2\x03\x03\n\r\n\x05\x04\x0b\x04\
+    \x01\x01\x12\x04\xd9\x03\x07\r\n'\n\x06\x04\x0b\x04\x01\x02\0\x12\x04\
+    \xdb\x03\x04\x12\x1a\x17\x20Use\x20the\x20default\x20type.\n\n\x0f\n\x07\
+    \x04\x0b\x04\x01\x02\0\x01\x12\x04\xdb\x03\x04\r\n\x0f\n\x07\x04\x0b\x04\
+    \x01\x02\0\x02\x12\x04\xdb\x03\x10\x11\n)\n\x06\x04\x0b\x04\x01\x02\x01\
+    \x12\x04\xde\x03\x04\x12\x1a\x19\x20Use\x20JavaScript\x20strings.\n\n\
+    \x0f\n\x07\x04\x0b\x04\x01\x02\x01\x01\x12\x04\xde\x03\x04\r\n\x0f\n\x07\
+    \x04\x0b\x04\x01\x02\x01\x02\x12\x04\xde\x03\x10\x11\n)\n\x06\x04\x0b\
+    \x04\x01\x02\x02\x12\x04\xe1\x03\x04\x12\x1a\x19\x20Use\x20JavaScript\
+    \x20numbers.\n\n\x0f\n\x07\x04\x0b\x04\x01\x02\x02\x01\x12\x04\xe1\x03\
+    \x04\r\n\x0f\n\x07\x04\x0b\x04\x01\x02\x02\x02\x12\x04\xe1\x03\x10\x11\n\
+    \xef\x0c\n\x04\x04\x0b\x02\x03\x12\x04\x80\x04\x02)\x1a\xe0\x0c\x20Shoul\
+    d\x20this\x20field\x20be\x20parsed\x20lazily?\x20\x20Lazy\x20applies\x20\
+    only\x20to\x20message-type\n\x20fields.\x20\x20It\x20means\x20that\x20wh\
+    en\x20the\x20outer\x20message\x20is\x20initially\x20parsed,\x20the\n\x20\
+    inner\x20message's\x20contents\x20will\x20not\x20be\x20parsed\x20but\x20\
+    instead\x20stored\x20in\x20encoded\n\x20form.\x20\x20The\x20inner\x20mes\
+    sage\x20will\x20actually\x20be\x20parsed\x20when\x20it\x20is\x20first\
+    \x20accessed.\n\n\x20This\x20is\x20only\x20a\x20hint.\x20\x20Implementat\
+    ions\x20are\x20free\x20to\x20choose\x20whether\x20to\x20use\n\x20eager\
+    \x20or\x20lazy\x20parsing\x20regardless\x20of\x20the\x20value\x20of\x20t\
+    his\x20option.\x20\x20However,\n\x20setting\x20this\x20option\x20true\
+    \x20suggests\x20that\x20the\x20protocol\x20author\x20believes\x20that\n\
+    \x20using\x20lazy\x20parsing\x20on\x20this\x20field\x20is\x20worth\x20th\
+    e\x20additional\x20bookkeeping\n\x20overhead\x20typically\x20needed\x20t\
+    o\x20implement\x20it.\n\n\x20This\x20option\x20does\x20not\x20affect\x20\
+    the\x20public\x20interface\x20of\x20any\x20generated\x20code;\n\x20all\
+    \x20method\x20signatures\x20remain\x20the\x20same.\x20\x20Furthermore,\
+    \x20thread-safety\x20of\x20the\n\x20interface\x20is\x20not\x20affected\
+    \x20by\x20this\x20option;\x20const\x20methods\x20remain\x20safe\x20to\n\
+    \x20call\x20from\x20multiple\x20threads\x20concurrently,\x20while\x20non\
+    -const\x20methods\x20continue\n\x20to\x20require\x20exclusive\x20access.\
+    \n\n\n\x20Note\x20that\x20implementations\x20may\x20choose\x20not\x20to\
+    \x20check\x20required\x20fields\x20within\n\x20a\x20lazy\x20sub-message.\
+    \x20\x20That\x20is,\x20calling\x20IsInitialized()\x20on\x20the\x20outer\
+    \x20message\n\x20may\x20return\x20true\x20even\x20if\x20the\x20inner\x20\
+    message\x20has\x20missing\x20required\x20fields.\n\x20This\x20is\x20nece\
+    ssary\x20because\x20otherwise\x20the\x20inner\x20message\x20would\x20hav\
+    e\x20to\x20be\n\x20parsed\x20in\x20order\x20to\x20perform\x20the\x20chec\
+    k,\x20defeating\x20the\x20purpose\x20of\x20lazy\n\x20parsing.\x20\x20An\
+    \x20implementation\x20which\x20chooses\x20not\x20to\x20check\x20required\
+    \x20fields\n\x20must\x20be\x20consistent\x20about\x20it.\x20\x20That\x20\
+    is,\x20for\x20any\x20particular\x20sub-message,\x20the\n\x20implementati\
+    on\x20must\x20either\x20*always*\x20check\x20its\x20required\x20fields,\
+    \x20or\x20*never*\n\x20check\x20its\x20required\x20fields,\x20regardless\
+    \x20of\x20whether\x20or\x20not\x20the\x20message\x20has\n\x20been\x20par\
+    sed.\n\n\r\n\x05\x04\x0b\x02\x03\x04\x12\x04\x80\x04\x02\n\n\r\n\x05\x04\
+    \x0b\x02\x03\x05\x12\x04\x80\x04\x0b\x0f\n\r\n\x05\x04\x0b\x02\x03\x01\
+    \x12\x04\x80\x04\x10\x14\n\r\n\x05\x04\x0b\x02\x03\x03\x12\x04\x80\x04\
+    \x17\x18\n\r\n\x05\x04\x0b\x02\x03\x08\x12\x04\x80\x04\x19(\n\r\n\x05\
+    \x04\x0b\x02\x03\x07\x12\x04\x80\x04\"'\n\xe8\x01\n\x04\x04\x0b\x02\x04\
+    \x12\x04\x86\x04\x02/\x1a\xd9\x01\x20Is\x20this\x20field\x20deprecated?\
+    \n\x20Depending\x20on\x20the\x20target\x20platform,\x20this\x20can\x20em\
+    it\x20Deprecated\x20annotations\n\x20for\x20accessors,\x20or\x20it\x20wi\
+    ll\x20be\x20completely\x20ignored;\x20in\x20the\x20very\x20least,\x20thi\
+    s\n\x20is\x20a\x20formalization\x20for\x20deprecating\x20fields.\n\n\r\n\
+    \x05\x04\x0b\x02\x04\x04\x12\x04\x86\x04\x02\n\n\r\n\x05\x04\x0b\x02\x04\
+    \x05\x12\x04\x86\x04\x0b\x0f\n\r\n\x05\x04\x0b\x02\x04\x01\x12\x04\x86\
+    \x04\x10\x1a\n\r\n\x05\x04\x0b\x02\x04\x03\x12\x04\x86\x04\x1d\x1e\n\r\n\
+    \x05\x04\x0b\x02\x04\x08\x12\x04\x86\x04\x1f.\n\r\n\x05\x04\x0b\x02\x04\
+    \x07\x12\x04\x86\x04(-\n?\n\x04\x04\x0b\x02\x05\x12\x04\x89\x04\x02*\x1a\
+    1\x20For\x20Google-internal\x20migration\x20only.\x20Do\x20not\x20use.\n\
+    \n\r\n\x05\x04\x0b\x02\x05\x04\x12\x04\x89\x04\x02\n\n\r\n\x05\x04\x0b\
+    \x02\x05\x05\x12\x04\x89\x04\x0b\x0f\n\r\n\x05\x04\x0b\x02\x05\x01\x12\
+    \x04\x89\x04\x10\x14\n\r\n\x05\x04\x0b\x02\x05\x03\x12\x04\x89\x04\x17\
+    \x19\n\r\n\x05\x04\x0b\x02\x05\x08\x12\x04\x89\x04\x1a)\n\r\n\x05\x04\
+    \x0b\x02\x05\x07\x12\x04\x89\x04#(\nO\n\x04\x04\x0b\x02\x06\x12\x04\x8d\
     \x04\x02:\x1aA\x20The\x20parser\x20stores\x20options\x20it\x20doesn't\
-    \x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\x0f\x02\x01\x04\
-    \x12\x04\xcc\x04\x02\n\n\r\n\x05\x04\x0f\x02\x01\x06\x12\x04\xcc\x04\x0b\
-    \x1e\n\r\n\x05\x04\x0f\x02\x01\x01\x12\x04\xcc\x04\x1f3\n\r\n\x05\x04\
-    \x0f\x02\x01\x03\x12\x04\xcc\x0469\nZ\n\x03\x04\x0f\x05\x12\x04\xcf\x04\
+    \x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\x0b\x02\x06\x04\
+    \x12\x04\x8d\x04\x02\n\n\r\n\x05\x04\x0b\x02\x06\x06\x12\x04\x8d\x04\x0b\
+    \x1e\n\r\n\x05\x04\x0b\x02\x06\x01\x12\x04\x8d\x04\x1f3\n\r\n\x05\x04\
+    \x0b\x02\x06\x03\x12\x04\x8d\x0469\nZ\n\x03\x04\x0b\x05\x12\x04\x90\x04\
     \x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20options\x20in\x20\
     extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\x0c\n\x04\x04\
-    \x0f\x05\0\x12\x04\xcf\x04\r\x18\n\r\n\x05\x04\x0f\x05\0\x01\x12\x04\xcf\
-    \x04\r\x11\n\r\n\x05\x04\x0f\x05\0\x02\x12\x04\xcf\x04\x15\x18\n\x0c\n\
-    \x02\x04\x10\x12\x06\xd2\x04\0\xe4\x04\x01\n\x0b\n\x03\x04\x10\x01\x12\
-    \x04\xd2\x04\x08\x15\n\xd6\x03\n\x04\x04\x10\x02\0\x12\x04\xdd\x04\x020\
-    \x1a\xdc\x01\x20Is\x20this\x20method\x20deprecated?\n\x20Depending\x20on\
-    \x20the\x20target\x20platform,\x20this\x20can\x20emit\x20Deprecated\x20a\
-    nnotations\n\x20for\x20the\x20method,\x20or\x20it\x20will\x20be\x20compl\
-    etely\x20ignored;\x20in\x20the\x20very\x20least,\n\x20this\x20is\x20a\
-    \x20formalization\x20for\x20deprecating\x20methods.\n2\xe8\x01\x20Note:\
-    \x20\x20Field\x20numbers\x201\x20through\x2032\x20are\x20reserved\x20for\
-    \x20Google's\x20internal\x20RPC\n\x20\x20\x20framework.\x20\x20We\x20apo\
-    logize\x20for\x20hoarding\x20these\x20numbers\x20to\x20ourselves,\x20but\
-    \n\x20\x20\x20we\x20were\x20already\x20using\x20them\x20long\x20before\
-    \x20we\x20decided\x20to\x20release\x20Protocol\n\x20\x20\x20Buffers.\n\n\
-    \r\n\x05\x04\x10\x02\0\x04\x12\x04\xdd\x04\x02\n\n\r\n\x05\x04\x10\x02\0\
-    \x05\x12\x04\xdd\x04\x0b\x0f\n\r\n\x05\x04\x10\x02\0\x01\x12\x04\xdd\x04\
-    \x10\x1a\n\r\n\x05\x04\x10\x02\0\x03\x12\x04\xdd\x04\x1d\x1f\n\r\n\x05\
-    \x04\x10\x02\0\x08\x12\x04\xdd\x04\x20/\n\r\n\x05\x04\x10\x02\0\x07\x12\
-    \x04\xdd\x04).\nO\n\x04\x04\x10\x02\x01\x12\x04\xe0\x04\x02:\x1aA\x20The\
-    \x20parser\x20stores\x20options\x20it\x20doesn't\x20recognize\x20here.\
-    \x20See\x20above.\n\n\r\n\x05\x04\x10\x02\x01\x04\x12\x04\xe0\x04\x02\n\
-    \n\r\n\x05\x04\x10\x02\x01\x06\x12\x04\xe0\x04\x0b\x1e\n\r\n\x05\x04\x10\
-    \x02\x01\x01\x12\x04\xe0\x04\x1f3\n\r\n\x05\x04\x10\x02\x01\x03\x12\x04\
-    \xe0\x0469\nZ\n\x03\x04\x10\x05\x12\x04\xe3\x04\x02\x19\x1aM\x20Clients\
-    \x20can\x20define\x20custom\x20options\x20in\x20extensions\x20of\x20this\
-    \x20message.\x20See\x20above.\n\n\x0c\n\x04\x04\x10\x05\0\x12\x04\xe3\
-    \x04\r\x18\n\r\n\x05\x04\x10\x05\0\x01\x12\x04\xe3\x04\r\x11\n\r\n\x05\
-    \x04\x10\x05\0\x02\x12\x04\xe3\x04\x15\x18\n\x8b\x03\n\x02\x04\x11\x12\
-    \x06\xed\x04\0\x81\x05\x01\x1a\xfc\x02\x20A\x20message\x20representing\
-    \x20a\x20option\x20the\x20parser\x20does\x20not\x20recognize.\x20This\
-    \x20only\n\x20appears\x20in\x20options\x20protos\x20created\x20by\x20the\
-    \x20compiler::Parser\x20class.\n\x20DescriptorPool\x20resolves\x20these\
-    \x20when\x20building\x20Descriptor\x20objects.\x20Therefore,\n\x20option\
-    s\x20protos\x20in\x20descriptor\x20objects\x20(e.g.\x20returned\x20by\
-    \x20Descriptor::options(),\n\x20or\x20produced\x20by\x20Descriptor::Copy\
-    To())\x20will\x20never\x20have\x20UninterpretedOptions\n\x20in\x20them.\
-    \n\n\x0b\n\x03\x04\x11\x01\x12\x04\xed\x04\x08\x1b\n\xcb\x02\n\x04\x04\
-    \x11\x03\0\x12\x06\xf3\x04\x02\xf6\x04\x03\x1a\xba\x02\x20The\x20name\
-    \x20of\x20the\x20uninterpreted\x20option.\x20\x20Each\x20string\x20repre\
-    sents\x20a\x20segment\x20in\n\x20a\x20dot-separated\x20name.\x20\x20is_e\
-    xtension\x20is\x20true\x20iff\x20a\x20segment\x20represents\x20an\n\x20e\
-    xtension\x20(denoted\x20with\x20parentheses\x20in\x20options\x20specs\
-    \x20in\x20.proto\x20files).\n\x20E.g.,{\x20[\"foo\",\x20false],\x20[\"ba\
-    r.baz\",\x20true],\x20[\"qux\",\x20false]\x20}\x20represents\n\x20\"foo.\
-    (bar.baz).qux\".\n\n\r\n\x05\x04\x11\x03\0\x01\x12\x04\xf3\x04\n\x12\n\
-    \x0e\n\x06\x04\x11\x03\0\x02\0\x12\x04\xf4\x04\x04\"\n\x0f\n\x07\x04\x11\
-    \x03\0\x02\0\x04\x12\x04\xf4\x04\x04\x0c\n\x0f\n\x07\x04\x11\x03\0\x02\0\
-    \x05\x12\x04\xf4\x04\r\x13\n\x0f\n\x07\x04\x11\x03\0\x02\0\x01\x12\x04\
-    \xf4\x04\x14\x1d\n\x0f\n\x07\x04\x11\x03\0\x02\0\x03\x12\x04\xf4\x04\x20\
-    !\n\x0e\n\x06\x04\x11\x03\0\x02\x01\x12\x04\xf5\x04\x04#\n\x0f\n\x07\x04\
-    \x11\x03\0\x02\x01\x04\x12\x04\xf5\x04\x04\x0c\n\x0f\n\x07\x04\x11\x03\0\
-    \x02\x01\x05\x12\x04\xf5\x04\r\x11\n\x0f\n\x07\x04\x11\x03\0\x02\x01\x01\
-    \x12\x04\xf5\x04\x12\x1e\n\x0f\n\x07\x04\x11\x03\0\x02\x01\x03\x12\x04\
-    \xf5\x04!\"\n\x0c\n\x04\x04\x11\x02\0\x12\x04\xf7\x04\x02\x1d\n\r\n\x05\
-    \x04\x11\x02\0\x04\x12\x04\xf7\x04\x02\n\n\r\n\x05\x04\x11\x02\0\x06\x12\
-    \x04\xf7\x04\x0b\x13\n\r\n\x05\x04\x11\x02\0\x01\x12\x04\xf7\x04\x14\x18\
-    \n\r\n\x05\x04\x11\x02\0\x03\x12\x04\xf7\x04\x1b\x1c\n\x9c\x01\n\x04\x04\
-    \x11\x02\x01\x12\x04\xfb\x04\x02'\x1a\x8d\x01\x20The\x20value\x20of\x20t\
-    he\x20uninterpreted\x20option,\x20in\x20whatever\x20type\x20the\x20token\
-    izer\n\x20identified\x20it\x20as\x20during\x20parsing.\x20Exactly\x20one\
-    \x20of\x20these\x20should\x20be\x20set.\n\n\r\n\x05\x04\x11\x02\x01\x04\
-    \x12\x04\xfb\x04\x02\n\n\r\n\x05\x04\x11\x02\x01\x05\x12\x04\xfb\x04\x0b\
-    \x11\n\r\n\x05\x04\x11\x02\x01\x01\x12\x04\xfb\x04\x12\"\n\r\n\x05\x04\
-    \x11\x02\x01\x03\x12\x04\xfb\x04%&\n\x0c\n\x04\x04\x11\x02\x02\x12\x04\
-    \xfc\x04\x02)\n\r\n\x05\x04\x11\x02\x02\x04\x12\x04\xfc\x04\x02\n\n\r\n\
-    \x05\x04\x11\x02\x02\x05\x12\x04\xfc\x04\x0b\x11\n\r\n\x05\x04\x11\x02\
-    \x02\x01\x12\x04\xfc\x04\x12$\n\r\n\x05\x04\x11\x02\x02\x03\x12\x04\xfc\
-    \x04'(\n\x0c\n\x04\x04\x11\x02\x03\x12\x04\xfd\x04\x02(\n\r\n\x05\x04\
-    \x11\x02\x03\x04\x12\x04\xfd\x04\x02\n\n\r\n\x05\x04\x11\x02\x03\x05\x12\
-    \x04\xfd\x04\x0b\x10\n\r\n\x05\x04\x11\x02\x03\x01\x12\x04\xfd\x04\x11#\
-    \n\r\n\x05\x04\x11\x02\x03\x03\x12\x04\xfd\x04&'\n\x0c\n\x04\x04\x11\x02\
-    \x04\x12\x04\xfe\x04\x02#\n\r\n\x05\x04\x11\x02\x04\x04\x12\x04\xfe\x04\
-    \x02\n\n\r\n\x05\x04\x11\x02\x04\x05\x12\x04\xfe\x04\x0b\x11\n\r\n\x05\
-    \x04\x11\x02\x04\x01\x12\x04\xfe\x04\x12\x1e\n\r\n\x05\x04\x11\x02\x04\
-    \x03\x12\x04\xfe\x04!\"\n\x0c\n\x04\x04\x11\x02\x05\x12\x04\xff\x04\x02\
-    \"\n\r\n\x05\x04\x11\x02\x05\x04\x12\x04\xff\x04\x02\n\n\r\n\x05\x04\x11\
-    \x02\x05\x05\x12\x04\xff\x04\x0b\x10\n\r\n\x05\x04\x11\x02\x05\x01\x12\
-    \x04\xff\x04\x11\x1d\n\r\n\x05\x04\x11\x02\x05\x03\x12\x04\xff\x04\x20!\
-    \n\x0c\n\x04\x04\x11\x02\x06\x12\x04\x80\x05\x02&\n\r\n\x05\x04\x11\x02\
-    \x06\x04\x12\x04\x80\x05\x02\n\n\r\n\x05\x04\x11\x02\x06\x05\x12\x04\x80\
-    \x05\x0b\x11\n\r\n\x05\x04\x11\x02\x06\x01\x12\x04\x80\x05\x12!\n\r\n\
-    \x05\x04\x11\x02\x06\x03\x12\x04\x80\x05$%\n\xda\x01\n\x02\x04\x12\x12\
-    \x06\x88\x05\0\x89\x06\x01\x1aj\x20Encapsulates\x20information\x20about\
-    \x20the\x20original\x20source\x20file\x20from\x20which\x20a\n\x20FileDes\
-    criptorProto\x20was\x20generated.\n2`\x20===============================\
-    ====================================\n\x20Optional\x20source\x20code\x20\
-    info\n\n\x0b\n\x03\x04\x12\x01\x12\x04\x88\x05\x08\x16\n\x82\x11\n\x04\
-    \x04\x12\x02\0\x12\x04\xb4\x05\x02!\x1a\xf3\x10\x20A\x20Location\x20iden\
-    tifies\x20a\x20piece\x20of\x20source\x20code\x20in\x20a\x20.proto\x20fil\
-    e\x20which\n\x20corresponds\x20to\x20a\x20particular\x20definition.\x20\
-    \x20This\x20information\x20is\x20intended\n\x20to\x20be\x20useful\x20to\
-    \x20IDEs,\x20code\x20indexers,\x20documentation\x20generators,\x20and\
-    \x20similar\n\x20tools.\n\n\x20For\x20example,\x20say\x20we\x20have\x20a\
-    \x20file\x20like:\n\x20\x20\x20message\x20Foo\x20{\n\x20\x20\x20\x20\x20\
-    optional\x20string\x20foo\x20=\x201;\n\x20\x20\x20}\n\x20Let's\x20look\
-    \x20at\x20just\x20the\x20field\x20definition:\n\x20\x20\x20optional\x20s\
-    tring\x20foo\x20=\x201;\n\x20\x20\x20^\x20\x20\x20\x20\x20\x20\x20^^\x20\
-    \x20\x20\x20\x20^^\x20\x20^\x20\x20^^^\n\x20\x20\x20a\x20\x20\x20\x20\
-    \x20\x20\x20bc\x20\x20\x20\x20\x20de\x20\x20f\x20\x20ghi\n\x20We\x20have\
-    \x20the\x20following\x20locations:\n\x20\x20\x20span\x20\x20\x20path\x20\
-    \x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20represents\n\x20\
-    \x20\x20[a,i)\x20\x20[\x204,\x200,\x202,\x200\x20]\x20\x20\x20\x20\x20Th\
-    e\x20whole\x20field\x20definition.\n\x20\x20\x20[a,b)\x20\x20[\x204,\x20\
-    0,\x202,\x200,\x204\x20]\x20\x20The\x20label\x20(optional).\n\x20\x20\
-    \x20[c,d)\x20\x20[\x204,\x200,\x202,\x200,\x205\x20]\x20\x20The\x20type\
-    \x20(string).\n\x20\x20\x20[e,f)\x20\x20[\x204,\x200,\x202,\x200,\x201\
-    \x20]\x20\x20The\x20name\x20(foo).\n\x20\x20\x20[g,h)\x20\x20[\x204,\x20\
-    0,\x202,\x200,\x203\x20]\x20\x20The\x20number\x20(1).\n\n\x20Notes:\n\
-    \x20-\x20A\x20location\x20may\x20refer\x20to\x20a\x20repeated\x20field\
-    \x20itself\x20(i.e.\x20not\x20to\x20any\n\x20\x20\x20particular\x20index\
-    \x20within\x20it).\x20\x20This\x20is\x20used\x20whenever\x20a\x20set\x20\
-    of\x20elements\x20are\n\x20\x20\x20logically\x20enclosed\x20in\x20a\x20s\
-    ingle\x20code\x20segment.\x20\x20For\x20example,\x20an\x20entire\n\x20\
-    \x20\x20extend\x20block\x20(possibly\x20containing\x20multiple\x20extens\
-    ion\x20definitions)\x20will\n\x20\x20\x20have\x20an\x20outer\x20location\
-    \x20whose\x20path\x20refers\x20to\x20the\x20\"extensions\"\x20repeated\n\
-    \x20\x20\x20field\x20without\x20an\x20index.\n\x20-\x20Multiple\x20locat\
-    ions\x20may\x20have\x20the\x20same\x20path.\x20\x20This\x20happens\x20wh\
-    en\x20a\x20single\n\x20\x20\x20logical\x20declaration\x20is\x20spread\
-    \x20out\x20across\x20multiple\x20places.\x20\x20The\x20most\n\x20\x20\
-    \x20obvious\x20example\x20is\x20the\x20\"extend\"\x20block\x20again\x20-\
-    -\x20there\x20may\x20be\x20multiple\n\x20\x20\x20extend\x20blocks\x20in\
-    \x20the\x20same\x20scope,\x20each\x20of\x20which\x20will\x20have\x20the\
-    \x20same\x20path.\n\x20-\x20A\x20location's\x20span\x20is\x20not\x20alwa\
-    ys\x20a\x20subset\x20of\x20its\x20parent's\x20span.\x20\x20For\n\x20\x20\
-    \x20example,\x20the\x20\"extendee\"\x20of\x20an\x20extension\x20declarat\
-    ion\x20appears\x20at\x20the\n\x20\x20\x20beginning\x20of\x20the\x20\"ext\
-    end\"\x20block\x20and\x20is\x20shared\x20by\x20all\x20extensions\x20with\
-    in\n\x20\x20\x20the\x20block.\n\x20-\x20Just\x20because\x20a\x20location\
-    's\x20span\x20is\x20a\x20subset\x20of\x20some\x20other\x20location's\x20\
-    span\n\x20\x20\x20does\x20not\x20mean\x20that\x20it\x20is\x20a\x20descen\
-    dent.\x20\x20For\x20example,\x20a\x20\"group\"\x20defines\n\x20\x20\x20b\
-    oth\x20a\x20type\x20and\x20a\x20field\x20in\x20a\x20single\x20declaratio\
-    n.\x20\x20Thus,\x20the\x20locations\n\x20\x20\x20corresponding\x20to\x20\
-    the\x20type\x20and\x20field\x20and\x20their\x20components\x20will\x20ove\
-    rlap.\n\x20-\x20Code\x20which\x20tries\x20to\x20interpret\x20locations\
-    \x20should\x20probably\x20be\x20designed\x20to\n\x20\x20\x20ignore\x20th\
-    ose\x20that\x20it\x20doesn't\x20understand,\x20as\x20more\x20types\x20of\
-    \x20locations\x20could\n\x20\x20\x20be\x20recorded\x20in\x20the\x20futur\
-    e.\n\n\r\n\x05\x04\x12\x02\0\x04\x12\x04\xb4\x05\x02\n\n\r\n\x05\x04\x12\
-    \x02\0\x06\x12\x04\xb4\x05\x0b\x13\n\r\n\x05\x04\x12\x02\0\x01\x12\x04\
-    \xb4\x05\x14\x1c\n\r\n\x05\x04\x12\x02\0\x03\x12\x04\xb4\x05\x1f\x20\n\
-    \x0e\n\x04\x04\x12\x03\0\x12\x06\xb5\x05\x02\x88\x06\x03\n\r\n\x05\x04\
-    \x12\x03\0\x01\x12\x04\xb5\x05\n\x12\n\x83\x07\n\x06\x04\x12\x03\0\x02\0\
-    \x12\x04\xcd\x05\x04*\x1a\xf2\x06\x20Identifies\x20which\x20part\x20of\
-    \x20the\x20FileDescriptorProto\x20was\x20defined\x20at\x20this\n\x20loca\
-    tion.\n\n\x20Each\x20element\x20is\x20a\x20field\x20number\x20or\x20an\
-    \x20index.\x20\x20They\x20form\x20a\x20path\x20from\n\x20the\x20root\x20\
-    FileDescriptorProto\x20to\x20the\x20place\x20where\x20the\x20definition.\
-    \x20\x20For\n\x20example,\x20this\x20path:\n\x20\x20\x20[\x204,\x203,\
-    \x202,\x207,\x201\x20]\n\x20refers\x20to:\n\x20\x20\x20file.message_type\
-    (3)\x20\x20//\x204,\x203\n\x20\x20\x20\x20\x20\x20\x20.field(7)\x20\x20\
-    \x20\x20\x20\x20\x20\x20\x20//\x202,\x207\n\x20\x20\x20\x20\x20\x20\x20.\
-    name()\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x201\n\x20This\x20i\
-    s\x20because\x20FileDescriptorProto.message_type\x20has\x20field\x20numb\
-    er\x204:\n\x20\x20\x20repeated\x20DescriptorProto\x20message_type\x20=\
-    \x204;\n\x20and\x20DescriptorProto.field\x20has\x20field\x20number\x202:\
-    \n\x20\x20\x20repeated\x20FieldDescriptorProto\x20field\x20=\x202;\n\x20\
-    and\x20FieldDescriptorProto.name\x20has\x20field\x20number\x201:\n\x20\
-    \x20\x20optional\x20string\x20name\x20=\x201;\n\n\x20Thus,\x20the\x20abo\
-    ve\x20path\x20gives\x20the\x20location\x20of\x20a\x20field\x20name.\x20\
-    \x20If\x20we\x20removed\n\x20the\x20last\x20element:\n\x20\x20\x20[\x204\
-    ,\x203,\x202,\x207\x20]\n\x20this\x20path\x20refers\x20to\x20the\x20whol\
-    e\x20field\x20declaration\x20(from\x20the\x20beginning\n\x20of\x20the\
-    \x20label\x20to\x20the\x20terminating\x20semicolon).\n\n\x0f\n\x07\x04\
-    \x12\x03\0\x02\0\x04\x12\x04\xcd\x05\x04\x0c\n\x0f\n\x07\x04\x12\x03\0\
-    \x02\0\x05\x12\x04\xcd\x05\r\x12\n\x0f\n\x07\x04\x12\x03\0\x02\0\x01\x12\
-    \x04\xcd\x05\x13\x17\n\x0f\n\x07\x04\x12\x03\0\x02\0\x03\x12\x04\xcd\x05\
-    \x1a\x1b\n\x0f\n\x07\x04\x12\x03\0\x02\0\x08\x12\x04\xcd\x05\x1c)\n\x12\
-    \n\n\x04\x12\x03\0\x02\0\x08\xe7\x07\0\x12\x04\xcd\x05\x1d(\n\x13\n\x0b\
-    \x04\x12\x03\0\x02\0\x08\xe7\x07\0\x02\x12\x04\xcd\x05\x1d#\n\x14\n\x0c\
-    \x04\x12\x03\0\x02\0\x08\xe7\x07\0\x02\0\x12\x04\xcd\x05\x1d#\n\x15\n\r\
-    \x04\x12\x03\0\x02\0\x08\xe7\x07\0\x02\0\x01\x12\x04\xcd\x05\x1d#\n\x13\
-    \n\x0b\x04\x12\x03\0\x02\0\x08\xe7\x07\0\x03\x12\x04\xcd\x05$(\n\xd2\x02\
-    \n\x06\x04\x12\x03\0\x02\x01\x12\x04\xd4\x05\x04*\x1a\xc1\x02\x20Always\
-    \x20has\x20exactly\x20three\x20or\x20four\x20elements:\x20start\x20line,\
-    \x20start\x20column,\n\x20end\x20line\x20(optional,\x20otherwise\x20assu\
-    med\x20same\x20as\x20start\x20line),\x20end\x20column.\n\x20These\x20are\
-    \x20packed\x20into\x20a\x20single\x20field\x20for\x20efficiency.\x20\x20\
-    Note\x20that\x20line\n\x20and\x20column\x20numbers\x20are\x20zero-based\
-    \x20--\x20typically\x20you\x20will\x20want\x20to\x20add\n\x201\x20to\x20\
-    each\x20before\x20displaying\x20to\x20a\x20user.\n\n\x0f\n\x07\x04\x12\
-    \x03\0\x02\x01\x04\x12\x04\xd4\x05\x04\x0c\n\x0f\n\x07\x04\x12\x03\0\x02\
-    \x01\x05\x12\x04\xd4\x05\r\x12\n\x0f\n\x07\x04\x12\x03\0\x02\x01\x01\x12\
-    \x04\xd4\x05\x13\x17\n\x0f\n\x07\x04\x12\x03\0\x02\x01\x03\x12\x04\xd4\
-    \x05\x1a\x1b\n\x0f\n\x07\x04\x12\x03\0\x02\x01\x08\x12\x04\xd4\x05\x1c)\
-    \n\x12\n\n\x04\x12\x03\0\x02\x01\x08\xe7\x07\0\x12\x04\xd4\x05\x1d(\n\
-    \x13\n\x0b\x04\x12\x03\0\x02\x01\x08\xe7\x07\0\x02\x12\x04\xd4\x05\x1d#\
-    \n\x14\n\x0c\x04\x12\x03\0\x02\x01\x08\xe7\x07\0\x02\0\x12\x04\xd4\x05\
-    \x1d#\n\x15\n\r\x04\x12\x03\0\x02\x01\x08\xe7\x07\0\x02\0\x01\x12\x04\
-    \xd4\x05\x1d#\n\x13\n\x0b\x04\x12\x03\0\x02\x01\x08\xe7\x07\0\x03\x12\
-    \x04\xd4\x05$(\n\xa5\x0c\n\x06\x04\x12\x03\0\x02\x02\x12\x04\x85\x06\x04\
-    )\x1a\x94\x0c\x20If\x20this\x20SourceCodeInfo\x20represents\x20a\x20comp\
-    lete\x20declaration,\x20these\x20are\x20any\n\x20comments\x20appearing\
-    \x20before\x20and\x20after\x20the\x20declaration\x20which\x20appear\x20t\
-    o\x20be\n\x20attached\x20to\x20the\x20declaration.\n\n\x20A\x20series\
-    \x20of\x20line\x20comments\x20appearing\x20on\x20consecutive\x20lines,\
-    \x20with\x20no\x20other\n\x20tokens\x20appearing\x20on\x20those\x20lines\
-    ,\x20will\x20be\x20treated\x20as\x20a\x20single\x20comment.\n\n\x20leadi\
-    ng_detached_comments\x20will\x20keep\x20paragraphs\x20of\x20comments\x20\
-    that\x20appear\n\x20before\x20(but\x20not\x20connected\x20to)\x20the\x20\
-    current\x20element.\x20Each\x20paragraph,\n\x20separated\x20by\x20empty\
-    \x20lines,\x20will\x20be\x20one\x20comment\x20element\x20in\x20the\x20re\
-    peated\n\x20field.\n\n\x20Only\x20the\x20comment\x20content\x20is\x20pro\
-    vided;\x20comment\x20markers\x20(e.g.\x20//)\x20are\n\x20stripped\x20out\
-    .\x20\x20For\x20block\x20comments,\x20leading\x20whitespace\x20and\x20an\
-    \x20asterisk\n\x20will\x20be\x20stripped\x20from\x20the\x20beginning\x20\
-    of\x20each\x20line\x20other\x20than\x20the\x20first.\n\x20Newlines\x20ar\
-    e\x20included\x20in\x20the\x20output.\n\n\x20Examples:\n\n\x20\x20\x20op\
-    tional\x20int32\x20foo\x20=\x201;\x20\x20//\x20Comment\x20attached\x20to\
+    \x0b\x05\0\x12\x04\x90\x04\r\x18\n\r\n\x05\x04\x0b\x05\0\x01\x12\x04\x90\
+    \x04\r\x11\n\r\n\x05\x04\x0b\x05\0\x02\x12\x04\x90\x04\x15\x18\n\x0c\n\
+    \x02\x04\x0c\x12\x06\x95\x04\0\x9b\x04\x01\n\x0b\n\x03\x04\x0c\x01\x12\
+    \x04\x95\x04\x08\x14\nO\n\x04\x04\x0c\x02\0\x12\x04\x97\x04\x02:\x1aA\
+    \x20The\x20parser\x20stores\x20options\x20it\x20doesn't\x20recognize\x20\
+    here.\x20See\x20above.\n\n\r\n\x05\x04\x0c\x02\0\x04\x12\x04\x97\x04\x02\
+    \n\n\r\n\x05\x04\x0c\x02\0\x06\x12\x04\x97\x04\x0b\x1e\n\r\n\x05\x04\x0c\
+    \x02\0\x01\x12\x04\x97\x04\x1f3\n\r\n\x05\x04\x0c\x02\0\x03\x12\x04\x97\
+    \x0469\nZ\n\x03\x04\x0c\x05\x12\x04\x9a\x04\x02\x19\x1aM\x20Clients\x20c\
+    an\x20define\x20custom\x20options\x20in\x20extensions\x20of\x20this\x20m\
+    essage.\x20See\x20above.\n\n\x0c\n\x04\x04\x0c\x05\0\x12\x04\x9a\x04\r\
+    \x18\n\r\n\x05\x04\x0c\x05\0\x01\x12\x04\x9a\x04\r\x11\n\r\n\x05\x04\x0c\
+    \x05\0\x02\x12\x04\x9a\x04\x15\x18\n\x0c\n\x02\x04\r\x12\x06\x9d\x04\0\
+    \xae\x04\x01\n\x0b\n\x03\x04\r\x01\x12\x04\x9d\x04\x08\x13\n`\n\x04\x04\
+    \r\x02\0\x12\x04\xa1\x04\x02\x20\x1aR\x20Set\x20this\x20option\x20to\x20\
+    true\x20to\x20allow\x20mapping\x20different\x20tag\x20names\x20to\x20the\
+    \x20same\n\x20value.\n\n\r\n\x05\x04\r\x02\0\x04\x12\x04\xa1\x04\x02\n\n\
+    \r\n\x05\x04\r\x02\0\x05\x12\x04\xa1\x04\x0b\x0f\n\r\n\x05\x04\r\x02\0\
+    \x01\x12\x04\xa1\x04\x10\x1b\n\r\n\x05\x04\r\x02\0\x03\x12\x04\xa1\x04\
+    \x1e\x1f\n\xe5\x01\n\x04\x04\r\x02\x01\x12\x04\xa7\x04\x02/\x1a\xd6\x01\
+    \x20Is\x20this\x20enum\x20deprecated?\n\x20Depending\x20on\x20the\x20tar\
+    get\x20platform,\x20this\x20can\x20emit\x20Deprecated\x20annotations\n\
+    \x20for\x20the\x20enum,\x20or\x20it\x20will\x20be\x20completely\x20ignor\
+    ed;\x20in\x20the\x20very\x20least,\x20this\n\x20is\x20a\x20formalization\
+    \x20for\x20deprecating\x20enums.\n\n\r\n\x05\x04\r\x02\x01\x04\x12\x04\
+    \xa7\x04\x02\n\n\r\n\x05\x04\r\x02\x01\x05\x12\x04\xa7\x04\x0b\x0f\n\r\n\
+    \x05\x04\r\x02\x01\x01\x12\x04\xa7\x04\x10\x1a\n\r\n\x05\x04\r\x02\x01\
+    \x03\x12\x04\xa7\x04\x1d\x1e\n\r\n\x05\x04\r\x02\x01\x08\x12\x04\xa7\x04\
+    \x1f.\n\r\n\x05\x04\r\x02\x01\x07\x12\x04\xa7\x04(-\nO\n\x04\x04\r\x02\
+    \x02\x12\x04\xaa\x04\x02:\x1aA\x20The\x20parser\x20stores\x20options\x20\
+    it\x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\r\
+    \x02\x02\x04\x12\x04\xaa\x04\x02\n\n\r\n\x05\x04\r\x02\x02\x06\x12\x04\
+    \xaa\x04\x0b\x1e\n\r\n\x05\x04\r\x02\x02\x01\x12\x04\xaa\x04\x1f3\n\r\n\
+    \x05\x04\r\x02\x02\x03\x12\x04\xaa\x0469\nZ\n\x03\x04\r\x05\x12\x04\xad\
+    \x04\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20options\x20in\
+    \x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\x0c\n\x04\
+    \x04\r\x05\0\x12\x04\xad\x04\r\x18\n\r\n\x05\x04\r\x05\0\x01\x12\x04\xad\
+    \x04\r\x11\n\r\n\x05\x04\r\x05\0\x02\x12\x04\xad\x04\x15\x18\n\x0c\n\x02\
+    \x04\x0e\x12\x06\xb0\x04\0\xbc\x04\x01\n\x0b\n\x03\x04\x0e\x01\x12\x04\
+    \xb0\x04\x08\x18\n\xf7\x01\n\x04\x04\x0e\x02\0\x12\x04\xb5\x04\x02/\x1a\
+    \xe8\x01\x20Is\x20this\x20enum\x20value\x20deprecated?\n\x20Depending\
+    \x20on\x20the\x20target\x20platform,\x20this\x20can\x20emit\x20Deprecate\
+    d\x20annotations\n\x20for\x20the\x20enum\x20value,\x20or\x20it\x20will\
+    \x20be\x20completely\x20ignored;\x20in\x20the\x20very\x20least,\n\x20thi\
+    s\x20is\x20a\x20formalization\x20for\x20deprecating\x20enum\x20values.\n\
+    \n\r\n\x05\x04\x0e\x02\0\x04\x12\x04\xb5\x04\x02\n\n\r\n\x05\x04\x0e\x02\
+    \0\x05\x12\x04\xb5\x04\x0b\x0f\n\r\n\x05\x04\x0e\x02\0\x01\x12\x04\xb5\
+    \x04\x10\x1a\n\r\n\x05\x04\x0e\x02\0\x03\x12\x04\xb5\x04\x1d\x1e\n\r\n\
+    \x05\x04\x0e\x02\0\x08\x12\x04\xb5\x04\x1f.\n\r\n\x05\x04\x0e\x02\0\x07\
+    \x12\x04\xb5\x04(-\nO\n\x04\x04\x0e\x02\x01\x12\x04\xb8\x04\x02:\x1aA\
+    \x20The\x20parser\x20stores\x20options\x20it\x20doesn't\x20recognize\x20\
+    here.\x20See\x20above.\n\n\r\n\x05\x04\x0e\x02\x01\x04\x12\x04\xb8\x04\
+    \x02\n\n\r\n\x05\x04\x0e\x02\x01\x06\x12\x04\xb8\x04\x0b\x1e\n\r\n\x05\
+    \x04\x0e\x02\x01\x01\x12\x04\xb8\x04\x1f3\n\r\n\x05\x04\x0e\x02\x01\x03\
+    \x12\x04\xb8\x0469\nZ\n\x03\x04\x0e\x05\x12\x04\xbb\x04\x02\x19\x1aM\x20\
+    Clients\x20can\x20define\x20custom\x20options\x20in\x20extensions\x20of\
+    \x20this\x20message.\x20See\x20above.\n\n\x0c\n\x04\x04\x0e\x05\0\x12\
+    \x04\xbb\x04\r\x18\n\r\n\x05\x04\x0e\x05\0\x01\x12\x04\xbb\x04\r\x11\n\r\
+    \n\x05\x04\x0e\x05\0\x02\x12\x04\xbb\x04\x15\x18\n\x0c\n\x02\x04\x0f\x12\
+    \x06\xbe\x04\0\xd0\x04\x01\n\x0b\n\x03\x04\x0f\x01\x12\x04\xbe\x04\x08\
+    \x16\n\xd9\x03\n\x04\x04\x0f\x02\0\x12\x04\xc9\x04\x020\x1a\xdf\x01\x20I\
+    s\x20this\x20service\x20deprecated?\n\x20Depending\x20on\x20the\x20targe\
+    t\x20platform,\x20this\x20can\x20emit\x20Deprecated\x20annotations\n\x20\
+    for\x20the\x20service,\x20or\x20it\x20will\x20be\x20completely\x20ignore\
+    d;\x20in\x20the\x20very\x20least,\n\x20this\x20is\x20a\x20formalization\
+    \x20for\x20deprecating\x20services.\n2\xe8\x01\x20Note:\x20\x20Field\x20\
+    numbers\x201\x20through\x2032\x20are\x20reserved\x20for\x20Google's\x20i\
+    nternal\x20RPC\n\x20\x20\x20framework.\x20\x20We\x20apologize\x20for\x20\
+    hoarding\x20these\x20numbers\x20to\x20ourselves,\x20but\n\x20\x20\x20we\
+    \x20were\x20already\x20using\x20them\x20long\x20before\x20we\x20decided\
+    \x20to\x20release\x20Protocol\n\x20\x20\x20Buffers.\n\n\r\n\x05\x04\x0f\
+    \x02\0\x04\x12\x04\xc9\x04\x02\n\n\r\n\x05\x04\x0f\x02\0\x05\x12\x04\xc9\
+    \x04\x0b\x0f\n\r\n\x05\x04\x0f\x02\0\x01\x12\x04\xc9\x04\x10\x1a\n\r\n\
+    \x05\x04\x0f\x02\0\x03\x12\x04\xc9\x04\x1d\x1f\n\r\n\x05\x04\x0f\x02\0\
+    \x08\x12\x04\xc9\x04\x20/\n\r\n\x05\x04\x0f\x02\0\x07\x12\x04\xc9\x04).\
+    \nO\n\x04\x04\x0f\x02\x01\x12\x04\xcc\x04\x02:\x1aA\x20The\x20parser\x20\
+    stores\x20options\x20it\x20doesn't\x20recognize\x20here.\x20See\x20above\
+    .\n\n\r\n\x05\x04\x0f\x02\x01\x04\x12\x04\xcc\x04\x02\n\n\r\n\x05\x04\
+    \x0f\x02\x01\x06\x12\x04\xcc\x04\x0b\x1e\n\r\n\x05\x04\x0f\x02\x01\x01\
+    \x12\x04\xcc\x04\x1f3\n\r\n\x05\x04\x0f\x02\x01\x03\x12\x04\xcc\x0469\nZ\
+    \n\x03\x04\x0f\x05\x12\x04\xcf\x04\x02\x19\x1aM\x20Clients\x20can\x20def\
+    ine\x20custom\x20options\x20in\x20extensions\x20of\x20this\x20message.\
+    \x20See\x20above.\n\n\x0c\n\x04\x04\x0f\x05\0\x12\x04\xcf\x04\r\x18\n\r\
+    \n\x05\x04\x0f\x05\0\x01\x12\x04\xcf\x04\r\x11\n\r\n\x05\x04\x0f\x05\0\
+    \x02\x12\x04\xcf\x04\x15\x18\n\x0c\n\x02\x04\x10\x12\x06\xd2\x04\0\xe4\
+    \x04\x01\n\x0b\n\x03\x04\x10\x01\x12\x04\xd2\x04\x08\x15\n\xd6\x03\n\x04\
+    \x04\x10\x02\0\x12\x04\xdd\x04\x020\x1a\xdc\x01\x20Is\x20this\x20method\
+    \x20deprecated?\n\x20Depending\x20on\x20the\x20target\x20platform,\x20th\
+    is\x20can\x20emit\x20Deprecated\x20annotations\n\x20for\x20the\x20method\
+    ,\x20or\x20it\x20will\x20be\x20completely\x20ignored;\x20in\x20the\x20ve\
+    ry\x20least,\n\x20this\x20is\x20a\x20formalization\x20for\x20deprecating\
+    \x20methods.\n2\xe8\x01\x20Note:\x20\x20Field\x20numbers\x201\x20through\
+    \x2032\x20are\x20reserved\x20for\x20Google's\x20internal\x20RPC\n\x20\
+    \x20\x20framework.\x20\x20We\x20apologize\x20for\x20hoarding\x20these\
+    \x20numbers\x20to\x20ourselves,\x20but\n\x20\x20\x20we\x20were\x20alread\
+    y\x20using\x20them\x20long\x20before\x20we\x20decided\x20to\x20release\
+    \x20Protocol\n\x20\x20\x20Buffers.\n\n\r\n\x05\x04\x10\x02\0\x04\x12\x04\
+    \xdd\x04\x02\n\n\r\n\x05\x04\x10\x02\0\x05\x12\x04\xdd\x04\x0b\x0f\n\r\n\
+    \x05\x04\x10\x02\0\x01\x12\x04\xdd\x04\x10\x1a\n\r\n\x05\x04\x10\x02\0\
+    \x03\x12\x04\xdd\x04\x1d\x1f\n\r\n\x05\x04\x10\x02\0\x08\x12\x04\xdd\x04\
+    \x20/\n\r\n\x05\x04\x10\x02\0\x07\x12\x04\xdd\x04).\nO\n\x04\x04\x10\x02\
+    \x01\x12\x04\xe0\x04\x02:\x1aA\x20The\x20parser\x20stores\x20options\x20\
+    it\x20doesn't\x20recognize\x20here.\x20See\x20above.\n\n\r\n\x05\x04\x10\
+    \x02\x01\x04\x12\x04\xe0\x04\x02\n\n\r\n\x05\x04\x10\x02\x01\x06\x12\x04\
+    \xe0\x04\x0b\x1e\n\r\n\x05\x04\x10\x02\x01\x01\x12\x04\xe0\x04\x1f3\n\r\
+    \n\x05\x04\x10\x02\x01\x03\x12\x04\xe0\x0469\nZ\n\x03\x04\x10\x05\x12\
+    \x04\xe3\x04\x02\x19\x1aM\x20Clients\x20can\x20define\x20custom\x20optio\
+    ns\x20in\x20extensions\x20of\x20this\x20message.\x20See\x20above.\n\n\
+    \x0c\n\x04\x04\x10\x05\0\x12\x04\xe3\x04\r\x18\n\r\n\x05\x04\x10\x05\0\
+    \x01\x12\x04\xe3\x04\r\x11\n\r\n\x05\x04\x10\x05\0\x02\x12\x04\xe3\x04\
+    \x15\x18\n\x8b\x03\n\x02\x04\x11\x12\x06\xed\x04\0\x81\x05\x01\x1a\xfc\
+    \x02\x20A\x20message\x20representing\x20a\x20option\x20the\x20parser\x20\
+    does\x20not\x20recognize.\x20This\x20only\n\x20appears\x20in\x20options\
+    \x20protos\x20created\x20by\x20the\x20compiler::Parser\x20class.\n\x20De\
+    scriptorPool\x20resolves\x20these\x20when\x20building\x20Descriptor\x20o\
+    bjects.\x20Therefore,\n\x20options\x20protos\x20in\x20descriptor\x20obje\
+    cts\x20(e.g.\x20returned\x20by\x20Descriptor::options(),\n\x20or\x20prod\
+    uced\x20by\x20Descriptor::CopyTo())\x20will\x20never\x20have\x20Uninterp\
+    retedOptions\n\x20in\x20them.\n\n\x0b\n\x03\x04\x11\x01\x12\x04\xed\x04\
+    \x08\x1b\n\xcb\x02\n\x04\x04\x11\x03\0\x12\x06\xf3\x04\x02\xf6\x04\x03\
+    \x1a\xba\x02\x20The\x20name\x20of\x20the\x20uninterpreted\x20option.\x20\
+    \x20Each\x20string\x20represents\x20a\x20segment\x20in\n\x20a\x20dot-sep\
+    arated\x20name.\x20\x20is_extension\x20is\x20true\x20iff\x20a\x20segment\
+    \x20represents\x20an\n\x20extension\x20(denoted\x20with\x20parentheses\
+    \x20in\x20options\x20specs\x20in\x20.proto\x20files).\n\x20E.g.,{\x20[\"\
+    foo\",\x20false],\x20[\"bar.baz\",\x20true],\x20[\"qux\",\x20false]\x20}\
+    \x20represents\n\x20\"foo.(bar.baz).qux\".\n\n\r\n\x05\x04\x11\x03\0\x01\
+    \x12\x04\xf3\x04\n\x12\n\x0e\n\x06\x04\x11\x03\0\x02\0\x12\x04\xf4\x04\
+    \x04\"\n\x0f\n\x07\x04\x11\x03\0\x02\0\x04\x12\x04\xf4\x04\x04\x0c\n\x0f\
+    \n\x07\x04\x11\x03\0\x02\0\x05\x12\x04\xf4\x04\r\x13\n\x0f\n\x07\x04\x11\
+    \x03\0\x02\0\x01\x12\x04\xf4\x04\x14\x1d\n\x0f\n\x07\x04\x11\x03\0\x02\0\
+    \x03\x12\x04\xf4\x04\x20!\n\x0e\n\x06\x04\x11\x03\0\x02\x01\x12\x04\xf5\
+    \x04\x04#\n\x0f\n\x07\x04\x11\x03\0\x02\x01\x04\x12\x04\xf5\x04\x04\x0c\
+    \n\x0f\n\x07\x04\x11\x03\0\x02\x01\x05\x12\x04\xf5\x04\r\x11\n\x0f\n\x07\
+    \x04\x11\x03\0\x02\x01\x01\x12\x04\xf5\x04\x12\x1e\n\x0f\n\x07\x04\x11\
+    \x03\0\x02\x01\x03\x12\x04\xf5\x04!\"\n\x0c\n\x04\x04\x11\x02\0\x12\x04\
+    \xf7\x04\x02\x1d\n\r\n\x05\x04\x11\x02\0\x04\x12\x04\xf7\x04\x02\n\n\r\n\
+    \x05\x04\x11\x02\0\x06\x12\x04\xf7\x04\x0b\x13\n\r\n\x05\x04\x11\x02\0\
+    \x01\x12\x04\xf7\x04\x14\x18\n\r\n\x05\x04\x11\x02\0\x03\x12\x04\xf7\x04\
+    \x1b\x1c\n\x9c\x01\n\x04\x04\x11\x02\x01\x12\x04\xfb\x04\x02'\x1a\x8d\
+    \x01\x20The\x20value\x20of\x20the\x20uninterpreted\x20option,\x20in\x20w\
+    hatever\x20type\x20the\x20tokenizer\n\x20identified\x20it\x20as\x20durin\
+    g\x20parsing.\x20Exactly\x20one\x20of\x20these\x20should\x20be\x20set.\n\
+    \n\r\n\x05\x04\x11\x02\x01\x04\x12\x04\xfb\x04\x02\n\n\r\n\x05\x04\x11\
+    \x02\x01\x05\x12\x04\xfb\x04\x0b\x11\n\r\n\x05\x04\x11\x02\x01\x01\x12\
+    \x04\xfb\x04\x12\"\n\r\n\x05\x04\x11\x02\x01\x03\x12\x04\xfb\x04%&\n\x0c\
+    \n\x04\x04\x11\x02\x02\x12\x04\xfc\x04\x02)\n\r\n\x05\x04\x11\x02\x02\
+    \x04\x12\x04\xfc\x04\x02\n\n\r\n\x05\x04\x11\x02\x02\x05\x12\x04\xfc\x04\
+    \x0b\x11\n\r\n\x05\x04\x11\x02\x02\x01\x12\x04\xfc\x04\x12$\n\r\n\x05\
+    \x04\x11\x02\x02\x03\x12\x04\xfc\x04'(\n\x0c\n\x04\x04\x11\x02\x03\x12\
+    \x04\xfd\x04\x02(\n\r\n\x05\x04\x11\x02\x03\x04\x12\x04\xfd\x04\x02\n\n\
+    \r\n\x05\x04\x11\x02\x03\x05\x12\x04\xfd\x04\x0b\x10\n\r\n\x05\x04\x11\
+    \x02\x03\x01\x12\x04\xfd\x04\x11#\n\r\n\x05\x04\x11\x02\x03\x03\x12\x04\
+    \xfd\x04&'\n\x0c\n\x04\x04\x11\x02\x04\x12\x04\xfe\x04\x02#\n\r\n\x05\
+    \x04\x11\x02\x04\x04\x12\x04\xfe\x04\x02\n\n\r\n\x05\x04\x11\x02\x04\x05\
+    \x12\x04\xfe\x04\x0b\x11\n\r\n\x05\x04\x11\x02\x04\x01\x12\x04\xfe\x04\
+    \x12\x1e\n\r\n\x05\x04\x11\x02\x04\x03\x12\x04\xfe\x04!\"\n\x0c\n\x04\
+    \x04\x11\x02\x05\x12\x04\xff\x04\x02\"\n\r\n\x05\x04\x11\x02\x05\x04\x12\
+    \x04\xff\x04\x02\n\n\r\n\x05\x04\x11\x02\x05\x05\x12\x04\xff\x04\x0b\x10\
+    \n\r\n\x05\x04\x11\x02\x05\x01\x12\x04\xff\x04\x11\x1d\n\r\n\x05\x04\x11\
+    \x02\x05\x03\x12\x04\xff\x04\x20!\n\x0c\n\x04\x04\x11\x02\x06\x12\x04\
+    \x80\x05\x02&\n\r\n\x05\x04\x11\x02\x06\x04\x12\x04\x80\x05\x02\n\n\r\n\
+    \x05\x04\x11\x02\x06\x05\x12\x04\x80\x05\x0b\x11\n\r\n\x05\x04\x11\x02\
+    \x06\x01\x12\x04\x80\x05\x12!\n\r\n\x05\x04\x11\x02\x06\x03\x12\x04\x80\
+    \x05$%\n\xda\x01\n\x02\x04\x12\x12\x06\x88\x05\0\x89\x06\x01\x1aj\x20Enc\
+    apsulates\x20information\x20about\x20the\x20original\x20source\x20file\
+    \x20from\x20which\x20a\n\x20FileDescriptorProto\x20was\x20generated.\n2`\
+    \x20===================================================================\
+    \n\x20Optional\x20source\x20code\x20info\n\n\x0b\n\x03\x04\x12\x01\x12\
+    \x04\x88\x05\x08\x16\n\x82\x11\n\x04\x04\x12\x02\0\x12\x04\xb4\x05\x02!\
+    \x1a\xf3\x10\x20A\x20Location\x20identifies\x20a\x20piece\x20of\x20sourc\
+    e\x20code\x20in\x20a\x20.proto\x20file\x20which\n\x20corresponds\x20to\
+    \x20a\x20particular\x20definition.\x20\x20This\x20information\x20is\x20i\
+    ntended\n\x20to\x20be\x20useful\x20to\x20IDEs,\x20code\x20indexers,\x20d\
+    ocumentation\x20generators,\x20and\x20similar\n\x20tools.\n\n\x20For\x20\
+    example,\x20say\x20we\x20have\x20a\x20file\x20like:\n\x20\x20\x20message\
+    \x20Foo\x20{\n\x20\x20\x20\x20\x20optional\x20string\x20foo\x20=\x201;\n\
+    \x20\x20\x20}\n\x20Let's\x20look\x20at\x20just\x20the\x20field\x20defini\
+    tion:\n\x20\x20\x20optional\x20string\x20foo\x20=\x201;\n\x20\x20\x20^\
+    \x20\x20\x20\x20\x20\x20\x20^^\x20\x20\x20\x20\x20^^\x20\x20^\x20\x20^^^\
+    \n\x20\x20\x20a\x20\x20\x20\x20\x20\x20\x20bc\x20\x20\x20\x20\x20de\x20\
+    \x20f\x20\x20ghi\n\x20We\x20have\x20the\x20following\x20locations:\n\x20\
+    \x20\x20span\x20\x20\x20path\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+    \x20\x20\x20\x20represents\n\x20\x20\x20[a,i)\x20\x20[\x204,\x200,\x202,\
+    \x200\x20]\x20\x20\x20\x20\x20The\x20whole\x20field\x20definition.\n\x20\
+    \x20\x20[a,b)\x20\x20[\x204,\x200,\x202,\x200,\x204\x20]\x20\x20The\x20l\
+    abel\x20(optional).\n\x20\x20\x20[c,d)\x20\x20[\x204,\x200,\x202,\x200,\
+    \x205\x20]\x20\x20The\x20type\x20(string).\n\x20\x20\x20[e,f)\x20\x20[\
+    \x204,\x200,\x202,\x200,\x201\x20]\x20\x20The\x20name\x20(foo).\n\x20\
+    \x20\x20[g,h)\x20\x20[\x204,\x200,\x202,\x200,\x203\x20]\x20\x20The\x20n\
+    umber\x20(1).\n\n\x20Notes:\n\x20-\x20A\x20location\x20may\x20refer\x20t\
+    o\x20a\x20repeated\x20field\x20itself\x20(i.e.\x20not\x20to\x20any\n\x20\
+    \x20\x20particular\x20index\x20within\x20it).\x20\x20This\x20is\x20used\
+    \x20whenever\x20a\x20set\x20of\x20elements\x20are\n\x20\x20\x20logically\
+    \x20enclosed\x20in\x20a\x20single\x20code\x20segment.\x20\x20For\x20exam\
+    ple,\x20an\x20entire\n\x20\x20\x20extend\x20block\x20(possibly\x20contai\
+    ning\x20multiple\x20extension\x20definitions)\x20will\n\x20\x20\x20have\
+    \x20an\x20outer\x20location\x20whose\x20path\x20refers\x20to\x20the\x20\
+    \"extensions\"\x20repeated\n\x20\x20\x20field\x20without\x20an\x20index.\
+    \n\x20-\x20Multiple\x20locations\x20may\x20have\x20the\x20same\x20path.\
+    \x20\x20This\x20happens\x20when\x20a\x20single\n\x20\x20\x20logical\x20d\
+    eclaration\x20is\x20spread\x20out\x20across\x20multiple\x20places.\x20\
+    \x20The\x20most\n\x20\x20\x20obvious\x20example\x20is\x20the\x20\"extend\
+    \"\x20block\x20again\x20--\x20there\x20may\x20be\x20multiple\n\x20\x20\
+    \x20extend\x20blocks\x20in\x20the\x20same\x20scope,\x20each\x20of\x20whi\
+    ch\x20will\x20have\x20the\x20same\x20path.\n\x20-\x20A\x20location's\x20\
+    span\x20is\x20not\x20always\x20a\x20subset\x20of\x20its\x20parent's\x20s\
+    pan.\x20\x20For\n\x20\x20\x20example,\x20the\x20\"extendee\"\x20of\x20an\
+    \x20extension\x20declaration\x20appears\x20at\x20the\n\x20\x20\x20beginn\
+    ing\x20of\x20the\x20\"extend\"\x20block\x20and\x20is\x20shared\x20by\x20\
+    all\x20extensions\x20within\n\x20\x20\x20the\x20block.\n\x20-\x20Just\
+    \x20because\x20a\x20location's\x20span\x20is\x20a\x20subset\x20of\x20som\
+    e\x20other\x20location's\x20span\n\x20\x20\x20does\x20not\x20mean\x20tha\
+    t\x20it\x20is\x20a\x20descendent.\x20\x20For\x20example,\x20a\x20\"group\
+    \"\x20defines\n\x20\x20\x20both\x20a\x20type\x20and\x20a\x20field\x20in\
+    \x20a\x20single\x20declaration.\x20\x20Thus,\x20the\x20locations\n\x20\
+    \x20\x20corresponding\x20to\x20the\x20type\x20and\x20field\x20and\x20the\
+    ir\x20components\x20will\x20overlap.\n\x20-\x20Code\x20which\x20tries\
+    \x20to\x20interpret\x20locations\x20should\x20probably\x20be\x20designed\
+    \x20to\n\x20\x20\x20ignore\x20those\x20that\x20it\x20doesn't\x20understa\
+    nd,\x20as\x20more\x20types\x20of\x20locations\x20could\n\x20\x20\x20be\
+    \x20recorded\x20in\x20the\x20future.\n\n\r\n\x05\x04\x12\x02\0\x04\x12\
+    \x04\xb4\x05\x02\n\n\r\n\x05\x04\x12\x02\0\x06\x12\x04\xb4\x05\x0b\x13\n\
+    \r\n\x05\x04\x12\x02\0\x01\x12\x04\xb4\x05\x14\x1c\n\r\n\x05\x04\x12\x02\
+    \0\x03\x12\x04\xb4\x05\x1f\x20\n\x0e\n\x04\x04\x12\x03\0\x12\x06\xb5\x05\
+    \x02\x88\x06\x03\n\r\n\x05\x04\x12\x03\0\x01\x12\x04\xb5\x05\n\x12\n\x83\
+    \x07\n\x06\x04\x12\x03\0\x02\0\x12\x04\xcd\x05\x04*\x1a\xf2\x06\x20Ident\
+    ifies\x20which\x20part\x20of\x20the\x20FileDescriptorProto\x20was\x20def\
+    ined\x20at\x20this\n\x20location.\n\n\x20Each\x20element\x20is\x20a\x20f\
+    ield\x20number\x20or\x20an\x20index.\x20\x20They\x20form\x20a\x20path\
+    \x20from\n\x20the\x20root\x20FileDescriptorProto\x20to\x20the\x20place\
+    \x20where\x20the\x20definition.\x20\x20For\n\x20example,\x20this\x20path\
+    :\n\x20\x20\x20[\x204,\x203,\x202,\x207,\x201\x20]\n\x20refers\x20to:\n\
+    \x20\x20\x20file.message_type(3)\x20\x20//\x204,\x203\n\x20\x20\x20\x20\
+    \x20\x20\x20.field(7)\x20\x20\x20\x20\x20\x20\x20\x20\x20//\x202,\x207\n\
+    \x20\x20\x20\x20\x20\x20\x20.name()\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+    \x20\x20//\x201\n\x20This\x20is\x20because\x20FileDescriptorProto.messag\
+    e_type\x20has\x20field\x20number\x204:\n\x20\x20\x20repeated\x20Descript\
+    orProto\x20message_type\x20=\x204;\n\x20and\x20DescriptorProto.field\x20\
+    has\x20field\x20number\x202:\n\x20\x20\x20repeated\x20FieldDescriptorPro\
+    to\x20field\x20=\x202;\n\x20and\x20FieldDescriptorProto.name\x20has\x20f\
+    ield\x20number\x201:\n\x20\x20\x20optional\x20string\x20name\x20=\x201;\
+    \n\n\x20Thus,\x20the\x20above\x20path\x20gives\x20the\x20location\x20of\
+    \x20a\x20field\x20name.\x20\x20If\x20we\x20removed\n\x20the\x20last\x20e\
+    lement:\n\x20\x20\x20[\x204,\x203,\x202,\x207\x20]\n\x20this\x20path\x20\
+    refers\x20to\x20the\x20whole\x20field\x20declaration\x20(from\x20the\x20\
+    beginning\n\x20of\x20the\x20label\x20to\x20the\x20terminating\x20semicol\
+    on).\n\n\x0f\n\x07\x04\x12\x03\0\x02\0\x04\x12\x04\xcd\x05\x04\x0c\n\x0f\
+    \n\x07\x04\x12\x03\0\x02\0\x05\x12\x04\xcd\x05\r\x12\n\x0f\n\x07\x04\x12\
+    \x03\0\x02\0\x01\x12\x04\xcd\x05\x13\x17\n\x0f\n\x07\x04\x12\x03\0\x02\0\
+    \x03\x12\x04\xcd\x05\x1a\x1b\n\x0f\n\x07\x04\x12\x03\0\x02\0\x08\x12\x04\
+    \xcd\x05\x1c)\n\x10\n\x08\x04\x12\x03\0\x02\0\x08\x02\x12\x04\xcd\x05\
+    \x1d(\n\xd2\x02\n\x06\x04\x12\x03\0\x02\x01\x12\x04\xd4\x05\x04*\x1a\xc1\
+    \x02\x20Always\x20has\x20exactly\x20three\x20or\x20four\x20elements:\x20\
+    start\x20line,\x20start\x20column,\n\x20end\x20line\x20(optional,\x20oth\
+    erwise\x20assumed\x20same\x20as\x20start\x20line),\x20end\x20column.\n\
+    \x20These\x20are\x20packed\x20into\x20a\x20single\x20field\x20for\x20eff\
+    iciency.\x20\x20Note\x20that\x20line\n\x20and\x20column\x20numbers\x20ar\
+    e\x20zero-based\x20--\x20typically\x20you\x20will\x20want\x20to\x20add\n\
+    \x201\x20to\x20each\x20before\x20displaying\x20to\x20a\x20user.\n\n\x0f\
+    \n\x07\x04\x12\x03\0\x02\x01\x04\x12\x04\xd4\x05\x04\x0c\n\x0f\n\x07\x04\
+    \x12\x03\0\x02\x01\x05\x12\x04\xd4\x05\r\x12\n\x0f\n\x07\x04\x12\x03\0\
+    \x02\x01\x01\x12\x04\xd4\x05\x13\x17\n\x0f\n\x07\x04\x12\x03\0\x02\x01\
+    \x03\x12\x04\xd4\x05\x1a\x1b\n\x0f\n\x07\x04\x12\x03\0\x02\x01\x08\x12\
+    \x04\xd4\x05\x1c)\n\x10\n\x08\x04\x12\x03\0\x02\x01\x08\x02\x12\x04\xd4\
+    \x05\x1d(\n\xa5\x0c\n\x06\x04\x12\x03\0\x02\x02\x12\x04\x85\x06\x04)\x1a\
+    \x94\x0c\x20If\x20this\x20SourceCodeInfo\x20represents\x20a\x20complete\
+    \x20declaration,\x20these\x20are\x20any\n\x20comments\x20appearing\x20be\
+    fore\x20and\x20after\x20the\x20declaration\x20which\x20appear\x20to\x20b\
+    e\n\x20attached\x20to\x20the\x20declaration.\n\n\x20A\x20series\x20of\
+    \x20line\x20comments\x20appearing\x20on\x20consecutive\x20lines,\x20with\
+    \x20no\x20other\n\x20tokens\x20appearing\x20on\x20those\x20lines,\x20wil\
+    l\x20be\x20treated\x20as\x20a\x20single\x20comment.\n\n\x20leading_detac\
+    hed_comments\x20will\x20keep\x20paragraphs\x20of\x20comments\x20that\x20\
+    appear\n\x20before\x20(but\x20not\x20connected\x20to)\x20the\x20current\
+    \x20element.\x20Each\x20paragraph,\n\x20separated\x20by\x20empty\x20line\
+    s,\x20will\x20be\x20one\x20comment\x20element\x20in\x20the\x20repeated\n\
+    \x20field.\n\n\x20Only\x20the\x20comment\x20content\x20is\x20provided;\
+    \x20comment\x20markers\x20(e.g.\x20//)\x20are\n\x20stripped\x20out.\x20\
+    \x20For\x20block\x20comments,\x20leading\x20whitespace\x20and\x20an\x20a\
+    sterisk\n\x20will\x20be\x20stripped\x20from\x20the\x20beginning\x20of\
+    \x20each\x20line\x20other\x20than\x20the\x20first.\n\x20Newlines\x20are\
+    \x20included\x20in\x20the\x20output.\n\n\x20Examples:\n\n\x20\x20\x20opt\
+    ional\x20int32\x20foo\x20=\x201;\x20\x20//\x20Comment\x20attached\x20to\
     \x20foo.\n\x20\x20\x20//\x20Comment\x20attached\x20to\x20bar.\n\x20\x20\
     \x20optional\x20int32\x20bar\x20=\x202;\n\n\x20\x20\x20optional\x20strin\
     g\x20baz\x20=\x203;\n\x20\x20\x20//\x20Comment\x20attached\x20to\x20baz.\
@@ -9743,18 +9778,14 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x95\x06\x04\x0c\n\x0f\n\x07\x04\x13\x03\0\x02\0\x05\x12\x04\x95\x06\r\
     \x12\n\x0f\n\x07\x04\x13\x03\0\x02\0\x01\x12\x04\x95\x06\x13\x17\n\x0f\n\
     \x07\x04\x13\x03\0\x02\0\x03\x12\x04\x95\x06\x1a\x1b\n\x0f\n\x07\x04\x13\
-    \x03\0\x02\0\x08\x12\x04\x95\x06\x1c)\n\x12\n\n\x04\x13\x03\0\x02\0\x08\
-    \xe7\x07\0\x12\x04\x95\x06\x1d(\n\x13\n\x0b\x04\x13\x03\0\x02\0\x08\xe7\
-    \x07\0\x02\x12\x04\x95\x06\x1d#\n\x14\n\x0c\x04\x13\x03\0\x02\0\x08\xe7\
-    \x07\0\x02\0\x12\x04\x95\x06\x1d#\n\x15\n\r\x04\x13\x03\0\x02\0\x08\xe7\
-    \x07\0\x02\0\x01\x12\x04\x95\x06\x1d#\n\x13\n\x0b\x04\x13\x03\0\x02\0\
-    \x08\xe7\x07\0\x03\x12\x04\x95\x06$(\nO\n\x06\x04\x13\x03\0\x02\x01\x12\
-    \x04\x98\x06\x04$\x1a?\x20Identifies\x20the\x20filesystem\x20path\x20to\
-    \x20the\x20original\x20source\x20.proto.\n\n\x0f\n\x07\x04\x13\x03\0\x02\
-    \x01\x04\x12\x04\x98\x06\x04\x0c\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x05\
-    \x12\x04\x98\x06\r\x13\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x01\x12\x04\x98\
-    \x06\x14\x1f\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x03\x12\x04\x98\x06\"#\nw\
-    \n\x06\x04\x13\x03\0\x02\x02\x12\x04\x9c\x06\x04\x1d\x1ag\x20Identifies\
+    \x03\0\x02\0\x08\x12\x04\x95\x06\x1c)\n\x10\n\x08\x04\x13\x03\0\x02\0\
+    \x08\x02\x12\x04\x95\x06\x1d(\nO\n\x06\x04\x13\x03\0\x02\x01\x12\x04\x98\
+    \x06\x04$\x1a?\x20Identifies\x20the\x20filesystem\x20path\x20to\x20the\
+    \x20original\x20source\x20.proto.\n\n\x0f\n\x07\x04\x13\x03\0\x02\x01\
+    \x04\x12\x04\x98\x06\x04\x0c\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x05\x12\
+    \x04\x98\x06\r\x13\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x01\x12\x04\x98\x06\
+    \x14\x1f\n\x0f\n\x07\x04\x13\x03\0\x02\x01\x03\x12\x04\x98\x06\"#\nw\n\
+    \x06\x04\x13\x03\0\x02\x02\x12\x04\x9c\x06\x04\x1d\x1ag\x20Identifies\
     \x20the\x20starting\x20offset\x20in\x20bytes\x20in\x20the\x20generated\
     \x20code\n\x20that\x20relates\x20to\x20the\x20identified\x20object.\n\n\
     \x0f\n\x07\x04\x13\x03\0\x02\x02\x04\x12\x04\x9c\x06\x04\x0c\n\x0f\n\x07\

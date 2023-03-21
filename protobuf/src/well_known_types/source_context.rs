@@ -25,6 +25,7 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct SourceContext {
     // message fields
     pub file_name: ::std::string::String,
+    pub file_name_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -72,7 +73,7 @@ impl ::protobuf::Message for SourceContext {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.file_name)?;
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.file_name, &mut self.file_name_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -114,13 +115,13 @@ impl ::protobuf::Message for SourceContext {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -188,7 +189,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n$google/protobuf/source_context.proto\x12\x0fgoogle.protobuf\",\n\rSou\
     rceContext\x12\x1b\n\tfile_name\x18\x01\x20\x01(\tR\x08fileNameBR\n\x13c\
     om.google.protobufB\x12SourceContextProtoP\x01\xa2\x02\x03GPB\xaa\x02\
-    \x1eGoogle.Protobuf.WellKnownTypesJ\xec\x12\n\x06\x12\x04\x1e\0.\x01\n\
+    \x1eGoogle.Protobuf.WellKnownTypesJ\xac\x10\n\x06\x12\x04\x1e\0.\x01\n\
     \xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20\
     -\x20Google's\x20data\x20interchange\x20format\n\x20Copyright\x202008\
     \x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https://develo\
@@ -223,36 +224,20 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20NEGLIGENCE\x20OR\x20OTHERWISE)\x20ARISING\x20IN\x20ANY\x20WAY\x20OUT\
     \x20OF\x20THE\x20USE\n\x20OF\x20THIS\x20SOFTWARE,\x20EVEN\x20IF\x20ADVIS\
     ED\x20OF\x20THE\x20POSSIBILITY\x20OF\x20SUCH\x20DAMAGE.\n\n\x08\n\x01\
-    \x02\x12\x03\x20\x08\x17\n\x08\n\x01\x08\x12\x03\"\0;\n\x0b\n\x04\x08\
-    \xe7\x07\0\x12\x03\"\0;\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\"\x07\x17\
-    \n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\"\x07\x17\n\x0e\n\x07\x08\xe7\x07\
-    \0\x02\0\x01\x12\x03\"\x07\x17\n\x0c\n\x05\x08\xe7\x07\0\x07\x12\x03\"\
-    \x1a:\n\x08\n\x01\x08\x12\x03#\0,\n\x0b\n\x04\x08\xe7\x07\x01\x12\x03#\0\
-    ,\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03#\x07\x13\n\r\n\x06\x08\xe7\x07\
-    \x01\x02\0\x12\x03#\x07\x13\n\x0e\n\x07\x08\xe7\x07\x01\x02\0\x01\x12\
-    \x03#\x07\x13\n\x0c\n\x05\x08\xe7\x07\x01\x07\x12\x03#\x16+\n\x08\n\x01\
-    \x08\x12\x03$\03\n\x0b\n\x04\x08\xe7\x07\x02\x12\x03$\03\n\x0c\n\x05\x08\
-    \xe7\x07\x02\x02\x12\x03$\x07\x1b\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\
-    \x03$\x07\x1b\n\x0e\n\x07\x08\xe7\x07\x02\x02\0\x01\x12\x03$\x07\x1b\n\
-    \x0c\n\x05\x08\xe7\x07\x02\x07\x12\x03$\x1e2\n\x08\n\x01\x08\x12\x03%\0\
-    \"\n\x0b\n\x04\x08\xe7\x07\x03\x12\x03%\0\"\n\x0c\n\x05\x08\xe7\x07\x03\
-    \x02\x12\x03%\x07\x1a\n\r\n\x06\x08\xe7\x07\x03\x02\0\x12\x03%\x07\x1a\n\
-    \x0e\n\x07\x08\xe7\x07\x03\x02\0\x01\x12\x03%\x07\x1a\n\x0c\n\x05\x08\
-    \xe7\x07\x03\x03\x12\x03%\x1d!\n\x08\n\x01\x08\x12\x03&\0!\n\x0b\n\x04\
-    \x08\xe7\x07\x04\x12\x03&\0!\n\x0c\n\x05\x08\xe7\x07\x04\x02\x12\x03&\
-    \x07\x18\n\r\n\x06\x08\xe7\x07\x04\x02\0\x12\x03&\x07\x18\n\x0e\n\x07\
-    \x08\xe7\x07\x04\x02\0\x01\x12\x03&\x07\x18\n\x0c\n\x05\x08\xe7\x07\x04\
-    \x07\x12\x03&\x1b\x20\n\x83\x01\n\x02\x04\0\x12\x04*\0.\x01\x1aw\x20`Sou\
-    rceContext`\x20represents\x20information\x20about\x20the\x20source\x20of\
-    \x20a\n\x20protobuf\x20element,\x20like\x20the\x20file\x20in\x20which\
-    \x20it\x20is\x20defined.\n\n\n\n\x03\x04\0\x01\x12\x03*\x08\x15\n\xa3\
+    \x02\x12\x03\x20\0\x18\n\x08\n\x01\x08\x12\x03\"\0;\n\t\n\x02\x08%\x12\
+    \x03\"\0;\n\x08\n\x01\x08\x12\x03#\0,\n\t\n\x02\x08\x01\x12\x03#\0,\n\
+    \x08\n\x01\x08\x12\x03$\03\n\t\n\x02\x08\x08\x12\x03$\03\n\x08\n\x01\x08\
+    \x12\x03%\0\"\n\t\n\x02\x08\n\x12\x03%\0\"\n\x08\n\x01\x08\x12\x03&\0!\n\
+    \t\n\x02\x08$\x12\x03&\0!\n\x83\x01\n\x02\x04\0\x12\x04*\0.\x01\x1aw\x20\
+    `SourceContext`\x20represents\x20information\x20about\x20the\x20source\
+    \x20of\x20a\n\x20protobuf\x20element,\x20like\x20the\x20file\x20in\x20wh\
+    ich\x20it\x20is\x20defined.\n\n\n\n\x03\x04\0\x01\x12\x03*\x08\x15\n\xa3\
     \x01\n\x04\x04\0\x02\0\x12\x03-\x02\x17\x1a\x95\x01\x20The\x20path-quali\
     fied\x20name\x20of\x20the\x20.proto\x20file\x20that\x20contained\x20the\
     \x20associated\n\x20protobuf\x20element.\x20\x20For\x20example:\x20`\"go\
-    ogle/protobuf/source_context.proto\"`.\n\n\r\n\x05\x04\0\x02\0\x04\x12\
-    \x04-\x02*\x17\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03-\x02\x08\n\x0c\n\x05\
-    \x04\0\x02\0\x01\x12\x03-\t\x12\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03-\x15\
-    \x16b\x06proto3\
+    ogle/protobuf/source_context.proto\"`.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\
+    \x03-\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03-\t\x12\n\x0c\n\x05\x04\
+    \0\x02\0\x03\x12\x03-\x15\x16b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

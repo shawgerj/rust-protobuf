@@ -265,7 +265,7 @@ impl<'a> MessageGen<'a> {
                     w.write_line(&format!("let mut fields = ::std::vec::Vec::new();"));
                 }
                 for field in fields {
-                    self.write_descriptor_field("fields", field, w);;
+                    self.write_descriptor_field("fields", field, w);
                 }
                 w.write_line(&format!(
                     "::protobuf::reflect::MessageDescriptor::new::<{}>(", self.type_name));
@@ -306,7 +306,7 @@ impl<'a> MessageGen<'a> {
             w.write_line("true");
         });
     }
-
+    
     fn write_impl_message(&self, w: &mut CodeWriter) {
         w.impl_for_block("::protobuf::Message", &self.type_name, |w| {
             self.write_is_initialized(w);
@@ -321,13 +321,13 @@ impl<'a> MessageGen<'a> {
             w.write_line("");
             self.write_unknown_fields(w);
             w.write_line("");
-            w.def_fn("as_any(&self) -> &::std::any::Any", |w| {
-                w.write_line("self as &::std::any::Any");
+            w.def_fn("as_any(&self) -> &dyn (::std::any::Any)", |w| {
+                w.write_line("self as &dyn (::std::any::Any)");
             });
-            w.def_fn("as_any_mut(&mut self) -> &mut ::std::any::Any", |w| {
-                w.write_line("self as &mut ::std::any::Any");
+            w.def_fn("as_any_mut(&mut self) -> &mut dyn (::std::any::Any)", |w| {
+                w.write_line("self as &mut dyn (::std::any::Any)");
             });
-            w.def_fn("into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any>", |w| {
+            w.def_fn("into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)>", |w| {
                 w.write_line("self");
             });
             w.write_line("");
@@ -377,6 +377,15 @@ impl<'a> MessageGen<'a> {
         });
     }
 
+    fn should_include_offset(
+        &self,
+        field_type: FieldDescriptorProto_Type
+    ) -> bool {
+        return field_type == FieldDescriptorProto_Type::TYPE_STRING ||
+            field_type == FieldDescriptorProto_Type::TYPE_BYTES ||
+            field_type == FieldDescriptorProto_Type::TYPE_MESSAGE
+    }
+
     fn write_struct(&self, w: &mut CodeWriter) {
         let mut derive = vec!["PartialEq", "Clone", "Default"];
         if self.lite_runtime {
@@ -410,6 +419,24 @@ impl<'a> MessageGen<'a> {
                             &field.rust_name,
                             &field.full_storage_type().to_string(),
                         );
+
+                        // shawgerj added
+                        // add an 'offset' field if the field type is
+                        // a message, bytes, or string
+                        // if it is a repeated field, the offset type should be
+                        // a vector. If not, u64
+                        if self.should_include_offset(field.proto_type) {
+                            let offset_name = format!("{}_offset", &field.rust_name);
+                            let offset_type = match field.kind {
+                                FieldKind::Repeated(..) => RustType::Vec(Box::new(RustType::Int(false, 64))),
+                                _ => RustType::Int(false, 64),
+                            };
+                            w.field_decl_vis(
+                                Visibility::Public,
+                                &offset_name,
+                                &offset_type.to_string(),
+                            );
+                        }                                    
                     }
                 }
             }
@@ -421,6 +448,10 @@ impl<'a> MessageGen<'a> {
                         false => Visibility::Default,
                     };
                     w.field_decl_vis(vis, oneof.name(), &oneof.full_storage_type().to_string());
+                    // might need to add offset field functionality here, but
+                    // I'm leaving it unimplemented for now. Hope it doesn't
+                    // cause tests to fail...
+                    // kvproto raft messages do not use oneofs
                 }
             }
             w.comment("special fields");

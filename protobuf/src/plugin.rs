@@ -25,8 +25,11 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct CodeGeneratorRequest {
     // message fields
     file_to_generate: ::protobuf::RepeatedField<::std::string::String>,
+    pub file_to_generate_offset: ::std::vec::Vec<u64>,
     parameter: ::protobuf::SingularField<::std::string::String>,
+    pub parameter_offset: u64,
     proto_file: ::protobuf::RepeatedField<::protobuf::descriptor::FileDescriptorProto>,
+    pub proto_file_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -139,13 +142,13 @@ impl ::protobuf::Message for CodeGeneratorRequest {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.file_to_generate)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.file_to_generate, &mut self.file_to_generate_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.parameter)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.parameter, &mut self.parameter_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.proto_file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.proto_file, &mut self.proto_file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -202,13 +205,13 @@ impl ::protobuf::Message for CodeGeneratorRequest {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -288,7 +291,9 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorRequest {
 pub struct CodeGeneratorResponse {
     // message fields
     error: ::protobuf::SingularField<::std::string::String>,
+    pub error_offset: u64,
     file: ::protobuf::RepeatedField<CodeGeneratorResponse_File>,
+    pub file_offset: ::std::vec::Vec<u64>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -376,10 +381,10 @@ impl ::protobuf::Message for CodeGeneratorResponse {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.error)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.error, &mut self.error_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file, &mut self.file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -430,13 +435,13 @@ impl ::protobuf::Message for CodeGeneratorResponse {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -510,8 +515,11 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorResponse {
 pub struct CodeGeneratorResponse_File {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     insertion_point: ::protobuf::SingularField<::std::string::String>,
+    pub insertion_point_offset: u64,
     content: ::protobuf::SingularField<::std::string::String>,
+    pub content_offset: u64,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -641,13 +649,13 @@ impl ::protobuf::Message for CodeGeneratorResponse_File {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.insertion_point)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.insertion_point, &mut self.insertion_point_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.content)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.content, &mut self.content_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -701,13 +709,13 @@ impl ::protobuf::Message for CodeGeneratorResponse_File {
         &mut self.unknown_fields
     }
 
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
     }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
     }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
         self
     }
 
@@ -794,7 +802,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     iler.CodeGeneratorResponse.FileR\x04file\x1a]\n\x04File\x12\x12\n\x04nam\
     e\x18\x01\x20\x01(\tR\x04name\x12'\n\x0finsertion_point\x18\x02\x20\x01(\
     \tR\x0einsertionPoint\x12\x18\n\x07content\x18\x0f\x20\x01(\tR\x07conten\
-    tB7\n\x1ccom.google.protobuf.compilerB\x0cPluginProtosZ\tplugin_goJ\x89;\
+    tB7\n\x1ccom.google.protobuf.compilerB\x0cPluginProtosZ\tplugin_goJ\xd29\
     \n\x07\x12\x05.\0\x95\x01\x01\n\xca\x11\n\x01\x0c\x12\x03.\0\x122\xc1\
     \x0c\x20Protocol\x20Buffers\x20-\x20Google's\x20data\x20interchange\x20f\
     ormat\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20r\
@@ -842,63 +850,54 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20to\x20be\x20placed\x20somewhere\x20in\x20the\x20path.\x20\x20The\n\
     \x20plugin\x20should\x20be\x20named\x20\"protoc-gen-$NAME\",\x20and\x20w\
     ill\x20then\x20be\x20used\x20when\x20the\n\x20flag\x20\"--${NAME}_out\"\
-    \x20is\x20passed\x20to\x20protoc.\n\n\x08\n\x01\x02\x12\x03/\x08\x20\n\
-    \x08\n\x01\x08\x12\x030\05\n\x0b\n\x04\x08\xe7\x07\0\x12\x030\05\n\x0c\n\
-    \x05\x08\xe7\x07\0\x02\x12\x030\x07\x13\n\r\n\x06\x08\xe7\x07\0\x02\0\
-    \x12\x030\x07\x13\n\x0e\n\x07\x08\xe7\x07\0\x02\0\x01\x12\x030\x07\x13\n\
-    \x0c\n\x05\x08\xe7\x07\0\x07\x12\x030\x164\n\x08\n\x01\x08\x12\x031\0-\n\
-    \x0b\n\x04\x08\xe7\x07\x01\x12\x031\0-\n\x0c\n\x05\x08\xe7\x07\x01\x02\
-    \x12\x031\x07\x1b\n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x031\x07\x1b\n\x0e\
-    \n\x07\x08\xe7\x07\x01\x02\0\x01\x12\x031\x07\x1b\n\x0c\n\x05\x08\xe7\
-    \x07\x01\x07\x12\x031\x1e,\n\x08\n\x01\x08\x12\x033\0\x20\n\x0b\n\x04\
-    \x08\xe7\x07\x02\x12\x033\0\x20\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x033\
-    \x07\x11\n\r\n\x06\x08\xe7\x07\x02\x02\0\x12\x033\x07\x11\n\x0e\n\x07\
-    \x08\xe7\x07\x02\x02\0\x01\x12\x033\x07\x11\n\x0c\n\x05\x08\xe7\x07\x02\
-    \x07\x12\x033\x14\x1f\n\t\n\x02\x03\0\x12\x035\x07)\nO\n\x02\x04\0\x12\
-    \x048\0M\x01\x1aC\x20An\x20encoded\x20CodeGeneratorRequest\x20is\x20writ\
-    ten\x20to\x20the\x20plugin's\x20stdin.\n\n\n\n\x03\x04\0\x01\x12\x038\
-    \x08\x1c\n\xd1\x01\n\x04\x04\0\x02\0\x12\x03<\x02'\x1a\xc3\x01\x20The\
-    \x20.proto\x20files\x20that\x20were\x20explicitly\x20listed\x20on\x20the\
-    \x20command-line.\x20\x20The\n\x20code\x20generator\x20should\x20generat\
-    e\x20code\x20only\x20for\x20these\x20files.\x20\x20Each\x20file's\n\x20d\
-    escriptor\x20will\x20be\x20included\x20in\x20proto_file,\x20below.\n\n\
-    \x0c\n\x05\x04\0\x02\0\x04\x12\x03<\x02\n\n\x0c\n\x05\x04\0\x02\0\x05\
-    \x12\x03<\x0b\x11\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03<\x12\"\n\x0c\n\x05\
-    \x04\0\x02\0\x03\x12\x03<%&\nB\n\x04\x04\0\x02\x01\x12\x03?\x02\x20\x1a5\
-    \x20The\x20generator\x20parameter\x20passed\x20on\x20the\x20command-line\
-    .\n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x03?\x02\n\n\x0c\n\x05\x04\0\x02\
-    \x01\x05\x12\x03?\x0b\x11\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03?\x12\x1b\
-    \n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03?\x1e\x1f\n\xa9\x05\n\x04\x04\0\
-    \x02\x02\x12\x03L\x02/\x1a\x9b\x05\x20FileDescriptorProtos\x20for\x20all\
-    \x20files\x20in\x20files_to_generate\x20and\x20everything\n\x20they\x20i\
-    mport.\x20\x20The\x20files\x20will\x20appear\x20in\x20topological\x20ord\
-    er,\x20so\x20each\x20file\n\x20appears\x20before\x20any\x20file\x20that\
-    \x20imports\x20it.\n\n\x20protoc\x20guarantees\x20that\x20all\x20proto_f\
-    iles\x20will\x20be\x20written\x20after\n\x20the\x20fields\x20above,\x20e\
-    ven\x20though\x20this\x20is\x20not\x20technically\x20guaranteed\x20by\
-    \x20the\n\x20protobuf\x20wire\x20format.\x20\x20This\x20theoretically\
-    \x20could\x20allow\x20a\x20plugin\x20to\x20stream\n\x20in\x20the\x20File\
-    DescriptorProtos\x20and\x20handle\x20them\x20one\x20by\x20one\x20rather\
-    \x20than\x20read\n\x20the\x20entire\x20set\x20into\x20memory\x20at\x20on\
-    ce.\x20\x20However,\x20as\x20of\x20this\x20writing,\x20this\n\x20is\x20n\
-    ot\x20similarly\x20optimized\x20on\x20protoc's\x20end\x20--\x20it\x20wil\
-    l\x20store\x20all\x20fields\x20in\n\x20memory\x20at\x20once\x20before\
-    \x20sending\x20them\x20to\x20the\x20plugin.\n\n\x0c\n\x05\x04\0\x02\x02\
-    \x04\x12\x03L\x02\n\n\x0c\n\x05\x04\0\x02\x02\x06\x12\x03L\x0b\x1e\n\x0c\
-    \n\x05\x04\0\x02\x02\x01\x12\x03L\x1f)\n\x0c\n\x05\x04\0\x02\x02\x03\x12\
-    \x03L,.\nL\n\x02\x04\x01\x12\x05P\0\x95\x01\x01\x1a?\x20The\x20plugin\
-    \x20writes\x20an\x20encoded\x20CodeGeneratorResponse\x20to\x20stdout.\n\
-    \n\n\n\x03\x04\x01\x01\x12\x03P\x08\x1d\n\xed\x03\n\x04\x04\x01\x02\0\
-    \x12\x03Y\x02\x1c\x1a\xdf\x03\x20Error\x20message.\x20\x20If\x20non-empt\
-    y,\x20code\x20generation\x20failed.\x20\x20The\x20plugin\x20process\n\
-    \x20should\x20exit\x20with\x20status\x20code\x20zero\x20even\x20if\x20it\
-    \x20reports\x20an\x20error\x20in\x20this\x20way.\n\n\x20This\x20should\
-    \x20be\x20used\x20to\x20indicate\x20errors\x20in\x20.proto\x20files\x20w\
-    hich\x20prevent\x20the\n\x20code\x20generator\x20from\x20generating\x20c\
-    orrect\x20code.\x20\x20Errors\x20which\x20indicate\x20a\n\x20problem\x20\
-    in\x20protoc\x20itself\x20--\x20such\x20as\x20the\x20input\x20CodeGenera\
-    torRequest\x20being\n\x20unparseable\x20--\x20should\x20be\x20reported\
-    \x20by\x20writing\x20a\x20message\x20to\x20stderr\x20and\n\x20exiting\
+    \x20is\x20passed\x20to\x20protoc.\n\n\x08\n\x01\x02\x12\x03/\0!\n\x08\n\
+    \x01\x08\x12\x030\05\n\t\n\x02\x08\x01\x12\x030\05\n\x08\n\x01\x08\x12\
+    \x031\0-\n\t\n\x02\x08\x08\x12\x031\0-\n\x08\n\x01\x08\x12\x033\0\x20\n\
+    \t\n\x02\x08\x0b\x12\x033\0\x20\n\t\n\x02\x03\0\x12\x035\0*\nO\n\x02\x04\
+    \0\x12\x048\0M\x01\x1aC\x20An\x20encoded\x20CodeGeneratorRequest\x20is\
+    \x20written\x20to\x20the\x20plugin's\x20stdin.\n\n\n\n\x03\x04\0\x01\x12\
+    \x038\x08\x1c\n\xd1\x01\n\x04\x04\0\x02\0\x12\x03<\x02'\x1a\xc3\x01\x20T\
+    he\x20.proto\x20files\x20that\x20were\x20explicitly\x20listed\x20on\x20t\
+    he\x20command-line.\x20\x20The\n\x20code\x20generator\x20should\x20gener\
+    ate\x20code\x20only\x20for\x20these\x20files.\x20\x20Each\x20file's\n\
+    \x20descriptor\x20will\x20be\x20included\x20in\x20proto_file,\x20below.\
+    \n\n\x0c\n\x05\x04\0\x02\0\x04\x12\x03<\x02\n\n\x0c\n\x05\x04\0\x02\0\
+    \x05\x12\x03<\x0b\x11\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03<\x12\"\n\x0c\n\
+    \x05\x04\0\x02\0\x03\x12\x03<%&\nB\n\x04\x04\0\x02\x01\x12\x03?\x02\x20\
+    \x1a5\x20The\x20generator\x20parameter\x20passed\x20on\x20the\x20command\
+    -line.\n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x03?\x02\n\n\x0c\n\x05\x04\0\
+    \x02\x01\x05\x12\x03?\x0b\x11\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03?\x12\
+    \x1b\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03?\x1e\x1f\n\xa9\x05\n\x04\x04\
+    \0\x02\x02\x12\x03L\x02/\x1a\x9b\x05\x20FileDescriptorProtos\x20for\x20a\
+    ll\x20files\x20in\x20files_to_generate\x20and\x20everything\n\x20they\
+    \x20import.\x20\x20The\x20files\x20will\x20appear\x20in\x20topological\
+    \x20order,\x20so\x20each\x20file\n\x20appears\x20before\x20any\x20file\
+    \x20that\x20imports\x20it.\n\n\x20protoc\x20guarantees\x20that\x20all\
+    \x20proto_files\x20will\x20be\x20written\x20after\n\x20the\x20fields\x20\
+    above,\x20even\x20though\x20this\x20is\x20not\x20technically\x20guarante\
+    ed\x20by\x20the\n\x20protobuf\x20wire\x20format.\x20\x20This\x20theoreti\
+    cally\x20could\x20allow\x20a\x20plugin\x20to\x20stream\n\x20in\x20the\
+    \x20FileDescriptorProtos\x20and\x20handle\x20them\x20one\x20by\x20one\
+    \x20rather\x20than\x20read\n\x20the\x20entire\x20set\x20into\x20memory\
+    \x20at\x20once.\x20\x20However,\x20as\x20of\x20this\x20writing,\x20this\
+    \n\x20is\x20not\x20similarly\x20optimized\x20on\x20protoc's\x20end\x20--\
+    \x20it\x20will\x20store\x20all\x20fields\x20in\n\x20memory\x20at\x20once\
+    \x20before\x20sending\x20them\x20to\x20the\x20plugin.\n\n\x0c\n\x05\x04\
+    \0\x02\x02\x04\x12\x03L\x02\n\n\x0c\n\x05\x04\0\x02\x02\x06\x12\x03L\x0b\
+    \x1e\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03L\x1f)\n\x0c\n\x05\x04\0\x02\
+    \x02\x03\x12\x03L,.\nL\n\x02\x04\x01\x12\x05P\0\x95\x01\x01\x1a?\x20The\
+    \x20plugin\x20writes\x20an\x20encoded\x20CodeGeneratorResponse\x20to\x20\
+    stdout.\n\n\n\n\x03\x04\x01\x01\x12\x03P\x08\x1d\n\xed\x03\n\x04\x04\x01\
+    \x02\0\x12\x03Y\x02\x1c\x1a\xdf\x03\x20Error\x20message.\x20\x20If\x20no\
+    n-empty,\x20code\x20generation\x20failed.\x20\x20The\x20plugin\x20proces\
+    s\n\x20should\x20exit\x20with\x20status\x20code\x20zero\x20even\x20if\
+    \x20it\x20reports\x20an\x20error\x20in\x20this\x20way.\n\n\x20This\x20sh\
+    ould\x20be\x20used\x20to\x20indicate\x20errors\x20in\x20.proto\x20files\
+    \x20which\x20prevent\x20the\n\x20code\x20generator\x20from\x20generating\
+    \x20correct\x20code.\x20\x20Errors\x20which\x20indicate\x20a\n\x20proble\
+    m\x20in\x20protoc\x20itself\x20--\x20such\x20as\x20the\x20input\x20CodeG\
+    eneratorRequest\x20being\n\x20unparseable\x20--\x20should\x20be\x20repor\
+    ted\x20by\x20writing\x20a\x20message\x20to\x20stderr\x20and\n\x20exiting\
     \x20with\x20a\x20non-zero\x20status\x20code.\n\n\x0c\n\x05\x04\x01\x02\0\
     \x04\x12\x03Y\x02\n\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03Y\x0b\x11\n\x0c\
     \n\x05\x04\x01\x02\0\x01\x12\x03Y\x12\x17\n\x0c\n\x05\x04\x01\x02\0\x03\
