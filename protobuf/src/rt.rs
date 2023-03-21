@@ -590,12 +590,14 @@ pub fn read_repeated_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut RepeatedField<String>,
+    offsets: &mut Vec<u64>,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             let tmp = target.push_default();
-            is.read_string_into(tmp)
-        }
+            offsets.push(is.read_string_into(tmp)?);
+            Ok(())
+        },
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -611,7 +613,7 @@ pub fn read_repeated_carllerche_string_into(
         WireTypeLengthDelimited => {
             target.push(is.read_carllerche_chars()?);
             Ok(())
-        }
+        },
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -621,12 +623,14 @@ pub fn read_singular_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut SingularField<String>,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             let tmp = target.set_default();
-            is.read_string_into(tmp)
-        }
+            *offset = is.read_string_into(tmp)?;
+            Ok(())
+        },
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -642,7 +646,7 @@ pub fn read_singular_carllerche_string_into(
         WireTypeLengthDelimited => {
             *target = Some(is.read_carllerche_chars()?);
             Ok(())
-        }
+        },
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -652,9 +656,13 @@ pub fn read_singular_proto3_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut String,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
-        WireTypeLengthDelimited => is.read_string_into(target),
+        WireTypeLengthDelimited => {
+            *offset = is.read_string_into(target)?;
+            Ok(())
+        },
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -680,11 +688,13 @@ pub fn read_repeated_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut RepeatedField<Vec<u8>>,
+    offsets: &mut Vec<u64>,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             let tmp = target.push_default();
-            is.read_bytes_into(tmp)
+            offsets.push(is.read_bytes_into(tmp)?);
+            Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
     }
@@ -711,11 +721,13 @@ pub fn read_singular_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut SingularField<Vec<u8>>,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             let tmp = target.set_default();
-            is.read_bytes_into(tmp)
+            *offset = is.read_bytes_into(tmp)?;
+            Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
     }
@@ -742,9 +754,13 @@ pub fn read_singular_proto3_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Vec<u8>,
+    offset: &mut u64
 ) -> ProtobufResult<()> {
     match wire_type {
-        WireTypeLengthDelimited => is.read_bytes_into(target),
+        WireTypeLengthDelimited => {
+            *offset = is.read_bytes_into(target)?;
+            Ok(())
+        }
         _ => Err(unexpected_wire_type(wire_type)),
     }
 }
@@ -770,14 +786,15 @@ pub fn read_repeated_message_into<M: Message + Default>(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut RepeatedField<M>,
+    offsets: &mut Vec<u64>,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             is.incr_recursion()?;
             let tmp = target.push_default();
-            let res = is.merge_message(tmp);
+            offsets.push(is.merge_message(tmp)?);
             is.decr_recursion();
-            res
+            Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
     }
@@ -788,14 +805,15 @@ pub fn read_singular_message_into<M: Message + Default>(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut SingularPtrField<M>,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
             is.incr_recursion()?;
             let tmp = target.set_default();
-            let res = is.merge_message(tmp);
+            *offset = is.merge_message(tmp)?;
             is.decr_recursion();
-            res
+            Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
     }

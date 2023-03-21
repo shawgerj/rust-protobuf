@@ -298,7 +298,7 @@ impl<'a> MessageGen<'a> {
                             w.write_line(&format!("let mut fields = ::std::vec::Vec::new();"));
                         }
                         for field in fields {
-                            self.write_descriptor_field("fields", field, w);;
+                            self.write_descriptor_field("fields", field, w);
                         }
                         w.write_line(&format!(
                             "::protobuf::reflect::MessageDescriptor::new::<{}>(",
@@ -364,19 +364,10 @@ impl<'a> MessageGen<'a> {
             });
             w.def_fn("as_any_mut(&mut self) -> &mut dyn (::std::any::Any)", |w| {
                 w.write_line("self as &mut dyn (::std::any::Any)");
-<<<<<<< HEAD
-=======
             });
             w.def_fn("into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)>", |w| {
                 w.write_line("self");
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
             });
-            w.def_fn(
-                "into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)>",
-                |w| {
-                    w.write_line("self");
-                },
-            );
             w.write_line("");
             w.def_fn(
                 "descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor",
@@ -428,13 +419,13 @@ impl<'a> MessageGen<'a> {
         });
     }
 
-<<<<<<< HEAD
     #[allow(dead_code)]
     fn supports_derive_partial_eq(&self) -> bool {
         // There's stack overflow in the compiler when struct has too many fields
         // https://github.com/rust-lang/rust/issues/40119
         self.fields.len() <= 500
-=======
+    }
+    
     fn should_include_offset(
         &self,
         field_type: FieldDescriptorProto_Type
@@ -442,11 +433,10 @@ impl<'a> MessageGen<'a> {
         return field_type == FieldDescriptorProto_Type::TYPE_STRING ||
             field_type == FieldDescriptorProto_Type::TYPE_BYTES ||
             field_type == FieldDescriptorProto_Type::TYPE_MESSAGE
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
     }
 
     fn write_struct(&self, w: &mut CodeWriter) {
-        let mut derive = vec!["PartialEq", "Clone", "Default"];
+        let mut derive = vec!["Clone", "Default"];
         if self.lite_runtime {
             derive.push("Debug");
         }
@@ -494,7 +484,8 @@ impl<'a> MessageGen<'a> {
                             w.field_decl_vis(
                                 Visibility::Public,
                                 &offset_name,
-                                &offset_type.to_string(),
+                                //                                &offset_type.to_string(),
+                                &offset_type.to_code(&self.customize),
                             );
                         }                                    
                     }
@@ -507,19 +498,11 @@ impl<'a> MessageGen<'a> {
                         true => Visibility::Public,
                         false => Visibility::Default,
                     };
-<<<<<<< HEAD
                     w.field_decl_vis(
                         vis,
                         oneof.name(),
                         &oneof.full_storage_type().to_code(&self.customize),
                     );
-=======
-                    w.field_decl_vis(vis, oneof.name(), &oneof.full_storage_type().to_string());
-                    // might need to add offset field functionality here, but
-                    // I'm leaving it unimplemented for now. Hope it doesn't
-                    // cause tests to fail...
-                    // kvproto raft messages do not use oneofs
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
                 }
             }
             w.comment("special fields");
@@ -568,6 +551,8 @@ impl<'a> MessageGen<'a> {
         self.write_impl_self(w);
         w.write_line("");
         self.write_impl_message(w);
+        w.write_line("");
+        self.write_impl_partialeq_self(w);
         w.write_line("");
         self.write_impl_clear(w);
         if !self.lite_runtime {

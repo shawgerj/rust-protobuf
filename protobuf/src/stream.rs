@@ -785,11 +785,11 @@ impl<'a> CodedInputStream<'a> {
         Ok(Chars::from_bytes(bytes)?)
     }
 
-    /// Read `bytes` field, length delimited
-    pub fn read_bytes_into(&mut self, target: &mut Vec<u8>) -> ProtobufResult<()> {
+    pub fn read_bytes_into(&mut self, target: &mut Vec<u8>) -> ProtobufResult<u64> {
         let len = self.read_raw_varint32()?;
+        let offset = self.pos();
         self.read_raw_bytes_into(len, target)?;
-        Ok(())
+        Ok(offset)
     }
 
     /// Read `string` field, length delimited
@@ -799,28 +799,28 @@ impl<'a> CodedInputStream<'a> {
         Ok(r)
     }
 
-    /// Read `string` field, length delimited
-    pub fn read_string_into(&mut self, target: &mut String) -> ProtobufResult<()> {
-        target.clear();
+    pub fn read_string_into(&mut self, target: &mut String) -> ProtobufResult<u64> {
+        // assert string is empty, otherwize UTF-8 validation is too expensive
+        assert!(target.is_empty());
         // take target's buffer
         let mut vec = mem::replace(target, String::new()).into_bytes();
-        self.read_bytes_into(&mut vec)?;
+        let offset = self.read_bytes_into(&mut vec)?;
 
         let s = match String::from_utf8(vec) {
             Ok(t) => t,
             Err(_) => return Err(ProtobufError::WireError(WireError::Utf8Error)),
         };
         mem::replace(target, s);
-        Ok(())
+        Ok(offset)
     }
 
-    /// Read message, do not check if message is initialized
-    pub fn merge_message<M: Message>(&mut self, message: &mut M) -> ProtobufResult<()> {
+    pub fn merge_message<M : Message>(&mut self, message: &mut M) -> ProtobufResult<u64> {
         let len = self.read_raw_varint64()?;
+        let offset = self.pos();
         let old_limit = self.push_limit(len)?;
         message.merge_from(self)?;
         self.pop_limit(old_limit);
-        Ok(())
+        Ok(offset)
     }
 
     /// Read message
