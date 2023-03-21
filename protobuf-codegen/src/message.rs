@@ -344,7 +344,7 @@ impl<'a> MessageGen<'a> {
             w.write_line("true");
         });
     }
-
+    
     fn write_impl_message(&self, w: &mut CodeWriter) {
         w.impl_for_block("::protobuf::Message", &self.type_name, |w| {
             self.write_is_initialized(w);
@@ -364,6 +364,12 @@ impl<'a> MessageGen<'a> {
             });
             w.def_fn("as_any_mut(&mut self) -> &mut dyn (::std::any::Any)", |w| {
                 w.write_line("self as &mut dyn (::std::any::Any)");
+<<<<<<< HEAD
+=======
+            });
+            w.def_fn("into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)>", |w| {
+                w.write_line("self");
+>>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
             });
             w.def_fn(
                 "into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)>",
@@ -422,11 +428,21 @@ impl<'a> MessageGen<'a> {
         });
     }
 
+<<<<<<< HEAD
     #[allow(dead_code)]
     fn supports_derive_partial_eq(&self) -> bool {
         // There's stack overflow in the compiler when struct has too many fields
         // https://github.com/rust-lang/rust/issues/40119
         self.fields.len() <= 500
+=======
+    fn should_include_offset(
+        &self,
+        field_type: FieldDescriptorProto_Type
+    ) -> bool {
+        return field_type == FieldDescriptorProto_Type::TYPE_STRING ||
+            field_type == FieldDescriptorProto_Type::TYPE_BYTES ||
+            field_type == FieldDescriptorProto_Type::TYPE_MESSAGE
+>>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
     }
 
     fn write_struct(&self, w: &mut CodeWriter) {
@@ -463,6 +479,24 @@ impl<'a> MessageGen<'a> {
                             &field.rust_name,
                             &field.full_storage_type().to_code(&self.customize),
                         );
+
+                        // shawgerj added
+                        // add an 'offset' field if the field type is
+                        // a message, bytes, or string
+                        // if it is a repeated field, the offset type should be
+                        // a vector. If not, u64
+                        if self.should_include_offset(field.proto_type) {
+                            let offset_name = format!("{}_offset", &field.rust_name);
+                            let offset_type = match field.kind {
+                                FieldKind::Repeated(..) => RustType::Vec(Box::new(RustType::Int(false, 64))),
+                                _ => RustType::Int(false, 64),
+                            };
+                            w.field_decl_vis(
+                                Visibility::Public,
+                                &offset_name,
+                                &offset_type.to_string(),
+                            );
+                        }                                    
                     }
                 }
             }
@@ -473,11 +507,19 @@ impl<'a> MessageGen<'a> {
                         true => Visibility::Public,
                         false => Visibility::Default,
                     };
+<<<<<<< HEAD
                     w.field_decl_vis(
                         vis,
                         oneof.name(),
                         &oneof.full_storage_type().to_code(&self.customize),
                     );
+=======
+                    w.field_decl_vis(vis, oneof.name(), &oneof.full_storage_type().to_string());
+                    // might need to add offset field functionality here, but
+                    // I'm leaving it unimplemented for now. Hope it doesn't
+                    // cause tests to fail...
+                    // kvproto raft messages do not use oneofs
+>>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
                 }
             }
             w.comment("special fields");

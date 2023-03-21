@@ -27,8 +27,11 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct CodeGeneratorRequest {
     // message fields
     file_to_generate: ::protobuf::RepeatedField<::std::string::String>,
+    pub file_to_generate_offset: ::std::vec::Vec<u64>,
     parameter: ::protobuf::SingularField<::std::string::String>,
+    pub parameter_offset: u64,
     proto_file: ::protobuf::RepeatedField<::protobuf::descriptor::FileDescriptorProto>,
+    pub proto_file_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -149,13 +152,13 @@ impl ::protobuf::Message for CodeGeneratorRequest {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.file_to_generate)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.file_to_generate, &mut self.file_to_generate_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.parameter)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.parameter, &mut self.parameter_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.proto_file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.proto_file, &mut self.proto_file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -299,7 +302,9 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorRequest {
 pub struct CodeGeneratorResponse {
     // message fields
     error: ::protobuf::SingularField<::std::string::String>,
+    pub error_offset: u64,
     file: ::protobuf::RepeatedField<CodeGeneratorResponse_File>,
+    pub file_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -395,10 +400,10 @@ impl ::protobuf::Message for CodeGeneratorResponse {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.error)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.error, &mut self.error_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file, &mut self.file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -530,8 +535,11 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorResponse {
 pub struct CodeGeneratorResponse_File {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     insertion_point: ::protobuf::SingularField<::std::string::String>,
+    pub insertion_point_offset: u64,
     content: ::protobuf::SingularField<::std::string::String>,
+    pub content_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -669,13 +677,13 @@ impl ::protobuf::Message for CodeGeneratorResponse_File {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.insertion_point)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.insertion_point, &mut self.insertion_point_offset)?;
                 },
                 15 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.content)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.content, &mut self.content_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;

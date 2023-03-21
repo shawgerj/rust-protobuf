@@ -27,7 +27,9 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct Any {
     // message fields
     pub type_url: ::std::string::String,
+    pub type_url_offset: u64,
     pub value: ::std::vec::Vec<u8>,
+    pub value_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -109,10 +111,10 @@ impl ::protobuf::Message for Any {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.type_url)?;
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.type_url, &mut self.type_url_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.value)?;
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.value, &mut self.value_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -349,15 +351,14 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     (Use\x20versioned\x20type\x20names\x20to\x20manage\n\x20\x20\x20breaking\
     \x20changes.)\n\n\x20Schemes\x20other\x20than\x20`http`,\x20`https`\x20(\
     or\x20the\x20empty\x20scheme)\x20might\x20be\n\x20used\x20with\x20implem\
-    entation\x20specific\x20semantics.\n\n\n\x0e\n\x05\x04\0\x02\0\x04\x12\
-    \x05\x86\x01\x02o\r\n\r\n\x05\x04\0\x02\0\x05\x12\x04\x86\x01\x02\x08\n\
-    \r\n\x05\x04\0\x02\0\x01\x12\x04\x86\x01\t\x11\n\r\n\x05\x04\0\x02\0\x03\
-    \x12\x04\x86\x01\x14\x15\nW\n\x04\x04\0\x02\x01\x12\x04\x89\x01\x02\x12\
-    \x1aI\x20Must\x20be\x20a\x20valid\x20serialized\x20protocol\x20buffer\
-    \x20of\x20the\x20above\x20specified\x20type.\n\n\x0f\n\x05\x04\0\x02\x01\
-    \x04\x12\x06\x89\x01\x02\x86\x01\x16\n\r\n\x05\x04\0\x02\x01\x05\x12\x04\
-    \x89\x01\x02\x07\n\r\n\x05\x04\0\x02\x01\x01\x12\x04\x89\x01\x08\r\n\r\n\
-    \x05\x04\0\x02\x01\x03\x12\x04\x89\x01\x10\x11b\x06proto3\
+    entation\x20specific\x20semantics.\n\n\n\r\n\x05\x04\0\x02\0\x05\x12\x04\
+    \x86\x01\x02\x08\n\r\n\x05\x04\0\x02\0\x01\x12\x04\x86\x01\t\x11\n\r\n\
+    \x05\x04\0\x02\0\x03\x12\x04\x86\x01\x14\x15\nW\n\x04\x04\0\x02\x01\x12\
+    \x04\x89\x01\x02\x12\x1aI\x20Must\x20be\x20a\x20valid\x20serialized\x20p\
+    rotocol\x20buffer\x20of\x20the\x20above\x20specified\x20type.\n\n\r\n\
+    \x05\x04\0\x02\x01\x05\x12\x04\x89\x01\x02\x07\n\r\n\x05\x04\0\x02\x01\
+    \x01\x12\x04\x89\x01\x08\r\n\r\n\x05\x04\0\x02\x01\x03\x12\x04\x89\x01\
+    \x10\x11b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

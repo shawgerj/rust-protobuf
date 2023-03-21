@@ -27,6 +27,7 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct SourceContext {
     // message fields
     pub file_name: ::std::string::String,
+    pub file_name_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -82,7 +83,7 @@ impl ::protobuf::Message for SourceContext {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.file_name)?;
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.file_name, &mut self.file_name_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -244,10 +245,9 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x01\n\x04\x04\0\x02\0\x12\x03-\x02\x17\x1a\x95\x01\x20The\x20path-quali\
     fied\x20name\x20of\x20the\x20.proto\x20file\x20that\x20contained\x20the\
     \x20associated\n\x20protobuf\x20element.\x20\x20For\x20example:\x20`\"go\
-    ogle/protobuf/source_context.proto\"`.\n\n\r\n\x05\x04\0\x02\0\x04\x12\
-    \x04-\x02*\x17\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03-\x02\x08\n\x0c\n\x05\
-    \x04\0\x02\0\x01\x12\x03-\t\x12\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03-\x15\
-    \x16b\x06proto3\
+    ogle/protobuf/source_context.proto\"`.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\
+    \x03-\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03-\t\x12\n\x0c\n\x05\x04\
+    \0\x02\0\x03\x12\x03-\x15\x16b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

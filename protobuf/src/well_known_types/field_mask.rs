@@ -27,6 +27,7 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct FieldMask {
     // message fields
     pub paths: ::protobuf::RepeatedField<::std::string::String>,
+    pub paths_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -81,7 +82,7 @@ impl ::protobuf::Message for FieldMask {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.paths)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.paths, &mut self.paths_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;

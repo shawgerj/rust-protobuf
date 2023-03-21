@@ -27,6 +27,7 @@ use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 pub struct FileDescriptorSet {
     // message fields
     file: ::protobuf::RepeatedField<FileDescriptorProto>,
+    pub file_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -86,7 +87,7 @@ impl ::protobuf::Message for FileDescriptorSet {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.file, &mut self.file_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -206,17 +207,27 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorSet {
 pub struct FileDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     package: ::protobuf::SingularField<::std::string::String>,
+    pub package_offset: u64,
     dependency: ::protobuf::RepeatedField<::std::string::String>,
+    pub dependency_offset: ::std::vec::Vec<u64>,
     public_dependency: ::std::vec::Vec<i32>,
     weak_dependency: ::std::vec::Vec<i32>,
     message_type: ::protobuf::RepeatedField<DescriptorProto>,
+    pub message_type_offset: ::std::vec::Vec<u64>,
     enum_type: ::protobuf::RepeatedField<EnumDescriptorProto>,
+    pub enum_type_offset: ::std::vec::Vec<u64>,
     service: ::protobuf::RepeatedField<ServiceDescriptorProto>,
+    pub service_offset: ::std::vec::Vec<u64>,
     extension: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub extension_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<FileOptions>,
+    pub options_offset: u64,
     source_code_info: ::protobuf::SingularPtrField<SourceCodeInfo>,
+    pub source_code_info_offset: u64,
     syntax: ::protobuf::SingularField<::std::string::String>,
+    pub syntax_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -625,13 +636,13 @@ impl ::protobuf::Message for FileDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.package, &mut self.package_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.dependency)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.dependency, &mut self.dependency_offset)?;
                 },
                 10 => {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.public_dependency)?;
@@ -640,25 +651,25 @@ impl ::protobuf::Message for FileDescriptorProto {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.weak_dependency)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.message_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.message_type, &mut self.message_type_offset)?;
                 },
                 5 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type, &mut self.enum_type_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.service)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.service, &mut self.service_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension, &mut self.extension_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 9 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.source_code_info)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.source_code_info, &mut self.source_code_info_offset)?;
                 },
                 12 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.syntax)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.syntax, &mut self.syntax_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -925,15 +936,25 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorProto {
 pub struct DescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     field: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub field_offset: ::std::vec::Vec<u64>,
     extension: ::protobuf::RepeatedField<FieldDescriptorProto>,
+    pub extension_offset: ::std::vec::Vec<u64>,
     nested_type: ::protobuf::RepeatedField<DescriptorProto>,
+    pub nested_type_offset: ::std::vec::Vec<u64>,
     enum_type: ::protobuf::RepeatedField<EnumDescriptorProto>,
+    pub enum_type_offset: ::std::vec::Vec<u64>,
     extension_range: ::protobuf::RepeatedField<DescriptorProto_ExtensionRange>,
+    pub extension_range_offset: ::std::vec::Vec<u64>,
     oneof_decl: ::protobuf::RepeatedField<OneofDescriptorProto>,
+    pub oneof_decl_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<MessageOptions>,
+    pub options_offset: u64,
     reserved_range: ::protobuf::RepeatedField<DescriptorProto_ReservedRange>,
+    pub reserved_range_offset: ::std::vec::Vec<u64>,
     reserved_name: ::protobuf::RepeatedField<::std::string::String>,
+    pub reserved_name_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -1272,34 +1293,34 @@ impl ::protobuf::Message for DescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.field)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.field, &mut self.field_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension, &mut self.extension_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.nested_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.nested_type, &mut self.nested_type_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.enum_type, &mut self.enum_type_offset)?;
                 },
                 5 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension_range)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.extension_range, &mut self.extension_range_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.oneof_decl)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.oneof_decl, &mut self.oneof_decl_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 9 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.reserved_range)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.reserved_range, &mut self.reserved_range_offset)?;
                 },
                 10 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.reserved_name)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.reserved_name, &mut self.reserved_name_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -1964,15 +1985,21 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ReservedRange {
 pub struct FieldDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     number: ::std::option::Option<i32>,
     label: ::std::option::Option<FieldDescriptorProto_Label>,
     field_type: ::std::option::Option<FieldDescriptorProto_Type>,
     type_name: ::protobuf::SingularField<::std::string::String>,
+    pub type_name_offset: u64,
     extendee: ::protobuf::SingularField<::std::string::String>,
+    pub extendee_offset: u64,
     default_value: ::protobuf::SingularField<::std::string::String>,
+    pub default_value_offset: u64,
     oneof_index: ::std::option::Option<i32>,
     json_name: ::protobuf::SingularField<::std::string::String>,
+    pub json_name_offset: u64,
     options: ::protobuf::SingularPtrField<FieldOptions>,
+    pub options_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -2296,7 +2323,7 @@ impl ::protobuf::Message for FieldDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 3 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -2312,13 +2339,13 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 5, &mut self.unknown_fields)?
                 },
                 6 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.type_name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.type_name, &mut self.type_name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.extendee)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.extendee, &mut self.extendee_offset)?;
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.default_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.default_value, &mut self.default_value_offset)?;
                 },
                 9 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -2328,10 +2355,10 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     self.oneof_index = ::std::option::Option::Some(tmp);
                 },
                 10 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.json_name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.json_name, &mut self.json_name_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2724,7 +2751,9 @@ impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Label {
 pub struct OneofDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     options: ::protobuf::SingularPtrField<OneofOptions>,
+    pub options_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -2828,10 +2857,10 @@ impl ::protobuf::Message for OneofDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -2963,8 +2992,11 @@ impl ::protobuf::reflect::ProtobufValue for OneofDescriptorProto {
 pub struct EnumDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     value: ::protobuf::RepeatedField<EnumValueDescriptorProto>,
+    pub value_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<EnumOptions>,
+    pub options_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -3098,13 +3130,13 @@ impl ::protobuf::Message for EnumDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.value)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.value, &mut self.value_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3251,8 +3283,10 @@ impl ::protobuf::reflect::ProtobufValue for EnumDescriptorProto {
 pub struct EnumValueDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     number: ::std::option::Option<i32>,
     options: ::protobuf::SingularPtrField<EnumValueOptions>,
+    pub options_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -3375,7 +3409,7 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -3385,7 +3419,7 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
                     self.number = ::std::option::Option::Some(tmp);
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3529,8 +3563,11 @@ impl ::protobuf::reflect::ProtobufValue for EnumValueDescriptorProto {
 pub struct ServiceDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     method: ::protobuf::RepeatedField<MethodDescriptorProto>,
+    pub method_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<ServiceOptions>,
+    pub options_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -3664,13 +3701,13 @@ impl ::protobuf::Message for ServiceDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.method)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.method, &mut self.method_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3817,9 +3854,13 @@ impl ::protobuf::reflect::ProtobufValue for ServiceDescriptorProto {
 pub struct MethodDescriptorProto {
     // message fields
     name: ::protobuf::SingularField<::std::string::String>,
+    pub name_offset: u64,
     input_type: ::protobuf::SingularField<::std::string::String>,
+    pub input_type_offset: u64,
     output_type: ::protobuf::SingularField<::std::string::String>,
+    pub output_type_offset: u64,
     options: ::protobuf::SingularPtrField<MethodOptions>,
+    pub options_offset: u64,
     client_streaming: ::std::option::Option<bool>,
     server_streaming: ::std::option::Option<bool>,
     // special fields
@@ -4035,16 +4076,16 @@ impl ::protobuf::Message for MethodDescriptorProto {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.input_type)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.input_type, &mut self.input_type_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.output_type)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.output_type, &mut self.output_type_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options)?;
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.options, &mut self.options_offset)?;
                 },
                 5 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4238,20 +4279,26 @@ impl ::protobuf::reflect::ProtobufValue for MethodDescriptorProto {
 pub struct FileOptions {
     // message fields
     java_package: ::protobuf::SingularField<::std::string::String>,
+    pub java_package_offset: u64,
     java_outer_classname: ::protobuf::SingularField<::std::string::String>,
+    pub java_outer_classname_offset: u64,
     java_multiple_files: ::std::option::Option<bool>,
     java_generate_equals_and_hash: ::std::option::Option<bool>,
     java_string_check_utf8: ::std::option::Option<bool>,
     optimize_for: ::std::option::Option<FileOptions_OptimizeMode>,
     go_package: ::protobuf::SingularField<::std::string::String>,
+    pub go_package_offset: u64,
     cc_generic_services: ::std::option::Option<bool>,
     java_generic_services: ::std::option::Option<bool>,
     py_generic_services: ::std::option::Option<bool>,
     deprecated: ::std::option::Option<bool>,
     cc_enable_arenas: ::std::option::Option<bool>,
     objc_class_prefix: ::protobuf::SingularField<::std::string::String>,
+    pub objc_class_prefix_offset: u64,
     csharp_namespace: ::protobuf::SingularField<::std::string::String>,
+    pub csharp_namespace_offset: u64,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -4662,10 +4709,10 @@ impl ::protobuf::Message for FileOptions {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_package, &mut self.java_package_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_outer_classname)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.java_outer_classname, &mut self.java_outer_classname_offset)?;
                 },
                 10 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4692,7 +4739,7 @@ impl ::protobuf::Message for FileOptions {
                     ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.optimize_for, 9, &mut self.unknown_fields)?
                 },
                 11 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.go_package)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.go_package, &mut self.go_package_offset)?;
                 },
                 16 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -4730,13 +4777,13 @@ impl ::protobuf::Message for FileOptions {
                     self.cc_enable_arenas = ::std::option::Option::Some(tmp);
                 },
                 36 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.objc_class_prefix)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.objc_class_prefix, &mut self.objc_class_prefix_offset)?;
                 },
                 37 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.csharp_namespace)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.csharp_namespace, &mut self.csharp_namespace_offset)?;
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5088,6 +5135,7 @@ pub struct MessageOptions {
     deprecated: ::std::option::Option<bool>,
     map_entry: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -5251,7 +5299,7 @@ impl ::protobuf::Message for MessageOptions {
                     self.map_entry = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5425,6 +5473,7 @@ pub struct FieldOptions {
     deprecated: ::std::option::Option<bool>,
     weak: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -5632,7 +5681,7 @@ impl ::protobuf::Message for FieldOptions {
                     self.weak = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -5942,6 +5991,7 @@ impl ::protobuf::reflect::ProtobufValue for FieldOptions_JSType {
 pub struct OneofOptions {
     // message fields
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -6001,7 +6051,7 @@ impl ::protobuf::Message for OneofOptions {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6123,6 +6173,7 @@ pub struct EnumOptions {
     allow_alias: ::std::option::Option<bool>,
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -6234,7 +6285,7 @@ impl ::protobuf::Message for EnumOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6379,6 +6430,7 @@ pub struct EnumValueOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -6464,7 +6516,7 @@ impl ::protobuf::Message for EnumValueOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6597,6 +6649,7 @@ pub struct ServiceOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -6682,7 +6735,7 @@ impl ::protobuf::Message for ServiceOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -6815,6 +6868,7 @@ pub struct MethodOptions {
     // message fields
     deprecated: ::std::option::Option<bool>,
     uninterpreted_option: ::protobuf::RepeatedField<UninterpretedOption>,
+    pub uninterpreted_option_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -6900,7 +6954,7 @@ impl ::protobuf::Message for MethodOptions {
                     self.deprecated = ::std::option::Option::Some(tmp);
                 },
                 999 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.uninterpreted_option, &mut self.uninterpreted_option_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7032,12 +7086,16 @@ impl ::protobuf::reflect::ProtobufValue for MethodOptions {
 pub struct UninterpretedOption {
     // message fields
     name: ::protobuf::RepeatedField<UninterpretedOption_NamePart>,
+    pub name_offset: ::std::vec::Vec<u64>,
     identifier_value: ::protobuf::SingularField<::std::string::String>,
+    pub identifier_value_offset: u64,
     positive_int_value: ::std::option::Option<u64>,
     negative_int_value: ::std::option::Option<i64>,
     double_value: ::std::option::Option<f64>,
     string_value: ::protobuf::SingularField<::std::vec::Vec<u8>>,
+    pub string_value_offset: u64,
     aggregate_value: ::protobuf::SingularField<::std::string::String>,
+    pub aggregate_value_offset: u64,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -7262,10 +7320,10 @@ impl ::protobuf::Message for UninterpretedOption {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.name)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.name, &mut self.name_offset)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.identifier_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.identifier_value, &mut self.identifier_value_offset)?;
                 },
                 4 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -7289,10 +7347,10 @@ impl ::protobuf::Message for UninterpretedOption {
                     self.double_value = ::std::option::Option::Some(tmp);
                 },
                 7 => {
-                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.string_value)?;
+                    ::protobuf::rt::read_singular_bytes_into(wire_type, is, &mut self.string_value, &mut self.string_value_offset)?;
                 },
                 8 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.aggregate_value)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.aggregate_value, &mut self.aggregate_value_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7484,6 +7542,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption {
 pub struct UninterpretedOption_NamePart {
     // message fields
     name_part: ::protobuf::SingularField<::std::string::String>,
+    pub name_part_offset: u64,
     is_extension: ::std::option::Option<bool>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
@@ -7575,7 +7634,7 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name_part)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.name_part, &mut self.name_part_offset)?;
                 },
                 2 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
@@ -7711,6 +7770,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption_NamePart {
 pub struct SourceCodeInfo {
     // message fields
     location: ::protobuf::RepeatedField<SourceCodeInfo_Location>,
+    pub location_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -7770,7 +7830,7 @@ impl ::protobuf::Message for SourceCodeInfo {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.location)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.location, &mut self.location_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -7892,8 +7952,11 @@ pub struct SourceCodeInfo_Location {
     path: ::std::vec::Vec<i32>,
     span: ::std::vec::Vec<i32>,
     leading_comments: ::protobuf::SingularField<::std::string::String>,
+    pub leading_comments_offset: u64,
     trailing_comments: ::protobuf::SingularField<::std::string::String>,
+    pub trailing_comments_offset: u64,
     leading_detached_comments: ::protobuf::RepeatedField<::std::string::String>,
+    pub leading_detached_comments_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -8076,13 +8139,13 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.span)?;
                 },
                 3 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.leading_comments)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.leading_comments, &mut self.leading_comments_offset)?;
                 },
                 4 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.trailing_comments)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.trailing_comments, &mut self.trailing_comments_offset)?;
                 },
                 6 => {
-                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.leading_detached_comments)?;
+                    ::protobuf::rt::read_repeated_string_into(wire_type, is, &mut self.leading_detached_comments, &mut self.leading_detached_comments_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -8257,6 +8320,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo_Location {
 pub struct GeneratedCodeInfo {
     // message fields
     annotation: ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation>,
+    pub annotation_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -8316,7 +8380,7 @@ impl ::protobuf::Message for GeneratedCodeInfo {
             let (field_number, wire_type) = is.read_tag_unpack()?;
             match field_number {
                 1 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.annotation)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.annotation, &mut self.annotation_offset)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -8437,6 +8501,7 @@ pub struct GeneratedCodeInfo_Annotation {
     // message fields
     path: ::std::vec::Vec<i32>,
     source_file: ::protobuf::SingularField<::std::string::String>,
+    pub source_file_offset: u64,
     begin: ::std::option::Option<i32>,
     end: ::std::option::Option<i32>,
     // special fields
@@ -8570,7 +8635,7 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
                     ::protobuf::rt::read_repeated_int32_into(wire_type, is, &mut self.path)?;
                 },
                 2 => {
-                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.source_file)?;
+                    ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.source_file, &mut self.source_file_offset)?;
                 },
                 3 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
