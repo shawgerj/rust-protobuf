@@ -636,6 +636,14 @@ impl<'a> FieldGen<'a> {
         }
     }
 
+    fn get_offset_return_type(&self) -> RustType {
+        match self.kind {
+            FieldKind::Singular(..) => RustType::Ref(Box::new(RustType::Int(false, 64))),
+            FieldKind::Repeated(..) => RustType::Ref(Box::new(RustType::Slice(Box::new(RustType::Int(false, 64))))),
+            _ => panic!("unexpected type in getting offset return type"),
+        }
+    }
+
     // fixed size type?
     fn is_fixed(&self) -> bool {
         field_type_size(self.proto_type).is_some()
@@ -1630,6 +1638,21 @@ impl<'a> FieldGen<'a> {
         });
     }
 
+    fn write_message_field_get_offset(&self, w: &mut CodeWriter) {
+        let get_offset_return_type = self.get_offset_return_type();
+        let fn_def = format!("get_{}_offset(&self) -> {}",
+                             self.rust_name,
+                             get_offset_return_type);
+
+        w.pub_fn(&fn_def, |w| match self.kind {
+            FieldKind::Singular(..) |
+            FieldKind::Repeated(..) => {
+                w.write_line(&format!("&self.{}_offset", self.rust_name)); 
+            },
+            _ => panic!("unexpected FieldKind when writing offset getter"),
+        });
+    }
+
     fn has_has(&self) -> bool {
         match self.kind {
             FieldKind::Repeated(..) |
@@ -1853,6 +1876,21 @@ impl<'a> FieldGen<'a> {
         );
     }
 
+    fn is_offset_field_type(&self) -> bool {
+        let ftype = self.proto_field.field.get_field_type();
+        return (ftype == FieldDescriptorProto_Type::TYPE_STRING ||
+                ftype == FieldDescriptorProto_Type::TYPE_BYTES ||
+                ftype == FieldDescriptorProto_Type::TYPE_MESSAGE)
+    }
+
+    fn is_offset_field_kind(&self) -> bool {
+        match self.kind {
+            FieldKind::Singular(..) |
+            FieldKind::Repeated(..) => true,
+            _ => false
+        }
+    }
+    
     pub fn write_message_single_field_accessors(&self, w: &mut CodeWriter) {
         let clear_field_func = self.clear_field_func();
         w.pub_fn(&format!("{}(&mut self)", clear_field_func), |w| {
@@ -1879,5 +1917,9 @@ impl<'a> FieldGen<'a> {
 
         w.write_line("");
         self.write_message_field_get(w);
+
+        if self.is_offset_field_type() && self.is_offset_field_kind() {
+            self.write_message_field_get_offset(w);
+        }
     }
 }
