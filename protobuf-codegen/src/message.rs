@@ -36,6 +36,7 @@ impl<'a> MessageGen<'a> {
             .into_iter()
             .map(|field| FieldGen::parse(field, root_scope, &customize))
             .collect();
+
         MessageGen {
             message: message,
             root_scope: root_scope,
@@ -347,6 +348,25 @@ impl<'a> MessageGen<'a> {
         });
     }
 
+    fn write_impl_partialeq_self(&self, w: &mut CodeWriter) {
+        w.impl_for_block("PartialEq", &self.type_name, |w| {
+            w.write_line("");
+            w.write_line("#[allow(unused_variables)]");
+            w.def_fn("eq(&self, other: &Self) -> bool", |w| {
+                let stmts = self.fields_except_oneof_and_group()
+                    .iter()
+                    .map(|f| format!("self.{} == other.{}",
+                                     f.rust_name, f.rust_name))
+                    .collect::<Vec<String>>();
+                if (stmts.is_empty()) {
+                    w.write_line("true");
+                } else {
+                    w.write_line(stmts.join(" && "));
+                }
+            });
+        });
+    }
+        
     fn write_impl_value(&self, w: &mut CodeWriter) {
         w.impl_for_block("::protobuf::reflect::ProtobufValue", &self.type_name, |w| {
             w.def_fn(
@@ -387,7 +407,7 @@ impl<'a> MessageGen<'a> {
     }
 
     fn write_struct(&self, w: &mut CodeWriter) {
-        let mut derive = vec!["PartialEq", "Clone", "Default"];
+        let mut derive = vec!["Clone", "Default"];
         if self.lite_runtime {
             derive.push("Debug");
         }
@@ -473,6 +493,8 @@ impl<'a> MessageGen<'a> {
         self.write_impl_self(w);
         w.write_line("");
         self.write_impl_message(w);
+        w.write_line("");
+        self.write_impl_partialeq_self(w);
         w.write_line("");
         self.write_impl_clear(w);
         if !self.lite_runtime {
