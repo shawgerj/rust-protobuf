@@ -38,6 +38,7 @@ impl<'a> MessageGen<'a> {
             .into_iter()
             .map(|field| FieldGen::parse(field, root_scope, &customize))
             .collect();
+
         let lite_runtime = customize.lite_runtime.unwrap_or_else(|| {
             message
                 .get_file_descriptor()
@@ -45,6 +46,7 @@ impl<'a> MessageGen<'a> {
                 .get_optimize_for()
                 == FileOptions_OptimizeMode::LITE_RUNTIME
         });
+
         MessageGen {
             message: message,
             root_scope: root_scope,
@@ -388,6 +390,25 @@ impl<'a> MessageGen<'a> {
         });
     }
 
+    fn write_impl_partialeq_self(&self, w: &mut CodeWriter) {
+        w.impl_for_block("PartialEq", &self.type_name, |w| {
+            w.write_line("");
+            w.write_line("#[allow(unused_variables)]");
+            w.def_fn("eq(&self, other: &Self) -> bool", |w| {
+                let stmts = self.fields_except_oneof_and_group()
+                    .iter()
+                    .map(|f| format!("self.{} == other.{}",
+                                     f.rust_name, f.rust_name))
+                    .collect::<Vec<String>>();
+                if (stmts.is_empty()) {
+                    w.write_line("true");
+                } else {
+                    w.write_line(stmts.join(" && "));
+                }
+            });
+        });
+    }
+        
     fn write_impl_value(&self, w: &mut CodeWriter) {
         w.impl_for_block("::protobuf::reflect::ProtobufValue", &self.type_name, |w| {
             w.def_fn(

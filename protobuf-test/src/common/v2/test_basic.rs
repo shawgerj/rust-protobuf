@@ -1,7 +1,9 @@
 use protobuf::*;
+use std::str;
 
 use protobuf_test_common::*;
 use protobuf_test_common::hex::decode_hex;
+use protobuf_test_common::hex::encode_hex;
 
 use super::test_basic_pb::*;
 
@@ -16,7 +18,30 @@ fn test1() {
 fn test2() {
     let mut test2 = Test2::new();
     test2.set_b("testing".to_string());
-    test_serialize_deserialize("12 07 74 65 73 74 69 6e 67", &test2);
+    dbg!(test2.get_b_offset());
+    //    test_serialize_deserialize("12 07 74 65 73 74 69 6e 67", &test2);
+
+    let hex = "12 07 74 65 73 74 69 6e 67";
+
+    let expected_bytes = decode_hex(hex);
+    let expected_hex = encode_hex(&expected_bytes);
+    let serialized = test2.write_to_bytes().unwrap();
+    let serialized_hex = encode_hex(&serialized);
+    assert_eq!(
+        expected_hex,
+        serialized_hex,
+        "message {}",
+        <Test2>::descriptor_static(None).name()
+    );
+    let parsed = parse_from_bytes::<Test2>(&expected_bytes).unwrap();
+
+    dbg!(parsed.get_b_offset());
+    let start = *parsed.get_b_offset() as usize;
+    let end = start + parsed.get_b().len();
+    dbg!(str::from_utf8(&expected_bytes[start..end]));
+
+   assert_eq!(test2, parsed);
+   assert_eq!(expected_bytes.len(), test2.compute_size() as usize);
 }
 
 #[test]

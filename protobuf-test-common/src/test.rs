@@ -27,11 +27,12 @@ pub fn test_serialize_deserialize<M : Message + PartialEq>(hex: &str, msg: &M) {
         M::descriptor_static().name()
     );
     let parsed = parse_from_bytes::<M>(&expected_bytes).unwrap();
-    assert_eq!(*msg, parsed);
+    
+   assert_eq!(*msg, parsed);
 
-    assert_eq!(expected_bytes.len(), msg.compute_size() as usize);
+   assert_eq!(expected_bytes.len(), msg.compute_size() as usize);
 
-    test_serialize_deserialize_length_delimited(msg);
+   test_serialize_deserialize_length_delimited(msg);
 }
 
 pub fn test_deserialize<M : Message + PartialEq>(hex: &str, msg: &M) {
