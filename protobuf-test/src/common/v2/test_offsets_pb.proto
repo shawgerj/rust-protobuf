@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package basic;
+
+message TestStr {
+  string b = 1;
+}
+
+message TestBytes {
+  bytes b = 1;
+}
+
+message TestMultiple {
+  string a = 1;
+  string b = 2;
+  string c = 3;
+}
+
+message TestMultipleSpaced {
+  int32 a = 1;
+  string b = 2;
+  repeated uint64 c = 3;
+  bytes d = 4;
+}
+
+message NestedMsg {
+  TestStr s = 1;
+}
+
+message RepeatedNestMsg {
+  repeated TestStr s = 1;
+}
