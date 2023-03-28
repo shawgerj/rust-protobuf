@@ -106,6 +106,24 @@ fn test_multiple_spaced() {
 }
 
 #[test]
+fn test_like_entry() {
+    let mut pb_str = LikeEntry::new();
+    pb_str.set_term(10);
+    pb_str.set_index(1);
+    pb_str.set_data("helloworld".to_string().into());
+
+    let serialized = pb_str.write_to_bytes().unwrap();
+    let parsed = parse_from_bytes::<LikeEntry>(&serialized).unwrap();
+
+    let offset_data = parsed.get_data_offset();
+    assert_eq!(*offset_data, 20);
+
+    let start = *offset_data as usize;
+    let end = start + parsed.get_data().len();
+    assert_eq!(str::from_utf8(&serialized[start..end]).unwrap(), "helloworld".to_string());
+}
+
+#[test]
 fn test_nested_msg() {
     let mut pb_orig = NestedMsg::new();
     let mut pb_str = TestStr::new();

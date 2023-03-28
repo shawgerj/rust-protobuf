@@ -30,3 +30,17 @@ message NestedMsg {
 message RepeatedNestMsg {
   repeated TestStr s = 1;
 }
+
+enum EntryType {
+    EntryNormal = 0;
+    EntryConfChange = 1;
+    EntryConfChangeV2 = 2;
+}
+
+message LikeEntry {
+    EntryType entry_type = 1;
+    fixed64 term = 2;
+    fixed64 index = 3;
+    bytes data = 4;
+    bytes context = 6;
+}
