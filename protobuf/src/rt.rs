@@ -608,10 +608,13 @@ pub fn read_repeated_carllerche_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Vec<Chars>,
+    offset: &mut Vec<u64>,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            target.push(is.read_carllerche_chars()?);
+            let (tmp, o) = is.read_carllerche_chars()?;
+            target.push(tmp);
+            *offset = o;
             Ok(())
         },
         _ => Err(unexpected_wire_type(wire_type)),
@@ -646,7 +649,7 @@ pub fn read_singular_carllerche_string_into(
     match wire_type {
         WireTypeLengthDelimited => {
             let (tmp, o) = is.read_carllerche_chars()?;
-            *target = tmp;
+            *target = Some(tmp);
             *offset = o;
             Ok(())
         },
@@ -753,8 +756,8 @@ pub fn read_singular_carllerche_bytes_into(
     match wire_type {
         WireTypeLengthDelimited => {
             let (tmp, o) = is.read_carllerche_bytes()?;
-            *offset = o
-            *target = tmp;
+            *offset = o;
+            *target = Some(tmp);
             Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
