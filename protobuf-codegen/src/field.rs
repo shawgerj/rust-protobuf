@@ -1709,10 +1709,10 @@ impl<'a> FieldGen<'a> {
     }
 
     fn write_message_field_get_offset(&self, w: &mut CodeWriter) {
-        let get_offset_return_type = self.get_offset_return_type();
         let fn_def = format!("get_{}_offset(&self) -> {}",
                              self.rust_name,
-                             get_offset_return_type);
+                             self.get_offset_return_type()
+                             .to_code(&self.customize));
 
         w.pub_fn(&fn_def, |w| match self.kind {
             FieldKind::Singular(..) |
@@ -1963,9 +1963,9 @@ impl<'a> FieldGen<'a> {
 
     fn is_offset_field_type(&self) -> bool {
         let ftype = self.proto_field.field.get_field_type();
-        return (ftype == FieldDescriptorProto_Type::TYPE_STRING ||
-                ftype == FieldDescriptorProto_Type::TYPE_BYTES ||
-                ftype == FieldDescriptorProto_Type::TYPE_MESSAGE)
+        return ftype == FieldDescriptorProto_Type::TYPE_STRING ||
+            ftype == FieldDescriptorProto_Type::TYPE_BYTES ||
+            ftype == FieldDescriptorProto_Type::TYPE_MESSAGE
     }
 
     fn is_offset_field_kind(&self) -> bool {
@@ -2009,7 +2009,6 @@ impl<'a> FieldGen<'a> {
         }
 
         w.write_line("");
-        self.write_message_field_get(w);
 
         if self.is_offset_field_type() && self.is_offset_field_kind() {
             self.write_message_field_get_offset(w);

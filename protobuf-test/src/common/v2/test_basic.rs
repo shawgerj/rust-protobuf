@@ -31,7 +31,7 @@ fn test2() {
         expected_hex,
         serialized_hex,
         "message {}",
-        <Test2>::descriptor_static(None).name()
+        <Test2>::descriptor_static().name()
     );
     let parsed = parse_from_bytes::<Test2>(&expected_bytes).unwrap();
 

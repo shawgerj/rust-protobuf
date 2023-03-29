@@ -400,7 +400,7 @@ impl<'a> MessageGen<'a> {
                     .map(|f| format!("self.{} == other.{}",
                                      f.rust_name, f.rust_name))
                     .collect::<Vec<String>>();
-                if (stmts.is_empty()) {
+                if stmts.is_empty() {
                     w.write_line("true");
                 } else {
                     w.write_line(stmts.join(" && "));

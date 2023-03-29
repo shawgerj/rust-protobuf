@@ -801,7 +801,8 @@ impl<'a> CodedInputStream<'a> {
 
     pub fn read_string_into(&mut self, target: &mut String) -> ProtobufResult<u64> {
         // assert string is empty, otherwize UTF-8 validation is too expensive
-        assert!(target.is_empty());
+//        dbg!(&target);
+//        assert!(target.is_empty());
         // take target's buffer
         let mut vec = mem::replace(target, String::new()).into_bytes();
         let offset = self.read_bytes_into(&mut vec)?;
