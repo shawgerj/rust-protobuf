@@ -641,10 +641,13 @@ pub fn read_singular_carllerche_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Option<Chars>,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            *target = Some(is.read_carllerche_chars()?);
+            let (tmp, o) = is.read_carllerche_chars()?;
+            *target = tmp;
+            *offset = o;
             Ok(())
         },
         _ => Err(unexpected_wire_type(wire_type)),
@@ -673,10 +676,13 @@ pub fn read_singular_proto3_carllerche_string_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Chars,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            *target = is.read_carllerche_chars()?;
+            let (tmp, o) = is.read_carllerche_chars()?;
+            *target = tmp;
+            *offset = o;
             Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
@@ -706,10 +712,13 @@ pub fn read_repeated_carllerche_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Vec<Bytes>,
+    offsets: &mut Vec<u64>,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            target.push(is.read_carllerche_bytes()?);
+            let (tmp, offset) = is.read_carllerche_bytes()?;
+            offsets.push(offset);
+            target.push(tmp);
             Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
@@ -739,10 +748,13 @@ pub fn read_singular_carllerche_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Option<Bytes>,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            *target = Some(is.read_carllerche_bytes()?);
+            let (tmp, o) = is.read_carllerche_bytes()?;
+            *offset = o
+            *target = tmp;
             Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),
@@ -771,10 +783,13 @@ pub fn read_singular_proto3_carllerche_bytes_into(
     wire_type: WireType,
     is: &mut CodedInputStream,
     target: &mut Bytes,
+    offset: &mut u64,
 ) -> ProtobufResult<()> {
     match wire_type {
         WireTypeLengthDelimited => {
-            *target = is.read_carllerche_bytes()?;
+            let (tmp, o) = is.read_carllerche_bytes()?;
+            *offset = o;
+            *target = tmp;
             Ok(())
         }
         _ => Err(unexpected_wire_type(wire_type)),

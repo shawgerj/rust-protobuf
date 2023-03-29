@@ -773,16 +773,17 @@ impl<'a> CodedInputStream<'a> {
 
     /// Read `bytes` field, length delimited
     #[cfg(feature = "bytes")]
-    pub fn read_carllerche_bytes(&mut self) -> ProtobufResult<Bytes> {
+    pub fn read_carllerche_bytes(&mut self) -> ProtobufResult<(Bytes, u64)> {
         let len = self.read_raw_varint32()?;
-        self.read_raw_callerche_bytes(len as usize)
+        let offset = self.pos();
+        Ok((self.read_raw_callerche_bytes(len as usize)?, offset))
     }
 
     /// Read `string` field, length delimited
     #[cfg(feature = "bytes")]
-    pub fn read_carllerche_chars(&mut self) -> ProtobufResult<Chars> {
-        let bytes = self.read_carllerche_bytes()?;
-        Ok(Chars::from_bytes(bytes)?)
+    pub fn read_carllerche_chars(&mut self) -> ProtobufResult<(Chars, u64)> {
+        let (bytes, offset) = self.read_carllerche_bytes()?;
+        Ok((Chars::from_bytes(bytes)?, offset))
     }
 
     pub fn read_bytes_into(&mut self, target: &mut Vec<u8>) -> ProtobufResult<u64> {
