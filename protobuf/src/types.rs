@@ -594,7 +594,7 @@ impl ProtobufType for ProtobufTypeCarllercheChars {
     }
 
     fn read(is: &mut CodedInputStream) -> ProtobufResult<Self::Value> {
-        let (value, offset) = is.read_carllerche_bytes()?;
+        let (value, offset) = is.read_carllerche_chars()?;
         Ok(value)
     }
 
