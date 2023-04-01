@@ -564,7 +564,8 @@ impl ProtobufType for ProtobufTypeCarllercheBytes {
     }
 
     fn read(is: &mut CodedInputStream) -> ProtobufResult<Self::Value> {
-        is.read_carllerche_bytes()
+        let (value, offset) = s.read_carllerche_bytes()?;
+        Ok(value);
     }
 
     fn get_from_unknown(unknown_values: &UnknownValues) -> Option<Bytes> {
@@ -593,7 +594,8 @@ impl ProtobufType for ProtobufTypeCarllercheChars {
     }
 
     fn read(is: &mut CodedInputStream) -> ProtobufResult<Self::Value> {
-        is.read_carllerche_chars()
+        let (value, offset) = s.read_carllerche_bytes()?;
+        Ok(value);
     }
 
     fn get_from_unknown(unknown_values: &UnknownValues) -> Option<Chars> {
