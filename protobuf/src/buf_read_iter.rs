@@ -3,8 +3,11 @@ use std::io::BufRead;
 use std::io::BufReader;
 use std::io::Read;
 use std::mem;
+use std::mem::MaybeUninit;
 use std::u64;
 
+#[cfg(feature = "bytes")]
+use bytes::buf::UninitSlice;
 #[cfg(feature = "bytes")]
 use bytes::BufMut;
 #[cfg(feature = "bytes")]
@@ -308,10 +311,10 @@ impl<'ignore> BufReadIter<'ignore> {
                 let mut r = BytesMut::with_capacity(len);
                 unsafe {
 //                    let buf = &mut r.bytes_mut()[..len];
-                    let buf = &mut r.chunk_mut()[..len].as_uninit_slice_mut();
-                    buf = buf.assume_init();
+                    let buf = Self::uninit_slice_as_mut_slice(&mut r.chunk_mut()[..len]);
+                    let newbuf = std::mem::transmute::<_, &mut [u8]>(buf);
                     
-                    self.read_exact(buf)?;
+                    self.read_exact(newbuf)?;
                 }
                 unsafe {
                     r.advance_mut(len);
@@ -319,6 +322,12 @@ impl<'ignore> BufReadIter<'ignore> {
                 Ok(r.freeze())
             }
         }
+    }
+
+    #[cfg(feature = "bytes")]
+    unsafe fn uninit_slice_as_mut_slice(slice: &mut UninitSlice) -> &mut [MaybeUninit<u8>] {
+        use std::slice;
+        slice::from_raw_parts_mut(slice.as_mut_ptr() as *mut MaybeUninit<u8>, slice.len())
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> ProtobufResult<usize> {

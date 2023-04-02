@@ -1,0 +1,15 @@
+* Untangling uninit
+In =buf_read_iter.rs=, =read_exact_bytes()= reads into an uninitialized buffer.
+
+Initially, this was done via =unsafe= -- let =buf= be a mutable reference to the buffer, and copy data into it via =read_exact=. Since we know =buf= has enough capacity, we can safely do this operation.
+
+In the newer version of =Bytes=, this is not possible as-is.
+- =bytes_mut()= has been replaced by =chunk_mut()= which returns a =&mut UninitSlice=.
+
+** =&mut UninitSlice= and =&mut [MaybeUninit<u8>]=
+Cannot write uninitialized bytes to a =&mut UninitSlice= in safe mode, but you can in =&mut [MaybeUninit<u8>]= (I find this extraordinarily confusing. I think they are just enforcing certain properties by using the type system, but it isn't clear to me why one is safer than the other).
+
+** Solutions
+Best solution is in newer versions of =rust-protobuf=. They refactor a lot of this code.
+
+I just want it to work for now. So I will convert buf to a =&[u8]= and cross my fingers. 
