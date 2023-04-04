@@ -63,10 +63,10 @@ enum MessageOrEnum {
 }
 
 impl MessageOrEnum {
-    fn descriptor_type(&self) -> protobuf::descriptor::FieldDescriptorProto_Type {
+    fn descriptor_type(&self) -> protobuf::descriptor::FieldDescriptorProtoType {
         match *self {
-            MessageOrEnum::Message => protobuf::descriptor::FieldDescriptorProto_Type::TYPE_MESSAGE,
-            MessageOrEnum::Enum => protobuf::descriptor::FieldDescriptorProto_Type::TYPE_ENUM,
+            MessageOrEnum::Message => protobuf::descriptor::FieldDescriptorProtoType::TypeMessage,
+            MessageOrEnum::Enum => protobuf::descriptor::FieldDescriptorProtoType::TypeEnum,
         }
     }
 }
@@ -395,7 +395,7 @@ impl<'a> Resolver<'a> {
         output.set_number(number);
 
         let (t, t_name) = self.field_type(name, field_type, path_in_file);
-        output.set_field_type(t);
+        output.set_type(t);
         if let Some(t_name) = t_name {
             output.set_type_name(t_name.path);
         }
@@ -540,28 +540,28 @@ impl<'a> Resolver<'a> {
         output.set_name(input.name.clone());
 
         if let model::FieldType::Map(..) = input.typ {
-            output.set_label(protobuf::descriptor::FieldDescriptorProto_Label::LABEL_REPEATED);
+            output.set_label(protobuf::descriptor::FieldDescriptorProtoLabel::LabelRepeated);
         } else {
             output.set_label(label(input.rule));
         }
 
         let (t, t_name) = self.field_type(&input.name, &input.typ, path_in_file);
-        output.set_field_type(t);
+        output.set_type(t);
         if let Some(t_name) = t_name {
             output.set_type_name(t_name.path);
         }
 
         output.set_number(input.number);
         if let Some(default) = input.options.as_slice().by_name("default") {
-            let default = match output.get_field_type() {
-                protobuf::descriptor::FieldDescriptorProto_Type::TYPE_STRING => {
+            let default = match output.get_type() {
+                protobuf::descriptor::FieldDescriptorProtoType::TypeString => {
                     if let &model::ProtobufConstant::String(ref s) = default {
                         s.decode_utf8()?
                     } else {
                         return Err(ConvertError::DefaultValueIsNotStringLiteral);
                     }
                 }
-                protobuf::descriptor::FieldDescriptorProto_Type::TYPE_BYTES => {
+                protobuf::descriptor::FieldDescriptorProtoType::TypeBytes => {
                     if let &model::ProtobufConstant::String(ref s) = default {
                         s.escaped.clone()
                     } else {
@@ -637,39 +637,39 @@ impl<'a> Resolver<'a> {
     }
 
     fn field_type(&self, name: &str, input: &model::FieldType, path_in_file: &RelativePath)
-        -> (protobuf::descriptor::FieldDescriptorProto_Type, Option<AbsolutePath>)
+        -> (protobuf::descriptor::FieldDescriptorProtoType, Option<AbsolutePath>)
     {
         match *input {
             model::FieldType::Bool =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_BOOL, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeBool, None),
             model::FieldType::Int32 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_INT32, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeInt32, None),
             model::FieldType::Int64 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_INT64, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeInt64, None),
             model::FieldType::Uint32 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_UINT32, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeUint32, None),
             model::FieldType::Uint64 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_UINT64, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeUint64, None),
             model::FieldType::Sint32 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_SINT32, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeSint32, None),
             model::FieldType::Sint64 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_SINT64, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeSint64, None),
             model::FieldType::Fixed32 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_FIXED32, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeFixed32, None),
             model::FieldType::Fixed64 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_FIXED64, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeFixed64, None),
             model::FieldType::Sfixed32 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_SFIXED32, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeSfixed32, None),
             model::FieldType::Sfixed64 =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_SFIXED64, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeSfixed64, None),
             model::FieldType::Float =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_FLOAT, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeFloat, None),
             model::FieldType::Double =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_DOUBLE, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeDouble, None),
             model::FieldType::String =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_STRING, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeString, None),
             model::FieldType::Bytes =>
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_BYTES, None),
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeBytes, None),
             model::FieldType::MessageOrEnum(ref name) => {
                 let (name, me) = self.resolve_message_or_enum(&name, path_in_file);
                 (me.descriptor_type(), Some(name))
@@ -679,12 +679,12 @@ impl<'a> Resolver<'a> {
                 type_name.push_relative(path_in_file);
                 type_name.push_simple(&Resolver::map_entry_name_for_field_name(name));
                 (
-                    protobuf::descriptor::FieldDescriptorProto_Type::TYPE_MESSAGE,
+                    protobuf::descriptor::FieldDescriptorProtoType::TypeMessage,
                     Some(type_name)
                 )
             }
             model::FieldType::Group(..) => {
-                (protobuf::descriptor::FieldDescriptorProto_Type::TYPE_GROUP, None)
+                (protobuf::descriptor::FieldDescriptorProtoType::TypeGroup, None)
             }
         }
     }
@@ -849,14 +849,14 @@ fn syntax(input: model::Syntax) -> String {
     }
 }
 
-fn label(input: model::Rule) -> protobuf::descriptor::FieldDescriptorProto_Label {
+fn label(input: model::Rule) -> protobuf::descriptor::FieldDescriptorProtoLabel {
     match input {
         model::Rule::Optional =>
-            protobuf::descriptor::FieldDescriptorProto_Label::LABEL_OPTIONAL,
+            protobuf::descriptor::FieldDescriptorProtoLabel::LabelOptional,
         model::Rule::Required =>
-            protobuf::descriptor::FieldDescriptorProto_Label::LABEL_REQUIRED,
+            protobuf::descriptor::FieldDescriptorProtoLabel::LabelRequired,
         model::Rule::Repeated =>
-            protobuf::descriptor::FieldDescriptorProto_Label::LABEL_REPEATED,
+            protobuf::descriptor::FieldDescriptorProtoLabel::LabelRepeated,
     }
 }
 

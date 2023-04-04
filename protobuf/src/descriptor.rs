@@ -2862,7 +2862,7 @@ impl ::protobuf::PbPrint for FieldDescriptorProto {
         ::protobuf::PbPrint::fmt(&self.name, "name", buf);
         ::protobuf::PbPrint::fmt(&self.number, "number", buf);
         ::protobuf::PbPrint::fmt(&self.label, "label", buf);
-        ::protobuf::PbPrint::fmt(&self.r_type, "r_type", buf);
+        ::protobuf::PbPrint::fmt(&self.r_type, "type", buf);
         ::protobuf::PbPrint::fmt(&self.type_name, "type_name", buf);
         ::protobuf::PbPrint::fmt(&self.extendee, "extendee", buf);
         ::protobuf::PbPrint::fmt(&self.default_value, "default_value", buf);
@@ -2882,7 +2882,7 @@ impl ::std::fmt::Debug for FieldDescriptorProto {
         ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
         ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
         ::protobuf::PbPrint::fmt(&self.label, "label", &mut s);
-        ::protobuf::PbPrint::fmt(&self.r_type, "r_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.r_type, "type", &mut s);
         ::protobuf::PbPrint::fmt(&self.type_name, "type_name", &mut s);
         ::protobuf::PbPrint::fmt(&self.extendee, "extendee", &mut s);
         ::protobuf::PbPrint::fmt(&self.default_value, "default_value", &mut s);

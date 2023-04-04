@@ -430,7 +430,7 @@ impl<'a> MessageGen<'a> {
                 w.write_line(r#"::protobuf::push_message_start(name, buf);"#);
                 w.write_line(r#"let old_len = buf.len();"#);
                 for field in &normal_fields {
-                    w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", buf);", field.rust_name, field.rust_name));
+                    w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", buf);", field.rust_name, field.unesc_rust_name));
                 }
                 for oneof in &oneofs {
                     w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", buf);", oneof.name(), oneof.name()));
@@ -453,7 +453,7 @@ impl<'a> MessageGen<'a> {
                     }
                     w.write_line("let mut s = ::std::string::String::new();");
                     for field in &normal_fields {
-                        w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", &mut s);", field.rust_name, field.rust_name));
+                        w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", &mut s);", field.rust_name, field.unesc_rust_name));
                     }
                     for oneof in &oneofs {
                         w.write_line(&format!("::protobuf::PbPrint::fmt(&self.{}, \"{}\", &mut s);", oneof.name(), oneof.name()));
