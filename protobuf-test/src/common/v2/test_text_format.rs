@@ -33,7 +33,7 @@ fn test_singular() {
         m.set_bytes_singular(b"def".to_vec())
     });
     t("test_enum_singular: DARK", |m| {
-        m.set_test_enum_singular(TestEnum::DARK)
+        m.set_test_enum_singular(TestEnum::Dark)
     });
     t("test_message_singular {}", |m| {
         m.mut_test_message_singular();
@@ -79,7 +79,7 @@ fn test_repeated_one() {
         m.mut_bytes_repeated().push(b"def".to_vec())
     });
     t("test_enum_repeated: DARK", |m| {
-        m.mut_test_enum_repeated().push(TestEnum::DARK)
+        m.mut_test_enum_repeated().push(TestEnum::Dark)
     });
     t("test_message_repeated {}", |m| {
         m.mut_test_message_repeated().push(Default::default());
@@ -140,6 +140,6 @@ fn test_pretty() {
 #[test]
 fn test_rust_identifier() {
     let mut m = TestTextFormatRustIdentifier::new();
-    m.set_field_const(true);
-    assert_eq!("field_const: true", &*format!("{:?}", m));
+    m.set_const(true);
+    assert_eq!("r_const: true", &*format!("{:?}", m));
 }

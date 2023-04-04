@@ -7,17 +7,17 @@ use protobuf_test_common::*;
 #[test]
 fn test_enum() {
     assert_eq!(10, EnumWithAlias::A.value());
-    assert_eq!(10, EnumWithAlias::A_AGAIN.value());
+    assert_eq!(10, EnumWithAlias::AAgain.value());
     assert_eq!(
         &[
-            EnumWithAlias::UNKNOWN,
+            EnumWithAlias::Unknown,
             EnumWithAlias::A,
             EnumWithAlias::B,
-            EnumWithAlias::A_AGAIN,
+            EnumWithAlias::AAgain,
         ],
         EnumWithAlias::values()
     );
-    assert_eq!(EnumWithAlias::A, EnumWithAlias::A_AGAIN);
+    assert_eq!(EnumWithAlias::A, EnumWithAlias::AAgain);
 }
 
 #[test]

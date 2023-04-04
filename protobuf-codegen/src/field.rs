@@ -105,7 +105,7 @@ fn field_type_protobuf_name<'a>(field: &'a FieldDescriptorProto) -> &'a str {
     if field.has_type_name() {
         field.get_type_name()
     } else {
-        type_protobuf_name(field.get_field_type())
+        type_protobuf_name(field.get_type())
     }
 }
 
@@ -291,7 +291,7 @@ fn field_elem(
     parse_map: bool,
     customize: &Customize,
 ) -> (FieldElem, Option<EnumValueGen>) {
-    if field.field.get_field_type() == FieldDescriptorProtoType::TypeGroup {
+    if field.field.get_type() == FieldDescriptorProtoType::TypeGroup {
         (FieldElem::Group, None)
     } else if field.field.has_type_name() {
         let message_or_enum = root_scope.find_message_or_enum(field.field.get_type_name());
@@ -307,7 +307,7 @@ fn field_elem(
             false,
             root_scope,
         );
-        match (field.field.get_field_type(), message_or_enum) {
+        match (field.field.get_type(), message_or_enum) {
             (
                 FieldDescriptorProtoType::TypeMessage,
                 MessageOrEnumWithScope::Message(message_with_scope),
@@ -351,13 +351,13 @@ fn field_elem(
                     Some(ev),
                 )
             }
-            _ => panic!("unknown named type: {:?}", field.field.get_field_type()),
+            _ => panic!("unknown named type: {:?}", field.field.get_type()),
         }
-    } else if field.field.has_field_type() {
+    } else if field.field.has_type() {
         let carllerche_for_bytes = customize.carllerche_bytes_for_bytes.unwrap_or(false);
         let carllerche_for_string = customize.carllerche_bytes_for_string.unwrap_or(false);
 
-        let elem = match field.field.get_field_type() {
+        let elem = match field.field.get_type() {
             FieldDescriptorProtoType::TypeString if carllerche_for_string => {
                 FieldElem::Primitive(
                     FieldDescriptorProtoType::TypeString,
@@ -459,7 +459,7 @@ impl<'a> FieldGen<'a> {
             FieldKind::Oneof(OneofField::parse(&oneof, &field, elem, root_scope))
         } else {
             let flag = if field.message.scope.file_scope.syntax() == Syntax::PROTO3
-                && field.field.get_field_type() != FieldDescriptorProtoType::TypeMessage
+                && field.field.get_type() != FieldDescriptorProtoType::TypeMessage
             {
                 SingularFieldFlag::WithoutFlag
             } else {
@@ -475,8 +475,8 @@ impl<'a> FieldGen<'a> {
             syntax: field.message.get_scope().file_scope.syntax(),
             rust_name: field.field.rust_name(),
             unesc_rust_name: field.field.unesc_rust_name(),
-            proto_type: field.field.get_field_type(),
-            wire_type: field_type_wire_type(field.field.get_field_type()),
+            proto_type: field.field.get_type(),
+            wire_type: field_type_wire_type(field.field.get_type()),
             enum_default_value: enum_default_value,
             proto_field: field,
             kind: kind,
@@ -1964,7 +1964,7 @@ impl<'a> FieldGen<'a> {
     }
 
     fn is_offset_field_type(&self) -> bool {
-        let ftype = self.proto_field.field.get_field_type();
+        let ftype = self.proto_field.field.get_type();
         return ftype == FieldDescriptorProtoType::TypeString ||
             ftype == FieldDescriptorProtoType::TypeBytes ||
             ftype == FieldDescriptorProtoType::TypeMessage

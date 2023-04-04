@@ -21,8 +21,8 @@ fn test_default_value_simple() {
     assert_eq!(true, d.get_bool_field());
     assert_eq!("abc\n22", d.get_string_field());
     assert_eq!(b"cde\n33", d.get_bytes_field());
-    assert_eq!(EnumForDefaultValue::TWO, d.get_enum_field());
-    assert_eq!(EnumForDefaultValue::ONE, d.get_enum_field_without_default());
+    assert_eq!(EnumForDefaultValue::Two, d.get_enum_field());
+    assert_eq!(EnumForDefaultValue::One, d.get_enum_field_without_default());
 }
 
 #[test]

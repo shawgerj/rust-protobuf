@@ -30,7 +30,7 @@ impl OneofField {
         let mut visited_messages = HashSet::new();
         let mut fields = vec![field.clone()];
         while let Some(field) = fields.pop() {
-            if field.field.get_field_type() == FieldDescriptorProtoType::TypeMessage {
+            if field.field.get_type() == FieldDescriptorProtoType::TypeMessage {
                 let message_name = field.field.get_type_name().to_owned();
                 if !visited_messages.insert(message_name.clone()) {
                     continue;
