@@ -42,7 +42,7 @@ where
         result
             .iter()
             .map(|file| {
-                let mut r = CodeGeneratorResponse_File::new();
+                let mut r = CodeGeneratorResponseFile::new();
                 r.set_name(file.name.to_string());
                 r.set_content(str::from_utf8(file.content.as_ref()).unwrap().to_string());
                 r

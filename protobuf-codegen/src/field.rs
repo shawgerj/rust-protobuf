@@ -411,6 +411,7 @@ pub struct FieldGen<'a> {
     pub proto_field: FieldWithContext<'a>,
     // field name in generated code
     pub rust_name: String,
+    pub unesc_rust_name: String,
     pub proto_type: FieldDescriptorProto_Type,
     wire_type: wire_format::WireType,
     enum_default_value: Option<EnumValueGen>,
@@ -473,6 +474,7 @@ impl<'a> FieldGen<'a> {
             root_scope: root_scope,
             syntax: field.message.get_scope().file_scope.syntax(),
             rust_name: field.field.rust_name(),
+            unesc_rust_name: field.field.unesc_rust_name(),
             proto_type: field.field.get_field_type(),
             wire_type: field_type_wire_type(field.field.get_field_type()),
             enum_default_value: enum_default_value,
@@ -557,7 +559,7 @@ impl<'a> FieldGen<'a> {
         format!(
             "{}::{}",
             self.oneof().oneof_type_name.to_code(&self.customize),
-            self.rust_name
+            camel_case(&self.rust_name),
         )
     }
 
@@ -1132,7 +1134,7 @@ impl<'a> FieldGen<'a> {
                 let cond = format!(
                     "Some({}::{}(ref {}))",
                     oneof_type_name.to_code(&self.customize),
-                    self.rust_name,
+                    camel_case(&self.rust_name),
                     varn
                 );
                 w.if_let_stmt(&cond, &self.self_field_oneof(), |w| {
@@ -1293,7 +1295,7 @@ impl<'a> FieldGen<'a> {
     }
 
     pub fn clear_field_func(&self) -> String {
-        format!("clear_{}", self.rust_name)
+        format!("clear_{}", self.unesc_rust_name)
     }
 
     // Write `merge_from` part for this singular or repeated field
@@ -1674,7 +1676,7 @@ impl<'a> FieldGen<'a> {
         let get_xxx_return_type = self.get_xxx_return_type();
         let fn_def = format!(
             "get_{}(&self) -> {}",
-            self.rust_name,
+            self.unesc_rust_name,
             get_xxx_return_type.to_code(&self.customize)
         );
 
@@ -1755,7 +1757,7 @@ impl<'a> FieldGen<'a> {
     }
 
     fn has_name(&self) -> String {
-        format!("has_{}", self.rust_name)
+        format!("has_{}", self.unesc_rust_name)
     }
 
     fn write_message_field_has(&self, w: &mut CodeWriter) {
@@ -1779,7 +1781,7 @@ impl<'a> FieldGen<'a> {
     fn write_message_field_set(&self, w: &mut CodeWriter) {
         let set_xxx_param_type = self.set_xxx_param_type();
         w.comment("Param is passed by value, moved");
-        let ref name = self.rust_name;
+        let ref name = self.unesc_rust_name;
         w.pub_fn(
             &format!(
                 "set_{}(&mut self, v: {})",
@@ -1816,7 +1818,7 @@ impl<'a> FieldGen<'a> {
         let fn_def = match mut_xxx_return_type {
             RustType::Ref(ref param) => format!(
                 "mut_{}(&mut self) -> &mut {}",
-                self.rust_name,
+                self.unesc_rust_name,
                 param.to_code(&self.customize)
             ),
             _ => panic!(
@@ -1917,7 +1919,7 @@ impl<'a> FieldGen<'a> {
         w.pub_fn(
             &format!(
                 "take_{}(&mut self) -> {}",
-                self.rust_name,
+                self.unesc_rust_name,
                 take_xxx_return_type.to_code(&self.customize)
             ),
             |w| match self.kind {

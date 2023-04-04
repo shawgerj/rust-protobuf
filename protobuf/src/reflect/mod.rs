@@ -9,7 +9,7 @@ use descriptor::DescriptorProto;
 use descriptor::EnumDescriptorProto;
 use descriptor::EnumValueDescriptorProto;
 use descriptor::FieldDescriptorProto;
-use descriptor::FieldDescriptorProto_Label;
+use descriptor::FieldDescriptorProtoLabel;
 use descriptor::FileDescriptorProto;
 use descriptorx::find_enum_by_rust_name;
 use descriptorx::find_message_by_rust_name;
@@ -58,7 +58,7 @@ impl FieldDescriptor {
 
     /// If field repeated?
     pub fn is_repeated(&self) -> bool {
-        self.proto.get_label() == FieldDescriptorProto_Label::LABEL_REPEATED
+        self.proto.get_label() == FieldDescriptorProtoLabel::LabelRepeated
     }
 
     /// Is field set?

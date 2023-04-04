@@ -96,6 +96,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8be18de09a56b60ed0edf84bc9df007e30040691af7acd1c41874faac5895bfb"
 
 [[package]]
+name = "heck"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d621efb26863f0e9924c6ac577e8275e5e6b77455db64ffa6c65c904e9e132c"
+dependencies = [
+ "unicode-segmentation",
+]
+
+[[package]]
 name = "hex"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -170,6 +179,7 @@ name = "protobuf"
 version = "2.8.0"
 dependencies = [
  "bytes 1.4.0",
+ "heck",
  "hex",
  "serde",
  "serde_derive",
@@ -179,6 +189,7 @@ dependencies = [
 name = "protobuf-codegen"
 version = "2.8.0"
 dependencies = [
+ "heck",
  "protobuf",
 ]
 
@@ -516,6 +527,12 @@ name = "ucd-util"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fa9b3b49edd3468c0e6565d85783f51af95212b6fa3986a5500954f00b460874"
+
+[[package]]
+name = "unicode-segmentation"
+version = "1.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1dd624098567895118886609431a7c3b8f516e41d30e0643f03d94592a147e36"
 
 [[package]]
 name = "unicode-xid"

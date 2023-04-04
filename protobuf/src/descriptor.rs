@@ -1059,13 +1059,13 @@ pub struct DescriptorProto {
     pub nested_type_offset: ::std::vec::Vec<u64>,
     enum_type: ::protobuf::RepeatedField<EnumDescriptorProto>,
     pub enum_type_offset: ::std::vec::Vec<u64>,
-    extension_range: ::protobuf::RepeatedField<DescriptorProto_ExtensionRange>,
+    extension_range: ::protobuf::RepeatedField<DescriptorProtoExtensionRange>,
     pub extension_range_offset: ::std::vec::Vec<u64>,
     oneof_decl: ::protobuf::RepeatedField<OneofDescriptorProto>,
     pub oneof_decl_offset: ::std::vec::Vec<u64>,
     options: ::protobuf::SingularPtrField<MessageOptions>,
     pub options_offset: u64,
-    reserved_range: ::protobuf::RepeatedField<DescriptorProto_ReservedRange>,
+    reserved_range: ::protobuf::RepeatedField<DescriptorProtoReservedRange>,
     pub reserved_range_offset: ::std::vec::Vec<u64>,
     reserved_name: ::protobuf::RepeatedField<::std::string::String>,
     pub reserved_name_offset: ::std::vec::Vec<u64>,
@@ -1246,7 +1246,7 @@ impl DescriptorProto {
     // repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
 
 
-    pub fn get_extension_range(&self) -> &[DescriptorProto_ExtensionRange] {
+    pub fn get_extension_range(&self) -> &[DescriptorProtoExtensionRange] {
         &self.extension_range
     }
     pub fn clear_extension_range(&mut self) {
@@ -1254,17 +1254,17 @@ impl DescriptorProto {
     }
 
     // Param is passed by value, moved
-    pub fn set_extension_range(&mut self, v: ::protobuf::RepeatedField<DescriptorProto_ExtensionRange>) {
+    pub fn set_extension_range(&mut self, v: ::protobuf::RepeatedField<DescriptorProtoExtensionRange>) {
         self.extension_range = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_extension_range(&mut self) -> &mut ::protobuf::RepeatedField<DescriptorProto_ExtensionRange> {
+    pub fn mut_extension_range(&mut self) -> &mut ::protobuf::RepeatedField<DescriptorProtoExtensionRange> {
         &mut self.extension_range
     }
 
     // Take field
-    pub fn take_extension_range(&mut self) -> ::protobuf::RepeatedField<DescriptorProto_ExtensionRange> {
+    pub fn take_extension_range(&mut self) -> ::protobuf::RepeatedField<DescriptorProtoExtensionRange> {
         ::std::mem::replace(&mut self.extension_range, ::protobuf::RepeatedField::new())
     }
 
@@ -1341,7 +1341,7 @@ impl DescriptorProto {
     // repeated .google.protobuf.DescriptorProto.ReservedRange reserved_range = 9;
 
 
-    pub fn get_reserved_range(&self) -> &[DescriptorProto_ReservedRange] {
+    pub fn get_reserved_range(&self) -> &[DescriptorProtoReservedRange] {
         &self.reserved_range
     }
     pub fn clear_reserved_range(&mut self) {
@@ -1349,17 +1349,17 @@ impl DescriptorProto {
     }
 
     // Param is passed by value, moved
-    pub fn set_reserved_range(&mut self, v: ::protobuf::RepeatedField<DescriptorProto_ReservedRange>) {
+    pub fn set_reserved_range(&mut self, v: ::protobuf::RepeatedField<DescriptorProtoReservedRange>) {
         self.reserved_range = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_reserved_range(&mut self) -> &mut ::protobuf::RepeatedField<DescriptorProto_ReservedRange> {
+    pub fn mut_reserved_range(&mut self) -> &mut ::protobuf::RepeatedField<DescriptorProtoReservedRange> {
         &mut self.reserved_range
     }
 
     // Take field
-    pub fn take_reserved_range(&mut self) -> ::protobuf::RepeatedField<DescriptorProto_ReservedRange> {
+    pub fn take_reserved_range(&mut self) -> ::protobuf::RepeatedField<DescriptorProtoReservedRange> {
         ::std::mem::replace(&mut self.reserved_range, ::protobuf::RepeatedField::new())
     }
 
@@ -1645,7 +1645,7 @@ impl ::protobuf::Message for DescriptorProto {
                     |m: &DescriptorProto| { &m.enum_type },
                     |m: &mut DescriptorProto| { &mut m.enum_type },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<DescriptorProto_ExtensionRange>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<DescriptorProtoExtensionRange>>(
                     "extension_range",
                     |m: &DescriptorProto| { &m.extension_range },
                     |m: &mut DescriptorProto| { &mut m.extension_range },
@@ -1660,7 +1660,7 @@ impl ::protobuf::Message for DescriptorProto {
                     |m: &DescriptorProto| { &m.options },
                     |m: &mut DescriptorProto| { &mut m.options },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<DescriptorProto_ReservedRange>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<DescriptorProtoReservedRange>>(
                     "reserved_range",
                     |m: &DescriptorProto| { &m.reserved_range },
                     |m: &mut DescriptorProto| { &mut m.reserved_range },
@@ -1761,7 +1761,7 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto {
 
 #[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub struct DescriptorProto_ExtensionRange {
+pub struct DescriptorProtoExtensionRange {
     // message fields
     start: ::std::option::Option<i32>,
     end: ::std::option::Option<i32>,
@@ -1772,14 +1772,14 @@ pub struct DescriptorProto_ExtensionRange {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a DescriptorProto_ExtensionRange {
-    fn default() -> &'a DescriptorProto_ExtensionRange {
-        <DescriptorProto_ExtensionRange as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a DescriptorProtoExtensionRange {
+    fn default() -> &'a DescriptorProtoExtensionRange {
+        <DescriptorProtoExtensionRange as ::protobuf::Message>::default_instance()
     }
 }
 
-impl DescriptorProto_ExtensionRange {
-    pub fn new() -> DescriptorProto_ExtensionRange {
+impl DescriptorProtoExtensionRange {
+    pub fn new() -> DescriptorProtoExtensionRange {
         ::std::default::Default::default()
     }
 
@@ -1824,7 +1824,7 @@ impl DescriptorProto_ExtensionRange {
 
 }
 
-impl ::protobuf::Message for DescriptorProto_ExtensionRange {
+impl ::protobuf::Message for DescriptorProtoExtensionRange {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -1907,8 +1907,8 @@ impl ::protobuf::Message for DescriptorProto_ExtensionRange {
         Self::descriptor_static()
     }
 
-    fn new() -> DescriptorProto_ExtensionRange {
-        DescriptorProto_ExtensionRange::new()
+    fn new() -> DescriptorProtoExtensionRange {
+        DescriptorProtoExtensionRange::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -1921,16 +1921,16 @@ impl ::protobuf::Message for DescriptorProto_ExtensionRange {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "start",
-                    |m: &DescriptorProto_ExtensionRange| { &m.start },
-                    |m: &mut DescriptorProto_ExtensionRange| { &mut m.start },
+                    |m: &DescriptorProtoExtensionRange| { &m.start },
+                    |m: &mut DescriptorProtoExtensionRange| { &mut m.start },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "end",
-                    |m: &DescriptorProto_ExtensionRange| { &m.end },
-                    |m: &mut DescriptorProto_ExtensionRange| { &mut m.end },
+                    |m: &DescriptorProtoExtensionRange| { &m.end },
+                    |m: &mut DescriptorProtoExtensionRange| { &mut m.end },
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<DescriptorProto_ExtensionRange>(
-                    "DescriptorProto_ExtensionRange",
+                ::protobuf::reflect::MessageDescriptor::new::<DescriptorProtoExtensionRange>(
+                    "DescriptorProtoExtensionRange",
                     fields,
                     file_descriptor_proto()
                 )
@@ -1938,18 +1938,18 @@ impl ::protobuf::Message for DescriptorProto_ExtensionRange {
         }
     }
 
-    fn default_instance() -> &'static DescriptorProto_ExtensionRange {
-        static mut instance: ::protobuf::lazy::Lazy<DescriptorProto_ExtensionRange> = ::protobuf::lazy::Lazy {
+    fn default_instance() -> &'static DescriptorProtoExtensionRange {
+        static mut instance: ::protobuf::lazy::Lazy<DescriptorProtoExtensionRange> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const DescriptorProto_ExtensionRange,
+            ptr: 0 as *const DescriptorProtoExtensionRange,
         };
         unsafe {
-            instance.get(DescriptorProto_ExtensionRange::new)
+            instance.get(DescriptorProtoExtensionRange::new)
         }
     }
 }
 
-impl PartialEq for DescriptorProto_ExtensionRange {
+impl PartialEq for DescriptorProtoExtensionRange {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
@@ -1957,7 +1957,7 @@ impl PartialEq for DescriptorProto_ExtensionRange {
     }
 }
 
-impl ::protobuf::Clear for DescriptorProto_ExtensionRange {
+impl ::protobuf::Clear for DescriptorProtoExtensionRange {
     fn clear(&mut self) {
         self.start = ::std::option::Option::None;
         self.end = ::std::option::Option::None;
@@ -1965,7 +1965,7 @@ impl ::protobuf::Clear for DescriptorProto_ExtensionRange {
     }
 }
 
-impl ::protobuf::PbPrint for DescriptorProto_ExtensionRange {
+impl ::protobuf::PbPrint for DescriptorProtoExtensionRange {
     #[allow(unused_variables)]
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         ::protobuf::push_message_start(name, buf);
@@ -1978,7 +1978,7 @@ impl ::protobuf::PbPrint for DescriptorProto_ExtensionRange {
         buf.push('}');
     }
 }
-impl ::std::fmt::Debug for DescriptorProto_ExtensionRange {
+impl ::std::fmt::Debug for DescriptorProtoExtensionRange {
     #[allow(unused_variables)]
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         let mut s = ::std::string::String::new();
@@ -1988,7 +1988,7 @@ impl ::std::fmt::Debug for DescriptorProto_ExtensionRange {
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ExtensionRange {
+impl ::protobuf::reflect::ProtobufValue for DescriptorProtoExtensionRange {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -1996,7 +1996,7 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ExtensionRange {
 
 #[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub struct DescriptorProto_ReservedRange {
+pub struct DescriptorProtoReservedRange {
     // message fields
     start: ::std::option::Option<i32>,
     end: ::std::option::Option<i32>,
@@ -2007,14 +2007,14 @@ pub struct DescriptorProto_ReservedRange {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a DescriptorProto_ReservedRange {
-    fn default() -> &'a DescriptorProto_ReservedRange {
-        <DescriptorProto_ReservedRange as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a DescriptorProtoReservedRange {
+    fn default() -> &'a DescriptorProtoReservedRange {
+        <DescriptorProtoReservedRange as ::protobuf::Message>::default_instance()
     }
 }
 
-impl DescriptorProto_ReservedRange {
-    pub fn new() -> DescriptorProto_ReservedRange {
+impl DescriptorProtoReservedRange {
+    pub fn new() -> DescriptorProtoReservedRange {
         ::std::default::Default::default()
     }
 
@@ -2059,7 +2059,7 @@ impl DescriptorProto_ReservedRange {
 
 }
 
-impl ::protobuf::Message for DescriptorProto_ReservedRange {
+impl ::protobuf::Message for DescriptorProtoReservedRange {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -2142,8 +2142,8 @@ impl ::protobuf::Message for DescriptorProto_ReservedRange {
         Self::descriptor_static()
     }
 
-    fn new() -> DescriptorProto_ReservedRange {
-        DescriptorProto_ReservedRange::new()
+    fn new() -> DescriptorProtoReservedRange {
+        DescriptorProtoReservedRange::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -2156,16 +2156,16 @@ impl ::protobuf::Message for DescriptorProto_ReservedRange {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "start",
-                    |m: &DescriptorProto_ReservedRange| { &m.start },
-                    |m: &mut DescriptorProto_ReservedRange| { &mut m.start },
+                    |m: &DescriptorProtoReservedRange| { &m.start },
+                    |m: &mut DescriptorProtoReservedRange| { &mut m.start },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "end",
-                    |m: &DescriptorProto_ReservedRange| { &m.end },
-                    |m: &mut DescriptorProto_ReservedRange| { &mut m.end },
+                    |m: &DescriptorProtoReservedRange| { &m.end },
+                    |m: &mut DescriptorProtoReservedRange| { &mut m.end },
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<DescriptorProto_ReservedRange>(
-                    "DescriptorProto_ReservedRange",
+                ::protobuf::reflect::MessageDescriptor::new::<DescriptorProtoReservedRange>(
+                    "DescriptorProtoReservedRange",
                     fields,
                     file_descriptor_proto()
                 )
@@ -2173,18 +2173,18 @@ impl ::protobuf::Message for DescriptorProto_ReservedRange {
         }
     }
 
-    fn default_instance() -> &'static DescriptorProto_ReservedRange {
-        static mut instance: ::protobuf::lazy::Lazy<DescriptorProto_ReservedRange> = ::protobuf::lazy::Lazy {
+    fn default_instance() -> &'static DescriptorProtoReservedRange {
+        static mut instance: ::protobuf::lazy::Lazy<DescriptorProtoReservedRange> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const DescriptorProto_ReservedRange,
+            ptr: 0 as *const DescriptorProtoReservedRange,
         };
         unsafe {
-            instance.get(DescriptorProto_ReservedRange::new)
+            instance.get(DescriptorProtoReservedRange::new)
         }
     }
 }
 
-impl PartialEq for DescriptorProto_ReservedRange {
+impl PartialEq for DescriptorProtoReservedRange {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
@@ -2192,7 +2192,7 @@ impl PartialEq for DescriptorProto_ReservedRange {
     }
 }
 
-impl ::protobuf::Clear for DescriptorProto_ReservedRange {
+impl ::protobuf::Clear for DescriptorProtoReservedRange {
     fn clear(&mut self) {
         self.start = ::std::option::Option::None;
         self.end = ::std::option::Option::None;
@@ -2200,7 +2200,7 @@ impl ::protobuf::Clear for DescriptorProto_ReservedRange {
     }
 }
 
-impl ::protobuf::PbPrint for DescriptorProto_ReservedRange {
+impl ::protobuf::PbPrint for DescriptorProtoReservedRange {
     #[allow(unused_variables)]
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         ::protobuf::push_message_start(name, buf);
@@ -2213,7 +2213,7 @@ impl ::protobuf::PbPrint for DescriptorProto_ReservedRange {
         buf.push('}');
     }
 }
-impl ::std::fmt::Debug for DescriptorProto_ReservedRange {
+impl ::std::fmt::Debug for DescriptorProtoReservedRange {
     #[allow(unused_variables)]
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         let mut s = ::std::string::String::new();
@@ -2223,7 +2223,7 @@ impl ::std::fmt::Debug for DescriptorProto_ReservedRange {
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ReservedRange {
+impl ::protobuf::reflect::ProtobufValue for DescriptorProtoReservedRange {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -2236,8 +2236,8 @@ pub struct FieldDescriptorProto {
     name: ::protobuf::SingularField<::std::string::String>,
     pub name_offset: u64,
     number: ::std::option::Option<i32>,
-    label: ::std::option::Option<FieldDescriptorProto_Label>,
-    field_type: ::std::option::Option<FieldDescriptorProto_Type>,
+    label: ::std::option::Option<FieldDescriptorProtoLabel>,
+    r_type: ::std::option::Option<FieldDescriptorProtoType>,
     type_name: ::protobuf::SingularField<::std::string::String>,
     pub type_name_offset: u64,
     extendee: ::protobuf::SingularField<::std::string::String>,
@@ -2330,8 +2330,8 @@ impl FieldDescriptorProto {
     // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
 
 
-    pub fn get_label(&self) -> FieldDescriptorProto_Label {
-        self.label.unwrap_or(FieldDescriptorProto_Label::LABEL_OPTIONAL)
+    pub fn get_label(&self) -> FieldDescriptorProtoLabel {
+        self.label.unwrap_or(FieldDescriptorProtoLabel::LabelOptional)
     }
     pub fn clear_label(&mut self) {
         self.label = ::std::option::Option::None;
@@ -2342,7 +2342,7 @@ impl FieldDescriptorProto {
     }
 
     // Param is passed by value, moved
-    pub fn set_label(&mut self, v: FieldDescriptorProto_Label) {
+    pub fn set_label(&mut self, v: FieldDescriptorProtoLabel) {
         self.label = ::std::option::Option::Some(v);
     }
 
@@ -2350,20 +2350,20 @@ impl FieldDescriptorProto {
     // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
 
 
-    pub fn get_field_type(&self) -> FieldDescriptorProto_Type {
-        self.field_type.unwrap_or(FieldDescriptorProto_Type::TYPE_DOUBLE)
+    pub fn get_type(&self) -> FieldDescriptorProtoType {
+        self.r_type.unwrap_or(FieldDescriptorProtoType::TypeDouble)
     }
-    pub fn clear_field_type(&mut self) {
-        self.field_type = ::std::option::Option::None;
+    pub fn clear_type(&mut self) {
+        self.r_type = ::std::option::Option::None;
     }
 
-    pub fn has_field_type(&self) -> bool {
-        self.field_type.is_some()
+    pub fn has_type(&self) -> bool {
+        self.r_type.is_some()
     }
 
     // Param is passed by value, moved
-    pub fn set_field_type(&mut self, v: FieldDescriptorProto_Type) {
-        self.field_type = ::std::option::Option::Some(v);
+    pub fn set_type(&mut self, v: FieldDescriptorProtoType) {
+        self.r_type = ::std::option::Option::Some(v);
     }
 
 
@@ -2613,7 +2613,7 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.label, 4, &mut self.unknown_fields)?
                 },
                 5 => {
-                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 5, &mut self.unknown_fields)?
+                    ::protobuf::rt::read_proto2_enum_with_unknown_fields_into(wire_type, is, &mut self.r_type, 5, &mut self.unknown_fields)?
                 },
                 6 => {
                     ::protobuf::rt::read_singular_string_into(wire_type, is, &mut self.type_name, &mut self.type_name_offset)?;
@@ -2658,7 +2658,7 @@ impl ::protobuf::Message for FieldDescriptorProto {
         if let Some(v) = self.label {
             my_size += ::protobuf::rt::enum_size(4, v);
         }
-        if let Some(v) = self.field_type {
+        if let Some(v) = self.r_type {
             my_size += ::protobuf::rt::enum_size(5, v);
         }
         if let Some(ref v) = self.type_name.as_ref() {
@@ -2695,7 +2695,7 @@ impl ::protobuf::Message for FieldDescriptorProto {
         if let Some(v) = self.label {
             os.write_enum(4, v.value())?;
         }
-        if let Some(v) = self.field_type {
+        if let Some(v) = self.r_type {
             os.write_enum(5, v.value())?;
         }
         if let Some(ref v) = self.type_name.as_ref() {
@@ -2770,15 +2770,15 @@ impl ::protobuf::Message for FieldDescriptorProto {
                     |m: &FieldDescriptorProto| { &m.number },
                     |m: &mut FieldDescriptorProto| { &mut m.number },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldDescriptorProto_Label>>(
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldDescriptorProtoLabel>>(
                     "label",
                     |m: &FieldDescriptorProto| { &m.label },
                     |m: &mut FieldDescriptorProto| { &mut m.label },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldDescriptorProto_Type>>(
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldDescriptorProtoType>>(
                     "type",
-                    |m: &FieldDescriptorProto| { &m.field_type },
-                    |m: &mut FieldDescriptorProto| { &mut m.field_type },
+                    |m: &FieldDescriptorProto| { &m.r_type },
+                    |m: &mut FieldDescriptorProto| { &mut m.r_type },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "type_name",
@@ -2834,7 +2834,7 @@ impl PartialEq for FieldDescriptorProto {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
-        self.name == other.name && self.number == other.number && self.label == other.label && self.field_type == other.field_type && self.type_name == other.type_name && self.extendee == other.extendee && self.default_value == other.default_value && self.oneof_index == other.oneof_index && self.json_name == other.json_name && self.options == other.options
+        self.name == other.name && self.number == other.number && self.label == other.label && self.r_type == other.r_type && self.type_name == other.type_name && self.extendee == other.extendee && self.default_value == other.default_value && self.oneof_index == other.oneof_index && self.json_name == other.json_name && self.options == other.options
     }
 }
 
@@ -2843,7 +2843,7 @@ impl ::protobuf::Clear for FieldDescriptorProto {
         self.name.clear();
         self.number = ::std::option::Option::None;
         self.label = ::std::option::Option::None;
-        self.field_type = ::std::option::Option::None;
+        self.r_type = ::std::option::Option::None;
         self.type_name.clear();
         self.extendee.clear();
         self.default_value.clear();
@@ -2862,7 +2862,7 @@ impl ::protobuf::PbPrint for FieldDescriptorProto {
         ::protobuf::PbPrint::fmt(&self.name, "name", buf);
         ::protobuf::PbPrint::fmt(&self.number, "number", buf);
         ::protobuf::PbPrint::fmt(&self.label, "label", buf);
-        ::protobuf::PbPrint::fmt(&self.field_type, "field_type", buf);
+        ::protobuf::PbPrint::fmt(&self.r_type, "r_type", buf);
         ::protobuf::PbPrint::fmt(&self.type_name, "type_name", buf);
         ::protobuf::PbPrint::fmt(&self.extendee, "extendee", buf);
         ::protobuf::PbPrint::fmt(&self.default_value, "default_value", buf);
@@ -2882,7 +2882,7 @@ impl ::std::fmt::Debug for FieldDescriptorProto {
         ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
         ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
         ::protobuf::PbPrint::fmt(&self.label, "label", &mut s);
-        ::protobuf::PbPrint::fmt(&self.field_type, "field_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.r_type, "r_type", &mut s);
         ::protobuf::PbPrint::fmt(&self.type_name, "type_name", &mut s);
         ::protobuf::PbPrint::fmt(&self.extendee, "extendee", &mut s);
         ::protobuf::PbPrint::fmt(&self.default_value, "default_value", &mut s);
@@ -2901,76 +2901,76 @@ impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum FieldDescriptorProto_Type {
-    TYPE_DOUBLE = 1,
-    TYPE_FLOAT = 2,
-    TYPE_INT64 = 3,
-    TYPE_UINT64 = 4,
-    TYPE_INT32 = 5,
-    TYPE_FIXED64 = 6,
-    TYPE_FIXED32 = 7,
-    TYPE_BOOL = 8,
-    TYPE_STRING = 9,
-    TYPE_GROUP = 10,
-    TYPE_MESSAGE = 11,
-    TYPE_BYTES = 12,
-    TYPE_UINT32 = 13,
-    TYPE_ENUM = 14,
-    TYPE_SFIXED32 = 15,
-    TYPE_SFIXED64 = 16,
-    TYPE_SINT32 = 17,
-    TYPE_SINT64 = 18,
+pub enum FieldDescriptorProtoType {
+    TypeDouble = 1,
+    TypeFloat = 2,
+    TypeInt64 = 3,
+    TypeUint64 = 4,
+    TypeInt32 = 5,
+    TypeFixed64 = 6,
+    TypeFixed32 = 7,
+    TypeBool = 8,
+    TypeString = 9,
+    TypeGroup = 10,
+    TypeMessage = 11,
+    TypeBytes = 12,
+    TypeUint32 = 13,
+    TypeEnum = 14,
+    TypeSfixed32 = 15,
+    TypeSfixed64 = 16,
+    TypeSint32 = 17,
+    TypeSint64 = 18,
 }
 
-impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Type {
+impl ::protobuf::ProtobufEnum for FieldDescriptorProtoType {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<FieldDescriptorProto_Type> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldDescriptorProtoType> {
         match value {
-            1 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_DOUBLE),
-            2 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_FLOAT),
-            3 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_INT64),
-            4 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_UINT64),
-            5 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_INT32),
-            6 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_FIXED64),
-            7 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_FIXED32),
-            8 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_BOOL),
-            9 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_STRING),
-            10 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_GROUP),
-            11 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_MESSAGE),
-            12 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_BYTES),
-            13 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_UINT32),
-            14 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_ENUM),
-            15 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_SFIXED32),
-            16 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_SFIXED64),
-            17 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_SINT32),
-            18 => ::std::option::Option::Some(FieldDescriptorProto_Type::TYPE_SINT64),
+            1 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeDouble),
+            2 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeFloat),
+            3 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeInt64),
+            4 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeUint64),
+            5 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeInt32),
+            6 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeFixed64),
+            7 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeFixed32),
+            8 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeBool),
+            9 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeString),
+            10 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeGroup),
+            11 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeMessage),
+            12 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeBytes),
+            13 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeUint32),
+            14 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeEnum),
+            15 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeSfixed32),
+            16 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeSfixed64),
+            17 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeSint32),
+            18 => ::std::option::Option::Some(FieldDescriptorProtoType::TypeSint64),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [FieldDescriptorProto_Type] = &[
-            FieldDescriptorProto_Type::TYPE_DOUBLE,
-            FieldDescriptorProto_Type::TYPE_FLOAT,
-            FieldDescriptorProto_Type::TYPE_INT64,
-            FieldDescriptorProto_Type::TYPE_UINT64,
-            FieldDescriptorProto_Type::TYPE_INT32,
-            FieldDescriptorProto_Type::TYPE_FIXED64,
-            FieldDescriptorProto_Type::TYPE_FIXED32,
-            FieldDescriptorProto_Type::TYPE_BOOL,
-            FieldDescriptorProto_Type::TYPE_STRING,
-            FieldDescriptorProto_Type::TYPE_GROUP,
-            FieldDescriptorProto_Type::TYPE_MESSAGE,
-            FieldDescriptorProto_Type::TYPE_BYTES,
-            FieldDescriptorProto_Type::TYPE_UINT32,
-            FieldDescriptorProto_Type::TYPE_ENUM,
-            FieldDescriptorProto_Type::TYPE_SFIXED32,
-            FieldDescriptorProto_Type::TYPE_SFIXED64,
-            FieldDescriptorProto_Type::TYPE_SINT32,
-            FieldDescriptorProto_Type::TYPE_SINT64,
+        static values: &'static [FieldDescriptorProtoType] = &[
+            FieldDescriptorProtoType::TypeDouble,
+            FieldDescriptorProtoType::TypeFloat,
+            FieldDescriptorProtoType::TypeInt64,
+            FieldDescriptorProtoType::TypeUint64,
+            FieldDescriptorProtoType::TypeInt32,
+            FieldDescriptorProtoType::TypeFixed64,
+            FieldDescriptorProtoType::TypeFixed32,
+            FieldDescriptorProtoType::TypeBool,
+            FieldDescriptorProtoType::TypeString,
+            FieldDescriptorProtoType::TypeGroup,
+            FieldDescriptorProtoType::TypeMessage,
+            FieldDescriptorProtoType::TypeBytes,
+            FieldDescriptorProtoType::TypeUint32,
+            FieldDescriptorProtoType::TypeEnum,
+            FieldDescriptorProtoType::TypeSfixed32,
+            FieldDescriptorProtoType::TypeSfixed64,
+            FieldDescriptorProtoType::TypeSint32,
+            FieldDescriptorProtoType::TypeSint64,
         ];
         values
     }
@@ -2982,19 +2982,19 @@ impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Type {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("FieldDescriptorProto_Type", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldDescriptorProtoType", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for FieldDescriptorProto_Type {
+impl ::std::marker::Copy for FieldDescriptorProtoType {
 }
 
-impl ::protobuf::PbPrint for FieldDescriptorProto_Type {
+impl ::protobuf::PbPrint for FieldDescriptorProtoType {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == FieldDescriptorProto_Type::default() {
+        if *self == FieldDescriptorProtoType::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -3003,13 +3003,13 @@ impl ::protobuf::PbPrint for FieldDescriptorProto_Type {
 }
 
 // Note, `Default` is implemented although default value is not 0
-impl ::std::default::Default for FieldDescriptorProto_Type {
+impl ::std::default::Default for FieldDescriptorProtoType {
     fn default() -> Self {
-        FieldDescriptorProto_Type::TYPE_DOUBLE
+        FieldDescriptorProtoType::TypeDouble
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Type {
+impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProtoType {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -3017,31 +3017,31 @@ impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Type {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum FieldDescriptorProto_Label {
-    LABEL_OPTIONAL = 1,
-    LABEL_REQUIRED = 2,
-    LABEL_REPEATED = 3,
+pub enum FieldDescriptorProtoLabel {
+    LabelOptional = 1,
+    LabelRequired = 2,
+    LabelRepeated = 3,
 }
 
-impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Label {
+impl ::protobuf::ProtobufEnum for FieldDescriptorProtoLabel {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<FieldDescriptorProto_Label> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldDescriptorProtoLabel> {
         match value {
-            1 => ::std::option::Option::Some(FieldDescriptorProto_Label::LABEL_OPTIONAL),
-            2 => ::std::option::Option::Some(FieldDescriptorProto_Label::LABEL_REQUIRED),
-            3 => ::std::option::Option::Some(FieldDescriptorProto_Label::LABEL_REPEATED),
+            1 => ::std::option::Option::Some(FieldDescriptorProtoLabel::LabelOptional),
+            2 => ::std::option::Option::Some(FieldDescriptorProtoLabel::LabelRequired),
+            3 => ::std::option::Option::Some(FieldDescriptorProtoLabel::LabelRepeated),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [FieldDescriptorProto_Label] = &[
-            FieldDescriptorProto_Label::LABEL_OPTIONAL,
-            FieldDescriptorProto_Label::LABEL_REQUIRED,
-            FieldDescriptorProto_Label::LABEL_REPEATED,
+        static values: &'static [FieldDescriptorProtoLabel] = &[
+            FieldDescriptorProtoLabel::LabelOptional,
+            FieldDescriptorProtoLabel::LabelRequired,
+            FieldDescriptorProtoLabel::LabelRepeated,
         ];
         values
     }
@@ -3053,19 +3053,19 @@ impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Label {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("FieldDescriptorProto_Label", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldDescriptorProtoLabel", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for FieldDescriptorProto_Label {
+impl ::std::marker::Copy for FieldDescriptorProtoLabel {
 }
 
-impl ::protobuf::PbPrint for FieldDescriptorProto_Label {
+impl ::protobuf::PbPrint for FieldDescriptorProtoLabel {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == FieldDescriptorProto_Label::default() {
+        if *self == FieldDescriptorProtoLabel::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -3074,13 +3074,13 @@ impl ::protobuf::PbPrint for FieldDescriptorProto_Label {
 }
 
 // Note, `Default` is implemented although default value is not 0
-impl ::std::default::Default for FieldDescriptorProto_Label {
+impl ::std::default::Default for FieldDescriptorProtoLabel {
     fn default() -> Self {
-        FieldDescriptorProto_Label::LABEL_OPTIONAL
+        FieldDescriptorProtoLabel::LabelOptional
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Label {
+impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProtoLabel {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -4823,7 +4823,7 @@ pub struct FileOptions {
     java_multiple_files: ::std::option::Option<bool>,
     java_generate_equals_and_hash: ::std::option::Option<bool>,
     java_string_check_utf8: ::std::option::Option<bool>,
-    optimize_for: ::std::option::Option<FileOptions_OptimizeMode>,
+    optimize_for: ::std::option::Option<FileOptionsOptimizeMode>,
     go_package: ::protobuf::SingularField<::std::string::String>,
     pub go_package_offset: u64,
     cc_generic_services: ::std::option::Option<bool>,
@@ -4998,8 +4998,8 @@ impl FileOptions {
     // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9;
 
 
-    pub fn get_optimize_for(&self) -> FileOptions_OptimizeMode {
-        self.optimize_for.unwrap_or(FileOptions_OptimizeMode::SPEED)
+    pub fn get_optimize_for(&self) -> FileOptionsOptimizeMode {
+        self.optimize_for.unwrap_or(FileOptionsOptimizeMode::Speed)
     }
     pub fn clear_optimize_for(&mut self) {
         self.optimize_for = ::std::option::Option::None;
@@ -5010,7 +5010,7 @@ impl FileOptions {
     }
 
     // Param is passed by value, moved
-    pub fn set_optimize_for(&mut self, v: FileOptions_OptimizeMode) {
+    pub fn set_optimize_for(&mut self, v: FileOptionsOptimizeMode) {
         self.optimize_for = ::std::option::Option::Some(v);
     }
 
@@ -5534,7 +5534,7 @@ impl ::protobuf::Message for FileOptions {
                     |m: &FileOptions| { &m.java_string_check_utf8 },
                     |m: &mut FileOptions| { &mut m.java_string_check_utf8 },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FileOptions_OptimizeMode>>(
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FileOptionsOptimizeMode>>(
                     "optimize_for",
                     |m: &FileOptions| { &m.optimize_for },
                     |m: &mut FileOptions| { &mut m.optimize_for },
@@ -5690,31 +5690,31 @@ impl ::protobuf::reflect::ProtobufValue for FileOptions {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum FileOptions_OptimizeMode {
-    SPEED = 1,
-    CODE_SIZE = 2,
-    LITE_RUNTIME = 3,
+pub enum FileOptionsOptimizeMode {
+    Speed = 1,
+    CodeSize = 2,
+    LiteRuntime = 3,
 }
 
-impl ::protobuf::ProtobufEnum for FileOptions_OptimizeMode {
+impl ::protobuf::ProtobufEnum for FileOptionsOptimizeMode {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<FileOptions_OptimizeMode> {
+    fn from_i32(value: i32) -> ::std::option::Option<FileOptionsOptimizeMode> {
         match value {
-            1 => ::std::option::Option::Some(FileOptions_OptimizeMode::SPEED),
-            2 => ::std::option::Option::Some(FileOptions_OptimizeMode::CODE_SIZE),
-            3 => ::std::option::Option::Some(FileOptions_OptimizeMode::LITE_RUNTIME),
+            1 => ::std::option::Option::Some(FileOptionsOptimizeMode::Speed),
+            2 => ::std::option::Option::Some(FileOptionsOptimizeMode::CodeSize),
+            3 => ::std::option::Option::Some(FileOptionsOptimizeMode::LiteRuntime),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [FileOptions_OptimizeMode] = &[
-            FileOptions_OptimizeMode::SPEED,
-            FileOptions_OptimizeMode::CODE_SIZE,
-            FileOptions_OptimizeMode::LITE_RUNTIME,
+        static values: &'static [FileOptionsOptimizeMode] = &[
+            FileOptionsOptimizeMode::Speed,
+            FileOptionsOptimizeMode::CodeSize,
+            FileOptionsOptimizeMode::LiteRuntime,
         ];
         values
     }
@@ -5726,19 +5726,19 @@ impl ::protobuf::ProtobufEnum for FileOptions_OptimizeMode {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("FileOptions_OptimizeMode", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FileOptionsOptimizeMode", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for FileOptions_OptimizeMode {
+impl ::std::marker::Copy for FileOptionsOptimizeMode {
 }
 
-impl ::protobuf::PbPrint for FileOptions_OptimizeMode {
+impl ::protobuf::PbPrint for FileOptionsOptimizeMode {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == FileOptions_OptimizeMode::default() {
+        if *self == FileOptionsOptimizeMode::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -5747,13 +5747,13 @@ impl ::protobuf::PbPrint for FileOptions_OptimizeMode {
 }
 
 // Note, `Default` is implemented although default value is not 0
-impl ::std::default::Default for FileOptions_OptimizeMode {
+impl ::std::default::Default for FileOptionsOptimizeMode {
     fn default() -> Self {
-        FileOptions_OptimizeMode::SPEED
+        FileOptionsOptimizeMode::Speed
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for FileOptions_OptimizeMode {
+impl ::protobuf::reflect::ProtobufValue for FileOptionsOptimizeMode {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -6138,9 +6138,9 @@ impl ::protobuf::reflect::ProtobufValue for MessageOptions {
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FieldOptions {
     // message fields
-    ctype: ::std::option::Option<FieldOptions_CType>,
+    ctype: ::std::option::Option<FieldOptionsCType>,
     packed: ::std::option::Option<bool>,
-    jstype: ::std::option::Option<FieldOptions_JSType>,
+    jstype: ::std::option::Option<FieldOptionsJsType>,
     lazy: ::std::option::Option<bool>,
     deprecated: ::std::option::Option<bool>,
     weak: ::std::option::Option<bool>,
@@ -6167,8 +6167,8 @@ impl FieldOptions {
     // optional .google.protobuf.FieldOptions.CType ctype = 1;
 
 
-    pub fn get_ctype(&self) -> FieldOptions_CType {
-        self.ctype.unwrap_or(FieldOptions_CType::STRING)
+    pub fn get_ctype(&self) -> FieldOptionsCType {
+        self.ctype.unwrap_or(FieldOptionsCType::String)
     }
     pub fn clear_ctype(&mut self) {
         self.ctype = ::std::option::Option::None;
@@ -6179,7 +6179,7 @@ impl FieldOptions {
     }
 
     // Param is passed by value, moved
-    pub fn set_ctype(&mut self, v: FieldOptions_CType) {
+    pub fn set_ctype(&mut self, v: FieldOptionsCType) {
         self.ctype = ::std::option::Option::Some(v);
     }
 
@@ -6207,8 +6207,8 @@ impl FieldOptions {
     // optional .google.protobuf.FieldOptions.JSType jstype = 6;
 
 
-    pub fn get_jstype(&self) -> FieldOptions_JSType {
-        self.jstype.unwrap_or(FieldOptions_JSType::JS_NORMAL)
+    pub fn get_jstype(&self) -> FieldOptionsJsType {
+        self.jstype.unwrap_or(FieldOptionsJsType::JsNormal)
     }
     pub fn clear_jstype(&mut self) {
         self.jstype = ::std::option::Option::None;
@@ -6219,7 +6219,7 @@ impl FieldOptions {
     }
 
     // Param is passed by value, moved
-    pub fn set_jstype(&mut self, v: FieldOptions_JSType) {
+    pub fn set_jstype(&mut self, v: FieldOptionsJsType) {
         self.jstype = ::std::option::Option::Some(v);
     }
 
@@ -6470,7 +6470,7 @@ impl ::protobuf::Message for FieldOptions {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldOptions_CType>>(
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldOptionsCType>>(
                     "ctype",
                     |m: &FieldOptions| { &m.ctype },
                     |m: &mut FieldOptions| { &mut m.ctype },
@@ -6480,7 +6480,7 @@ impl ::protobuf::Message for FieldOptions {
                     |m: &FieldOptions| { &m.packed },
                     |m: &mut FieldOptions| { &mut m.packed },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldOptions_JSType>>(
+                fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldOptionsJsType>>(
                     "jstype",
                     |m: &FieldOptions| { &m.jstype },
                     |m: &mut FieldOptions| { &mut m.jstype },
@@ -6587,31 +6587,31 @@ impl ::protobuf::reflect::ProtobufValue for FieldOptions {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum FieldOptions_CType {
-    STRING = 0,
-    CORD = 1,
-    STRING_PIECE = 2,
+pub enum FieldOptionsCType {
+    String = 0,
+    Cord = 1,
+    StringPiece = 2,
 }
 
-impl ::protobuf::ProtobufEnum for FieldOptions_CType {
+impl ::protobuf::ProtobufEnum for FieldOptionsCType {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<FieldOptions_CType> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldOptionsCType> {
         match value {
-            0 => ::std::option::Option::Some(FieldOptions_CType::STRING),
-            1 => ::std::option::Option::Some(FieldOptions_CType::CORD),
-            2 => ::std::option::Option::Some(FieldOptions_CType::STRING_PIECE),
+            0 => ::std::option::Option::Some(FieldOptionsCType::String),
+            1 => ::std::option::Option::Some(FieldOptionsCType::Cord),
+            2 => ::std::option::Option::Some(FieldOptionsCType::StringPiece),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [FieldOptions_CType] = &[
-            FieldOptions_CType::STRING,
-            FieldOptions_CType::CORD,
-            FieldOptions_CType::STRING_PIECE,
+        static values: &'static [FieldOptionsCType] = &[
+            FieldOptionsCType::String,
+            FieldOptionsCType::Cord,
+            FieldOptionsCType::StringPiece,
         ];
         values
     }
@@ -6623,19 +6623,19 @@ impl ::protobuf::ProtobufEnum for FieldOptions_CType {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("FieldOptions_CType", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldOptionsCType", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for FieldOptions_CType {
+impl ::std::marker::Copy for FieldOptionsCType {
 }
 
-impl ::protobuf::PbPrint for FieldOptions_CType {
+impl ::protobuf::PbPrint for FieldOptionsCType {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == FieldOptions_CType::default() {
+        if *self == FieldOptionsCType::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -6643,13 +6643,13 @@ impl ::protobuf::PbPrint for FieldOptions_CType {
     }
 }
 
-impl ::std::default::Default for FieldOptions_CType {
+impl ::std::default::Default for FieldOptionsCType {
     fn default() -> Self {
-        FieldOptions_CType::STRING
+        FieldOptionsCType::String
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for FieldOptions_CType {
+impl ::protobuf::reflect::ProtobufValue for FieldOptionsCType {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -6657,31 +6657,31 @@ impl ::protobuf::reflect::ProtobufValue for FieldOptions_CType {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum FieldOptions_JSType {
-    JS_NORMAL = 0,
-    JS_STRING = 1,
-    JS_NUMBER = 2,
+pub enum FieldOptionsJsType {
+    JsNormal = 0,
+    JsString = 1,
+    JsNumber = 2,
 }
 
-impl ::protobuf::ProtobufEnum for FieldOptions_JSType {
+impl ::protobuf::ProtobufEnum for FieldOptionsJsType {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<FieldOptions_JSType> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldOptionsJsType> {
         match value {
-            0 => ::std::option::Option::Some(FieldOptions_JSType::JS_NORMAL),
-            1 => ::std::option::Option::Some(FieldOptions_JSType::JS_STRING),
-            2 => ::std::option::Option::Some(FieldOptions_JSType::JS_NUMBER),
+            0 => ::std::option::Option::Some(FieldOptionsJsType::JsNormal),
+            1 => ::std::option::Option::Some(FieldOptionsJsType::JsString),
+            2 => ::std::option::Option::Some(FieldOptionsJsType::JsNumber),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [FieldOptions_JSType] = &[
-            FieldOptions_JSType::JS_NORMAL,
-            FieldOptions_JSType::JS_STRING,
-            FieldOptions_JSType::JS_NUMBER,
+        static values: &'static [FieldOptionsJsType] = &[
+            FieldOptionsJsType::JsNormal,
+            FieldOptionsJsType::JsString,
+            FieldOptionsJsType::JsNumber,
         ];
         values
     }
@@ -6693,19 +6693,19 @@ impl ::protobuf::ProtobufEnum for FieldOptions_JSType {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("FieldOptions_JSType", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldOptionsJsType", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for FieldOptions_JSType {
+impl ::std::marker::Copy for FieldOptionsJsType {
 }
 
-impl ::protobuf::PbPrint for FieldOptions_JSType {
+impl ::protobuf::PbPrint for FieldOptionsJsType {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == FieldOptions_JSType::default() {
+        if *self == FieldOptionsJsType::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -6713,13 +6713,13 @@ impl ::protobuf::PbPrint for FieldOptions_JSType {
     }
 }
 
-impl ::std::default::Default for FieldOptions_JSType {
+impl ::std::default::Default for FieldOptionsJsType {
     fn default() -> Self {
-        FieldOptions_JSType::JS_NORMAL
+        FieldOptionsJsType::JsNormal
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for FieldOptions_JSType {
+impl ::protobuf::reflect::ProtobufValue for FieldOptionsJsType {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -7974,7 +7974,7 @@ impl ::protobuf::reflect::ProtobufValue for MethodOptions {
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct UninterpretedOption {
     // message fields
-    name: ::protobuf::RepeatedField<UninterpretedOption_NamePart>,
+    name: ::protobuf::RepeatedField<UninterpretedOptionNamePart>,
     pub name_offset: ::std::vec::Vec<u64>,
     identifier_value: ::protobuf::SingularField<::std::string::String>,
     pub identifier_value_offset: u64,
@@ -8006,7 +8006,7 @@ impl UninterpretedOption {
     // repeated .google.protobuf.UninterpretedOption.NamePart name = 2;
 
 
-    pub fn get_name(&self) -> &[UninterpretedOption_NamePart] {
+    pub fn get_name(&self) -> &[UninterpretedOptionNamePart] {
         &self.name
     }
     pub fn clear_name(&mut self) {
@@ -8014,17 +8014,17 @@ impl UninterpretedOption {
     }
 
     // Param is passed by value, moved
-    pub fn set_name(&mut self, v: ::protobuf::RepeatedField<UninterpretedOption_NamePart>) {
+    pub fn set_name(&mut self, v: ::protobuf::RepeatedField<UninterpretedOptionNamePart>) {
         self.name = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_name(&mut self) -> &mut ::protobuf::RepeatedField<UninterpretedOption_NamePart> {
+    pub fn mut_name(&mut self) -> &mut ::protobuf::RepeatedField<UninterpretedOptionNamePart> {
         &mut self.name
     }
 
     // Take field
-    pub fn take_name(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption_NamePart> {
+    pub fn take_name(&mut self) -> ::protobuf::RepeatedField<UninterpretedOptionNamePart> {
         ::std::mem::replace(&mut self.name, ::protobuf::RepeatedField::new())
     }
 
@@ -8365,7 +8365,7 @@ impl ::protobuf::Message for UninterpretedOption {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<UninterpretedOption_NamePart>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<UninterpretedOptionNamePart>>(
                     "name",
                     |m: &UninterpretedOption| { &m.name },
                     |m: &mut UninterpretedOption| { &mut m.name },
@@ -8482,7 +8482,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption {
 
 #[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub struct UninterpretedOption_NamePart {
+pub struct UninterpretedOptionNamePart {
     // message fields
     name_part: ::protobuf::SingularField<::std::string::String>,
     pub name_part_offset: u64,
@@ -8494,14 +8494,14 @@ pub struct UninterpretedOption_NamePart {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a UninterpretedOption_NamePart {
-    fn default() -> &'a UninterpretedOption_NamePart {
-        <UninterpretedOption_NamePart as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a UninterpretedOptionNamePart {
+    fn default() -> &'a UninterpretedOptionNamePart {
+        <UninterpretedOptionNamePart as ::protobuf::Message>::default_instance()
     }
 }
 
-impl UninterpretedOption_NamePart {
-    pub fn new() -> UninterpretedOption_NamePart {
+impl UninterpretedOptionNamePart {
+    pub fn new() -> UninterpretedOptionNamePart {
         ::std::default::Default::default()
     }
 
@@ -8566,7 +8566,7 @@ impl UninterpretedOption_NamePart {
 
 }
 
-impl ::protobuf::Message for UninterpretedOption_NamePart {
+impl ::protobuf::Message for UninterpretedOptionNamePart {
     fn is_initialized(&self) -> bool {
         if self.name_part.is_none() {
             return false;
@@ -8651,8 +8651,8 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
         Self::descriptor_static()
     }
 
-    fn new() -> UninterpretedOption_NamePart {
-        UninterpretedOption_NamePart::new()
+    fn new() -> UninterpretedOptionNamePart {
+        UninterpretedOptionNamePart::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -8665,16 +8665,16 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "name_part",
-                    |m: &UninterpretedOption_NamePart| { &m.name_part },
-                    |m: &mut UninterpretedOption_NamePart| { &mut m.name_part },
+                    |m: &UninterpretedOptionNamePart| { &m.name_part },
+                    |m: &mut UninterpretedOptionNamePart| { &mut m.name_part },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeBool>(
                     "is_extension",
-                    |m: &UninterpretedOption_NamePart| { &m.is_extension },
-                    |m: &mut UninterpretedOption_NamePart| { &mut m.is_extension },
+                    |m: &UninterpretedOptionNamePart| { &m.is_extension },
+                    |m: &mut UninterpretedOptionNamePart| { &mut m.is_extension },
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<UninterpretedOption_NamePart>(
-                    "UninterpretedOption_NamePart",
+                ::protobuf::reflect::MessageDescriptor::new::<UninterpretedOptionNamePart>(
+                    "UninterpretedOptionNamePart",
                     fields,
                     file_descriptor_proto()
                 )
@@ -8682,18 +8682,18 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
         }
     }
 
-    fn default_instance() -> &'static UninterpretedOption_NamePart {
-        static mut instance: ::protobuf::lazy::Lazy<UninterpretedOption_NamePart> = ::protobuf::lazy::Lazy {
+    fn default_instance() -> &'static UninterpretedOptionNamePart {
+        static mut instance: ::protobuf::lazy::Lazy<UninterpretedOptionNamePart> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const UninterpretedOption_NamePart,
+            ptr: 0 as *const UninterpretedOptionNamePart,
         };
         unsafe {
-            instance.get(UninterpretedOption_NamePart::new)
+            instance.get(UninterpretedOptionNamePart::new)
         }
     }
 }
 
-impl PartialEq for UninterpretedOption_NamePart {
+impl PartialEq for UninterpretedOptionNamePart {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
@@ -8701,7 +8701,7 @@ impl PartialEq for UninterpretedOption_NamePart {
     }
 }
 
-impl ::protobuf::Clear for UninterpretedOption_NamePart {
+impl ::protobuf::Clear for UninterpretedOptionNamePart {
     fn clear(&mut self) {
         self.name_part.clear();
         self.is_extension = ::std::option::Option::None;
@@ -8709,7 +8709,7 @@ impl ::protobuf::Clear for UninterpretedOption_NamePart {
     }
 }
 
-impl ::protobuf::PbPrint for UninterpretedOption_NamePart {
+impl ::protobuf::PbPrint for UninterpretedOptionNamePart {
     #[allow(unused_variables)]
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         ::protobuf::push_message_start(name, buf);
@@ -8722,7 +8722,7 @@ impl ::protobuf::PbPrint for UninterpretedOption_NamePart {
         buf.push('}');
     }
 }
-impl ::std::fmt::Debug for UninterpretedOption_NamePart {
+impl ::std::fmt::Debug for UninterpretedOptionNamePart {
     #[allow(unused_variables)]
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         let mut s = ::std::string::String::new();
@@ -8732,7 +8732,7 @@ impl ::std::fmt::Debug for UninterpretedOption_NamePart {
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for UninterpretedOption_NamePart {
+impl ::protobuf::reflect::ProtobufValue for UninterpretedOptionNamePart {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -8742,7 +8742,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption_NamePart {
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct SourceCodeInfo {
     // message fields
-    location: ::protobuf::RepeatedField<SourceCodeInfo_Location>,
+    location: ::protobuf::RepeatedField<SourceCodeInfoLocation>,
     pub location_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
@@ -8765,7 +8765,7 @@ impl SourceCodeInfo {
     // repeated .google.protobuf.SourceCodeInfo.Location location = 1;
 
 
-    pub fn get_location(&self) -> &[SourceCodeInfo_Location] {
+    pub fn get_location(&self) -> &[SourceCodeInfoLocation] {
         &self.location
     }
     pub fn clear_location(&mut self) {
@@ -8773,17 +8773,17 @@ impl SourceCodeInfo {
     }
 
     // Param is passed by value, moved
-    pub fn set_location(&mut self, v: ::protobuf::RepeatedField<SourceCodeInfo_Location>) {
+    pub fn set_location(&mut self, v: ::protobuf::RepeatedField<SourceCodeInfoLocation>) {
         self.location = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_location(&mut self) -> &mut ::protobuf::RepeatedField<SourceCodeInfo_Location> {
+    pub fn mut_location(&mut self) -> &mut ::protobuf::RepeatedField<SourceCodeInfoLocation> {
         &mut self.location
     }
 
     // Take field
-    pub fn take_location(&mut self) -> ::protobuf::RepeatedField<SourceCodeInfo_Location> {
+    pub fn take_location(&mut self) -> ::protobuf::RepeatedField<SourceCodeInfoLocation> {
         ::std::mem::replace(&mut self.location, ::protobuf::RepeatedField::new())
     }
 
@@ -8878,7 +8878,7 @@ impl ::protobuf::Message for SourceCodeInfo {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SourceCodeInfo_Location>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SourceCodeInfoLocation>>(
                     "location",
                     |m: &SourceCodeInfo| { &m.location },
                     |m: &mut SourceCodeInfo| { &mut m.location },
@@ -8947,7 +8947,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo {
 
 #[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub struct SourceCodeInfo_Location {
+pub struct SourceCodeInfoLocation {
     // message fields
     path: ::std::vec::Vec<i32>,
     span: ::std::vec::Vec<i32>,
@@ -8964,14 +8964,14 @@ pub struct SourceCodeInfo_Location {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a SourceCodeInfo_Location {
-    fn default() -> &'a SourceCodeInfo_Location {
-        <SourceCodeInfo_Location as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a SourceCodeInfoLocation {
+    fn default() -> &'a SourceCodeInfoLocation {
+        <SourceCodeInfoLocation as ::protobuf::Message>::default_instance()
     }
 }
 
-impl SourceCodeInfo_Location {
-    pub fn new() -> SourceCodeInfo_Location {
+impl SourceCodeInfoLocation {
+    pub fn new() -> SourceCodeInfoLocation {
         ::std::default::Default::default()
     }
 
@@ -9137,7 +9137,7 @@ impl SourceCodeInfo_Location {
     }
 }
 
-impl ::protobuf::Message for SourceCodeInfo_Location {
+impl ::protobuf::Message for SourceCodeInfoLocation {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -9249,8 +9249,8 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
         Self::descriptor_static()
     }
 
-    fn new() -> SourceCodeInfo_Location {
-        SourceCodeInfo_Location::new()
+    fn new() -> SourceCodeInfoLocation {
+        SourceCodeInfoLocation::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -9263,31 +9263,31 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "path",
-                    |m: &SourceCodeInfo_Location| { &m.path },
-                    |m: &mut SourceCodeInfo_Location| { &mut m.path },
+                    |m: &SourceCodeInfoLocation| { &m.path },
+                    |m: &mut SourceCodeInfoLocation| { &mut m.path },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "span",
-                    |m: &SourceCodeInfo_Location| { &m.span },
-                    |m: &mut SourceCodeInfo_Location| { &mut m.span },
+                    |m: &SourceCodeInfoLocation| { &m.span },
+                    |m: &mut SourceCodeInfoLocation| { &mut m.span },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "leading_comments",
-                    |m: &SourceCodeInfo_Location| { &m.leading_comments },
-                    |m: &mut SourceCodeInfo_Location| { &mut m.leading_comments },
+                    |m: &SourceCodeInfoLocation| { &m.leading_comments },
+                    |m: &mut SourceCodeInfoLocation| { &mut m.leading_comments },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "trailing_comments",
-                    |m: &SourceCodeInfo_Location| { &m.trailing_comments },
-                    |m: &mut SourceCodeInfo_Location| { &mut m.trailing_comments },
+                    |m: &SourceCodeInfoLocation| { &m.trailing_comments },
+                    |m: &mut SourceCodeInfoLocation| { &mut m.trailing_comments },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "leading_detached_comments",
-                    |m: &SourceCodeInfo_Location| { &m.leading_detached_comments },
-                    |m: &mut SourceCodeInfo_Location| { &mut m.leading_detached_comments },
+                    |m: &SourceCodeInfoLocation| { &m.leading_detached_comments },
+                    |m: &mut SourceCodeInfoLocation| { &mut m.leading_detached_comments },
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<SourceCodeInfo_Location>(
-                    "SourceCodeInfo_Location",
+                ::protobuf::reflect::MessageDescriptor::new::<SourceCodeInfoLocation>(
+                    "SourceCodeInfoLocation",
                     fields,
                     file_descriptor_proto()
                 )
@@ -9295,18 +9295,18 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
         }
     }
 
-    fn default_instance() -> &'static SourceCodeInfo_Location {
-        static mut instance: ::protobuf::lazy::Lazy<SourceCodeInfo_Location> = ::protobuf::lazy::Lazy {
+    fn default_instance() -> &'static SourceCodeInfoLocation {
+        static mut instance: ::protobuf::lazy::Lazy<SourceCodeInfoLocation> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const SourceCodeInfo_Location,
+            ptr: 0 as *const SourceCodeInfoLocation,
         };
         unsafe {
-            instance.get(SourceCodeInfo_Location::new)
+            instance.get(SourceCodeInfoLocation::new)
         }
     }
 }
 
-impl PartialEq for SourceCodeInfo_Location {
+impl PartialEq for SourceCodeInfoLocation {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
@@ -9314,7 +9314,7 @@ impl PartialEq for SourceCodeInfo_Location {
     }
 }
 
-impl ::protobuf::Clear for SourceCodeInfo_Location {
+impl ::protobuf::Clear for SourceCodeInfoLocation {
     fn clear(&mut self) {
         self.path.clear();
         self.span.clear();
@@ -9325,7 +9325,7 @@ impl ::protobuf::Clear for SourceCodeInfo_Location {
     }
 }
 
-impl ::protobuf::PbPrint for SourceCodeInfo_Location {
+impl ::protobuf::PbPrint for SourceCodeInfoLocation {
     #[allow(unused_variables)]
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         ::protobuf::push_message_start(name, buf);
@@ -9341,7 +9341,7 @@ impl ::protobuf::PbPrint for SourceCodeInfo_Location {
         buf.push('}');
     }
 }
-impl ::std::fmt::Debug for SourceCodeInfo_Location {
+impl ::std::fmt::Debug for SourceCodeInfoLocation {
     #[allow(unused_variables)]
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         let mut s = ::std::string::String::new();
@@ -9354,7 +9354,7 @@ impl ::std::fmt::Debug for SourceCodeInfo_Location {
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo_Location {
+impl ::protobuf::reflect::ProtobufValue for SourceCodeInfoLocation {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -9364,7 +9364,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo_Location {
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct GeneratedCodeInfo {
     // message fields
-    annotation: ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation>,
+    annotation: ::protobuf::RepeatedField<GeneratedCodeInfoAnnotation>,
     pub annotation_offset: ::std::vec::Vec<u64>,
     // special fields
     #[cfg_attr(feature = "with-serde", serde(skip))]
@@ -9387,7 +9387,7 @@ impl GeneratedCodeInfo {
     // repeated .google.protobuf.GeneratedCodeInfo.Annotation annotation = 1;
 
 
-    pub fn get_annotation(&self) -> &[GeneratedCodeInfo_Annotation] {
+    pub fn get_annotation(&self) -> &[GeneratedCodeInfoAnnotation] {
         &self.annotation
     }
     pub fn clear_annotation(&mut self) {
@@ -9395,17 +9395,17 @@ impl GeneratedCodeInfo {
     }
 
     // Param is passed by value, moved
-    pub fn set_annotation(&mut self, v: ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation>) {
+    pub fn set_annotation(&mut self, v: ::protobuf::RepeatedField<GeneratedCodeInfoAnnotation>) {
         self.annotation = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_annotation(&mut self) -> &mut ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation> {
+    pub fn mut_annotation(&mut self) -> &mut ::protobuf::RepeatedField<GeneratedCodeInfoAnnotation> {
         &mut self.annotation
     }
 
     // Take field
-    pub fn take_annotation(&mut self) -> ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation> {
+    pub fn take_annotation(&mut self) -> ::protobuf::RepeatedField<GeneratedCodeInfoAnnotation> {
         ::std::mem::replace(&mut self.annotation, ::protobuf::RepeatedField::new())
     }
 
@@ -9500,7 +9500,7 @@ impl ::protobuf::Message for GeneratedCodeInfo {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<GeneratedCodeInfo_Annotation>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<GeneratedCodeInfoAnnotation>>(
                     "annotation",
                     |m: &GeneratedCodeInfo| { &m.annotation },
                     |m: &mut GeneratedCodeInfo| { &mut m.annotation },
@@ -9569,7 +9569,7 @@ impl ::protobuf::reflect::ProtobufValue for GeneratedCodeInfo {
 
 #[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub struct GeneratedCodeInfo_Annotation {
+pub struct GeneratedCodeInfoAnnotation {
     // message fields
     path: ::std::vec::Vec<i32>,
     source_file: ::protobuf::SingularField<::std::string::String>,
@@ -9583,14 +9583,14 @@ pub struct GeneratedCodeInfo_Annotation {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a GeneratedCodeInfo_Annotation {
-    fn default() -> &'a GeneratedCodeInfo_Annotation {
-        <GeneratedCodeInfo_Annotation as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a GeneratedCodeInfoAnnotation {
+    fn default() -> &'a GeneratedCodeInfoAnnotation {
+        <GeneratedCodeInfoAnnotation as ::protobuf::Message>::default_instance()
     }
 }
 
-impl GeneratedCodeInfo_Annotation {
-    pub fn new() -> GeneratedCodeInfo_Annotation {
+impl GeneratedCodeInfoAnnotation {
+    pub fn new() -> GeneratedCodeInfoAnnotation {
         ::std::default::Default::default()
     }
 
@@ -9701,7 +9701,7 @@ impl GeneratedCodeInfo_Annotation {
 
 }
 
-impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
+impl ::protobuf::Message for GeneratedCodeInfoAnnotation {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -9807,8 +9807,8 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
         Self::descriptor_static()
     }
 
-    fn new() -> GeneratedCodeInfo_Annotation {
-        GeneratedCodeInfo_Annotation::new()
+    fn new() -> GeneratedCodeInfoAnnotation {
+        GeneratedCodeInfoAnnotation::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -9821,26 +9821,26 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_vec_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "path",
-                    |m: &GeneratedCodeInfo_Annotation| { &m.path },
-                    |m: &mut GeneratedCodeInfo_Annotation| { &mut m.path },
+                    |m: &GeneratedCodeInfoAnnotation| { &m.path },
+                    |m: &mut GeneratedCodeInfoAnnotation| { &mut m.path },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "source_file",
-                    |m: &GeneratedCodeInfo_Annotation| { &m.source_file },
-                    |m: &mut GeneratedCodeInfo_Annotation| { &mut m.source_file },
+                    |m: &GeneratedCodeInfoAnnotation| { &m.source_file },
+                    |m: &mut GeneratedCodeInfoAnnotation| { &mut m.source_file },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "begin",
-                    |m: &GeneratedCodeInfo_Annotation| { &m.begin },
-                    |m: &mut GeneratedCodeInfo_Annotation| { &mut m.begin },
+                    |m: &GeneratedCodeInfoAnnotation| { &m.begin },
+                    |m: &mut GeneratedCodeInfoAnnotation| { &mut m.begin },
                 ));
                 fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt32>(
                     "end",
-                    |m: &GeneratedCodeInfo_Annotation| { &m.end },
-                    |m: &mut GeneratedCodeInfo_Annotation| { &mut m.end },
+                    |m: &GeneratedCodeInfoAnnotation| { &m.end },
+                    |m: &mut GeneratedCodeInfoAnnotation| { &mut m.end },
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<GeneratedCodeInfo_Annotation>(
-                    "GeneratedCodeInfo_Annotation",
+                ::protobuf::reflect::MessageDescriptor::new::<GeneratedCodeInfoAnnotation>(
+                    "GeneratedCodeInfoAnnotation",
                     fields,
                     file_descriptor_proto()
                 )
@@ -9848,18 +9848,18 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
         }
     }
 
-    fn default_instance() -> &'static GeneratedCodeInfo_Annotation {
-        static mut instance: ::protobuf::lazy::Lazy<GeneratedCodeInfo_Annotation> = ::protobuf::lazy::Lazy {
+    fn default_instance() -> &'static GeneratedCodeInfoAnnotation {
+        static mut instance: ::protobuf::lazy::Lazy<GeneratedCodeInfoAnnotation> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const GeneratedCodeInfo_Annotation,
+            ptr: 0 as *const GeneratedCodeInfoAnnotation,
         };
         unsafe {
-            instance.get(GeneratedCodeInfo_Annotation::new)
+            instance.get(GeneratedCodeInfoAnnotation::new)
         }
     }
 }
 
-impl PartialEq for GeneratedCodeInfo_Annotation {
+impl PartialEq for GeneratedCodeInfoAnnotation {
 
     #[allow(unused_variables)]
     fn eq(&self, other: &Self) -> bool {
@@ -9867,7 +9867,7 @@ impl PartialEq for GeneratedCodeInfo_Annotation {
     }
 }
 
-impl ::protobuf::Clear for GeneratedCodeInfo_Annotation {
+impl ::protobuf::Clear for GeneratedCodeInfoAnnotation {
     fn clear(&mut self) {
         self.path.clear();
         self.source_file.clear();
@@ -9877,7 +9877,7 @@ impl ::protobuf::Clear for GeneratedCodeInfo_Annotation {
     }
 }
 
-impl ::protobuf::PbPrint for GeneratedCodeInfo_Annotation {
+impl ::protobuf::PbPrint for GeneratedCodeInfoAnnotation {
     #[allow(unused_variables)]
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         ::protobuf::push_message_start(name, buf);
@@ -9892,7 +9892,7 @@ impl ::protobuf::PbPrint for GeneratedCodeInfo_Annotation {
         buf.push('}');
     }
 }
-impl ::std::fmt::Debug for GeneratedCodeInfo_Annotation {
+impl ::std::fmt::Debug for GeneratedCodeInfoAnnotation {
     #[allow(unused_variables)]
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         let mut s = ::std::string::String::new();
@@ -9904,7 +9904,7 @@ impl ::std::fmt::Debug for GeneratedCodeInfo_Annotation {
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for GeneratedCodeInfo_Annotation {
+impl ::protobuf::reflect::ProtobufValue for GeneratedCodeInfoAnnotation {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }

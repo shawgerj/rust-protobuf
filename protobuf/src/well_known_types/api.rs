@@ -248,7 +248,7 @@ impl Api {
         self.syntax
     }
     pub fn clear_syntax(&mut self) {
-        self.syntax = ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2;
+        self.syntax = ::protobuf::well_known_types::Syntax::SyntaxProto2;
     }
 
     // Param is passed by value, moved
@@ -342,7 +342,7 @@ impl ::protobuf::Message for Api {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        if self.syntax != ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2 {
+        if self.syntax != ::protobuf::well_known_types::Syntax::SyntaxProto2 {
             my_size += ::protobuf::rt::enum_size(7, self.syntax);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -377,7 +377,7 @@ impl ::protobuf::Message for Api {
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         };
-        if self.syntax != ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2 {
+        if self.syntax != ::protobuf::well_known_types::Syntax::SyntaxProto2 {
             os.write_enum(7, self.syntax.value())?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
@@ -493,7 +493,7 @@ impl ::protobuf::Clear for Api {
         self.version.clear();
         self.source_context.clear();
         self.mixins.clear();
-        self.syntax = ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2;
+        self.syntax = ::protobuf::well_known_types::Syntax::SyntaxProto2;
         self.unknown_fields.clear();
     }
 }
@@ -728,7 +728,7 @@ impl Method {
         self.syntax
     }
     pub fn clear_syntax(&mut self) {
-        self.syntax = ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2;
+        self.syntax = ::protobuf::well_known_types::Syntax::SyntaxProto2;
     }
 
     // Param is passed by value, moved
@@ -812,7 +812,7 @@ impl ::protobuf::Message for Method {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
-        if self.syntax != ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2 {
+        if self.syntax != ::protobuf::well_known_types::Syntax::SyntaxProto2 {
             my_size += ::protobuf::rt::enum_size(7, self.syntax);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -841,7 +841,7 @@ impl ::protobuf::Message for Method {
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         };
-        if self.syntax != ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2 {
+        if self.syntax != ::protobuf::well_known_types::Syntax::SyntaxProto2 {
             os.write_enum(7, self.syntax.value())?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
@@ -957,7 +957,7 @@ impl ::protobuf::Clear for Method {
         self.response_type_url.clear();
         self.response_streaming = false;
         self.options.clear();
-        self.syntax = ::protobuf::well_known_types::Syntax::SYNTAX_PROTO2;
+        self.syntax = ::protobuf::well_known_types::Syntax::SyntaxProto2;
         self.unknown_fields.clear();
     }
 }

@@ -216,7 +216,7 @@ impl Type {
         self.syntax
     }
     pub fn clear_syntax(&mut self) {
-        self.syntax = Syntax::SYNTAX_PROTO2;
+        self.syntax = Syntax::SyntaxProto2;
     }
 
     // Param is passed by value, moved
@@ -298,7 +298,7 @@ impl ::protobuf::Message for Type {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
-        if self.syntax != Syntax::SYNTAX_PROTO2 {
+        if self.syntax != Syntax::SyntaxProto2 {
             my_size += ::protobuf::rt::enum_size(6, self.syntax);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -328,7 +328,7 @@ impl ::protobuf::Message for Type {
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
-        if self.syntax != Syntax::SYNTAX_PROTO2 {
+        if self.syntax != Syntax::SyntaxProto2 {
             os.write_enum(6, self.syntax.value())?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
@@ -438,7 +438,7 @@ impl ::protobuf::Clear for Type {
         self.oneofs.clear();
         self.options.clear();
         self.source_context.clear();
-        self.syntax = Syntax::SYNTAX_PROTO2;
+        self.syntax = Syntax::SyntaxProto2;
         self.unknown_fields.clear();
     }
 }
@@ -484,8 +484,8 @@ impl ::protobuf::reflect::ProtobufValue for Type {
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Field {
     // message fields
-    pub kind: Field_Kind,
-    pub cardinality: Field_Cardinality,
+    pub kind: FieldKind,
+    pub cardinality: FieldCardinality,
     pub number: i32,
     pub name: ::std::string::String,
     pub name_offset: u64,
@@ -520,15 +520,15 @@ impl Field {
     // .google.protobuf.Field.Kind kind = 1;
 
 
-    pub fn get_kind(&self) -> Field_Kind {
+    pub fn get_kind(&self) -> FieldKind {
         self.kind
     }
     pub fn clear_kind(&mut self) {
-        self.kind = Field_Kind::TYPE_UNKNOWN;
+        self.kind = FieldKind::TypeUnknown;
     }
 
     // Param is passed by value, moved
-    pub fn set_kind(&mut self, v: Field_Kind) {
+    pub fn set_kind(&mut self, v: FieldKind) {
         self.kind = v;
     }
 
@@ -536,15 +536,15 @@ impl Field {
     // .google.protobuf.Field.Cardinality cardinality = 2;
 
 
-    pub fn get_cardinality(&self) -> Field_Cardinality {
+    pub fn get_cardinality(&self) -> FieldCardinality {
         self.cardinality
     }
     pub fn clear_cardinality(&mut self) {
-        self.cardinality = Field_Cardinality::CARDINALITY_UNKNOWN;
+        self.cardinality = FieldCardinality::CardinalityUnknown;
     }
 
     // Param is passed by value, moved
-    pub fn set_cardinality(&mut self, v: Field_Cardinality) {
+    pub fn set_cardinality(&mut self, v: FieldCardinality) {
         self.cardinality = v;
     }
 
@@ -815,10 +815,10 @@ impl ::protobuf::Message for Field {
     #[allow(unused_variables)]
     fn compute_size(&self) -> u32 {
         let mut my_size = 0;
-        if self.kind != Field_Kind::TYPE_UNKNOWN {
+        if self.kind != FieldKind::TypeUnknown {
             my_size += ::protobuf::rt::enum_size(1, self.kind);
         }
-        if self.cardinality != Field_Cardinality::CARDINALITY_UNKNOWN {
+        if self.cardinality != FieldCardinality::CardinalityUnknown {
             my_size += ::protobuf::rt::enum_size(2, self.cardinality);
         }
         if self.number != 0 {
@@ -852,10 +852,10 @@ impl ::protobuf::Message for Field {
     }
 
     fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
-        if self.kind != Field_Kind::TYPE_UNKNOWN {
+        if self.kind != FieldKind::TypeUnknown {
             os.write_enum(1, self.kind.value())?;
         }
-        if self.cardinality != Field_Cardinality::CARDINALITY_UNKNOWN {
+        if self.cardinality != FieldCardinality::CardinalityUnknown {
             os.write_enum(2, self.cardinality.value())?;
         }
         if self.number != 0 {
@@ -926,12 +926,12 @@ impl ::protobuf::Message for Field {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Field_Kind>>(
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldKind>>(
                     "kind",
                     |m: &Field| { &m.kind },
                     |m: &mut Field| { &mut m.kind },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Field_Cardinality>>(
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<FieldCardinality>>(
                     "cardinality",
                     |m: &Field| { &m.cardinality },
                     |m: &mut Field| { &mut m.cardinality },
@@ -1006,8 +1006,8 @@ impl PartialEq for Field {
 
 impl ::protobuf::Clear for Field {
     fn clear(&mut self) {
-        self.kind = Field_Kind::TYPE_UNKNOWN;
-        self.cardinality = Field_Cardinality::CARDINALITY_UNKNOWN;
+        self.kind = FieldKind::TypeUnknown;
+        self.cardinality = FieldCardinality::CardinalityUnknown;
         self.number = 0;
         self.name.clear();
         self.type_url.clear();
@@ -1067,79 +1067,79 @@ impl ::protobuf::reflect::ProtobufValue for Field {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum Field_Kind {
-    TYPE_UNKNOWN = 0,
-    TYPE_DOUBLE = 1,
-    TYPE_FLOAT = 2,
-    TYPE_INT64 = 3,
-    TYPE_UINT64 = 4,
-    TYPE_INT32 = 5,
-    TYPE_FIXED64 = 6,
-    TYPE_FIXED32 = 7,
-    TYPE_BOOL = 8,
-    TYPE_STRING = 9,
-    TYPE_GROUP = 10,
-    TYPE_MESSAGE = 11,
-    TYPE_BYTES = 12,
-    TYPE_UINT32 = 13,
-    TYPE_ENUM = 14,
-    TYPE_SFIXED32 = 15,
-    TYPE_SFIXED64 = 16,
-    TYPE_SINT32 = 17,
-    TYPE_SINT64 = 18,
+pub enum FieldKind {
+    TypeUnknown = 0,
+    TypeDouble = 1,
+    TypeFloat = 2,
+    TypeInt64 = 3,
+    TypeUint64 = 4,
+    TypeInt32 = 5,
+    TypeFixed64 = 6,
+    TypeFixed32 = 7,
+    TypeBool = 8,
+    TypeString = 9,
+    TypeGroup = 10,
+    TypeMessage = 11,
+    TypeBytes = 12,
+    TypeUint32 = 13,
+    TypeEnum = 14,
+    TypeSfixed32 = 15,
+    TypeSfixed64 = 16,
+    TypeSint32 = 17,
+    TypeSint64 = 18,
 }
 
-impl ::protobuf::ProtobufEnum for Field_Kind {
+impl ::protobuf::ProtobufEnum for FieldKind {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<Field_Kind> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldKind> {
         match value {
-            0 => ::std::option::Option::Some(Field_Kind::TYPE_UNKNOWN),
-            1 => ::std::option::Option::Some(Field_Kind::TYPE_DOUBLE),
-            2 => ::std::option::Option::Some(Field_Kind::TYPE_FLOAT),
-            3 => ::std::option::Option::Some(Field_Kind::TYPE_INT64),
-            4 => ::std::option::Option::Some(Field_Kind::TYPE_UINT64),
-            5 => ::std::option::Option::Some(Field_Kind::TYPE_INT32),
-            6 => ::std::option::Option::Some(Field_Kind::TYPE_FIXED64),
-            7 => ::std::option::Option::Some(Field_Kind::TYPE_FIXED32),
-            8 => ::std::option::Option::Some(Field_Kind::TYPE_BOOL),
-            9 => ::std::option::Option::Some(Field_Kind::TYPE_STRING),
-            10 => ::std::option::Option::Some(Field_Kind::TYPE_GROUP),
-            11 => ::std::option::Option::Some(Field_Kind::TYPE_MESSAGE),
-            12 => ::std::option::Option::Some(Field_Kind::TYPE_BYTES),
-            13 => ::std::option::Option::Some(Field_Kind::TYPE_UINT32),
-            14 => ::std::option::Option::Some(Field_Kind::TYPE_ENUM),
-            15 => ::std::option::Option::Some(Field_Kind::TYPE_SFIXED32),
-            16 => ::std::option::Option::Some(Field_Kind::TYPE_SFIXED64),
-            17 => ::std::option::Option::Some(Field_Kind::TYPE_SINT32),
-            18 => ::std::option::Option::Some(Field_Kind::TYPE_SINT64),
+            0 => ::std::option::Option::Some(FieldKind::TypeUnknown),
+            1 => ::std::option::Option::Some(FieldKind::TypeDouble),
+            2 => ::std::option::Option::Some(FieldKind::TypeFloat),
+            3 => ::std::option::Option::Some(FieldKind::TypeInt64),
+            4 => ::std::option::Option::Some(FieldKind::TypeUint64),
+            5 => ::std::option::Option::Some(FieldKind::TypeInt32),
+            6 => ::std::option::Option::Some(FieldKind::TypeFixed64),
+            7 => ::std::option::Option::Some(FieldKind::TypeFixed32),
+            8 => ::std::option::Option::Some(FieldKind::TypeBool),
+            9 => ::std::option::Option::Some(FieldKind::TypeString),
+            10 => ::std::option::Option::Some(FieldKind::TypeGroup),
+            11 => ::std::option::Option::Some(FieldKind::TypeMessage),
+            12 => ::std::option::Option::Some(FieldKind::TypeBytes),
+            13 => ::std::option::Option::Some(FieldKind::TypeUint32),
+            14 => ::std::option::Option::Some(FieldKind::TypeEnum),
+            15 => ::std::option::Option::Some(FieldKind::TypeSfixed32),
+            16 => ::std::option::Option::Some(FieldKind::TypeSfixed64),
+            17 => ::std::option::Option::Some(FieldKind::TypeSint32),
+            18 => ::std::option::Option::Some(FieldKind::TypeSint64),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [Field_Kind] = &[
-            Field_Kind::TYPE_UNKNOWN,
-            Field_Kind::TYPE_DOUBLE,
-            Field_Kind::TYPE_FLOAT,
-            Field_Kind::TYPE_INT64,
-            Field_Kind::TYPE_UINT64,
-            Field_Kind::TYPE_INT32,
-            Field_Kind::TYPE_FIXED64,
-            Field_Kind::TYPE_FIXED32,
-            Field_Kind::TYPE_BOOL,
-            Field_Kind::TYPE_STRING,
-            Field_Kind::TYPE_GROUP,
-            Field_Kind::TYPE_MESSAGE,
-            Field_Kind::TYPE_BYTES,
-            Field_Kind::TYPE_UINT32,
-            Field_Kind::TYPE_ENUM,
-            Field_Kind::TYPE_SFIXED32,
-            Field_Kind::TYPE_SFIXED64,
-            Field_Kind::TYPE_SINT32,
-            Field_Kind::TYPE_SINT64,
+        static values: &'static [FieldKind] = &[
+            FieldKind::TypeUnknown,
+            FieldKind::TypeDouble,
+            FieldKind::TypeFloat,
+            FieldKind::TypeInt64,
+            FieldKind::TypeUint64,
+            FieldKind::TypeInt32,
+            FieldKind::TypeFixed64,
+            FieldKind::TypeFixed32,
+            FieldKind::TypeBool,
+            FieldKind::TypeString,
+            FieldKind::TypeGroup,
+            FieldKind::TypeMessage,
+            FieldKind::TypeBytes,
+            FieldKind::TypeUint32,
+            FieldKind::TypeEnum,
+            FieldKind::TypeSfixed32,
+            FieldKind::TypeSfixed64,
+            FieldKind::TypeSint32,
+            FieldKind::TypeSint64,
         ];
         values
     }
@@ -1151,19 +1151,19 @@ impl ::protobuf::ProtobufEnum for Field_Kind {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("Field_Kind", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldKind", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for Field_Kind {
+impl ::std::marker::Copy for FieldKind {
 }
 
-impl ::protobuf::PbPrint for Field_Kind {
+impl ::protobuf::PbPrint for FieldKind {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == Field_Kind::default() {
+        if *self == FieldKind::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -1171,13 +1171,13 @@ impl ::protobuf::PbPrint for Field_Kind {
     }
 }
 
-impl ::std::default::Default for Field_Kind {
+impl ::std::default::Default for FieldKind {
     fn default() -> Self {
-        Field_Kind::TYPE_UNKNOWN
+        FieldKind::TypeUnknown
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for Field_Kind {
+impl ::protobuf::reflect::ProtobufValue for FieldKind {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -1185,34 +1185,34 @@ impl ::protobuf::reflect::ProtobufValue for Field_Kind {
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
-pub enum Field_Cardinality {
-    CARDINALITY_UNKNOWN = 0,
-    CARDINALITY_OPTIONAL = 1,
-    CARDINALITY_REQUIRED = 2,
-    CARDINALITY_REPEATED = 3,
+pub enum FieldCardinality {
+    CardinalityUnknown = 0,
+    CardinalityOptional = 1,
+    CardinalityRequired = 2,
+    CardinalityRepeated = 3,
 }
 
-impl ::protobuf::ProtobufEnum for Field_Cardinality {
+impl ::protobuf::ProtobufEnum for FieldCardinality {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<Field_Cardinality> {
+    fn from_i32(value: i32) -> ::std::option::Option<FieldCardinality> {
         match value {
-            0 => ::std::option::Option::Some(Field_Cardinality::CARDINALITY_UNKNOWN),
-            1 => ::std::option::Option::Some(Field_Cardinality::CARDINALITY_OPTIONAL),
-            2 => ::std::option::Option::Some(Field_Cardinality::CARDINALITY_REQUIRED),
-            3 => ::std::option::Option::Some(Field_Cardinality::CARDINALITY_REPEATED),
+            0 => ::std::option::Option::Some(FieldCardinality::CardinalityUnknown),
+            1 => ::std::option::Option::Some(FieldCardinality::CardinalityOptional),
+            2 => ::std::option::Option::Some(FieldCardinality::CardinalityRequired),
+            3 => ::std::option::Option::Some(FieldCardinality::CardinalityRepeated),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [Field_Cardinality] = &[
-            Field_Cardinality::CARDINALITY_UNKNOWN,
-            Field_Cardinality::CARDINALITY_OPTIONAL,
-            Field_Cardinality::CARDINALITY_REQUIRED,
-            Field_Cardinality::CARDINALITY_REPEATED,
+        static values: &'static [FieldCardinality] = &[
+            FieldCardinality::CardinalityUnknown,
+            FieldCardinality::CardinalityOptional,
+            FieldCardinality::CardinalityRequired,
+            FieldCardinality::CardinalityRepeated,
         ];
         values
     }
@@ -1224,19 +1224,19 @@ impl ::protobuf::ProtobufEnum for Field_Cardinality {
         };
         unsafe {
             descriptor.get(|| {
-                ::protobuf::reflect::EnumDescriptor::new("Field_Cardinality", file_descriptor_proto())
+                ::protobuf::reflect::EnumDescriptor::new("FieldCardinality", file_descriptor_proto())
             })
         }
     }
 }
 
-impl ::std::marker::Copy for Field_Cardinality {
+impl ::std::marker::Copy for FieldCardinality {
 }
 
-impl ::protobuf::PbPrint for Field_Cardinality {
+impl ::protobuf::PbPrint for FieldCardinality {
     fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
         use std::fmt::Write;
-        if *self == Field_Cardinality::default() {
+        if *self == FieldCardinality::default() {
             return;
         }
         ::protobuf::push_field_start(name, buf);
@@ -1244,13 +1244,13 @@ impl ::protobuf::PbPrint for Field_Cardinality {
     }
 }
 
-impl ::std::default::Default for Field_Cardinality {
+impl ::std::default::Default for FieldCardinality {
     fn default() -> Self {
-        Field_Cardinality::CARDINALITY_UNKNOWN
+        FieldCardinality::CardinalityUnknown
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for Field_Cardinality {
+impl ::protobuf::reflect::ProtobufValue for FieldCardinality {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
     }
@@ -1419,7 +1419,7 @@ impl Enum {
         self.syntax
     }
     pub fn clear_syntax(&mut self) {
-        self.syntax = Syntax::SYNTAX_PROTO2;
+        self.syntax = Syntax::SyntaxProto2;
     }
 
     // Param is passed by value, moved
@@ -1495,7 +1495,7 @@ impl ::protobuf::Message for Enum {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
-        if self.syntax != Syntax::SYNTAX_PROTO2 {
+        if self.syntax != Syntax::SyntaxProto2 {
             my_size += ::protobuf::rt::enum_size(5, self.syntax);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
@@ -1522,7 +1522,7 @@ impl ::protobuf::Message for Enum {
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
         }
-        if self.syntax != Syntax::SYNTAX_PROTO2 {
+        if self.syntax != Syntax::SyntaxProto2 {
             os.write_enum(5, self.syntax.value())?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
@@ -1626,7 +1626,7 @@ impl ::protobuf::Clear for Enum {
         self.enumvalue.clear();
         self.options.clear();
         self.source_context.clear();
-        self.syntax = Syntax::SYNTAX_PROTO2;
+        self.syntax = Syntax::SyntaxProto2;
         self.unknown_fields.clear();
     }
 }
@@ -2227,8 +2227,8 @@ impl ::protobuf::reflect::ProtobufValue for Option {
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub enum Syntax {
-    SYNTAX_PROTO2 = 0,
-    SYNTAX_PROTO3 = 1,
+    SyntaxProto2 = 0,
+    SyntaxProto3 = 1,
 }
 
 impl ::protobuf::ProtobufEnum for Syntax {
@@ -2238,16 +2238,16 @@ impl ::protobuf::ProtobufEnum for Syntax {
 
     fn from_i32(value: i32) -> ::std::option::Option<Syntax> {
         match value {
-            0 => ::std::option::Option::Some(Syntax::SYNTAX_PROTO2),
-            1 => ::std::option::Option::Some(Syntax::SYNTAX_PROTO3),
+            0 => ::std::option::Option::Some(Syntax::SyntaxProto2),
+            1 => ::std::option::Option::Some(Syntax::SyntaxProto3),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
         static values: &'static [Syntax] = &[
-            Syntax::SYNTAX_PROTO2,
-            Syntax::SYNTAX_PROTO3,
+            Syntax::SyntaxProto2,
+            Syntax::SyntaxProto3,
         ];
         values
     }
@@ -2281,7 +2281,7 @@ impl ::protobuf::PbPrint for Syntax {
 
 impl ::std::default::Default for Syntax {
     fn default() -> Self {
-        Syntax::SYNTAX_PROTO2
+        Syntax::SyntaxProto2
     }
 }
 
