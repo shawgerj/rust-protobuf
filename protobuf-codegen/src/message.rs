@@ -458,9 +458,9 @@ impl<'a> MessageGen<'a> {
 
     fn write_struct(&self, w: &mut CodeWriter) {
         let mut derive = vec!["Clone", "Default"];
-        if self.lite_runtime {
-            derive.push("Debug");
-        }
+        // if self.lite_runtime {
+        //     derive.push("Debug");
+        // }
         w.derive(&derive);
         serde::write_serde_attr(w, &self.customize, "derive(Serialize, Deserialize)");
         w.pub_struct(&self.type_name, |w| {
