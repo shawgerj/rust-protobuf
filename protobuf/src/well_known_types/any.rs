@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Any {
     // message fields
@@ -74,6 +74,10 @@ impl Any {
         ::std::mem::replace(&mut self.type_url, ::std::string::String::new())
     }
 
+    pub fn get_type_url_offset(&self) -> &u64 {
+        &self.type_url_offset
+    }
+
     // bytes value = 2;
 
 
@@ -98,6 +102,10 @@ impl Any {
     // Take field
     pub fn take_value(&mut self) -> ::std::vec::Vec<u8> {
         ::std::mem::replace(&mut self.value, ::std::vec::Vec::new())
+    }
+
+    pub fn get_value_offset(&self) -> &u64 {
+        &self.value_offset
     }
 }
 
@@ -218,6 +226,14 @@ impl ::protobuf::Message for Any {
     }
 }
 
+impl PartialEq for Any {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.type_url == other.type_url && self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for Any {
     fn clear(&mut self) {
         self.type_url.clear();
@@ -226,9 +242,26 @@ impl ::protobuf::Clear for Any {
     }
 }
 
+impl ::protobuf::PbPrint for Any {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.type_url, "type_url", buf);
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Any {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.type_url, "type_url", &mut s);
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -243,7 +276,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x19\n\x08type_url\x18\x01\x20\x01(\tR\x07typeUrl\x12\x14\n\x05value\x18\
     \x02\x20\x01(\x0cR\x05valueBo\n\x13com.google.protobufB\x08AnyProtoP\x01\
     Z%github.com/golang/protobuf/ptypes/any\xa2\x02\x03GPB\xaa\x02\x1eGoogle\
-    .Protobuf.WellKnownTypesJ\xab&\n\x07\x12\x05\x1e\0\x8a\x01\x01\n\xcc\x0c\
+    .Protobuf.WellKnownTypesJ\x8a&\n\x07\x12\x05\x1e\0\x8a\x01\x01\n\xcc\x0c\
     \n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Goo\
     gle's\x20data\x20interchange\x20format\n\x20Copyright\x202008\x20Google\
     \x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https://developers.googl\

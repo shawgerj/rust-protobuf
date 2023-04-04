@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Type {
     // message fields
@@ -81,6 +81,10 @@ impl Type {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.Field fields = 2;
 
 
@@ -104,6 +108,10 @@ impl Type {
     // Take field
     pub fn take_fields(&mut self) -> ::protobuf::RepeatedField<Field> {
         ::std::mem::replace(&mut self.fields, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_fields_offset(&self) -> &[u64] {
+        &self.fields_offset
     }
 
     // repeated string oneofs = 3;
@@ -131,6 +139,10 @@ impl Type {
         ::std::mem::replace(&mut self.oneofs, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_oneofs_offset(&self) -> &[u64] {
+        &self.oneofs_offset
+    }
+
     // repeated .google.protobuf.Option options = 4;
 
 
@@ -154,6 +166,10 @@ impl Type {
     // Take field
     pub fn take_options(&mut self) -> ::protobuf::RepeatedField<Option> {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
     }
 
     // .google.protobuf.SourceContext source_context = 5;
@@ -189,6 +205,10 @@ impl Type {
         self.source_context.take().unwrap_or_else(|| ::protobuf::well_known_types::SourceContext::new())
     }
 
+    pub fn get_source_context_offset(&self) -> &u64 {
+        &self.source_context_offset
+    }
+
     // .google.protobuf.Syntax syntax = 6;
 
 
@@ -203,6 +223,7 @@ impl Type {
     pub fn set_syntax(&mut self, v: Syntax) {
         self.syntax = v;
     }
+
 }
 
 impl ::protobuf::Message for Type {
@@ -402,6 +423,14 @@ impl ::protobuf::Message for Type {
     }
 }
 
+impl PartialEq for Type {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.fields == other.fields && self.oneofs == other.oneofs && self.options == other.options && self.source_context == other.source_context && self.syntax == other.syntax
+    }
+}
+
 impl ::protobuf::Clear for Type {
     fn clear(&mut self) {
         self.name.clear();
@@ -414,9 +443,34 @@ impl ::protobuf::Clear for Type {
     }
 }
 
+impl ::protobuf::PbPrint for Type {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.fields, "fields", buf);
+        ::protobuf::PbPrint::fmt(&self.oneofs, "oneofs", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", buf);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Type {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.fields, "fields", &mut s);
+        ::protobuf::PbPrint::fmt(&self.oneofs, "oneofs", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", &mut s);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -426,7 +480,7 @@ impl ::protobuf::reflect::ProtobufValue for Type {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Field {
     // message fields
@@ -478,6 +532,7 @@ impl Field {
         self.kind = v;
     }
 
+
     // .google.protobuf.Field.Cardinality cardinality = 2;
 
 
@@ -493,6 +548,7 @@ impl Field {
         self.cardinality = v;
     }
 
+
     // int32 number = 3;
 
 
@@ -507,6 +563,7 @@ impl Field {
     pub fn set_number(&mut self, v: i32) {
         self.number = v;
     }
+
 
     // string name = 4;
 
@@ -532,6 +589,10 @@ impl Field {
     // Take field
     pub fn take_name(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
+    }
+
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
     }
 
     // string type_url = 6;
@@ -560,6 +621,10 @@ impl Field {
         ::std::mem::replace(&mut self.type_url, ::std::string::String::new())
     }
 
+    pub fn get_type_url_offset(&self) -> &u64 {
+        &self.type_url_offset
+    }
+
     // int32 oneof_index = 7;
 
 
@@ -575,6 +640,7 @@ impl Field {
         self.oneof_index = v;
     }
 
+
     // bool packed = 8;
 
 
@@ -589,6 +655,7 @@ impl Field {
     pub fn set_packed(&mut self, v: bool) {
         self.packed = v;
     }
+
 
     // repeated .google.protobuf.Option options = 9;
 
@@ -613,6 +680,10 @@ impl Field {
     // Take field
     pub fn take_options(&mut self) -> ::protobuf::RepeatedField<Option> {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
     }
 
     // string json_name = 10;
@@ -641,6 +712,10 @@ impl Field {
         ::std::mem::replace(&mut self.json_name, ::std::string::String::new())
     }
 
+    pub fn get_json_name_offset(&self) -> &u64 {
+        &self.json_name_offset
+    }
+
     // string default_value = 11;
 
 
@@ -665,6 +740,10 @@ impl Field {
     // Take field
     pub fn take_default_value(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.default_value, ::std::string::String::new())
+    }
+
+    pub fn get_default_value_offset(&self) -> &u64 {
+        &self.default_value_offset
     }
 }
 
@@ -917,6 +996,14 @@ impl ::protobuf::Message for Field {
     }
 }
 
+impl PartialEq for Field {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.kind == other.kind && self.cardinality == other.cardinality && self.number == other.number && self.name == other.name && self.type_url == other.type_url && self.oneof_index == other.oneof_index && self.packed == other.packed && self.options == other.options && self.json_name == other.json_name && self.default_value == other.default_value
+    }
+}
+
 impl ::protobuf::Clear for Field {
     fn clear(&mut self) {
         self.kind = Field_Kind::TYPE_UNKNOWN;
@@ -933,9 +1020,42 @@ impl ::protobuf::Clear for Field {
     }
 }
 
+impl ::protobuf::PbPrint for Field {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.kind, "kind", buf);
+        ::protobuf::PbPrint::fmt(&self.cardinality, "cardinality", buf);
+        ::protobuf::PbPrint::fmt(&self.number, "number", buf);
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.type_url, "type_url", buf);
+        ::protobuf::PbPrint::fmt(&self.oneof_index, "oneof_index", buf);
+        ::protobuf::PbPrint::fmt(&self.packed, "packed", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.json_name, "json_name", buf);
+        ::protobuf::PbPrint::fmt(&self.default_value, "default_value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Field {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.kind, "kind", &mut s);
+        ::protobuf::PbPrint::fmt(&self.cardinality, "cardinality", &mut s);
+        ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.type_url, "type_url", &mut s);
+        ::protobuf::PbPrint::fmt(&self.oneof_index, "oneof_index", &mut s);
+        ::protobuf::PbPrint::fmt(&self.packed, "packed", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.json_name, "json_name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.default_value, "default_value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1040,6 +1160,17 @@ impl ::protobuf::ProtobufEnum for Field_Kind {
 impl ::std::marker::Copy for Field_Kind {
 }
 
+impl ::protobuf::PbPrint for Field_Kind {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == Field_Kind::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 impl ::std::default::Default for Field_Kind {
     fn default() -> Self {
         Field_Kind::TYPE_UNKNOWN
@@ -1102,6 +1233,17 @@ impl ::protobuf::ProtobufEnum for Field_Cardinality {
 impl ::std::marker::Copy for Field_Cardinality {
 }
 
+impl ::protobuf::PbPrint for Field_Cardinality {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == Field_Cardinality::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 impl ::std::default::Default for Field_Cardinality {
     fn default() -> Self {
         Field_Cardinality::CARDINALITY_UNKNOWN
@@ -1114,7 +1256,7 @@ impl ::protobuf::reflect::ProtobufValue for Field_Cardinality {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Enum {
     // message fields
@@ -1171,6 +1313,10 @@ impl Enum {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.EnumValue enumvalue = 2;
 
 
@@ -1196,6 +1342,10 @@ impl Enum {
         ::std::mem::replace(&mut self.enumvalue, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_enumvalue_offset(&self) -> &[u64] {
+        &self.enumvalue_offset
+    }
+
     // repeated .google.protobuf.Option options = 3;
 
 
@@ -1219,6 +1369,10 @@ impl Enum {
     // Take field
     pub fn take_options(&mut self) -> ::protobuf::RepeatedField<Option> {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
     }
 
     // .google.protobuf.SourceContext source_context = 4;
@@ -1254,6 +1408,10 @@ impl Enum {
         self.source_context.take().unwrap_or_else(|| ::protobuf::well_known_types::SourceContext::new())
     }
 
+    pub fn get_source_context_offset(&self) -> &u64 {
+        &self.source_context_offset
+    }
+
     // .google.protobuf.Syntax syntax = 5;
 
 
@@ -1268,6 +1426,7 @@ impl Enum {
     pub fn set_syntax(&mut self, v: Syntax) {
         self.syntax = v;
     }
+
 }
 
 impl ::protobuf::Message for Enum {
@@ -1453,6 +1612,14 @@ impl ::protobuf::Message for Enum {
     }
 }
 
+impl PartialEq for Enum {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.enumvalue == other.enumvalue && self.options == other.options && self.source_context == other.source_context && self.syntax == other.syntax
+    }
+}
+
 impl ::protobuf::Clear for Enum {
     fn clear(&mut self) {
         self.name.clear();
@@ -1464,9 +1631,32 @@ impl ::protobuf::Clear for Enum {
     }
 }
 
+impl ::protobuf::PbPrint for Enum {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.enumvalue, "enumvalue", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", buf);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Enum {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.enumvalue, "enumvalue", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", &mut s);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1476,7 +1666,7 @@ impl ::protobuf::reflect::ProtobufValue for Enum {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct EnumValue {
     // message fields
@@ -1529,6 +1719,10 @@ impl EnumValue {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // int32 number = 2;
 
 
@@ -1543,6 +1737,7 @@ impl EnumValue {
     pub fn set_number(&mut self, v: i32) {
         self.number = v;
     }
+
 
     // repeated .google.protobuf.Option options = 3;
 
@@ -1567,6 +1762,10 @@ impl EnumValue {
     // Take field
     pub fn take_options(&mut self) -> ::protobuf::RepeatedField<Option> {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
     }
 }
 
@@ -1713,6 +1912,14 @@ impl ::protobuf::Message for EnumValue {
     }
 }
 
+impl PartialEq for EnumValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.number == other.number && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for EnumValue {
     fn clear(&mut self) {
         self.name.clear();
@@ -1722,9 +1929,28 @@ impl ::protobuf::Clear for EnumValue {
     }
 }
 
+impl ::protobuf::PbPrint for EnumValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.number, "number", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for EnumValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1734,7 +1960,7 @@ impl ::protobuf::reflect::ProtobufValue for EnumValue {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Option {
     // message fields
@@ -1786,6 +2012,10 @@ impl Option {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // .google.protobuf.Any value = 2;
 
 
@@ -1817,6 +2047,10 @@ impl Option {
     // Take field
     pub fn take_value(&mut self) -> ::protobuf::well_known_types::Any {
         self.value.take().unwrap_or_else(|| ::protobuf::well_known_types::Any::new())
+    }
+
+    pub fn get_value_offset(&self) -> &u64 {
+        &self.value_offset
     }
 }
 
@@ -1945,6 +2179,14 @@ impl ::protobuf::Message for Option {
     }
 }
 
+impl PartialEq for Option {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for Option {
     fn clear(&mut self) {
         self.name.clear();
@@ -1953,9 +2195,26 @@ impl ::protobuf::Clear for Option {
     }
 }
 
+impl ::protobuf::PbPrint for Option {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Option {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -2007,6 +2266,17 @@ impl ::protobuf::ProtobufEnum for Syntax {
 }
 
 impl ::std::marker::Copy for Syntax {
+}
+
+impl ::protobuf::PbPrint for Syntax {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == Syntax::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
 }
 
 impl ::std::default::Default for Syntax {
@@ -2063,7 +2333,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x0b2\x14.google.protobuf.AnyR\x05value*.\n\x06Syntax\x12\x11\n\rSYNTAX_\
     PROTO2\x10\0\x12\x11\n\rSYNTAX_PROTO3\x10\x01BL\n\x13com.google.protobuf\
     B\tTypeProtoP\x01\xf8\x01\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.\
-    WellKnownTypesJ\xcc7\n\x07\x12\x05\x1e\0\xb3\x01\x01\n\xcc\x0c\n\x01\x0c\
+    WellKnownTypesJ\x9a5\n\x07\x12\x05\x1e\0\xb3\x01\x01\n\xcc\x0c\n\x01\x0c\
     \x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google's\x20d\
     ata\x20interchange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\
     \x20\x20All\x20rights\x20reserved.\n\x20https://developers.google.com/pr\
@@ -2106,106 +2376,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x08\n\x01\x08\x12\x03*\0!\n\t\n\x02\x08$\x12\x03*\0!\n-\n\x02\x04\0\x12\
     \x04-\0:\x01\x1a!\x20A\x20protocol\x20buffer\x20message\x20type.\n\n\n\n\
     \x03\x04\0\x01\x12\x03-\x08\x0c\n0\n\x04\x04\0\x02\0\x12\x03/\x02\x12\
-<<<<<<< HEAD
-    \x1a#\x20The\x20fully\x20qualified\x20message\x20name.\n\n\r\n\x05\x04\0\
-    \x02\0\x04\x12\x04/\x02-\x0e\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03/\x02\
-    \x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03/\t\r\n\x0c\n\x05\x04\0\x02\0\
-    \x03\x12\x03/\x10\x11\n\"\n\x04\x04\0\x02\x01\x12\x031\x02\x1c\x1a\x15\
-    \x20The\x20list\x20of\x20fields.\n\n\x0c\n\x05\x04\0\x02\x01\x04\x12\x03\
-    1\x02\n\n\x0c\n\x05\x04\0\x02\x01\x06\x12\x031\x0b\x10\n\x0c\n\x05\x04\0\
-    \x02\x01\x01\x12\x031\x11\x17\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x031\x1a\
-    \x1b\nO\n\x04\x04\0\x02\x02\x12\x033\x02\x1d\x1aB\x20The\x20list\x20of\
-    \x20types\x20appearing\x20in\x20`oneof`\x20definitions\x20in\x20this\x20\
-    type.\n\n\x0c\n\x05\x04\0\x02\x02\x04\x12\x033\x02\n\n\x0c\n\x05\x04\0\
-    \x02\x02\x05\x12\x033\x0b\x11\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x033\x12\
-    \x18\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x033\x1b\x1c\n+\n\x04\x04\0\x02\
-    \x03\x12\x035\x02\x1e\x1a\x1e\x20The\x20protocol\x20buffer\x20options.\n\
-    \n\x0c\n\x05\x04\0\x02\x03\x04\x12\x035\x02\n\n\x0c\n\x05\x04\0\x02\x03\
-    \x06\x12\x035\x0b\x11\n\x0c\n\x05\x04\0\x02\x03\x01\x12\x035\x12\x19\n\
-    \x0c\n\x05\x04\0\x02\x03\x03\x12\x035\x1c\x1d\n\"\n\x04\x04\0\x02\x04\
-    \x12\x037\x02#\x1a\x15\x20The\x20source\x20context.\n\n\r\n\x05\x04\0\
-    \x02\x04\x04\x12\x047\x025\x1e\n\x0c\n\x05\x04\0\x02\x04\x06\x12\x037\
-    \x02\x0f\n\x0c\n\x05\x04\0\x02\x04\x01\x12\x037\x10\x1e\n\x0c\n\x05\x04\
-    \0\x02\x04\x03\x12\x037!\"\n!\n\x04\x04\0\x02\x05\x12\x039\x02\x14\x1a\
-    \x14\x20The\x20source\x20syntax.\n\n\r\n\x05\x04\0\x02\x05\x04\x12\x049\
-    \x027#\n\x0c\n\x05\x04\0\x02\x05\x06\x12\x039\x02\x08\n\x0c\n\x05\x04\0\
-    \x02\x05\x01\x12\x039\t\x0f\n\x0c\n\x05\x04\0\x02\x05\x03\x12\x039\x12\
-    \x13\n0\n\x02\x04\x01\x12\x05=\0\x8a\x01\x01\x1a#\x20A\x20single\x20fiel\
-    d\x20of\x20a\x20message\x20type.\n\n\n\n\x03\x04\x01\x01\x12\x03=\x08\r\
-    \n\"\n\x04\x04\x01\x04\0\x12\x04?\x02f\x03\x1a\x14\x20Basic\x20field\x20\
-    types.\n\n\x0c\n\x05\x04\x01\x04\0\x01\x12\x03?\x07\x0b\n$\n\x06\x04\x01\
-    \x04\0\x02\0\x12\x03A\x04\x1c\x1a\x15\x20Field\x20type\x20unknown.\n\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\0\x01\x12\x03A\x04\x10\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\0\x02\x12\x03A\x1a\x1b\n#\n\x06\x04\x01\x04\0\x02\x01\x12\x03\
-    C\x04\x1c\x1a\x14\x20Field\x20type\x20double.\n\n\x0e\n\x07\x04\x01\x04\
-    \0\x02\x01\x01\x12\x03C\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x01\x02\
-    \x12\x03C\x1a\x1b\n\"\n\x06\x04\x01\x04\0\x02\x02\x12\x03E\x04\x1c\x1a\
-    \x13\x20Field\x20type\x20float.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x02\x01\
-    \x12\x03E\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x02\x02\x12\x03E\x1a\x1b\
-    \n\"\n\x06\x04\x01\x04\0\x02\x03\x12\x03G\x04\x1c\x1a\x13\x20Field\x20ty\
-    pe\x20int64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x03\x01\x12\x03G\x04\x0e\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\x03\x02\x12\x03G\x1a\x1b\n#\n\x06\x04\x01\
-    \x04\0\x02\x04\x12\x03I\x04\x1c\x1a\x14\x20Field\x20type\x20uint64.\n\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\x04\x01\x12\x03I\x04\x0f\n\x0e\n\x07\x04\
-    \x01\x04\0\x02\x04\x02\x12\x03I\x1a\x1b\n\"\n\x06\x04\x01\x04\0\x02\x05\
-    \x12\x03K\x04\x1c\x1a\x13\x20Field\x20type\x20int32.\n\n\x0e\n\x07\x04\
-    \x01\x04\0\x02\x05\x01\x12\x03K\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\
-    \x05\x02\x12\x03K\x1a\x1b\n$\n\x06\x04\x01\x04\0\x02\x06\x12\x03M\x04\
-    \x1c\x1a\x15\x20Field\x20type\x20fixed64.\n\n\x0e\n\x07\x04\x01\x04\0\
-    \x02\x06\x01\x12\x03M\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\x06\x02\x12\
-    \x03M\x1a\x1b\n$\n\x06\x04\x01\x04\0\x02\x07\x12\x03O\x04\x1c\x1a\x15\
-    \x20Field\x20type\x20fixed32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x07\x01\
-    \x12\x03O\x04\x10\n\x0e\n\x07\x04\x01\x04\0\x02\x07\x02\x12\x03O\x1a\x1b\
-    \n!\n\x06\x04\x01\x04\0\x02\x08\x12\x03Q\x04\x1c\x1a\x12\x20Field\x20typ\
-    e\x20bool.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x08\x01\x12\x03Q\x04\r\n\x0e\
-    \n\x07\x04\x01\x04\0\x02\x08\x02\x12\x03Q\x1a\x1b\n#\n\x06\x04\x01\x04\0\
-    \x02\t\x12\x03S\x04\x1c\x1a\x14\x20Field\x20type\x20string.\n\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\t\x01\x12\x03S\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\
-    \x02\t\x02\x12\x03S\x1a\x1b\nF\n\x06\x04\x01\x04\0\x02\n\x12\x03U\x04\
-    \x1d\x1a7\x20Field\x20type\x20group.\x20Proto2\x20syntax\x20only,\x20and\
-    \x20deprecated.\n\n\x0e\n\x07\x04\x01\x04\0\x02\n\x01\x12\x03U\x04\x0e\n\
-    \x0e\n\x07\x04\x01\x04\0\x02\n\x02\x12\x03U\x1a\x1c\n$\n\x06\x04\x01\x04\
-    \0\x02\x0b\x12\x03W\x04\x1d\x1a\x15\x20Field\x20type\x20message.\n\n\x0e\
-    \n\x07\x04\x01\x04\0\x02\x0b\x01\x12\x03W\x04\x10\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\x0b\x02\x12\x03W\x1a\x1c\n\"\n\x06\x04\x01\x04\0\x02\x0c\x12\
-    \x03Y\x04\x1d\x1a\x13\x20Field\x20type\x20bytes.\n\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\x0c\x01\x12\x03Y\x04\x0e\n\x0e\n\x07\x04\x01\x04\0\x02\x0c\
-    \x02\x12\x03Y\x1a\x1c\n#\n\x06\x04\x01\x04\0\x02\r\x12\x03[\x04\x1d\x1a\
-    \x14\x20Field\x20type\x20uint32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\r\x01\
-    \x12\x03[\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\r\x02\x12\x03[\x1a\x1c\n\
-    !\n\x06\x04\x01\x04\0\x02\x0e\x12\x03]\x04\x1d\x1a\x12\x20Field\x20type\
-    \x20enum.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x0e\x01\x12\x03]\x04\r\n\x0e\n\
-    \x07\x04\x01\x04\0\x02\x0e\x02\x12\x03]\x1a\x1c\n%\n\x06\x04\x01\x04\0\
-    \x02\x0f\x12\x03_\x04\x1d\x1a\x16\x20Field\x20type\x20sfixed32.\n\n\x0e\
-    \n\x07\x04\x01\x04\0\x02\x0f\x01\x12\x03_\x04\x11\n\x0e\n\x07\x04\x01\
-    \x04\0\x02\x0f\x02\x12\x03_\x1a\x1c\n%\n\x06\x04\x01\x04\0\x02\x10\x12\
-    \x03a\x04\x1d\x1a\x16\x20Field\x20type\x20sfixed64.\n\n\x0e\n\x07\x04\
-    \x01\x04\0\x02\x10\x01\x12\x03a\x04\x11\n\x0e\n\x07\x04\x01\x04\0\x02\
-    \x10\x02\x12\x03a\x1a\x1c\n#\n\x06\x04\x01\x04\0\x02\x11\x12\x03c\x04\
-    \x1d\x1a\x14\x20Field\x20type\x20sint32.\n\n\x0e\n\x07\x04\x01\x04\0\x02\
-    \x11\x01\x12\x03c\x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x11\x02\x12\x03c\
-    \x1a\x1c\n#\n\x06\x04\x01\x04\0\x02\x12\x12\x03e\x04\x1d\x1a\x14\x20Fiel\
-    d\x20type\x20sint64.\n\n\x0e\n\x07\x04\x01\x04\0\x02\x12\x01\x12\x03e\
-    \x04\x0f\n\x0e\n\x07\x04\x01\x04\0\x02\x12\x02\x12\x03e\x1a\x1c\nC\n\x04\
-    \x04\x01\x04\x01\x12\x04i\x02r\x03\x1a5\x20Whether\x20a\x20field\x20is\
-    \x20optional,\x20required,\x20or\x20repeated.\n\n\x0c\n\x05\x04\x01\x04\
-    \x01\x01\x12\x03i\x07\x12\n5\n\x06\x04\x01\x04\x01\x02\0\x12\x03k\x04\
-    \x1c\x1a&\x20For\x20fields\x20with\x20unknown\x20cardinality.\n\n\x0e\n\
-    \x07\x04\x01\x04\x01\x02\0\x01\x12\x03k\x04\x17\n\x0e\n\x07\x04\x01\x04\
-    \x01\x02\0\x02\x12\x03k\x1a\x1b\n%\n\x06\x04\x01\x04\x01\x02\x01\x12\x03\
-    m\x04\x1d\x1a\x16\x20For\x20optional\x20fields.\n\n\x0e\n\x07\x04\x01\
-    \x04\x01\x02\x01\x01\x12\x03m\x04\x18\n\x0e\n\x07\x04\x01\x04\x01\x02\
-    \x01\x02\x12\x03m\x1b\x1c\n9\n\x06\x04\x01\x04\x01\x02\x02\x12\x03o\x04\
-    \x1d\x1a*\x20For\x20required\x20fields.\x20Proto2\x20syntax\x20only.\n\n\
-    \x0e\n\x07\x04\x01\x04\x01\x02\x02\x01\x12\x03o\x04\x18\n\x0e\n\x07\x04\
-    \x01\x04\x01\x02\x02\x02\x12\x03o\x1b\x1c\n%\n\x06\x04\x01\x04\x01\x02\
-    \x03\x12\x03q\x04\x1d\x1a\x16\x20For\x20repeated\x20fields.\n\n\x0e\n\
-    \x07\x04\x01\x04\x01\x02\x03\x01\x12\x03q\x04\x18\n\x0e\n\x07\x04\x01\
-    \x04\x01\x02\x03\x02\x12\x03q\x1b\x1c\n\x1e\n\x04\x04\x01\x02\0\x12\x03u\
-    \x02\x10\x1a\x11\x20The\x20field\x20type.\n\n\r\n\x05\x04\x01\x02\0\x04\
-    \x12\x04u\x02r\x04\n\x0c\n\x05\x04\x01\x02\0\x06\x12\x03u\x02\x06\n\x0c\
-    \n\x05\x04\x01\x02\0\x01\x12\x03u\x07\x0b\n\x0c\n\x05\x04\x01\x02\0\x03\
-=======
     \x1a#\x20The\x20fully\x20qualified\x20message\x20name.\n\n\x0c\n\x05\x04\
     \0\x02\0\x05\x12\x03/\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03/\t\r\n\
     \x0c\n\x05\x04\0\x02\0\x03\x12\x03/\x10\x11\n\"\n\x04\x04\0\x02\x01\x12\
@@ -2301,7 +2471,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x1b\x1c\n\x1e\n\x04\x04\x01\x02\0\x12\x03u\x02\x10\x1a\x11\x20The\x20fi\
     eld\x20type.\n\n\x0c\n\x05\x04\x01\x02\0\x06\x12\x03u\x02\x06\n\x0c\n\
     \x05\x04\x01\x02\0\x01\x12\x03u\x07\x0b\n\x0c\n\x05\x04\x01\x02\0\x03\
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
     \x12\x03u\x0e\x0f\n%\n\x04\x04\x01\x02\x01\x12\x03w\x02\x1e\x1a\x18\x20T\
     he\x20field\x20cardinality.\n\n\x0c\n\x05\x04\x01\x02\x01\x06\x12\x03w\
     \x02\r\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03w\x0e\x19\n\x0c\n\x05\x04\

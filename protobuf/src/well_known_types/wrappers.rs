@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct DoubleValue {
     // message fields
@@ -59,6 +59,7 @@ impl DoubleValue {
     pub fn set_value(&mut self, v: f64) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for DoubleValue {
@@ -168,6 +169,14 @@ impl ::protobuf::Message for DoubleValue {
     }
 }
 
+impl PartialEq for DoubleValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for DoubleValue {
     fn clear(&mut self) {
         self.value = 0.;
@@ -175,9 +184,24 @@ impl ::protobuf::Clear for DoubleValue {
     }
 }
 
+impl ::protobuf::PbPrint for DoubleValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for DoubleValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -187,7 +211,7 @@ impl ::protobuf::reflect::ProtobufValue for DoubleValue {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FloatValue {
     // message fields
@@ -224,6 +248,7 @@ impl FloatValue {
     pub fn set_value(&mut self, v: f32) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for FloatValue {
@@ -333,6 +358,14 @@ impl ::protobuf::Message for FloatValue {
     }
 }
 
+impl PartialEq for FloatValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for FloatValue {
     fn clear(&mut self) {
         self.value = 0.;
@@ -340,9 +373,24 @@ impl ::protobuf::Clear for FloatValue {
     }
 }
 
+impl ::protobuf::PbPrint for FloatValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FloatValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -352,7 +400,7 @@ impl ::protobuf::reflect::ProtobufValue for FloatValue {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Int64Value {
     // message fields
@@ -389,6 +437,7 @@ impl Int64Value {
     pub fn set_value(&mut self, v: i64) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for Int64Value {
@@ -498,6 +547,14 @@ impl ::protobuf::Message for Int64Value {
     }
 }
 
+impl PartialEq for Int64Value {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for Int64Value {
     fn clear(&mut self) {
         self.value = 0;
@@ -505,9 +562,24 @@ impl ::protobuf::Clear for Int64Value {
     }
 }
 
+impl ::protobuf::PbPrint for Int64Value {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Int64Value {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -517,7 +589,7 @@ impl ::protobuf::reflect::ProtobufValue for Int64Value {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct UInt64Value {
     // message fields
@@ -554,6 +626,7 @@ impl UInt64Value {
     pub fn set_value(&mut self, v: u64) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for UInt64Value {
@@ -663,6 +736,14 @@ impl ::protobuf::Message for UInt64Value {
     }
 }
 
+impl PartialEq for UInt64Value {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for UInt64Value {
     fn clear(&mut self) {
         self.value = 0;
@@ -670,9 +751,24 @@ impl ::protobuf::Clear for UInt64Value {
     }
 }
 
+impl ::protobuf::PbPrint for UInt64Value {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for UInt64Value {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -682,7 +778,7 @@ impl ::protobuf::reflect::ProtobufValue for UInt64Value {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Int32Value {
     // message fields
@@ -719,6 +815,7 @@ impl Int32Value {
     pub fn set_value(&mut self, v: i32) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for Int32Value {
@@ -828,6 +925,14 @@ impl ::protobuf::Message for Int32Value {
     }
 }
 
+impl PartialEq for Int32Value {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for Int32Value {
     fn clear(&mut self) {
         self.value = 0;
@@ -835,9 +940,24 @@ impl ::protobuf::Clear for Int32Value {
     }
 }
 
+impl ::protobuf::PbPrint for Int32Value {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Int32Value {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -847,7 +967,7 @@ impl ::protobuf::reflect::ProtobufValue for Int32Value {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct UInt32Value {
     // message fields
@@ -884,6 +1004,7 @@ impl UInt32Value {
     pub fn set_value(&mut self, v: u32) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for UInt32Value {
@@ -993,6 +1114,14 @@ impl ::protobuf::Message for UInt32Value {
     }
 }
 
+impl PartialEq for UInt32Value {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for UInt32Value {
     fn clear(&mut self) {
         self.value = 0;
@@ -1000,9 +1129,24 @@ impl ::protobuf::Clear for UInt32Value {
     }
 }
 
+impl ::protobuf::PbPrint for UInt32Value {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for UInt32Value {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1012,7 +1156,7 @@ impl ::protobuf::reflect::ProtobufValue for UInt32Value {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct BoolValue {
     // message fields
@@ -1049,6 +1193,7 @@ impl BoolValue {
     pub fn set_value(&mut self, v: bool) {
         self.value = v;
     }
+
 }
 
 impl ::protobuf::Message for BoolValue {
@@ -1158,6 +1303,14 @@ impl ::protobuf::Message for BoolValue {
     }
 }
 
+impl PartialEq for BoolValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for BoolValue {
     fn clear(&mut self) {
         self.value = false;
@@ -1165,9 +1318,24 @@ impl ::protobuf::Clear for BoolValue {
     }
 }
 
+impl ::protobuf::PbPrint for BoolValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for BoolValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1177,7 +1345,7 @@ impl ::protobuf::reflect::ProtobufValue for BoolValue {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct StringValue {
     // message fields
@@ -1225,6 +1393,10 @@ impl StringValue {
     // Take field
     pub fn take_value(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.value, ::std::string::String::new())
+    }
+
+    pub fn get_value_offset(&self) -> &u64 {
+        &self.value_offset
     }
 }
 
@@ -1331,6 +1503,14 @@ impl ::protobuf::Message for StringValue {
     }
 }
 
+impl PartialEq for StringValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for StringValue {
     fn clear(&mut self) {
         self.value.clear();
@@ -1338,9 +1518,24 @@ impl ::protobuf::Clear for StringValue {
     }
 }
 
+impl ::protobuf::PbPrint for StringValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for StringValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1350,7 +1545,7 @@ impl ::protobuf::reflect::ProtobufValue for StringValue {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct BytesValue {
     // message fields
@@ -1398,6 +1593,10 @@ impl BytesValue {
     // Take field
     pub fn take_value(&mut self) -> ::std::vec::Vec<u8> {
         ::std::mem::replace(&mut self.value, ::std::vec::Vec::new())
+    }
+
+    pub fn get_value_offset(&self) -> &u64 {
+        &self.value_offset
     }
 }
 
@@ -1504,6 +1703,14 @@ impl ::protobuf::Message for BytesValue {
     }
 }
 
+impl PartialEq for BytesValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
 impl ::protobuf::Clear for BytesValue {
     fn clear(&mut self) {
         self.value.clear();
@@ -1511,9 +1718,24 @@ impl ::protobuf::Clear for BytesValue {
     }
 }
 
+impl ::protobuf::PbPrint for BytesValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for BytesValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1535,7 +1757,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x05value\x18\x01\x20\x01(\tR\x05value\"\"\n\nBytesValue\x12\x14\n\x05va\
     lue\x18\x01\x20\x01(\x0cR\x05valueB|\n\x13com.google.protobufB\rWrappers\
     ProtoP\x01Z*github.com/golang/protobuf/ptypes/wrappers\xf8\x01\x01\xa2\
-    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xb5\x1e\n\x06\x12\
+    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xae\x1d\n\x06\x12\
     \x04#\0u\x01\n\xc3\x0e\n\x01\x0c\x12\x03#\0\x122\xc1\x0c\x20Protocol\x20\
     Buffers\x20-\x20Google's\x20data\x20interchange\x20format\n\x20Copyright\
     \x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https:\
@@ -1585,65 +1807,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20for\x20`double`.\n\n\x20The\x20JSON\x20representation\x20for\x20`Dou\
     bleValue`\x20is\x20JSON\x20number.\n\n\n\n\x03\x04\0\x01\x12\x032\x08\
     \x13\n\x20\n\x04\x04\0\x02\0\x12\x034\x02\x13\x1a\x13\x20The\x20double\
-<<<<<<< HEAD
-    \x20value.\n\n\r\n\x05\x04\0\x02\0\x04\x12\x044\x022\x15\n\x0c\n\x05\x04\
-    \0\x02\0\x05\x12\x034\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x034\t\x0e\
-    \n\x0c\n\x05\x04\0\x02\0\x03\x12\x034\x11\x12\ne\n\x02\x04\x01\x12\x04:\
-    \0=\x01\x1aY\x20Wrapper\x20message\x20for\x20`float`.\n\n\x20The\x20JSON\
-    \x20representation\x20for\x20`FloatValue`\x20is\x20JSON\x20number.\n\n\n\
-    \n\x03\x04\x01\x01\x12\x03:\x08\x12\n\x1f\n\x04\x04\x01\x02\0\x12\x03<\
-    \x02\x12\x1a\x12\x20The\x20float\x20value.\n\n\r\n\x05\x04\x01\x02\0\x04\
-    \x12\x04<\x02:\x14\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03<\x02\x07\n\x0c\
-    \n\x05\x04\x01\x02\0\x01\x12\x03<\x08\r\n\x0c\n\x05\x04\x01\x02\0\x03\
-    \x12\x03<\x10\x11\ne\n\x02\x04\x02\x12\x04B\0E\x01\x1aY\x20Wrapper\x20me\
-    ssage\x20for\x20`int64`.\n\n\x20The\x20JSON\x20representation\x20for\x20\
-    `Int64Value`\x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x02\x01\x12\x03B\
-    \x08\x12\n\x1f\n\x04\x04\x02\x02\0\x12\x03D\x02\x12\x1a\x12\x20The\x20in\
-    t64\x20value.\n\n\r\n\x05\x04\x02\x02\0\x04\x12\x04D\x02B\x14\n\x0c\n\
-    \x05\x04\x02\x02\0\x05\x12\x03D\x02\x07\n\x0c\n\x05\x04\x02\x02\0\x01\
-    \x12\x03D\x08\r\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03D\x10\x11\ng\n\x02\
-    \x04\x03\x12\x04J\0M\x01\x1a[\x20Wrapper\x20message\x20for\x20`uint64`.\
-    \n\n\x20The\x20JSON\x20representation\x20for\x20`UInt64Value`\x20is\x20J\
-    SON\x20string.\n\n\n\n\x03\x04\x03\x01\x12\x03J\x08\x13\n\x20\n\x04\x04\
-    \x03\x02\0\x12\x03L\x02\x13\x1a\x13\x20The\x20uint64\x20value.\n\n\r\n\
-    \x05\x04\x03\x02\0\x04\x12\x04L\x02J\x15\n\x0c\n\x05\x04\x03\x02\0\x05\
-    \x12\x03L\x02\x08\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03L\t\x0e\n\x0c\n\
-    \x05\x04\x03\x02\0\x03\x12\x03L\x11\x12\ne\n\x02\x04\x04\x12\x04R\0U\x01\
-    \x1aY\x20Wrapper\x20message\x20for\x20`int32`.\n\n\x20The\x20JSON\x20rep\
-    resentation\x20for\x20`Int32Value`\x20is\x20JSON\x20number.\n\n\n\n\x03\
-    \x04\x04\x01\x12\x03R\x08\x12\n\x1f\n\x04\x04\x04\x02\0\x12\x03T\x02\x12\
-    \x1a\x12\x20The\x20int32\x20value.\n\n\r\n\x05\x04\x04\x02\0\x04\x12\x04\
-    T\x02R\x14\n\x0c\n\x05\x04\x04\x02\0\x05\x12\x03T\x02\x07\n\x0c\n\x05\
-    \x04\x04\x02\0\x01\x12\x03T\x08\r\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x03T\
-    \x10\x11\ng\n\x02\x04\x05\x12\x04Z\0]\x01\x1a[\x20Wrapper\x20message\x20\
-    for\x20`uint32`.\n\n\x20The\x20JSON\x20representation\x20for\x20`UInt32V\
-    alue`\x20is\x20JSON\x20number.\n\n\n\n\x03\x04\x05\x01\x12\x03Z\x08\x13\
-    \n\x20\n\x04\x04\x05\x02\0\x12\x03\\\x02\x13\x1a\x13\x20The\x20uint32\
-    \x20value.\n\n\r\n\x05\x04\x05\x02\0\x04\x12\x04\\\x02Z\x15\n\x0c\n\x05\
-    \x04\x05\x02\0\x05\x12\x03\\\x02\x08\n\x0c\n\x05\x04\x05\x02\0\x01\x12\
-    \x03\\\t\x0e\n\x0c\n\x05\x04\x05\x02\0\x03\x12\x03\\\x11\x12\no\n\x02\
-    \x04\x06\x12\x04b\0e\x01\x1ac\x20Wrapper\x20message\x20for\x20`bool`.\n\
-    \n\x20The\x20JSON\x20representation\x20for\x20`BoolValue`\x20is\x20JSON\
-    \x20`true`\x20and\x20`false`.\n\n\n\n\x03\x04\x06\x01\x12\x03b\x08\x11\n\
-    \x1e\n\x04\x04\x06\x02\0\x12\x03d\x02\x11\x1a\x11\x20The\x20bool\x20valu\
-    e.\n\n\r\n\x05\x04\x06\x02\0\x04\x12\x04d\x02b\x13\n\x0c\n\x05\x04\x06\
-    \x02\0\x05\x12\x03d\x02\x06\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x03d\x07\
-    \x0c\n\x0c\n\x05\x04\x06\x02\0\x03\x12\x03d\x0f\x10\ng\n\x02\x04\x07\x12\
-    \x04j\0m\x01\x1a[\x20Wrapper\x20message\x20for\x20`string`.\n\n\x20The\
-    \x20JSON\x20representation\x20for\x20`StringValue`\x20is\x20JSON\x20stri\
-    ng.\n\n\n\n\x03\x04\x07\x01\x12\x03j\x08\x13\n\x20\n\x04\x04\x07\x02\0\
-    \x12\x03l\x02\x13\x1a\x13\x20The\x20string\x20value.\n\n\r\n\x05\x04\x07\
-    \x02\0\x04\x12\x04l\x02j\x15\n\x0c\n\x05\x04\x07\x02\0\x05\x12\x03l\x02\
-    \x08\n\x0c\n\x05\x04\x07\x02\0\x01\x12\x03l\t\x0e\n\x0c\n\x05\x04\x07\
-    \x02\0\x03\x12\x03l\x11\x12\ne\n\x02\x04\x08\x12\x04r\0u\x01\x1aY\x20Wra\
-    pper\x20message\x20for\x20`bytes`.\n\n\x20The\x20JSON\x20representation\
-    \x20for\x20`BytesValue`\x20is\x20JSON\x20string.\n\n\n\n\x03\x04\x08\x01\
-    \x12\x03r\x08\x12\n\x1f\n\x04\x04\x08\x02\0\x12\x03t\x02\x12\x1a\x12\x20\
-    The\x20bytes\x20value.\n\n\r\n\x05\x04\x08\x02\0\x04\x12\x04t\x02r\x14\n\
-    \x0c\n\x05\x04\x08\x02\0\x05\x12\x03t\x02\x07\n\x0c\n\x05\x04\x08\x02\0\
-    \x01\x12\x03t\x08\r\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03t\x10\x11b\x06p\
-    roto3\
-=======
     \x20value.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x034\x02\x08\n\x0c\n\x05\
     \x04\0\x02\0\x01\x12\x034\t\x0e\n\x0c\n\x05\x04\0\x02\0\x03\x12\x034\x11\
     \x12\ne\n\x02\x04\x01\x12\x04:\0=\x01\x1aY\x20Wrapper\x20message\x20for\
@@ -1695,7 +1858,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n\n\x0c\n\x05\x04\x08\x02\0\x05\x12\x03t\x02\x07\n\x0c\n\x05\x04\x08\
     \x02\0\x01\x12\x03t\x08\r\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03t\x10\x11\
     b\x06proto3\
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

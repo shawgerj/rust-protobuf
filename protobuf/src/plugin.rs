@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct CodeGeneratorRequest {
     // message fields
@@ -75,6 +75,10 @@ impl CodeGeneratorRequest {
         ::std::mem::replace(&mut self.file_to_generate, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_file_to_generate_offset(&self) -> &[u64] {
+        &self.file_to_generate_offset
+    }
+
     // optional string parameter = 2;
 
 
@@ -111,6 +115,10 @@ impl CodeGeneratorRequest {
         self.parameter.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_parameter_offset(&self) -> &u64 {
+        &self.parameter_offset
+    }
+
     // repeated .google.protobuf.FileDescriptorProto proto_file = 15;
 
 
@@ -134,6 +142,10 @@ impl CodeGeneratorRequest {
     // Take field
     pub fn take_proto_file(&mut self) -> ::protobuf::RepeatedField<::protobuf::descriptor::FileDescriptorProto> {
         ::std::mem::replace(&mut self.proto_file, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_proto_file_offset(&self) -> &[u64] {
+        &self.proto_file_offset
     }
 }
 
@@ -276,6 +288,14 @@ impl ::protobuf::Message for CodeGeneratorRequest {
     }
 }
 
+impl PartialEq for CodeGeneratorRequest {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.file_to_generate == other.file_to_generate && self.parameter == other.parameter && self.proto_file == other.proto_file
+    }
+}
+
 impl ::protobuf::Clear for CodeGeneratorRequest {
     fn clear(&mut self) {
         self.file_to_generate.clear();
@@ -285,9 +305,28 @@ impl ::protobuf::Clear for CodeGeneratorRequest {
     }
 }
 
+impl ::protobuf::PbPrint for CodeGeneratorRequest {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.file_to_generate, "file_to_generate", buf);
+        ::protobuf::PbPrint::fmt(&self.parameter, "parameter", buf);
+        ::protobuf::PbPrint::fmt(&self.proto_file, "proto_file", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for CodeGeneratorRequest {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.file_to_generate, "file_to_generate", &mut s);
+        ::protobuf::PbPrint::fmt(&self.parameter, "parameter", &mut s);
+        ::protobuf::PbPrint::fmt(&self.proto_file, "proto_file", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -297,7 +336,7 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorRequest {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct CodeGeneratorResponse {
     // message fields
@@ -359,6 +398,10 @@ impl CodeGeneratorResponse {
         self.error.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_error_offset(&self) -> &u64 {
+        &self.error_offset
+    }
+
     // repeated .google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
 
 
@@ -382,6 +425,10 @@ impl CodeGeneratorResponse {
     // Take field
     pub fn take_file(&mut self) -> ::protobuf::RepeatedField<CodeGeneratorResponse_File> {
         ::std::mem::replace(&mut self.file, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_file_offset(&self) -> &[u64] {
+        &self.file_offset
     }
 }
 
@@ -510,6 +557,14 @@ impl ::protobuf::Message for CodeGeneratorResponse {
     }
 }
 
+impl PartialEq for CodeGeneratorResponse {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.error == other.error && self.file == other.file
+    }
+}
+
 impl ::protobuf::Clear for CodeGeneratorResponse {
     fn clear(&mut self) {
         self.error.clear();
@@ -518,9 +573,26 @@ impl ::protobuf::Clear for CodeGeneratorResponse {
     }
 }
 
+impl ::protobuf::PbPrint for CodeGeneratorResponse {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.error, "error", buf);
+        ::protobuf::PbPrint::fmt(&self.file, "file", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for CodeGeneratorResponse {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.error, "error", &mut s);
+        ::protobuf::PbPrint::fmt(&self.file, "file", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -530,7 +602,7 @@ impl ::protobuf::reflect::ProtobufValue for CodeGeneratorResponse {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct CodeGeneratorResponse_File {
     // message fields
@@ -594,6 +666,10 @@ impl CodeGeneratorResponse_File {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional string insertion_point = 2;
 
 
@@ -630,6 +706,10 @@ impl CodeGeneratorResponse_File {
         self.insertion_point.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_insertion_point_offset(&self) -> &u64 {
+        &self.insertion_point_offset
+    }
+
     // optional string content = 15;
 
 
@@ -664,6 +744,10 @@ impl CodeGeneratorResponse_File {
     // Take field
     pub fn take_content(&mut self) -> ::std::string::String {
         self.content.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_content_offset(&self) -> &u64 {
+        &self.content_offset
     }
 }
 
@@ -798,6 +882,14 @@ impl ::protobuf::Message for CodeGeneratorResponse_File {
     }
 }
 
+impl PartialEq for CodeGeneratorResponse_File {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.insertion_point == other.insertion_point && self.content == other.content
+    }
+}
+
 impl ::protobuf::Clear for CodeGeneratorResponse_File {
     fn clear(&mut self) {
         self.name.clear();
@@ -807,9 +899,28 @@ impl ::protobuf::Clear for CodeGeneratorResponse_File {
     }
 }
 
+impl ::protobuf::PbPrint for CodeGeneratorResponse_File {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.insertion_point, "insertion_point", buf);
+        ::protobuf::PbPrint::fmt(&self.content, "content", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for CodeGeneratorResponse_File {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.insertion_point, "insertion_point", &mut s);
+        ::protobuf::PbPrint::fmt(&self.content, "content", &mut s);
+        write!(f, "{}", s)
     }
 }
 

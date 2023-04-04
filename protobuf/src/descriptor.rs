@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FileDescriptorSet {
     // message fields
@@ -69,6 +69,10 @@ impl FileDescriptorSet {
     // Take field
     pub fn take_file(&mut self) -> ::protobuf::RepeatedField<FileDescriptorProto> {
         ::std::mem::replace(&mut self.file, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_file_offset(&self) -> &[u64] {
+        &self.file_offset
     }
 }
 
@@ -183,6 +187,14 @@ impl ::protobuf::Message for FileDescriptorSet {
     }
 }
 
+impl PartialEq for FileDescriptorSet {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.file == other.file
+    }
+}
+
 impl ::protobuf::Clear for FileDescriptorSet {
     fn clear(&mut self) {
         self.file.clear();
@@ -190,9 +202,24 @@ impl ::protobuf::Clear for FileDescriptorSet {
     }
 }
 
+impl ::protobuf::PbPrint for FileDescriptorSet {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.file, "file", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FileDescriptorSet {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.file, "file", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -202,7 +229,7 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorSet {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FileDescriptorProto {
     // message fields
@@ -282,6 +309,10 @@ impl FileDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional string package = 2;
 
 
@@ -318,6 +349,10 @@ impl FileDescriptorProto {
         self.package.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_package_offset(&self) -> &u64 {
+        &self.package_offset
+    }
+
     // repeated string dependency = 3;
 
 
@@ -341,6 +376,10 @@ impl FileDescriptorProto {
     // Take field
     pub fn take_dependency(&mut self) -> ::protobuf::RepeatedField<::std::string::String> {
         ::std::mem::replace(&mut self.dependency, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_dependency_offset(&self) -> &[u64] {
+        &self.dependency_offset
     }
 
     // repeated int32 public_dependency = 10;
@@ -368,6 +407,7 @@ impl FileDescriptorProto {
         ::std::mem::replace(&mut self.public_dependency, ::std::vec::Vec::new())
     }
 
+
     // repeated int32 weak_dependency = 11;
 
 
@@ -393,6 +433,7 @@ impl FileDescriptorProto {
         ::std::mem::replace(&mut self.weak_dependency, ::std::vec::Vec::new())
     }
 
+
     // repeated .google.protobuf.DescriptorProto message_type = 4;
 
 
@@ -416,6 +457,10 @@ impl FileDescriptorProto {
     // Take field
     pub fn take_message_type(&mut self) -> ::protobuf::RepeatedField<DescriptorProto> {
         ::std::mem::replace(&mut self.message_type, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_message_type_offset(&self) -> &[u64] {
+        &self.message_type_offset
     }
 
     // repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
@@ -443,6 +488,10 @@ impl FileDescriptorProto {
         ::std::mem::replace(&mut self.enum_type, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_enum_type_offset(&self) -> &[u64] {
+        &self.enum_type_offset
+    }
+
     // repeated .google.protobuf.ServiceDescriptorProto service = 6;
 
 
@@ -468,6 +517,10 @@ impl FileDescriptorProto {
         ::std::mem::replace(&mut self.service, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_service_offset(&self) -> &[u64] {
+        &self.service_offset
+    }
+
     // repeated .google.protobuf.FieldDescriptorProto extension = 7;
 
 
@@ -491,6 +544,10 @@ impl FileDescriptorProto {
     // Take field
     pub fn take_extension(&mut self) -> ::protobuf::RepeatedField<FieldDescriptorProto> {
         ::std::mem::replace(&mut self.extension, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_extension_offset(&self) -> &[u64] {
+        &self.extension_offset
     }
 
     // optional .google.protobuf.FileOptions options = 8;
@@ -526,6 +583,10 @@ impl FileDescriptorProto {
         self.options.take().unwrap_or_else(|| FileOptions::new())
     }
 
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
+    }
+
     // optional .google.protobuf.SourceCodeInfo source_code_info = 9;
 
 
@@ -557,6 +618,10 @@ impl FileDescriptorProto {
     // Take field
     pub fn take_source_code_info(&mut self) -> SourceCodeInfo {
         self.source_code_info.take().unwrap_or_else(|| SourceCodeInfo::new())
+    }
+
+    pub fn get_source_code_info_offset(&self) -> &u64 {
+        &self.source_code_info_offset
     }
 
     // optional string syntax = 12;
@@ -593,6 +658,10 @@ impl FileDescriptorProto {
     // Take field
     pub fn take_syntax(&mut self) -> ::std::string::String {
         self.syntax.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_syntax_offset(&self) -> &u64 {
+        &self.syntax_offset
     }
 }
 
@@ -901,6 +970,14 @@ impl ::protobuf::Message for FileDescriptorProto {
     }
 }
 
+impl PartialEq for FileDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.package == other.package && self.dependency == other.dependency && self.public_dependency == other.public_dependency && self.weak_dependency == other.weak_dependency && self.message_type == other.message_type && self.enum_type == other.enum_type && self.service == other.service && self.extension == other.extension && self.options == other.options && self.source_code_info == other.source_code_info && self.syntax == other.syntax
+    }
+}
+
 impl ::protobuf::Clear for FileDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -919,9 +996,46 @@ impl ::protobuf::Clear for FileDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for FileDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.package, "package", buf);
+        ::protobuf::PbPrint::fmt(&self.dependency, "dependency", buf);
+        ::protobuf::PbPrint::fmt(&self.public_dependency, "public_dependency", buf);
+        ::protobuf::PbPrint::fmt(&self.weak_dependency, "weak_dependency", buf);
+        ::protobuf::PbPrint::fmt(&self.message_type, "message_type", buf);
+        ::protobuf::PbPrint::fmt(&self.enum_type, "enum_type", buf);
+        ::protobuf::PbPrint::fmt(&self.service, "service", buf);
+        ::protobuf::PbPrint::fmt(&self.extension, "extension", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.source_code_info, "source_code_info", buf);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FileDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.package, "package", &mut s);
+        ::protobuf::PbPrint::fmt(&self.dependency, "dependency", &mut s);
+        ::protobuf::PbPrint::fmt(&self.public_dependency, "public_dependency", &mut s);
+        ::protobuf::PbPrint::fmt(&self.weak_dependency, "weak_dependency", &mut s);
+        ::protobuf::PbPrint::fmt(&self.message_type, "message_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.enum_type, "enum_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.service, "service", &mut s);
+        ::protobuf::PbPrint::fmt(&self.extension, "extension", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.source_code_info, "source_code_info", &mut s);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -931,7 +1045,7 @@ impl ::protobuf::reflect::ProtobufValue for FileDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct DescriptorProto {
     // message fields
@@ -1009,6 +1123,10 @@ impl DescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.FieldDescriptorProto field = 2;
 
 
@@ -1032,6 +1150,10 @@ impl DescriptorProto {
     // Take field
     pub fn take_field(&mut self) -> ::protobuf::RepeatedField<FieldDescriptorProto> {
         ::std::mem::replace(&mut self.field, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_field_offset(&self) -> &[u64] {
+        &self.field_offset
     }
 
     // repeated .google.protobuf.FieldDescriptorProto extension = 6;
@@ -1059,6 +1181,10 @@ impl DescriptorProto {
         ::std::mem::replace(&mut self.extension, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_extension_offset(&self) -> &[u64] {
+        &self.extension_offset
+    }
+
     // repeated .google.protobuf.DescriptorProto nested_type = 3;
 
 
@@ -1082,6 +1208,10 @@ impl DescriptorProto {
     // Take field
     pub fn take_nested_type(&mut self) -> ::protobuf::RepeatedField<DescriptorProto> {
         ::std::mem::replace(&mut self.nested_type, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_nested_type_offset(&self) -> &[u64] {
+        &self.nested_type_offset
     }
 
     // repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
@@ -1109,6 +1239,10 @@ impl DescriptorProto {
         ::std::mem::replace(&mut self.enum_type, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_enum_type_offset(&self) -> &[u64] {
+        &self.enum_type_offset
+    }
+
     // repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
 
 
@@ -1134,6 +1268,10 @@ impl DescriptorProto {
         ::std::mem::replace(&mut self.extension_range, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_extension_range_offset(&self) -> &[u64] {
+        &self.extension_range_offset
+    }
+
     // repeated .google.protobuf.OneofDescriptorProto oneof_decl = 8;
 
 
@@ -1157,6 +1295,10 @@ impl DescriptorProto {
     // Take field
     pub fn take_oneof_decl(&mut self) -> ::protobuf::RepeatedField<OneofDescriptorProto> {
         ::std::mem::replace(&mut self.oneof_decl, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_oneof_decl_offset(&self) -> &[u64] {
+        &self.oneof_decl_offset
     }
 
     // optional .google.protobuf.MessageOptions options = 7;
@@ -1192,6 +1334,10 @@ impl DescriptorProto {
         self.options.take().unwrap_or_else(|| MessageOptions::new())
     }
 
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
+    }
+
     // repeated .google.protobuf.DescriptorProto.ReservedRange reserved_range = 9;
 
 
@@ -1217,6 +1363,10 @@ impl DescriptorProto {
         ::std::mem::replace(&mut self.reserved_range, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_reserved_range_offset(&self) -> &[u64] {
+        &self.reserved_range_offset
+    }
+
     // repeated string reserved_name = 10;
 
 
@@ -1240,6 +1390,10 @@ impl DescriptorProto {
     // Take field
     pub fn take_reserved_name(&mut self) -> ::protobuf::RepeatedField<::std::string::String> {
         ::std::mem::replace(&mut self.reserved_name, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_reserved_name_offset(&self) -> &[u64] {
+        &self.reserved_name_offset
     }
 }
 
@@ -1536,6 +1690,14 @@ impl ::protobuf::Message for DescriptorProto {
     }
 }
 
+impl PartialEq for DescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.field == other.field && self.extension == other.extension && self.nested_type == other.nested_type && self.enum_type == other.enum_type && self.extension_range == other.extension_range && self.oneof_decl == other.oneof_decl && self.options == other.options && self.reserved_range == other.reserved_range && self.reserved_name == other.reserved_name
+    }
+}
+
 impl ::protobuf::Clear for DescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -1552,9 +1714,42 @@ impl ::protobuf::Clear for DescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for DescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.field, "field", buf);
+        ::protobuf::PbPrint::fmt(&self.extension, "extension", buf);
+        ::protobuf::PbPrint::fmt(&self.nested_type, "nested_type", buf);
+        ::protobuf::PbPrint::fmt(&self.enum_type, "enum_type", buf);
+        ::protobuf::PbPrint::fmt(&self.extension_range, "extension_range", buf);
+        ::protobuf::PbPrint::fmt(&self.oneof_decl, "oneof_decl", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.reserved_range, "reserved_range", buf);
+        ::protobuf::PbPrint::fmt(&self.reserved_name, "reserved_name", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for DescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.field, "field", &mut s);
+        ::protobuf::PbPrint::fmt(&self.extension, "extension", &mut s);
+        ::protobuf::PbPrint::fmt(&self.nested_type, "nested_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.enum_type, "enum_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.extension_range, "extension_range", &mut s);
+        ::protobuf::PbPrint::fmt(&self.oneof_decl, "oneof_decl", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.reserved_range, "reserved_range", &mut s);
+        ::protobuf::PbPrint::fmt(&self.reserved_name, "reserved_name", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1564,7 +1759,7 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct DescriptorProto_ExtensionRange {
     // message fields
@@ -1607,6 +1802,7 @@ impl DescriptorProto_ExtensionRange {
         self.start = ::std::option::Option::Some(v);
     }
 
+
     // optional int32 end = 2;
 
 
@@ -1625,6 +1821,7 @@ impl DescriptorProto_ExtensionRange {
     pub fn set_end(&mut self, v: i32) {
         self.end = ::std::option::Option::Some(v);
     }
+
 }
 
 impl ::protobuf::Message for DescriptorProto_ExtensionRange {
@@ -1752,6 +1949,14 @@ impl ::protobuf::Message for DescriptorProto_ExtensionRange {
     }
 }
 
+impl PartialEq for DescriptorProto_ExtensionRange {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.start == other.start && self.end == other.end
+    }
+}
+
 impl ::protobuf::Clear for DescriptorProto_ExtensionRange {
     fn clear(&mut self) {
         self.start = ::std::option::Option::None;
@@ -1760,9 +1965,26 @@ impl ::protobuf::Clear for DescriptorProto_ExtensionRange {
     }
 }
 
+impl ::protobuf::PbPrint for DescriptorProto_ExtensionRange {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.start, "start", buf);
+        ::protobuf::PbPrint::fmt(&self.end, "end", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for DescriptorProto_ExtensionRange {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.start, "start", &mut s);
+        ::protobuf::PbPrint::fmt(&self.end, "end", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1772,7 +1994,7 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ExtensionRange {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct DescriptorProto_ReservedRange {
     // message fields
@@ -1815,6 +2037,7 @@ impl DescriptorProto_ReservedRange {
         self.start = ::std::option::Option::Some(v);
     }
 
+
     // optional int32 end = 2;
 
 
@@ -1833,6 +2056,7 @@ impl DescriptorProto_ReservedRange {
     pub fn set_end(&mut self, v: i32) {
         self.end = ::std::option::Option::Some(v);
     }
+
 }
 
 impl ::protobuf::Message for DescriptorProto_ReservedRange {
@@ -1960,6 +2184,14 @@ impl ::protobuf::Message for DescriptorProto_ReservedRange {
     }
 }
 
+impl PartialEq for DescriptorProto_ReservedRange {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.start == other.start && self.end == other.end
+    }
+}
+
 impl ::protobuf::Clear for DescriptorProto_ReservedRange {
     fn clear(&mut self) {
         self.start = ::std::option::Option::None;
@@ -1968,9 +2200,26 @@ impl ::protobuf::Clear for DescriptorProto_ReservedRange {
     }
 }
 
+impl ::protobuf::PbPrint for DescriptorProto_ReservedRange {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.start, "start", buf);
+        ::protobuf::PbPrint::fmt(&self.end, "end", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for DescriptorProto_ReservedRange {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.start, "start", &mut s);
+        ::protobuf::PbPrint::fmt(&self.end, "end", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1980,7 +2229,7 @@ impl ::protobuf::reflect::ProtobufValue for DescriptorProto_ReservedRange {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FieldDescriptorProto {
     // message fields
@@ -2054,6 +2303,10 @@ impl FieldDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional int32 number = 3;
 
 
@@ -2072,6 +2325,7 @@ impl FieldDescriptorProto {
     pub fn set_number(&mut self, v: i32) {
         self.number = ::std::option::Option::Some(v);
     }
+
 
     // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
 
@@ -2092,6 +2346,7 @@ impl FieldDescriptorProto {
         self.label = ::std::option::Option::Some(v);
     }
 
+
     // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
 
 
@@ -2110,6 +2365,7 @@ impl FieldDescriptorProto {
     pub fn set_field_type(&mut self, v: FieldDescriptorProto_Type) {
         self.field_type = ::std::option::Option::Some(v);
     }
+
 
     // optional string type_name = 6;
 
@@ -2145,6 +2401,10 @@ impl FieldDescriptorProto {
     // Take field
     pub fn take_type_name(&mut self) -> ::std::string::String {
         self.type_name.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_type_name_offset(&self) -> &u64 {
+        &self.type_name_offset
     }
 
     // optional string extendee = 2;
@@ -2183,6 +2443,10 @@ impl FieldDescriptorProto {
         self.extendee.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_extendee_offset(&self) -> &u64 {
+        &self.extendee_offset
+    }
+
     // optional string default_value = 7;
 
 
@@ -2219,6 +2483,10 @@ impl FieldDescriptorProto {
         self.default_value.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_default_value_offset(&self) -> &u64 {
+        &self.default_value_offset
+    }
+
     // optional int32 oneof_index = 9;
 
 
@@ -2237,6 +2505,7 @@ impl FieldDescriptorProto {
     pub fn set_oneof_index(&mut self, v: i32) {
         self.oneof_index = ::std::option::Option::Some(v);
     }
+
 
     // optional string json_name = 10;
 
@@ -2274,6 +2543,10 @@ impl FieldDescriptorProto {
         self.json_name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_json_name_offset(&self) -> &u64 {
+        &self.json_name_offset
+    }
+
     // optional .google.protobuf.FieldOptions options = 8;
 
 
@@ -2305,6 +2578,10 @@ impl FieldDescriptorProto {
     // Take field
     pub fn take_options(&mut self) -> FieldOptions {
         self.options.take().unwrap_or_else(|| FieldOptions::new())
+    }
+
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
     }
 }
 
@@ -2553,6 +2830,14 @@ impl ::protobuf::Message for FieldDescriptorProto {
     }
 }
 
+impl PartialEq for FieldDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.number == other.number && self.label == other.label && self.field_type == other.field_type && self.type_name == other.type_name && self.extendee == other.extendee && self.default_value == other.default_value && self.oneof_index == other.oneof_index && self.json_name == other.json_name && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for FieldDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -2569,9 +2854,42 @@ impl ::protobuf::Clear for FieldDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for FieldDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.number, "number", buf);
+        ::protobuf::PbPrint::fmt(&self.label, "label", buf);
+        ::protobuf::PbPrint::fmt(&self.field_type, "field_type", buf);
+        ::protobuf::PbPrint::fmt(&self.type_name, "type_name", buf);
+        ::protobuf::PbPrint::fmt(&self.extendee, "extendee", buf);
+        ::protobuf::PbPrint::fmt(&self.default_value, "default_value", buf);
+        ::protobuf::PbPrint::fmt(&self.oneof_index, "oneof_index", buf);
+        ::protobuf::PbPrint::fmt(&self.json_name, "json_name", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FieldDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
+        ::protobuf::PbPrint::fmt(&self.label, "label", &mut s);
+        ::protobuf::PbPrint::fmt(&self.field_type, "field_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.type_name, "type_name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.extendee, "extendee", &mut s);
+        ::protobuf::PbPrint::fmt(&self.default_value, "default_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.oneof_index, "oneof_index", &mut s);
+        ::protobuf::PbPrint::fmt(&self.json_name, "json_name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -2673,6 +2991,17 @@ impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Type {
 impl ::std::marker::Copy for FieldDescriptorProto_Type {
 }
 
+impl ::protobuf::PbPrint for FieldDescriptorProto_Type {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == FieldDescriptorProto_Type::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 // Note, `Default` is implemented although default value is not 0
 impl ::std::default::Default for FieldDescriptorProto_Type {
     fn default() -> Self {
@@ -2733,6 +3062,17 @@ impl ::protobuf::ProtobufEnum for FieldDescriptorProto_Label {
 impl ::std::marker::Copy for FieldDescriptorProto_Label {
 }
 
+impl ::protobuf::PbPrint for FieldDescriptorProto_Label {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == FieldDescriptorProto_Label::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 // Note, `Default` is implemented although default value is not 0
 impl ::std::default::Default for FieldDescriptorProto_Label {
     fn default() -> Self {
@@ -2746,7 +3086,7 @@ impl ::protobuf::reflect::ProtobufValue for FieldDescriptorProto_Label {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct OneofDescriptorProto {
     // message fields
@@ -2808,6 +3148,10 @@ impl OneofDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional .google.protobuf.OneofOptions options = 2;
 
 
@@ -2839,6 +3183,10 @@ impl OneofDescriptorProto {
     // Take field
     pub fn take_options(&mut self) -> OneofOptions {
         self.options.take().unwrap_or_else(|| OneofOptions::new())
+    }
+
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
     }
 }
 
@@ -2967,6 +3315,14 @@ impl ::protobuf::Message for OneofDescriptorProto {
     }
 }
 
+impl PartialEq for OneofDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for OneofDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -2975,9 +3331,26 @@ impl ::protobuf::Clear for OneofDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for OneofDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for OneofDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -2987,7 +3360,7 @@ impl ::protobuf::reflect::ProtobufValue for OneofDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct EnumDescriptorProto {
     // message fields
@@ -3051,6 +3424,10 @@ impl EnumDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.EnumValueDescriptorProto value = 2;
 
 
@@ -3074,6 +3451,10 @@ impl EnumDescriptorProto {
     // Take field
     pub fn take_value(&mut self) -> ::protobuf::RepeatedField<EnumValueDescriptorProto> {
         ::std::mem::replace(&mut self.value, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_value_offset(&self) -> &[u64] {
+        &self.value_offset
     }
 
     // optional .google.protobuf.EnumOptions options = 3;
@@ -3107,6 +3488,10 @@ impl EnumDescriptorProto {
     // Take field
     pub fn take_options(&mut self) -> EnumOptions {
         self.options.take().unwrap_or_else(|| EnumOptions::new())
+    }
+
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
     }
 }
 
@@ -3257,6 +3642,14 @@ impl ::protobuf::Message for EnumDescriptorProto {
     }
 }
 
+impl PartialEq for EnumDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.value == other.value && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for EnumDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -3266,9 +3659,28 @@ impl ::protobuf::Clear for EnumDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for EnumDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.value, "value", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for EnumDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.value, "value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -3278,7 +3690,7 @@ impl ::protobuf::reflect::ProtobufValue for EnumDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct EnumValueDescriptorProto {
     // message fields
@@ -3341,6 +3753,10 @@ impl EnumValueDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional int32 number = 2;
 
 
@@ -3359,6 +3775,7 @@ impl EnumValueDescriptorProto {
     pub fn set_number(&mut self, v: i32) {
         self.number = ::std::option::Option::Some(v);
     }
+
 
     // optional .google.protobuf.EnumValueOptions options = 3;
 
@@ -3391,6 +3808,10 @@ impl EnumValueDescriptorProto {
     // Take field
     pub fn take_options(&mut self) -> EnumValueOptions {
         self.options.take().unwrap_or_else(|| EnumValueOptions::new())
+    }
+
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
     }
 }
 
@@ -3537,6 +3958,14 @@ impl ::protobuf::Message for EnumValueDescriptorProto {
     }
 }
 
+impl PartialEq for EnumValueDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.number == other.number && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for EnumValueDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -3546,9 +3975,28 @@ impl ::protobuf::Clear for EnumValueDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for EnumValueDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.number, "number", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for EnumValueDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.number, "number", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -3558,7 +4006,7 @@ impl ::protobuf::reflect::ProtobufValue for EnumValueDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ServiceDescriptorProto {
     // message fields
@@ -3622,6 +4070,10 @@ impl ServiceDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.MethodDescriptorProto method = 2;
 
 
@@ -3645,6 +4097,10 @@ impl ServiceDescriptorProto {
     // Take field
     pub fn take_method(&mut self) -> ::protobuf::RepeatedField<MethodDescriptorProto> {
         ::std::mem::replace(&mut self.method, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_method_offset(&self) -> &[u64] {
+        &self.method_offset
     }
 
     // optional .google.protobuf.ServiceOptions options = 3;
@@ -3678,6 +4134,10 @@ impl ServiceDescriptorProto {
     // Take field
     pub fn take_options(&mut self) -> ServiceOptions {
         self.options.take().unwrap_or_else(|| ServiceOptions::new())
+    }
+
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
     }
 }
 
@@ -3828,6 +4288,14 @@ impl ::protobuf::Message for ServiceDescriptorProto {
     }
 }
 
+impl PartialEq for ServiceDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.method == other.method && self.options == other.options
+    }
+}
+
 impl ::protobuf::Clear for ServiceDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -3837,9 +4305,28 @@ impl ::protobuf::Clear for ServiceDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for ServiceDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.method, "method", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for ServiceDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.method, "method", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -3849,7 +4336,7 @@ impl ::protobuf::reflect::ProtobufValue for ServiceDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct MethodDescriptorProto {
     // message fields
@@ -3917,6 +4404,10 @@ impl MethodDescriptorProto {
         self.name.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // optional string input_type = 2;
 
 
@@ -3951,6 +4442,10 @@ impl MethodDescriptorProto {
     // Take field
     pub fn take_input_type(&mut self) -> ::std::string::String {
         self.input_type.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_input_type_offset(&self) -> &u64 {
+        &self.input_type_offset
     }
 
     // optional string output_type = 3;
@@ -3989,6 +4484,10 @@ impl MethodDescriptorProto {
         self.output_type.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_output_type_offset(&self) -> &u64 {
+        &self.output_type_offset
+    }
+
     // optional .google.protobuf.MethodOptions options = 4;
 
 
@@ -4022,6 +4521,10 @@ impl MethodDescriptorProto {
         self.options.take().unwrap_or_else(|| MethodOptions::new())
     }
 
+    pub fn get_options_offset(&self) -> &u64 {
+        &self.options_offset
+    }
+
     // optional bool client_streaming = 5;
 
 
@@ -4041,6 +4544,7 @@ impl MethodDescriptorProto {
         self.client_streaming = ::std::option::Option::Some(v);
     }
 
+
     // optional bool server_streaming = 6;
 
 
@@ -4059,6 +4563,7 @@ impl MethodDescriptorProto {
     pub fn set_server_streaming(&mut self, v: bool) {
         self.server_streaming = ::std::option::Option::Some(v);
     }
+
 }
 
 impl ::protobuf::Message for MethodDescriptorProto {
@@ -4250,6 +4755,14 @@ impl ::protobuf::Message for MethodDescriptorProto {
     }
 }
 
+impl PartialEq for MethodDescriptorProto {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.input_type == other.input_type && self.output_type == other.output_type && self.options == other.options && self.client_streaming == other.client_streaming && self.server_streaming == other.server_streaming
+    }
+}
+
 impl ::protobuf::Clear for MethodDescriptorProto {
     fn clear(&mut self) {
         self.name.clear();
@@ -4262,9 +4775,34 @@ impl ::protobuf::Clear for MethodDescriptorProto {
     }
 }
 
+impl ::protobuf::PbPrint for MethodDescriptorProto {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.input_type, "input_type", buf);
+        ::protobuf::PbPrint::fmt(&self.output_type, "output_type", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.client_streaming, "client_streaming", buf);
+        ::protobuf::PbPrint::fmt(&self.server_streaming, "server_streaming", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for MethodDescriptorProto {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.input_type, "input_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.output_type, "output_type", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.client_streaming, "client_streaming", &mut s);
+        ::protobuf::PbPrint::fmt(&self.server_streaming, "server_streaming", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -4274,7 +4812,7 @@ impl ::protobuf::reflect::ProtobufValue for MethodDescriptorProto {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FileOptions {
     // message fields
@@ -4353,6 +4891,10 @@ impl FileOptions {
         self.java_package.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_java_package_offset(&self) -> &u64 {
+        &self.java_package_offset
+    }
+
     // optional string java_outer_classname = 8;
 
 
@@ -4389,6 +4931,10 @@ impl FileOptions {
         self.java_outer_classname.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_java_outer_classname_offset(&self) -> &u64 {
+        &self.java_outer_classname_offset
+    }
+
     // optional bool java_multiple_files = 10;
 
 
@@ -4407,6 +4953,7 @@ impl FileOptions {
     pub fn set_java_multiple_files(&mut self, v: bool) {
         self.java_multiple_files = ::std::option::Option::Some(v);
     }
+
 
     // optional bool java_generate_equals_and_hash = 20;
 
@@ -4427,6 +4974,7 @@ impl FileOptions {
         self.java_generate_equals_and_hash = ::std::option::Option::Some(v);
     }
 
+
     // optional bool java_string_check_utf8 = 27;
 
 
@@ -4446,6 +4994,7 @@ impl FileOptions {
         self.java_string_check_utf8 = ::std::option::Option::Some(v);
     }
 
+
     // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9;
 
 
@@ -4464,6 +5013,7 @@ impl FileOptions {
     pub fn set_optimize_for(&mut self, v: FileOptions_OptimizeMode) {
         self.optimize_for = ::std::option::Option::Some(v);
     }
+
 
     // optional string go_package = 11;
 
@@ -4501,6 +5051,10 @@ impl FileOptions {
         self.go_package.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_go_package_offset(&self) -> &u64 {
+        &self.go_package_offset
+    }
+
     // optional bool cc_generic_services = 16;
 
 
@@ -4519,6 +5073,7 @@ impl FileOptions {
     pub fn set_cc_generic_services(&mut self, v: bool) {
         self.cc_generic_services = ::std::option::Option::Some(v);
     }
+
 
     // optional bool java_generic_services = 17;
 
@@ -4539,6 +5094,7 @@ impl FileOptions {
         self.java_generic_services = ::std::option::Option::Some(v);
     }
 
+
     // optional bool py_generic_services = 18;
 
 
@@ -4557,6 +5113,7 @@ impl FileOptions {
     pub fn set_py_generic_services(&mut self, v: bool) {
         self.py_generic_services = ::std::option::Option::Some(v);
     }
+
 
     // optional bool deprecated = 23;
 
@@ -4577,6 +5134,7 @@ impl FileOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // optional bool cc_enable_arenas = 31;
 
 
@@ -4595,6 +5153,7 @@ impl FileOptions {
     pub fn set_cc_enable_arenas(&mut self, v: bool) {
         self.cc_enable_arenas = ::std::option::Option::Some(v);
     }
+
 
     // optional string objc_class_prefix = 36;
 
@@ -4630,6 +5189,10 @@ impl FileOptions {
     // Take field
     pub fn take_objc_class_prefix(&mut self) -> ::std::string::String {
         self.objc_class_prefix.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_objc_class_prefix_offset(&self) -> &u64 {
+        &self.objc_class_prefix_offset
     }
 
     // optional string csharp_namespace = 37;
@@ -4668,6 +5231,10 @@ impl FileOptions {
         self.csharp_namespace.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_csharp_namespace_offset(&self) -> &u64 {
+        &self.csharp_namespace_offset
+    }
+
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
 
@@ -4691,6 +5258,10 @@ impl FileOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -5033,6 +5604,14 @@ impl ::protobuf::Message for FileOptions {
     }
 }
 
+impl PartialEq for FileOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.java_package == other.java_package && self.java_outer_classname == other.java_outer_classname && self.java_multiple_files == other.java_multiple_files && self.java_generate_equals_and_hash == other.java_generate_equals_and_hash && self.java_string_check_utf8 == other.java_string_check_utf8 && self.optimize_for == other.optimize_for && self.go_package == other.go_package && self.cc_generic_services == other.cc_generic_services && self.java_generic_services == other.java_generic_services && self.py_generic_services == other.py_generic_services && self.deprecated == other.deprecated && self.cc_enable_arenas == other.cc_enable_arenas && self.objc_class_prefix == other.objc_class_prefix && self.csharp_namespace == other.csharp_namespace && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for FileOptions {
     fn clear(&mut self) {
         self.java_package.clear();
@@ -5054,9 +5633,52 @@ impl ::protobuf::Clear for FileOptions {
     }
 }
 
+impl ::protobuf::PbPrint for FileOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.java_package, "java_package", buf);
+        ::protobuf::PbPrint::fmt(&self.java_outer_classname, "java_outer_classname", buf);
+        ::protobuf::PbPrint::fmt(&self.java_multiple_files, "java_multiple_files", buf);
+        ::protobuf::PbPrint::fmt(&self.java_generate_equals_and_hash, "java_generate_equals_and_hash", buf);
+        ::protobuf::PbPrint::fmt(&self.java_string_check_utf8, "java_string_check_utf8", buf);
+        ::protobuf::PbPrint::fmt(&self.optimize_for, "optimize_for", buf);
+        ::protobuf::PbPrint::fmt(&self.go_package, "go_package", buf);
+        ::protobuf::PbPrint::fmt(&self.cc_generic_services, "cc_generic_services", buf);
+        ::protobuf::PbPrint::fmt(&self.java_generic_services, "java_generic_services", buf);
+        ::protobuf::PbPrint::fmt(&self.py_generic_services, "py_generic_services", buf);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.cc_enable_arenas, "cc_enable_arenas", buf);
+        ::protobuf::PbPrint::fmt(&self.objc_class_prefix, "objc_class_prefix", buf);
+        ::protobuf::PbPrint::fmt(&self.csharp_namespace, "csharp_namespace", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FileOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.java_package, "java_package", &mut s);
+        ::protobuf::PbPrint::fmt(&self.java_outer_classname, "java_outer_classname", &mut s);
+        ::protobuf::PbPrint::fmt(&self.java_multiple_files, "java_multiple_files", &mut s);
+        ::protobuf::PbPrint::fmt(&self.java_generate_equals_and_hash, "java_generate_equals_and_hash", &mut s);
+        ::protobuf::PbPrint::fmt(&self.java_string_check_utf8, "java_string_check_utf8", &mut s);
+        ::protobuf::PbPrint::fmt(&self.optimize_for, "optimize_for", &mut s);
+        ::protobuf::PbPrint::fmt(&self.go_package, "go_package", &mut s);
+        ::protobuf::PbPrint::fmt(&self.cc_generic_services, "cc_generic_services", &mut s);
+        ::protobuf::PbPrint::fmt(&self.java_generic_services, "java_generic_services", &mut s);
+        ::protobuf::PbPrint::fmt(&self.py_generic_services, "py_generic_services", &mut s);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.cc_enable_arenas, "cc_enable_arenas", &mut s);
+        ::protobuf::PbPrint::fmt(&self.objc_class_prefix, "objc_class_prefix", &mut s);
+        ::protobuf::PbPrint::fmt(&self.csharp_namespace, "csharp_namespace", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -5113,6 +5735,17 @@ impl ::protobuf::ProtobufEnum for FileOptions_OptimizeMode {
 impl ::std::marker::Copy for FileOptions_OptimizeMode {
 }
 
+impl ::protobuf::PbPrint for FileOptions_OptimizeMode {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == FileOptions_OptimizeMode::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 // Note, `Default` is implemented although default value is not 0
 impl ::std::default::Default for FileOptions_OptimizeMode {
     fn default() -> Self {
@@ -5126,7 +5759,7 @@ impl ::protobuf::reflect::ProtobufValue for FileOptions_OptimizeMode {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct MessageOptions {
     // message fields
@@ -5173,6 +5806,7 @@ impl MessageOptions {
         self.message_set_wire_format = ::std::option::Option::Some(v);
     }
 
+
     // optional bool no_standard_descriptor_accessor = 2;
 
 
@@ -5191,6 +5825,7 @@ impl MessageOptions {
     pub fn set_no_standard_descriptor_accessor(&mut self, v: bool) {
         self.no_standard_descriptor_accessor = ::std::option::Option::Some(v);
     }
+
 
     // optional bool deprecated = 3;
 
@@ -5211,6 +5846,7 @@ impl MessageOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // optional bool map_entry = 7;
 
 
@@ -5229,6 +5865,7 @@ impl MessageOptions {
     pub fn set_map_entry(&mut self, v: bool) {
         self.map_entry = ::std::option::Option::Some(v);
     }
+
 
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
@@ -5253,6 +5890,10 @@ impl MessageOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -5439,6 +6080,14 @@ impl ::protobuf::Message for MessageOptions {
     }
 }
 
+impl PartialEq for MessageOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.message_set_wire_format == other.message_set_wire_format && self.no_standard_descriptor_accessor == other.no_standard_descriptor_accessor && self.deprecated == other.deprecated && self.map_entry == other.map_entry && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for MessageOptions {
     fn clear(&mut self) {
         self.message_set_wire_format = ::std::option::Option::None;
@@ -5450,9 +6099,32 @@ impl ::protobuf::Clear for MessageOptions {
     }
 }
 
+impl ::protobuf::PbPrint for MessageOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.message_set_wire_format, "message_set_wire_format", buf);
+        ::protobuf::PbPrint::fmt(&self.no_standard_descriptor_accessor, "no_standard_descriptor_accessor", buf);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.map_entry, "map_entry", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for MessageOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.message_set_wire_format, "message_set_wire_format", &mut s);
+        ::protobuf::PbPrint::fmt(&self.no_standard_descriptor_accessor, "no_standard_descriptor_accessor", &mut s);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.map_entry, "map_entry", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -5462,7 +6134,7 @@ impl ::protobuf::reflect::ProtobufValue for MessageOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FieldOptions {
     // message fields
@@ -5511,6 +6183,7 @@ impl FieldOptions {
         self.ctype = ::std::option::Option::Some(v);
     }
 
+
     // optional bool packed = 2;
 
 
@@ -5529,6 +6202,7 @@ impl FieldOptions {
     pub fn set_packed(&mut self, v: bool) {
         self.packed = ::std::option::Option::Some(v);
     }
+
 
     // optional .google.protobuf.FieldOptions.JSType jstype = 6;
 
@@ -5549,6 +6223,7 @@ impl FieldOptions {
         self.jstype = ::std::option::Option::Some(v);
     }
 
+
     // optional bool lazy = 5;
 
 
@@ -5567,6 +6242,7 @@ impl FieldOptions {
     pub fn set_lazy(&mut self, v: bool) {
         self.lazy = ::std::option::Option::Some(v);
     }
+
 
     // optional bool deprecated = 3;
 
@@ -5587,6 +6263,7 @@ impl FieldOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // optional bool weak = 10;
 
 
@@ -5605,6 +6282,7 @@ impl FieldOptions {
     pub fn set_weak(&mut self, v: bool) {
         self.weak = ::std::option::Option::Some(v);
     }
+
 
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
@@ -5629,6 +6307,10 @@ impl FieldOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -5843,6 +6525,14 @@ impl ::protobuf::Message for FieldOptions {
     }
 }
 
+impl PartialEq for FieldOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.ctype == other.ctype && self.packed == other.packed && self.jstype == other.jstype && self.lazy == other.lazy && self.deprecated == other.deprecated && self.weak == other.weak && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for FieldOptions {
     fn clear(&mut self) {
         self.ctype = ::std::option::Option::None;
@@ -5856,9 +6546,36 @@ impl ::protobuf::Clear for FieldOptions {
     }
 }
 
+impl ::protobuf::PbPrint for FieldOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.ctype, "ctype", buf);
+        ::protobuf::PbPrint::fmt(&self.packed, "packed", buf);
+        ::protobuf::PbPrint::fmt(&self.jstype, "jstype", buf);
+        ::protobuf::PbPrint::fmt(&self.lazy, "lazy", buf);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.weak, "weak", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FieldOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.ctype, "ctype", &mut s);
+        ::protobuf::PbPrint::fmt(&self.packed, "packed", &mut s);
+        ::protobuf::PbPrint::fmt(&self.jstype, "jstype", &mut s);
+        ::protobuf::PbPrint::fmt(&self.lazy, "lazy", &mut s);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.weak, "weak", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -5913,6 +6630,17 @@ impl ::protobuf::ProtobufEnum for FieldOptions_CType {
 }
 
 impl ::std::marker::Copy for FieldOptions_CType {
+}
+
+impl ::protobuf::PbPrint for FieldOptions_CType {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == FieldOptions_CType::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
 }
 
 impl ::std::default::Default for FieldOptions_CType {
@@ -5974,6 +6702,17 @@ impl ::protobuf::ProtobufEnum for FieldOptions_JSType {
 impl ::std::marker::Copy for FieldOptions_JSType {
 }
 
+impl ::protobuf::PbPrint for FieldOptions_JSType {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == FieldOptions_JSType::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 impl ::std::default::Default for FieldOptions_JSType {
     fn default() -> Self {
         FieldOptions_JSType::JS_NORMAL
@@ -5986,7 +6725,7 @@ impl ::protobuf::reflect::ProtobufValue for FieldOptions_JSType {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct OneofOptions {
     // message fields
@@ -6033,6 +6772,10 @@ impl OneofOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -6147,6 +6890,14 @@ impl ::protobuf::Message for OneofOptions {
     }
 }
 
+impl PartialEq for OneofOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for OneofOptions {
     fn clear(&mut self) {
         self.uninterpreted_option.clear();
@@ -6154,9 +6905,24 @@ impl ::protobuf::Clear for OneofOptions {
     }
 }
 
+impl ::protobuf::PbPrint for OneofOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for OneofOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -6166,7 +6932,7 @@ impl ::protobuf::reflect::ProtobufValue for OneofOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct EnumOptions {
     // message fields
@@ -6211,6 +6977,7 @@ impl EnumOptions {
         self.allow_alias = ::std::option::Option::Some(v);
     }
 
+
     // optional bool deprecated = 3;
 
 
@@ -6229,6 +6996,7 @@ impl EnumOptions {
     pub fn set_deprecated(&mut self, v: bool) {
         self.deprecated = ::std::option::Option::Some(v);
     }
+
 
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
@@ -6253,6 +7021,10 @@ impl EnumOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -6403,6 +7175,14 @@ impl ::protobuf::Message for EnumOptions {
     }
 }
 
+impl PartialEq for EnumOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.allow_alias == other.allow_alias && self.deprecated == other.deprecated && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for EnumOptions {
     fn clear(&mut self) {
         self.allow_alias = ::std::option::Option::None;
@@ -6412,9 +7192,28 @@ impl ::protobuf::Clear for EnumOptions {
     }
 }
 
+impl ::protobuf::PbPrint for EnumOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.allow_alias, "allow_alias", buf);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for EnumOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.allow_alias, "allow_alias", &mut s);
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -6424,7 +7223,7 @@ impl ::protobuf::reflect::ProtobufValue for EnumOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct EnumValueOptions {
     // message fields
@@ -6468,6 +7267,7 @@ impl EnumValueOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
 
@@ -6491,6 +7291,10 @@ impl EnumValueOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -6623,6 +7427,14 @@ impl ::protobuf::Message for EnumValueOptions {
     }
 }
 
+impl PartialEq for EnumValueOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.deprecated == other.deprecated && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for EnumValueOptions {
     fn clear(&mut self) {
         self.deprecated = ::std::option::Option::None;
@@ -6631,9 +7443,26 @@ impl ::protobuf::Clear for EnumValueOptions {
     }
 }
 
+impl ::protobuf::PbPrint for EnumValueOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for EnumValueOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -6643,7 +7472,7 @@ impl ::protobuf::reflect::ProtobufValue for EnumValueOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ServiceOptions {
     // message fields
@@ -6687,6 +7516,7 @@ impl ServiceOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
 
@@ -6710,6 +7540,10 @@ impl ServiceOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -6842,6 +7676,14 @@ impl ::protobuf::Message for ServiceOptions {
     }
 }
 
+impl PartialEq for ServiceOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.deprecated == other.deprecated && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for ServiceOptions {
     fn clear(&mut self) {
         self.deprecated = ::std::option::Option::None;
@@ -6850,9 +7692,26 @@ impl ::protobuf::Clear for ServiceOptions {
     }
 }
 
+impl ::protobuf::PbPrint for ServiceOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for ServiceOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -6862,7 +7721,7 @@ impl ::protobuf::reflect::ProtobufValue for ServiceOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct MethodOptions {
     // message fields
@@ -6906,6 +7765,7 @@ impl MethodOptions {
         self.deprecated = ::std::option::Option::Some(v);
     }
 
+
     // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
 
 
@@ -6929,6 +7789,10 @@ impl MethodOptions {
     // Take field
     pub fn take_uninterpreted_option(&mut self) -> ::protobuf::RepeatedField<UninterpretedOption> {
         ::std::mem::replace(&mut self.uninterpreted_option, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_uninterpreted_option_offset(&self) -> &[u64] {
+        &self.uninterpreted_option_offset
     }
 }
 
@@ -7061,6 +7925,14 @@ impl ::protobuf::Message for MethodOptions {
     }
 }
 
+impl PartialEq for MethodOptions {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.deprecated == other.deprecated && self.uninterpreted_option == other.uninterpreted_option
+    }
+}
+
 impl ::protobuf::Clear for MethodOptions {
     fn clear(&mut self) {
         self.deprecated = ::std::option::Option::None;
@@ -7069,9 +7941,26 @@ impl ::protobuf::Clear for MethodOptions {
     }
 }
 
+impl ::protobuf::PbPrint for MethodOptions {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", buf);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for MethodOptions {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.deprecated, "deprecated", &mut s);
+        ::protobuf::PbPrint::fmt(&self.uninterpreted_option, "uninterpreted_option", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -7081,7 +7970,7 @@ impl ::protobuf::reflect::ProtobufValue for MethodOptions {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct UninterpretedOption {
     // message fields
@@ -7139,6 +8028,10 @@ impl UninterpretedOption {
         ::std::mem::replace(&mut self.name, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_name_offset(&self) -> &[u64] {
+        &self.name_offset
+    }
+
     // optional string identifier_value = 3;
 
 
@@ -7175,6 +8068,10 @@ impl UninterpretedOption {
         self.identifier_value.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_identifier_value_offset(&self) -> &u64 {
+        &self.identifier_value_offset
+    }
+
     // optional uint64 positive_int_value = 4;
 
 
@@ -7193,6 +8090,7 @@ impl UninterpretedOption {
     pub fn set_positive_int_value(&mut self, v: u64) {
         self.positive_int_value = ::std::option::Option::Some(v);
     }
+
 
     // optional int64 negative_int_value = 5;
 
@@ -7213,6 +8111,7 @@ impl UninterpretedOption {
         self.negative_int_value = ::std::option::Option::Some(v);
     }
 
+
     // optional double double_value = 6;
 
 
@@ -7231,6 +8130,7 @@ impl UninterpretedOption {
     pub fn set_double_value(&mut self, v: f64) {
         self.double_value = ::std::option::Option::Some(v);
     }
+
 
     // optional bytes string_value = 7;
 
@@ -7268,6 +8168,10 @@ impl UninterpretedOption {
         self.string_value.take().unwrap_or_else(|| ::std::vec::Vec::new())
     }
 
+    pub fn get_string_value_offset(&self) -> &u64 {
+        &self.string_value_offset
+    }
+
     // optional string aggregate_value = 8;
 
 
@@ -7302,6 +8206,10 @@ impl UninterpretedOption {
     // Take field
     pub fn take_aggregate_value(&mut self) -> ::std::string::String {
         self.aggregate_value.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_aggregate_value_offset(&self) -> &u64 {
+        &self.aggregate_value_offset
     }
 }
 
@@ -7512,6 +8420,14 @@ impl ::protobuf::Message for UninterpretedOption {
     }
 }
 
+impl PartialEq for UninterpretedOption {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.identifier_value == other.identifier_value && self.positive_int_value == other.positive_int_value && self.negative_int_value == other.negative_int_value && self.double_value == other.double_value && self.string_value == other.string_value && self.aggregate_value == other.aggregate_value
+    }
+}
+
 impl ::protobuf::Clear for UninterpretedOption {
     fn clear(&mut self) {
         self.name.clear();
@@ -7525,9 +8441,36 @@ impl ::protobuf::Clear for UninterpretedOption {
     }
 }
 
+impl ::protobuf::PbPrint for UninterpretedOption {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.identifier_value, "identifier_value", buf);
+        ::protobuf::PbPrint::fmt(&self.positive_int_value, "positive_int_value", buf);
+        ::protobuf::PbPrint::fmt(&self.negative_int_value, "negative_int_value", buf);
+        ::protobuf::PbPrint::fmt(&self.double_value, "double_value", buf);
+        ::protobuf::PbPrint::fmt(&self.string_value, "string_value", buf);
+        ::protobuf::PbPrint::fmt(&self.aggregate_value, "aggregate_value", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for UninterpretedOption {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.identifier_value, "identifier_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.positive_int_value, "positive_int_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.negative_int_value, "negative_int_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.double_value, "double_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.string_value, "string_value", &mut s);
+        ::protobuf::PbPrint::fmt(&self.aggregate_value, "aggregate_value", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -7537,7 +8480,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct UninterpretedOption_NamePart {
     // message fields
@@ -7598,6 +8541,10 @@ impl UninterpretedOption_NamePart {
         self.name_part.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_name_part_offset(&self) -> &u64 {
+        &self.name_part_offset
+    }
+
     // required bool is_extension = 2;
 
 
@@ -7616,6 +8563,7 @@ impl UninterpretedOption_NamePart {
     pub fn set_is_extension(&mut self, v: bool) {
         self.is_extension = ::std::option::Option::Some(v);
     }
+
 }
 
 impl ::protobuf::Message for UninterpretedOption_NamePart {
@@ -7745,6 +8693,14 @@ impl ::protobuf::Message for UninterpretedOption_NamePart {
     }
 }
 
+impl PartialEq for UninterpretedOption_NamePart {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name_part == other.name_part && self.is_extension == other.is_extension
+    }
+}
+
 impl ::protobuf::Clear for UninterpretedOption_NamePart {
     fn clear(&mut self) {
         self.name_part.clear();
@@ -7753,9 +8709,26 @@ impl ::protobuf::Clear for UninterpretedOption_NamePart {
     }
 }
 
+impl ::protobuf::PbPrint for UninterpretedOption_NamePart {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name_part, "name_part", buf);
+        ::protobuf::PbPrint::fmt(&self.is_extension, "is_extension", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for UninterpretedOption_NamePart {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name_part, "name_part", &mut s);
+        ::protobuf::PbPrint::fmt(&self.is_extension, "is_extension", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -7765,7 +8738,7 @@ impl ::protobuf::reflect::ProtobufValue for UninterpretedOption_NamePart {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct SourceCodeInfo {
     // message fields
@@ -7812,6 +8785,10 @@ impl SourceCodeInfo {
     // Take field
     pub fn take_location(&mut self) -> ::protobuf::RepeatedField<SourceCodeInfo_Location> {
         ::std::mem::replace(&mut self.location, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_location_offset(&self) -> &[u64] {
+        &self.location_offset
     }
 }
 
@@ -7926,6 +8903,14 @@ impl ::protobuf::Message for SourceCodeInfo {
     }
 }
 
+impl PartialEq for SourceCodeInfo {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.location == other.location
+    }
+}
+
 impl ::protobuf::Clear for SourceCodeInfo {
     fn clear(&mut self) {
         self.location.clear();
@@ -7933,9 +8918,24 @@ impl ::protobuf::Clear for SourceCodeInfo {
     }
 }
 
+impl ::protobuf::PbPrint for SourceCodeInfo {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.location, "location", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for SourceCodeInfo {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.location, "location", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -7945,7 +8945,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct SourceCodeInfo_Location {
     // message fields
@@ -8000,6 +9000,7 @@ impl SourceCodeInfo_Location {
         ::std::mem::replace(&mut self.path, ::std::vec::Vec::new())
     }
 
+
     // repeated int32 span = 2;
 
 
@@ -8024,6 +9025,7 @@ impl SourceCodeInfo_Location {
     pub fn take_span(&mut self) -> ::std::vec::Vec<i32> {
         ::std::mem::replace(&mut self.span, ::std::vec::Vec::new())
     }
+
 
     // optional string leading_comments = 3;
 
@@ -8059,6 +9061,10 @@ impl SourceCodeInfo_Location {
     // Take field
     pub fn take_leading_comments(&mut self) -> ::std::string::String {
         self.leading_comments.take().unwrap_or_else(|| ::std::string::String::new())
+    }
+
+    pub fn get_leading_comments_offset(&self) -> &u64 {
+        &self.leading_comments_offset
     }
 
     // optional string trailing_comments = 4;
@@ -8097,6 +9103,10 @@ impl SourceCodeInfo_Location {
         self.trailing_comments.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_trailing_comments_offset(&self) -> &u64 {
+        &self.trailing_comments_offset
+    }
+
     // repeated string leading_detached_comments = 6;
 
 
@@ -8120,6 +9130,10 @@ impl SourceCodeInfo_Location {
     // Take field
     pub fn take_leading_detached_comments(&mut self) -> ::protobuf::RepeatedField<::std::string::String> {
         ::std::mem::replace(&mut self.leading_detached_comments, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_leading_detached_comments_offset(&self) -> &[u64] {
+        &self.leading_detached_comments_offset
     }
 }
 
@@ -8292,6 +9306,14 @@ impl ::protobuf::Message for SourceCodeInfo_Location {
     }
 }
 
+impl PartialEq for SourceCodeInfo_Location {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.path == other.path && self.span == other.span && self.leading_comments == other.leading_comments && self.trailing_comments == other.trailing_comments && self.leading_detached_comments == other.leading_detached_comments
+    }
+}
+
 impl ::protobuf::Clear for SourceCodeInfo_Location {
     fn clear(&mut self) {
         self.path.clear();
@@ -8303,9 +9325,32 @@ impl ::protobuf::Clear for SourceCodeInfo_Location {
     }
 }
 
+impl ::protobuf::PbPrint for SourceCodeInfo_Location {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.path, "path", buf);
+        ::protobuf::PbPrint::fmt(&self.span, "span", buf);
+        ::protobuf::PbPrint::fmt(&self.leading_comments, "leading_comments", buf);
+        ::protobuf::PbPrint::fmt(&self.trailing_comments, "trailing_comments", buf);
+        ::protobuf::PbPrint::fmt(&self.leading_detached_comments, "leading_detached_comments", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for SourceCodeInfo_Location {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.path, "path", &mut s);
+        ::protobuf::PbPrint::fmt(&self.span, "span", &mut s);
+        ::protobuf::PbPrint::fmt(&self.leading_comments, "leading_comments", &mut s);
+        ::protobuf::PbPrint::fmt(&self.trailing_comments, "trailing_comments", &mut s);
+        ::protobuf::PbPrint::fmt(&self.leading_detached_comments, "leading_detached_comments", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -8315,7 +9360,7 @@ impl ::protobuf::reflect::ProtobufValue for SourceCodeInfo_Location {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct GeneratedCodeInfo {
     // message fields
@@ -8362,6 +9407,10 @@ impl GeneratedCodeInfo {
     // Take field
     pub fn take_annotation(&mut self) -> ::protobuf::RepeatedField<GeneratedCodeInfo_Annotation> {
         ::std::mem::replace(&mut self.annotation, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_annotation_offset(&self) -> &[u64] {
+        &self.annotation_offset
     }
 }
 
@@ -8476,6 +9525,14 @@ impl ::protobuf::Message for GeneratedCodeInfo {
     }
 }
 
+impl PartialEq for GeneratedCodeInfo {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.annotation == other.annotation
+    }
+}
+
 impl ::protobuf::Clear for GeneratedCodeInfo {
     fn clear(&mut self) {
         self.annotation.clear();
@@ -8483,9 +9540,24 @@ impl ::protobuf::Clear for GeneratedCodeInfo {
     }
 }
 
+impl ::protobuf::PbPrint for GeneratedCodeInfo {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.annotation, "annotation", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for GeneratedCodeInfo {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.annotation, "annotation", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -8495,7 +9567,7 @@ impl ::protobuf::reflect::ProtobufValue for GeneratedCodeInfo {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct GeneratedCodeInfo_Annotation {
     // message fields
@@ -8547,6 +9619,7 @@ impl GeneratedCodeInfo_Annotation {
         ::std::mem::replace(&mut self.path, ::std::vec::Vec::new())
     }
 
+
     // optional string source_file = 2;
 
 
@@ -8583,6 +9656,10 @@ impl GeneratedCodeInfo_Annotation {
         self.source_file.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
+    pub fn get_source_file_offset(&self) -> &u64 {
+        &self.source_file_offset
+    }
+
     // optional int32 begin = 3;
 
 
@@ -8602,6 +9679,7 @@ impl GeneratedCodeInfo_Annotation {
         self.begin = ::std::option::Option::Some(v);
     }
 
+
     // optional int32 end = 4;
 
 
@@ -8620,6 +9698,7 @@ impl GeneratedCodeInfo_Annotation {
     pub fn set_end(&mut self, v: i32) {
         self.end = ::std::option::Option::Some(v);
     }
+
 }
 
 impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
@@ -8780,6 +9859,14 @@ impl ::protobuf::Message for GeneratedCodeInfo_Annotation {
     }
 }
 
+impl PartialEq for GeneratedCodeInfo_Annotation {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.path == other.path && self.source_file == other.source_file && self.begin == other.begin && self.end == other.end
+    }
+}
+
 impl ::protobuf::Clear for GeneratedCodeInfo_Annotation {
     fn clear(&mut self) {
         self.path.clear();
@@ -8790,9 +9877,30 @@ impl ::protobuf::Clear for GeneratedCodeInfo_Annotation {
     }
 }
 
+impl ::protobuf::PbPrint for GeneratedCodeInfo_Annotation {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.path, "path", buf);
+        ::protobuf::PbPrint::fmt(&self.source_file, "source_file", buf);
+        ::protobuf::PbPrint::fmt(&self.begin, "begin", buf);
+        ::protobuf::PbPrint::fmt(&self.end, "end", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for GeneratedCodeInfo_Annotation {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.path, "path", &mut s);
+        ::protobuf::PbPrint::fmt(&self.source_file, "source_file", &mut s);
+        ::protobuf::PbPrint::fmt(&self.begin, "begin", &mut s);
+        ::protobuf::PbPrint::fmt(&self.end, "end", &mut s);
+        write!(f, "{}", s)
     }
 }
 

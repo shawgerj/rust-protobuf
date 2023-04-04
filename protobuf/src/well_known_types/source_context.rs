@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct SourceContext {
     // message fields
@@ -70,6 +70,10 @@ impl SourceContext {
     // Take field
     pub fn take_file_name(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.file_name, ::std::string::String::new())
+    }
+
+    pub fn get_file_name_offset(&self) -> &u64 {
+        &self.file_name_offset
     }
 }
 
@@ -176,6 +180,14 @@ impl ::protobuf::Message for SourceContext {
     }
 }
 
+impl PartialEq for SourceContext {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.file_name == other.file_name
+    }
+}
+
 impl ::protobuf::Clear for SourceContext {
     fn clear(&mut self) {
         self.file_name.clear();
@@ -183,9 +195,24 @@ impl ::protobuf::Clear for SourceContext {
     }
 }
 
+impl ::protobuf::PbPrint for SourceContext {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.file_name, "file_name", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for SourceContext {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.file_name, "file_name", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -199,7 +226,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n$google/protobuf/source_context.proto\x12\x0fgoogle.protobuf\",\n\rSou\
     rceContext\x12\x1b\n\tfile_name\x18\x01\x20\x01(\tR\x08fileNameBR\n\x13c\
     om.google.protobufB\x12SourceContextProtoP\x01\xa2\x02\x03GPB\xaa\x02\
-    \x1eGoogle.Protobuf.WellKnownTypesJ\xbb\x10\n\x06\x12\x04\x1e\0.\x01\n\
+    \x1eGoogle.Protobuf.WellKnownTypesJ\xac\x10\n\x06\x12\x04\x1e\0.\x01\n\
     \xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20\
     -\x20Google's\x20data\x20interchange\x20format\n\x20Copyright\x202008\
     \x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https://develo\

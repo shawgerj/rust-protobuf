@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Timestamp {
     // message fields
@@ -61,6 +61,7 @@ impl Timestamp {
         self.seconds = v;
     }
 
+
     // int32 nanos = 2;
 
 
@@ -75,6 +76,7 @@ impl Timestamp {
     pub fn set_nanos(&mut self, v: i32) {
         self.nanos = v;
     }
+
 }
 
 impl ::protobuf::Message for Timestamp {
@@ -202,6 +204,14 @@ impl ::protobuf::Message for Timestamp {
     }
 }
 
+impl PartialEq for Timestamp {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.seconds == other.seconds && self.nanos == other.nanos
+    }
+}
+
 impl ::protobuf::Clear for Timestamp {
     fn clear(&mut self) {
         self.seconds = 0;
@@ -210,9 +220,26 @@ impl ::protobuf::Clear for Timestamp {
     }
 }
 
+impl ::protobuf::PbPrint for Timestamp {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.seconds, "seconds", buf);
+        ::protobuf::PbPrint::fmt(&self.nanos, "nanos", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Timestamp {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.seconds, "seconds", &mut s);
+        ::protobuf::PbPrint::fmt(&self.nanos, "nanos", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -227,7 +254,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     tamp\x12\x18\n\x07seconds\x18\x01\x20\x01(\x03R\x07seconds\x12\x14\n\x05\
     nanos\x18\x02\x20\x01(\x05R\x05nanosB~\n\x13com.google.protobufB\x0eTime\
     stampProtoP\x01Z+github.com/golang/protobuf/ptypes/timestamp\xf8\x01\x01\
-    \xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xb3!\n\x06\
+    \xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\x95!\n\x06\
     \x12\x04\x1e\0k\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Pr\
     otocol\x20Buffers\x20-\x20Google's\x20data\x20interchange\x20format\n\
     \x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved\

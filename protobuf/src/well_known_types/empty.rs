@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Empty {
     // special fields
@@ -133,15 +133,29 @@ impl ::protobuf::Message for Empty {
     }
 }
 
+impl PartialEq for Empty {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        true
+    }
+}
+
 impl ::protobuf::Clear for Empty {
     fn clear(&mut self) {
         self.unknown_fields.clear();
     }
 }
 
+impl ::protobuf::PbPrint for Empty {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+    }
+}
 impl ::std::fmt::Debug for Empty {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        Ok(())
     }
 }
 

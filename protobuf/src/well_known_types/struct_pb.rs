@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Struct {
     // message fields
@@ -70,6 +70,7 @@ impl Struct {
     pub fn take_fields(&mut self) -> ::std::collections::HashMap<::std::string::String, Value> {
         ::std::mem::replace(&mut self.fields, ::std::collections::HashMap::new())
     }
+
 }
 
 impl ::protobuf::Message for Struct {
@@ -171,6 +172,14 @@ impl ::protobuf::Message for Struct {
     }
 }
 
+impl PartialEq for Struct {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.fields == other.fields
+    }
+}
+
 impl ::protobuf::Clear for Struct {
     fn clear(&mut self) {
         self.fields.clear();
@@ -178,9 +187,24 @@ impl ::protobuf::Clear for Struct {
     }
 }
 
+impl ::protobuf::PbPrint for Struct {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.fields, "fields", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Struct {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.fields, "fields", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -190,7 +214,7 @@ impl ::protobuf::reflect::ProtobufValue for Struct {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Value {
     // message oneof groups
@@ -217,6 +241,19 @@ pub enum Value_oneof_kind {
     bool_value(bool),
     struct_value(Struct),
     list_value(ListValue),
+}
+
+impl ::protobuf::PbPrint for Value_oneof_kind {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        match self {
+            Value_oneof_kind::null_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+            Value_oneof_kind::number_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+            Value_oneof_kind::string_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+            Value_oneof_kind::bool_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+            Value_oneof_kind::struct_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+            Value_oneof_kind::list_value(v) => ::protobuf::PbPrint::fmt(v, name, buf),
+        }
+    }
 }
 
 impl Value {
@@ -249,6 +286,7 @@ impl Value {
         self.kind = ::std::option::Option::Some(Value_oneof_kind::null_value(v))
     }
 
+
     // double number_value = 2;
 
 
@@ -273,6 +311,7 @@ impl Value {
     pub fn set_number_value(&mut self, v: f64) {
         self.kind = ::std::option::Option::Some(Value_oneof_kind::number_value(v))
     }
+
 
     // string string_value = 3;
 
@@ -323,6 +362,7 @@ impl Value {
         }
     }
 
+
     // bool bool_value = 4;
 
 
@@ -347,6 +387,7 @@ impl Value {
     pub fn set_bool_value(&mut self, v: bool) {
         self.kind = ::std::option::Option::Some(Value_oneof_kind::bool_value(v))
     }
+
 
     // .google.protobuf.Struct struct_value = 5;
 
@@ -397,6 +438,7 @@ impl Value {
         }
     }
 
+
     // .google.protobuf.ListValue list_value = 6;
 
 
@@ -445,6 +487,7 @@ impl Value {
             ListValue::new()
         }
     }
+
 }
 
 impl ::protobuf::Message for Value {
@@ -662,6 +705,14 @@ impl ::protobuf::Message for Value {
     }
 }
 
+impl PartialEq for Value {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        true
+    }
+}
+
 impl ::protobuf::Clear for Value {
     fn clear(&mut self) {
         self.kind = ::std::option::Option::None;
@@ -674,9 +725,24 @@ impl ::protobuf::Clear for Value {
     }
 }
 
+impl ::protobuf::PbPrint for Value {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.kind, "kind", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Value {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.kind, "kind", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -686,7 +752,7 @@ impl ::protobuf::reflect::ProtobufValue for Value {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ListValue {
     // message fields
@@ -733,6 +799,10 @@ impl ListValue {
     // Take field
     pub fn take_values(&mut self) -> ::protobuf::RepeatedField<Value> {
         ::std::mem::replace(&mut self.values, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_values_offset(&self) -> &[u64] {
+        &self.values_offset
     }
 }
 
@@ -847,6 +917,14 @@ impl ::protobuf::Message for ListValue {
     }
 }
 
+impl PartialEq for ListValue {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.values == other.values
+    }
+}
+
 impl ::protobuf::Clear for ListValue {
     fn clear(&mut self) {
         self.values.clear();
@@ -854,9 +932,24 @@ impl ::protobuf::Clear for ListValue {
     }
 }
 
+impl ::protobuf::PbPrint for ListValue {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.values, "values", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for ListValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.values, "values", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -907,6 +1000,17 @@ impl ::protobuf::ProtobufEnum for NullValue {
 impl ::std::marker::Copy for NullValue {
 }
 
+impl ::protobuf::PbPrint for NullValue {
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        use std::fmt::Write;
+        if *self == NullValue::default() {
+            return;
+        }
+        ::protobuf::push_field_start(name, buf);
+        write!(buf, "{:?}", self).unwrap();
+    }
+}
+
 impl ::std::default::Default for NullValue {
     fn default() -> Self {
         NullValue::NULL_VALUE
@@ -935,7 +1039,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x16.google.protobuf.ValueR\x06values*\x1b\n\tNullValue\x12\x0e\n\nNULL_\
     VALUE\x10\0B\x81\x01\n\x13com.google.protobufB\x0bStructProtoP\x01Z1gith\
     ub.com/golang/protobuf/ptypes/struct;structpb\xf8\x01\x01\xa2\x02\x03GPB\
-    \xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xa8\x1d\n\x06\x12\x04\x1e\0_\
+    \xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\x99\x1d\n\x06\x12\x04\x1e\0_\
     \x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protocol\x20Buffe\
     rs\x20-\x20Google's\x20data\x20interchange\x20format\n\x20Copyright\x202\
     008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20https://dev\
@@ -987,56 +1091,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20for\x20the\x20language.\n\n\x20The\x20JSON\x20representation\x20for\
     \x20`Struct`\x20is\x20JSON\x20object.\n\n\n\n\x03\x04\0\x01\x12\x033\x08\
     \x0e\n9\n\x04\x04\0\x02\0\x12\x035\x02\x20\x1a,\x20Unordered\x20map\x20o\
-<<<<<<< HEAD
-    f\x20dynamically\x20typed\x20values.\n\n\r\n\x05\x04\0\x02\0\x04\x12\x04\
-    5\x023\x10\n\x0c\n\x05\x04\0\x02\0\x06\x12\x035\x02\x14\n\x0c\n\x05\x04\
-    \0\x02\0\x01\x12\x035\x15\x1b\n\x0c\n\x05\x04\0\x02\0\x03\x12\x035\x1e\
-    \x1f\n\xc3\x02\n\x02\x04\x01\x12\x04>\0N\x01\x1a\xb6\x02\x20`Value`\x20r\
-    epresents\x20a\x20dynamically\x20typed\x20value\x20which\x20can\x20be\
-    \x20either\n\x20null,\x20a\x20number,\x20a\x20string,\x20a\x20boolean,\
-    \x20a\x20recursive\x20struct\x20value,\x20or\x20a\n\x20list\x20of\x20val\
-    ues.\x20A\x20producer\x20of\x20value\x20is\x20expected\x20to\x20set\x20o\
-    ne\x20of\x20that\n\x20variants,\x20absence\x20of\x20any\x20variant\x20in\
-    dicates\x20an\x20error.\n\n\x20The\x20JSON\x20representation\x20for\x20`\
-    Value`\x20is\x20JSON\x20value.\n\n\n\n\x03\x04\x01\x01\x12\x03>\x08\r\n\
-    \"\n\x04\x04\x01\x08\0\x12\x04@\x02M\x03\x1a\x14\x20The\x20kind\x20of\
-    \x20value.\n\n\x0c\n\x05\x04\x01\x08\0\x01\x12\x03@\x08\x0c\n'\n\x04\x04\
-    \x01\x02\0\x12\x03B\x04\x1d\x1a\x1a\x20Represents\x20a\x20null\x20value.\
-    \n\n\x0c\n\x05\x04\x01\x02\0\x06\x12\x03B\x04\r\n\x0c\n\x05\x04\x01\x02\
-    \0\x01\x12\x03B\x0e\x18\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03B\x1b\x1c\n\
-    )\n\x04\x04\x01\x02\x01\x12\x03D\x04\x1c\x1a\x1c\x20Represents\x20a\x20d\
-    ouble\x20value.\n\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03D\x04\n\n\x0c\n\
-    \x05\x04\x01\x02\x01\x01\x12\x03D\x0b\x17\n\x0c\n\x05\x04\x01\x02\x01\
-    \x03\x12\x03D\x1a\x1b\n)\n\x04\x04\x01\x02\x02\x12\x03F\x04\x1c\x1a\x1c\
-    \x20Represents\x20a\x20string\x20value.\n\n\x0c\n\x05\x04\x01\x02\x02\
-    \x05\x12\x03F\x04\n\n\x0c\n\x05\x04\x01\x02\x02\x01\x12\x03F\x0b\x17\n\
-    \x0c\n\x05\x04\x01\x02\x02\x03\x12\x03F\x1a\x1b\n*\n\x04\x04\x01\x02\x03\
-    \x12\x03H\x04\x18\x1a\x1d\x20Represents\x20a\x20boolean\x20value.\n\n\
-    \x0c\n\x05\x04\x01\x02\x03\x05\x12\x03H\x04\x08\n\x0c\n\x05\x04\x01\x02\
-    \x03\x01\x12\x03H\t\x13\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03H\x16\x17\
-    \n-\n\x04\x04\x01\x02\x04\x12\x03J\x04\x1c\x1a\x20\x20Represents\x20a\
-    \x20structured\x20value.\n\n\x0c\n\x05\x04\x01\x02\x04\x06\x12\x03J\x04\
-    \n\n\x0c\n\x05\x04\x01\x02\x04\x01\x12\x03J\x0b\x17\n\x0c\n\x05\x04\x01\
-    \x02\x04\x03\x12\x03J\x1a\x1b\n-\n\x04\x04\x01\x02\x05\x12\x03L\x04\x1d\
-    \x1a\x20\x20Represents\x20a\x20repeated\x20`Value`.\n\n\x0c\n\x05\x04\
-    \x01\x02\x05\x06\x12\x03L\x04\r\n\x0c\n\x05\x04\x01\x02\x05\x01\x12\x03L\
-    \x0e\x18\n\x0c\n\x05\x04\x01\x02\x05\x03\x12\x03L\x1b\x1c\n\xa9\x01\n\
-    \x02\x05\0\x12\x04T\0W\x01\x1a\x9c\x01\x20`NullValue`\x20is\x20a\x20sing\
-    leton\x20enumeration\x20to\x20represent\x20the\x20null\x20value\x20for\
-    \x20the\n\x20`Value`\x20type\x20union.\n\n\x20\x20The\x20JSON\x20represe\
-    ntation\x20for\x20`NullValue`\x20is\x20JSON\x20`null`.\n\n\n\n\x03\x05\0\
-    \x01\x12\x03T\x05\x0e\n\x1a\n\x04\x05\0\x02\0\x12\x03V\x02\x11\x1a\r\x20\
-    Null\x20value.\n\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03V\x02\x0c\n\x0c\n\
-    \x05\x05\0\x02\0\x02\x12\x03V\x0f\x10\n\x82\x01\n\x02\x04\x02\x12\x04\\\
-    \0_\x01\x1av\x20`ListValue`\x20is\x20a\x20wrapper\x20around\x20a\x20repe\
-    ated\x20field\x20of\x20values.\n\n\x20The\x20JSON\x20representation\x20f\
-    or\x20`ListValue`\x20is\x20JSON\x20array.\n\n\n\n\x03\x04\x02\x01\x12\
-    \x03\\\x08\x11\n:\n\x04\x04\x02\x02\0\x12\x03^\x02\x1c\x1a-\x20Repeated\
-    \x20field\x20of\x20dynamically\x20typed\x20values.\n\n\x0c\n\x05\x04\x02\
-    \x02\0\x04\x12\x03^\x02\n\n\x0c\n\x05\x04\x02\x02\0\x06\x12\x03^\x0b\x10\
-    \n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03^\x11\x17\n\x0c\n\x05\x04\x02\x02\
-    \0\x03\x12\x03^\x1a\x1bb\x06proto3\
-=======
     f\x20dynamically\x20typed\x20values.\n\n\x0c\n\x05\x04\0\x02\0\x06\x12\
     \x035\x02\x14\n\x0c\n\x05\x04\0\x02\0\x01\x12\x035\x15\x1b\n\x0c\n\x05\
     \x04\0\x02\0\x03\x12\x035\x1e\x1f\n\xc3\x02\n\x02\x04\x01\x12\x04>\0N\
@@ -1084,7 +1138,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x20values.\n\n\x0c\n\x05\x04\x02\x02\0\x04\x12\x03^\x02\n\n\x0c\n\x05\
     \x04\x02\x02\0\x06\x12\x03^\x0b\x10\n\x0c\n\x05\x04\x02\x02\0\x01\x12\
     \x03^\x11\x17\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03^\x1a\x1bb\x06proto3\
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

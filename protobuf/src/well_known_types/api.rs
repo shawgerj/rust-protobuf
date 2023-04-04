@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Api {
     // message fields
@@ -83,6 +83,10 @@ impl Api {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // repeated .google.protobuf.Method methods = 2;
 
 
@@ -106,6 +110,10 @@ impl Api {
     // Take field
     pub fn take_methods(&mut self) -> ::protobuf::RepeatedField<Method> {
         ::std::mem::replace(&mut self.methods, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_methods_offset(&self) -> &[u64] {
+        &self.methods_offset
     }
 
     // repeated .google.protobuf.Option options = 3;
@@ -133,6 +141,10 @@ impl Api {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
+    }
+
     // string version = 4;
 
 
@@ -157,6 +169,10 @@ impl Api {
     // Take field
     pub fn take_version(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.version, ::std::string::String::new())
+    }
+
+    pub fn get_version_offset(&self) -> &u64 {
+        &self.version_offset
     }
 
     // .google.protobuf.SourceContext source_context = 5;
@@ -192,6 +208,10 @@ impl Api {
         self.source_context.take().unwrap_or_else(|| ::protobuf::well_known_types::SourceContext::new())
     }
 
+    pub fn get_source_context_offset(&self) -> &u64 {
+        &self.source_context_offset
+    }
+
     // repeated .google.protobuf.Mixin mixins = 6;
 
 
@@ -217,6 +237,10 @@ impl Api {
         ::std::mem::replace(&mut self.mixins, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_mixins_offset(&self) -> &[u64] {
+        &self.mixins_offset
+    }
+
     // .google.protobuf.Syntax syntax = 7;
 
 
@@ -231,6 +255,7 @@ impl Api {
     pub fn set_syntax(&mut self, v: ::protobuf::well_known_types::Syntax) {
         self.syntax = v;
     }
+
 }
 
 impl ::protobuf::Message for Api {
@@ -452,6 +477,14 @@ impl ::protobuf::Message for Api {
     }
 }
 
+impl PartialEq for Api {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.methods == other.methods && self.options == other.options && self.version == other.version && self.source_context == other.source_context && self.mixins == other.mixins && self.syntax == other.syntax
+    }
+}
+
 impl ::protobuf::Clear for Api {
     fn clear(&mut self) {
         self.name.clear();
@@ -465,9 +498,36 @@ impl ::protobuf::Clear for Api {
     }
 }
 
+impl ::protobuf::PbPrint for Api {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.methods, "methods", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.version, "version", buf);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", buf);
+        ::protobuf::PbPrint::fmt(&self.mixins, "mixins", buf);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Api {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.methods, "methods", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.version, "version", &mut s);
+        ::protobuf::PbPrint::fmt(&self.source_context, "source_context", &mut s);
+        ::protobuf::PbPrint::fmt(&self.mixins, "mixins", &mut s);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -477,7 +537,7 @@ impl ::protobuf::reflect::ProtobufValue for Api {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Method {
     // message fields
@@ -536,6 +596,10 @@ impl Method {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // string request_type_url = 2;
 
 
@@ -562,6 +626,10 @@ impl Method {
         ::std::mem::replace(&mut self.request_type_url, ::std::string::String::new())
     }
 
+    pub fn get_request_type_url_offset(&self) -> &u64 {
+        &self.request_type_url_offset
+    }
+
     // bool request_streaming = 3;
 
 
@@ -576,6 +644,7 @@ impl Method {
     pub fn set_request_streaming(&mut self, v: bool) {
         self.request_streaming = v;
     }
+
 
     // string response_type_url = 4;
 
@@ -603,6 +672,10 @@ impl Method {
         ::std::mem::replace(&mut self.response_type_url, ::std::string::String::new())
     }
 
+    pub fn get_response_type_url_offset(&self) -> &u64 {
+        &self.response_type_url_offset
+    }
+
     // bool response_streaming = 5;
 
 
@@ -617,6 +690,7 @@ impl Method {
     pub fn set_response_streaming(&mut self, v: bool) {
         self.response_streaming = v;
     }
+
 
     // repeated .google.protobuf.Option options = 6;
 
@@ -643,6 +717,10 @@ impl Method {
         ::std::mem::replace(&mut self.options, ::protobuf::RepeatedField::new())
     }
 
+    pub fn get_options_offset(&self) -> &[u64] {
+        &self.options_offset
+    }
+
     // .google.protobuf.Syntax syntax = 7;
 
 
@@ -657,6 +735,7 @@ impl Method {
     pub fn set_syntax(&mut self, v: ::protobuf::well_known_types::Syntax) {
         self.syntax = v;
     }
+
 }
 
 impl ::protobuf::Message for Method {
@@ -862,6 +941,14 @@ impl ::protobuf::Message for Method {
     }
 }
 
+impl PartialEq for Method {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.request_type_url == other.request_type_url && self.request_streaming == other.request_streaming && self.response_type_url == other.response_type_url && self.response_streaming == other.response_streaming && self.options == other.options && self.syntax == other.syntax
+    }
+}
+
 impl ::protobuf::Clear for Method {
     fn clear(&mut self) {
         self.name.clear();
@@ -875,9 +962,36 @@ impl ::protobuf::Clear for Method {
     }
 }
 
+impl ::protobuf::PbPrint for Method {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.request_type_url, "request_type_url", buf);
+        ::protobuf::PbPrint::fmt(&self.request_streaming, "request_streaming", buf);
+        ::protobuf::PbPrint::fmt(&self.response_type_url, "response_type_url", buf);
+        ::protobuf::PbPrint::fmt(&self.response_streaming, "response_streaming", buf);
+        ::protobuf::PbPrint::fmt(&self.options, "options", buf);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Method {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.request_type_url, "request_type_url", &mut s);
+        ::protobuf::PbPrint::fmt(&self.request_streaming, "request_streaming", &mut s);
+        ::protobuf::PbPrint::fmt(&self.response_type_url, "response_type_url", &mut s);
+        ::protobuf::PbPrint::fmt(&self.response_streaming, "response_streaming", &mut s);
+        ::protobuf::PbPrint::fmt(&self.options, "options", &mut s);
+        ::protobuf::PbPrint::fmt(&self.syntax, "syntax", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -887,7 +1001,7 @@ impl ::protobuf::reflect::ProtobufValue for Method {
     }
 }
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Mixin {
     // message fields
@@ -939,6 +1053,10 @@ impl Mixin {
         ::std::mem::replace(&mut self.name, ::std::string::String::new())
     }
 
+    pub fn get_name_offset(&self) -> &u64 {
+        &self.name_offset
+    }
+
     // string root = 2;
 
 
@@ -963,6 +1081,10 @@ impl Mixin {
     // Take field
     pub fn take_root(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.root, ::std::string::String::new())
+    }
+
+    pub fn get_root_offset(&self) -> &u64 {
+        &self.root_offset
     }
 }
 
@@ -1083,6 +1205,14 @@ impl ::protobuf::Message for Mixin {
     }
 }
 
+impl PartialEq for Mixin {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name && self.root == other.root
+    }
+}
+
 impl ::protobuf::Clear for Mixin {
     fn clear(&mut self) {
         self.name.clear();
@@ -1091,9 +1221,26 @@ impl ::protobuf::Clear for Mixin {
     }
 }
 
+impl ::protobuf::PbPrint for Mixin {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.name, "name", buf);
+        ::protobuf::PbPrint::fmt(&self.root, "root", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Mixin {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.name, "name", &mut s);
+        ::protobuf::PbPrint::fmt(&self.root, "root", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -1123,7 +1270,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x06syntax\"/\n\x05Mixin\x12\x12\n\x04name\x18\x01\x20\x01(\tR\x04name\
     \x12\x12\n\x04root\x18\x02\x20\x01(\tR\x04rootBH\n\x13com.google.protobu\
     fB\x08ApiProtoP\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownT\
-    ypesJ\xe18\n\x07\x12\x05\x1e\0\xc8\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\
+    ypesJ\xa97\n\x07\x12\x05\x1e\0\xc8\x01\x01\n\xcc\x0c\n\x01\x0c\x12\x03\
     \x1e\0\x122\xc1\x0c\x20Protocol\x20Buffers\x20-\x20Google's\x20data\x20i\
     nterchange\x20format\n\x20Copyright\x202008\x20Google\x20Inc.\x20\x20All\
     \x20rights\x20reserved.\n\x20https://developers.google.com/protocol-buff\
@@ -1167,145 +1314,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     tocol\x20buffer\x20service.\n\n\n\n\x03\x04\0\x01\x12\x03,\x08\x0b\no\n\
     \x04\x04\0\x02\0\x12\x030\x02\x12\x1ab\x20The\x20fully\x20qualified\x20n\
     ame\x20of\x20this\x20api,\x20including\x20package\x20name\n\x20followed\
-<<<<<<< HEAD
-    \x20by\x20the\x20api's\x20simple\x20name.\n\n\r\n\x05\x04\0\x02\0\x04\
-    \x12\x040\x02,\r\n\x0c\n\x05\x04\0\x02\0\x05\x12\x030\x02\x08\n\x0c\n\
-    \x05\x04\0\x02\0\x01\x12\x030\t\r\n\x0c\n\x05\x04\0\x02\0\x03\x12\x030\
-    \x10\x11\n=\n\x04\x04\0\x02\x01\x12\x033\x02\x1e\x1a0\x20The\x20methods\
-    \x20of\x20this\x20api,\x20in\x20unspecified\x20order.\n\n\x0c\n\x05\x04\
-    \0\x02\x01\x04\x12\x033\x02\n\n\x0c\n\x05\x04\0\x02\x01\x06\x12\x033\x0b\
-    \x11\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x033\x12\x19\n\x0c\n\x05\x04\0\
-    \x02\x01\x03\x12\x033\x1c\x1d\n0\n\x04\x04\0\x02\x02\x12\x036\x02\x1e\
-    \x1a#\x20Any\x20metadata\x20attached\x20to\x20the\x20API.\n\n\x0c\n\x05\
-    \x04\0\x02\x02\x04\x12\x036\x02\n\n\x0c\n\x05\x04\0\x02\x02\x06\x12\x036\
-    \x0b\x11\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x036\x12\x19\n\x0c\n\x05\x04\
-    \0\x02\x02\x03\x12\x036\x1c\x1d\n\xf2\x07\n\x04\x04\0\x02\x03\x12\x03N\
-    \x02\x15\x1a\xe4\x07\x20A\x20version\x20string\x20for\x20this\x20api.\
-    \x20If\x20specified,\x20must\x20have\x20the\x20form\n\x20`major-version.\
-    minor-version`,\x20as\x20in\x20`1.10`.\x20If\x20the\x20minor\x20version\
-    \n\x20is\x20omitted,\x20it\x20defaults\x20to\x20zero.\x20If\x20the\x20en\
-    tire\x20version\x20field\x20is\n\x20empty,\x20the\x20major\x20version\
-    \x20is\x20derived\x20from\x20the\x20package\x20name,\x20as\n\x20outlined\
-    \x20below.\x20If\x20the\x20field\x20is\x20not\x20empty,\x20the\x20versio\
-    n\x20in\x20the\n\x20package\x20name\x20will\x20be\x20verified\x20to\x20b\
-    e\x20consistent\x20with\x20what\x20is\n\x20provided\x20here.\n\n\x20The\
-    \x20versioning\x20schema\x20uses\x20[semantic\n\x20versioning](http://se\
-    mver.org)\x20where\x20the\x20major\x20version\x20number\n\x20indicates\
-    \x20a\x20breaking\x20change\x20and\x20the\x20minor\x20version\x20an\x20a\
-    dditive,\n\x20non-breaking\x20change.\x20Both\x20version\x20numbers\x20a\
-    re\x20signals\x20to\x20users\n\x20what\x20to\x20expect\x20from\x20differ\
-    ent\x20versions,\x20and\x20should\x20be\x20carefully\n\x20chosen\x20base\
-    d\x20on\x20the\x20product\x20plan.\n\n\x20The\x20major\x20version\x20is\
-    \x20also\x20reflected\x20in\x20the\x20package\x20name\x20of\x20the\n\x20\
-    API,\x20which\x20must\x20end\x20in\x20`v<major-version>`,\x20as\x20in\n\
-    \x20`google.feature.v1`.\x20For\x20major\x20versions\x200\x20and\x201,\
-    \x20the\x20suffix\x20can\n\x20be\x20omitted.\x20Zero\x20major\x20version\
-    s\x20must\x20only\x20be\x20used\x20for\n\x20experimental,\x20none-GA\x20\
-    apis.\n\n\n\n\r\n\x05\x04\0\x02\x03\x04\x12\x04N\x026\x1e\n\x0c\n\x05\
-    \x04\0\x02\x03\x05\x12\x03N\x02\x08\n\x0c\n\x05\x04\0\x02\x03\x01\x12\
-    \x03N\t\x10\n\x0c\n\x05\x04\0\x02\x03\x03\x12\x03N\x13\x14\n[\n\x04\x04\
-    \0\x02\x04\x12\x03R\x02#\x1aN\x20Source\x20context\x20for\x20the\x20prot\
-    ocol\x20buffer\x20service\x20represented\x20by\x20this\n\x20message.\n\n\
-    \r\n\x05\x04\0\x02\x04\x04\x12\x04R\x02N\x15\n\x0c\n\x05\x04\0\x02\x04\
-    \x06\x12\x03R\x02\x0f\n\x0c\n\x05\x04\0\x02\x04\x01\x12\x03R\x10\x1e\n\
-    \x0c\n\x05\x04\0\x02\x04\x03\x12\x03R!\"\n,\n\x04\x04\0\x02\x05\x12\x03U\
-    \x02\x1c\x1a\x1f\x20Included\x20APIs.\x20See\x20[Mixin][].\n\n\x0c\n\x05\
-    \x04\0\x02\x05\x04\x12\x03U\x02\n\n\x0c\n\x05\x04\0\x02\x05\x06\x12\x03U\
-    \x0b\x10\n\x0c\n\x05\x04\0\x02\x05\x01\x12\x03U\x11\x17\n\x0c\n\x05\x04\
-    \0\x02\x05\x03\x12\x03U\x1a\x1b\n0\n\x04\x04\0\x02\x06\x12\x03X\x02\x14\
-    \x1a#\x20The\x20source\x20syntax\x20of\x20the\x20service.\n\n\r\n\x05\
-    \x04\0\x02\x06\x04\x12\x04X\x02U\x1c\n\x0c\n\x05\x04\0\x02\x06\x06\x12\
-    \x03X\x02\x08\n\x0c\n\x05\x04\0\x02\x06\x01\x12\x03X\t\x0f\n\x0c\n\x05\
-    \x04\0\x02\x06\x03\x12\x03X\x12\x13\n3\n\x02\x04\x01\x12\x04\\\0r\x01\
-    \x1a'\x20Method\x20represents\x20a\x20method\x20of\x20an\x20api.\n\n\n\n\
-    \x03\x04\x01\x01\x12\x03\\\x08\x0e\n.\n\x04\x04\x01\x02\0\x12\x03_\x02\
-    \x12\x1a!\x20The\x20simple\x20name\x20of\x20this\x20method.\n\n\r\n\x05\
-    \x04\x01\x02\0\x04\x12\x04_\x02\\\x10\n\x0c\n\x05\x04\x01\x02\0\x05\x12\
-    \x03_\x02\x08\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03_\t\r\n\x0c\n\x05\x04\
-    \x01\x02\0\x03\x12\x03_\x10\x11\n/\n\x04\x04\x01\x02\x01\x12\x03b\x02\
-    \x1e\x1a\"\x20A\x20URL\x20of\x20the\x20input\x20message\x20type.\n\n\r\n\
-    \x05\x04\x01\x02\x01\x04\x12\x04b\x02_\x12\n\x0c\n\x05\x04\x01\x02\x01\
-    \x05\x12\x03b\x02\x08\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03b\t\x19\n\
-    \x0c\n\x05\x04\x01\x02\x01\x03\x12\x03b\x1c\x1d\n0\n\x04\x04\x01\x02\x02\
-    \x12\x03e\x02\x1d\x1a#\x20If\x20true,\x20the\x20request\x20is\x20streame\
-    d.\n\n\r\n\x05\x04\x01\x02\x02\x04\x12\x04e\x02b\x1e\n\x0c\n\x05\x04\x01\
-    \x02\x02\x05\x12\x03e\x02\x06\n\x0c\n\x05\x04\x01\x02\x02\x01\x12\x03e\
-    \x07\x18\n\x0c\n\x05\x04\x01\x02\x02\x03\x12\x03e\x1b\x1c\n2\n\x04\x04\
-    \x01\x02\x03\x12\x03h\x02\x1f\x1a%\x20The\x20URL\x20of\x20the\x20output\
-    \x20message\x20type.\n\n\r\n\x05\x04\x01\x02\x03\x04\x12\x04h\x02e\x1d\n\
-    \x0c\n\x05\x04\x01\x02\x03\x05\x12\x03h\x02\x08\n\x0c\n\x05\x04\x01\x02\
-    \x03\x01\x12\x03h\t\x1a\n\x0c\n\x05\x04\x01\x02\x03\x03\x12\x03h\x1d\x1e\
-    \n1\n\x04\x04\x01\x02\x04\x12\x03k\x02\x1e\x1a$\x20If\x20true,\x20the\
-    \x20response\x20is\x20streamed.\n\n\r\n\x05\x04\x01\x02\x04\x04\x12\x04k\
-    \x02h\x1f\n\x0c\n\x05\x04\x01\x02\x04\x05\x12\x03k\x02\x06\n\x0c\n\x05\
-    \x04\x01\x02\x04\x01\x12\x03k\x07\x19\n\x0c\n\x05\x04\x01\x02\x04\x03\
-    \x12\x03k\x1c\x1d\n3\n\x04\x04\x01\x02\x05\x12\x03n\x02\x1e\x1a&\x20Any\
-    \x20metadata\x20attached\x20to\x20the\x20method.\n\n\x0c\n\x05\x04\x01\
-    \x02\x05\x04\x12\x03n\x02\n\n\x0c\n\x05\x04\x01\x02\x05\x06\x12\x03n\x0b\
-    \x11\n\x0c\n\x05\x04\x01\x02\x05\x01\x12\x03n\x12\x19\n\x0c\n\x05\x04\
-    \x01\x02\x05\x03\x12\x03n\x1c\x1d\n0\n\x04\x04\x01\x02\x06\x12\x03q\x02\
-    \x14\x1a#\x20The\x20source\x20syntax\x20of\x20this\x20method.\n\n\r\n\
-    \x05\x04\x01\x02\x06\x04\x12\x04q\x02n\x1e\n\x0c\n\x05\x04\x01\x02\x06\
-    \x06\x12\x03q\x02\x08\n\x0c\n\x05\x04\x01\x02\x06\x01\x12\x03q\t\x0f\n\
-    \x0c\n\x05\x04\x01\x02\x06\x03\x12\x03q\x12\x13\n\xa4\x13\n\x02\x04\x02\
-    \x12\x06\xc1\x01\0\xc8\x01\x01\x1a\x95\x13\x20Declares\x20an\x20API\x20t\
-    o\x20be\x20included\x20in\x20this\x20API.\x20The\x20including\x20API\x20\
-    must\n\x20redeclare\x20all\x20the\x20methods\x20from\x20the\x20included\
-    \x20API,\x20but\x20documentation\n\x20and\x20options\x20are\x20inherited\
-    \x20as\x20follows:\n\n\x20-\x20If\x20after\x20comment\x20and\x20whitespa\
-    ce\x20stripping,\x20the\x20documentation\n\x20\x20\x20string\x20of\x20th\
-    e\x20redeclared\x20method\x20is\x20empty,\x20it\x20will\x20be\x20inherit\
-    ed\n\x20\x20\x20from\x20the\x20original\x20method.\n\n\x20-\x20Each\x20a\
-    nnotation\x20belonging\x20to\x20the\x20service\x20config\x20(http,\n\x20\
-    \x20\x20visibility)\x20which\x20is\x20not\x20set\x20in\x20the\x20redecla\
-    red\x20method\x20will\x20be\n\x20\x20\x20inherited.\n\n\x20-\x20If\x20an\
-    \x20http\x20annotation\x20is\x20inherited,\x20the\x20path\x20pattern\x20\
-    will\x20be\n\x20\x20\x20modified\x20as\x20follows.\x20Any\x20version\x20\
-    prefix\x20will\x20be\x20replaced\x20by\x20the\n\x20\x20\x20version\x20of\
-    \x20the\x20including\x20API\x20plus\x20the\x20[root][]\x20path\x20if\x20\
-    specified.\n\n\x20Example\x20of\x20a\x20simple\x20mixin:\n\n\x20\x20\x20\
-    \x20\x20package\x20google.acl.v1;\n\x20\x20\x20\x20\x20service\x20Access\
-    Control\x20{\n\x20\x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20underlying\
-    \x20ACL\x20object.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAclRequ\
-    est)\x20returns\x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20optio\
-    n\x20(google.api.http).get\x20=\x20\"/v1/{resource=**}:getAcl\";\n\x20\
-    \x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\x20}\n\n\x20\x20\x20\x20\x20\
-    package\x20google.storage.v2;\n\x20\x20\x20\x20\x20service\x20Storage\
-    \x20{\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAclRequest)\x20retur\
-    ns\x20(Acl);\n\n\x20\x20\x20\x20\x20\x20\x20//\x20Get\x20a\x20data\x20re\
-    cord.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetData(GetDataRequest)\x20ret\
-    urns\x20(Data)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20option\x20(goog\
-    le.api.http).get\x20=\x20\"/v2/{resource=**}\";\n\x20\x20\x20\x20\x20\
-    \x20\x20}\n\x20\x20\x20\x20\x20}\n\n\x20Example\x20of\x20a\x20mixin\x20c\
-    onfiguration:\n\n\x20\x20\x20\x20\x20apis:\n\x20\x20\x20\x20\x20-\x20nam\
-    e:\x20google.storage.v2.Storage\n\x20\x20\x20\x20\x20\x20\x20mixins:\n\
-    \x20\x20\x20\x20\x20\x20\x20-\x20name:\x20google.acl.v1.AccessControl\n\
-    \n\x20The\x20mixin\x20construct\x20implies\x20that\x20all\x20methods\x20\
-    in\x20`AccessControl`\x20are\n\x20also\x20declared\x20with\x20same\x20na\
-    me\x20and\x20request/response\x20types\x20in\n\x20`Storage`.\x20A\x20doc\
-    umentation\x20generator\x20or\x20annotation\x20processor\x20will\n\x20se\
-    e\x20the\x20effective\x20`Storage.GetAcl`\x20method\x20after\x20inhertin\
-    g\n\x20documentation\x20and\x20annotations\x20as\x20follows:\n\n\x20\x20\
-    \x20\x20\x20service\x20Storage\x20{\n\x20\x20\x20\x20\x20\x20\x20//\x20G\
-    et\x20the\x20underlying\x20ACL\x20object.\n\x20\x20\x20\x20\x20\x20\x20r\
-    pc\x20GetAcl(GetAclRequest)\x20returns\x20(Acl)\x20{\n\x20\x20\x20\x20\
-    \x20\x20\x20\x20\x20option\x20(google.api.http).get\x20=\x20\"/v2/{resou\
-    rce=**}:getAcl\";\n\x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\x20\
-    \x20\x20...\n\x20\x20\x20\x20\x20}\n\n\x20Note\x20how\x20the\x20version\
-    \x20in\x20the\x20path\x20pattern\x20changed\x20from\x20`v1`\x20to\x20`v2\
-    `.\n\n\x20If\x20the\x20`root`\x20field\x20in\x20the\x20mixin\x20is\x20sp\
-    ecified,\x20it\x20should\x20be\x20a\n\x20relative\x20path\x20under\x20wh\
-    ich\x20inherited\x20HTTP\x20paths\x20are\x20placed.\x20Example:\n\n\x20\
-    \x20\x20\x20\x20apis:\n\x20\x20\x20\x20\x20-\x20name:\x20google.storage.\
-    v2.Storage\n\x20\x20\x20\x20\x20\x20\x20mixins:\n\x20\x20\x20\x20\x20\
-    \x20\x20-\x20name:\x20google.acl.v1.AccessControl\n\x20\x20\x20\x20\x20\
-    \x20\x20\x20\x20root:\x20acls\n\n\x20This\x20implies\x20the\x20following\
-    \x20inherited\x20HTTP\x20annotation:\n\n\x20\x20\x20\x20\x20service\x20S\
-    torage\x20{\n\x20\x20\x20\x20\x20\x20\x20//\x20Get\x20the\x20underlying\
-    \x20ACL\x20object.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAclRequ\
-    est)\x20returns\x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20optio\
-    n\x20(google.api.http).get\x20=\x20\"/v2/acls/{resource=**}:getAcl\";\n\
-=======
     \x20by\x20the\x20api's\x20simple\x20name.\n\n\x0c\n\x05\x04\0\x02\0\x05\
     \x12\x030\x02\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x030\t\r\n\x0c\n\x05\
     \x04\0\x02\0\x03\x12\x030\x10\x11\n=\n\x04\x04\0\x02\x01\x12\x033\x02\
@@ -1422,7 +1430,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     ying\x20ACL\x20object.\n\x20\x20\x20\x20\x20\x20\x20rpc\x20GetAcl(GetAcl\
     Request)\x20returns\x20(Acl)\x20{\n\x20\x20\x20\x20\x20\x20\x20\x20\x20o\
     ption\x20(google.api.http).get\x20=\x20\"/v2/{resource=**}:getAcl\";\n\
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
     \x20\x20\x20\x20\x20\x20\x20}\n\x20\x20\x20\x20\x20\x20\x20...\n\x20\x20\
     \x20\x20\x20}\n\n\x20Note\x20how\x20the\x20version\x20in\x20the\x20path\
     \x20pattern\x20changed\x20from\x20`v1`\x20to\x20`v2`.\n\n\x20If\x20the\

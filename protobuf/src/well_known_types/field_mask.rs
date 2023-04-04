@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FieldMask {
     // message fields
@@ -69,6 +69,10 @@ impl FieldMask {
     // Take field
     pub fn take_paths(&mut self) -> ::protobuf::RepeatedField<::std::string::String> {
         ::std::mem::replace(&mut self.paths, ::protobuf::RepeatedField::new())
+    }
+
+    pub fn get_paths_offset(&self) -> &[u64] {
+        &self.paths_offset
     }
 }
 
@@ -175,6 +179,14 @@ impl ::protobuf::Message for FieldMask {
     }
 }
 
+impl PartialEq for FieldMask {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.paths == other.paths
+    }
+}
+
 impl ::protobuf::Clear for FieldMask {
     fn clear(&mut self) {
         self.paths.clear();
@@ -182,9 +194,24 @@ impl ::protobuf::Clear for FieldMask {
     }
 }
 
+impl ::protobuf::PbPrint for FieldMask {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.paths, "paths", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for FieldMask {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.paths, "paths", &mut s);
+        write!(f, "{}", s)
     }
 }
 

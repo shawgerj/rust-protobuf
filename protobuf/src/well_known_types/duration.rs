@@ -22,7 +22,7 @@
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
 
-#[derive(PartialEq,Clone,Default)]
+#[derive(Clone,Default)]
 #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Duration {
     // message fields
@@ -61,6 +61,7 @@ impl Duration {
         self.seconds = v;
     }
 
+
     // int32 nanos = 2;
 
 
@@ -75,6 +76,7 @@ impl Duration {
     pub fn set_nanos(&mut self, v: i32) {
         self.nanos = v;
     }
+
 }
 
 impl ::protobuf::Message for Duration {
@@ -202,6 +204,14 @@ impl ::protobuf::Message for Duration {
     }
 }
 
+impl PartialEq for Duration {
+
+    #[allow(unused_variables)]
+    fn eq(&self, other: &Self) -> bool {
+        self.seconds == other.seconds && self.nanos == other.nanos
+    }
+}
+
 impl ::protobuf::Clear for Duration {
     fn clear(&mut self) {
         self.seconds = 0;
@@ -210,9 +220,26 @@ impl ::protobuf::Clear for Duration {
     }
 }
 
+impl ::protobuf::PbPrint for Duration {
+    #[allow(unused_variables)]
+    fn fmt(&self, name: &str, buf: &mut ::std::string::String) {
+        ::protobuf::push_message_start(name, buf);
+        let old_len = buf.len();
+        ::protobuf::PbPrint::fmt(&self.seconds, "seconds", buf);
+        ::protobuf::PbPrint::fmt(&self.nanos, "nanos", buf);
+        if old_len < buf.len() {
+          buf.push(' ');
+        }
+        buf.push('}');
+    }
+}
 impl ::std::fmt::Debug for Duration {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
+    #[allow(unused_variables)]
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        let mut s = ::std::string::String::new();
+        ::protobuf::PbPrint::fmt(&self.seconds, "seconds", &mut s);
+        ::protobuf::PbPrint::fmt(&self.nanos, "nanos", &mut s);
+        write!(f, "{}", s)
     }
 }
 
@@ -227,7 +254,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     tion\x12\x18\n\x07seconds\x18\x01\x20\x01(\x03R\x07seconds\x12\x14\n\x05\
     nanos\x18\x02\x20\x01(\x05R\x05nanosB|\n\x13com.google.protobufB\rDurati\
     onProtoP\x01Z*github.com/golang/protobuf/ptypes/duration\xf8\x01\x01\xa2\
-    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xff\x1e\n\x06\x12\
+    \x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesJ\xe1\x1e\n\x06\x12\
     \x04\x1e\0g\x01\n\xcc\x0c\n\x01\x0c\x12\x03\x1e\0\x122\xc1\x0c\x20Protoc\
     ol\x20Buffers\x20-\x20Google's\x20data\x20interchange\x20format\n\x20Cop\
     yright\x202008\x20Google\x20Inc.\x20\x20All\x20rights\x20reserved.\n\x20\
@@ -308,23 +335,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x03\x04\0\x01\x12\x03Z\x08\x10\np\n\x04\x04\0\x02\0\x12\x03^\x02\x14\
     \x1ac\x20Signed\x20seconds\x20of\x20the\x20span\x20of\x20time.\x20Must\
     \x20be\x20from\x20-315,576,000,000\n\x20to\x20+315,576,000,000\x20inclus\
-<<<<<<< HEAD
-    ive.\n\n\r\n\x05\x04\0\x02\0\x04\x12\x04^\x02Z\x12\n\x0c\n\x05\x04\0\x02\
-    \0\x05\x12\x03^\x02\x07\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03^\x08\x0f\n\
-    \x0c\n\x05\x04\0\x02\0\x03\x12\x03^\x12\x13\n\x83\x03\n\x04\x04\0\x02\
-    \x01\x12\x03f\x02\x12\x1a\xf5\x02\x20Signed\x20fractions\x20of\x20a\x20s\
-    econd\x20at\x20nanosecond\x20resolution\x20of\x20the\x20span\n\x20of\x20\
-    time.\x20Durations\x20less\x20than\x20one\x20second\x20are\x20represente\
-    d\x20with\x20a\x200\n\x20`seconds`\x20field\x20and\x20a\x20positive\x20o\
-    r\x20negative\x20`nanos`\x20field.\x20For\x20durations\n\x20of\x20one\
-    \x20second\x20or\x20more,\x20a\x20non-zero\x20value\x20for\x20the\x20`na\
-    nos`\x20field\x20must\x20be\n\x20of\x20the\x20same\x20sign\x20as\x20the\
-    \x20`seconds`\x20field.\x20Must\x20be\x20from\x20-999,999,999\n\x20to\
-    \x20+999,999,999\x20inclusive.\n\n\r\n\x05\x04\0\x02\x01\x04\x12\x04f\
-    \x02^\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03f\x02\x07\n\x0c\n\x05\x04\
-    \0\x02\x01\x01\x12\x03f\x08\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03f\x10\
-    \x11b\x06proto3\
-=======
     ive.\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03^\x02\x07\n\x0c\n\x05\x04\0\
     \x02\0\x01\x12\x03^\x08\x0f\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03^\x12\x13\
     \n\x83\x03\n\x04\x04\0\x02\x01\x12\x03f\x02\x12\x1a\xf5\x02\x20Signed\
@@ -338,7 +348,6 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     om\x20-999,999,999\n\x20to\x20+999,999,999\x20inclusive.\n\n\x0c\n\x05\
     \x04\0\x02\x01\x05\x12\x03f\x02\x07\n\x0c\n\x05\x04\0\x02\x01\x01\x12\
     \x03f\x08\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03f\x10\x11b\x06proto3\
->>>>>>> fd93d62d (codegen updated. Must updated codegen before updating protobuf! Dependency hell...)
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

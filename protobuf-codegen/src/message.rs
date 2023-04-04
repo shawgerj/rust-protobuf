@@ -611,10 +611,8 @@ impl<'a> MessageGen<'a> {
         self.write_impl_partialeq_self(w);
         w.write_line("");
         self.write_impl_clear(w);
-        if !self.lite_runtime {
-            w.write_line("");
-            self.write_impl_show(w);
-        }
+        w.write_line("");
+        self.write_impl_show(w);
         w.write_line("");
         self.write_impl_value(w);
 
