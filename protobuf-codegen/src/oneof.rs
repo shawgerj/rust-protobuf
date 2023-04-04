@@ -4,7 +4,7 @@ use code_writer::CodeWriter;
 use field::FieldElem;
 use field::FieldGen;
 use message::MessageGen;
-use protobuf::descriptor::FieldDescriptorProto_Type;
+use protobuf::descriptor::FieldDescriptorProtoType;
 use protobuf::descriptorx::OneofWithContext;
 use protobuf::descriptorx::WithScope;
 use protobuf::descriptorx::{camel_case, FieldWithContext, OneofVariantWithContext, RootScope};
@@ -30,7 +30,7 @@ impl OneofField {
         let mut visited_messages = HashSet::new();
         let mut fields = vec![field.clone()];
         while let Some(field) = fields.pop() {
-            if field.field.get_field_type() == FieldDescriptorProto_Type::TYPE_MESSAGE {
+            if field.field.get_field_type() == FieldDescriptorProtoType::TypeMessage {
                 let message_name = field.field.get_type_name().to_owned();
                 if !visited_messages.insert(message_name.clone()) {
                     continue;
@@ -163,7 +163,7 @@ impl<'a> OneofGen<'a> {
                     .next()
                     .expect(&format!("field not found by name: {}", v.field.get_name()));
                 match field.proto_type {
-                    FieldDescriptorProto_Type::TYPE_GROUP => None,
+                    FieldDescriptorProtoType::TypeGroup => None,
                     _ => Some(OneofVariantGen::parse(
                         self,
                         v,

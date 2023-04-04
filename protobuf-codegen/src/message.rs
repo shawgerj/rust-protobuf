@@ -44,7 +44,7 @@ impl<'a> MessageGen<'a> {
                 .get_file_descriptor()
                 .get_options()
                 .get_optimize_for()
-                == FileOptions_OptimizeMode::LITE_RUNTIME
+                == FileOptionsOptimizeMode::LiteRuntime
         });
 
         MessageGen {
@@ -82,7 +82,7 @@ impl<'a> MessageGen<'a> {
     fn message_fields(&'a self) -> Vec<&'a FieldGen> {
         self.fields
             .iter()
-            .filter(|f| f.proto_type == FieldDescriptorProto_Type::TYPE_MESSAGE)
+            .filter(|f| f.proto_type == FieldDescriptorProtoType::TypeMessage)
             .collect()
     }
 
@@ -93,14 +93,14 @@ impl<'a> MessageGen<'a> {
     fn fields_except_group(&'a self) -> Vec<&'a FieldGen> {
         self.fields
             .iter()
-            .filter(|f| f.proto_type != FieldDescriptorProto_Type::TYPE_GROUP)
+            .filter(|f| f.proto_type != FieldDescriptorProtoType::TypeGroup)
             .collect()
     }
 
     fn fields_except_oneof_and_group(&'a self) -> Vec<&'a FieldGen> {
         self.fields
             .iter()
-            .filter(|f| !f.is_oneof() && f.proto_type != FieldDescriptorProto_Type::TYPE_GROUP)
+            .filter(|f| !f.is_oneof() && f.proto_type != FieldDescriptorProtoType::TypeGroup)
             .collect()
     }
 
@@ -484,11 +484,11 @@ impl<'a> MessageGen<'a> {
     
     fn should_include_offset(
         &self,
-        field_type: FieldDescriptorProto_Type
+        field_type: FieldDescriptorProtoType
     ) -> bool {
-        return field_type == FieldDescriptorProto_Type::TYPE_STRING ||
-            field_type == FieldDescriptorProto_Type::TYPE_BYTES ||
-            field_type == FieldDescriptorProto_Type::TYPE_MESSAGE
+        return field_type == FieldDescriptorProtoType::TypeString ||
+            field_type == FieldDescriptorProtoType::TypeBytes ||
+            field_type == FieldDescriptorProtoType::TypeMessage
     }
 
     fn write_struct(&self, w: &mut CodeWriter) {
@@ -502,7 +502,7 @@ impl<'a> MessageGen<'a> {
             if !self.fields_except_oneof().is_empty() {
                 w.comment("message fields");
                 for field in self.fields_except_oneof() {
-                    if field.proto_type == FieldDescriptorProto_Type::TYPE_GROUP {
+                    if field.proto_type == FieldDescriptorProtoType::TypeGroup {
                         w.comment(&format!("{}: <group>", &field.rust_name));
                     } else {
                         let vis = if field.expose_field {

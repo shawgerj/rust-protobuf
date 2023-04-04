@@ -17,11 +17,11 @@ use float;
 use ident::RustIdent;
 use inside::protobuf_crate_path;
 
-fn type_is_copy(field_type: FieldDescriptorProto_Type) -> bool {
+fn type_is_copy(field_type: FieldDescriptorProtoType) -> bool {
     match field_type {
-        FieldDescriptorProto_Type::TYPE_MESSAGE
-        | FieldDescriptorProto_Type::TYPE_STRING
-        | FieldDescriptorProto_Type::TYPE_BYTES => false,
+        FieldDescriptorProtoType::TypeMessage
+        | FieldDescriptorProtoType::TypeString
+        | FieldDescriptorProtoType::TypeBytes => false,
         _ => true,
     }
 }
@@ -31,13 +31,13 @@ trait FieldDescriptorProtoTypeExt {
     fn is_s_varint(&self) -> bool;
 }
 
-impl FieldDescriptorProtoTypeExt for FieldDescriptorProto_Type {
+impl FieldDescriptorProtoTypeExt for FieldDescriptorProtoType {
     fn read(&self, is: &str, primitive_type_variant: PrimitiveTypeVariant) -> String {
         match primitive_type_variant {
             PrimitiveTypeVariant::Default => format!("{}.read_{}()", is, protobuf_name(*self)),
             PrimitiveTypeVariant::Carllerche => {
                 let protobuf_name = match self {
-                    &FieldDescriptorProto_Type::TYPE_STRING => "chars",
+                    &FieldDescriptorProtoType::TypeString => "chars",
                     _ => protobuf_name(*self),
                 };
                 format!("{}.read_carllerche_{}()", is, protobuf_name)
@@ -48,56 +48,56 @@ impl FieldDescriptorProtoTypeExt for FieldDescriptorProto_Type {
     /// True if self is signed integer with zigzag encoding
     fn is_s_varint(&self) -> bool {
         match *self {
-            FieldDescriptorProto_Type::TYPE_SINT32 | FieldDescriptorProto_Type::TYPE_SINT64 => true,
+            FieldDescriptorProtoType::TypeSint32 | FieldDescriptorProtoType::TypeSint64 => true,
             _ => false,
         }
     }
 }
 
-fn field_type_wire_type(field_type: FieldDescriptorProto_Type) -> wire_format::WireType {
+fn field_type_wire_type(field_type: FieldDescriptorProtoType) -> wire_format::WireType {
     use protobuf::stream::wire_format::*;
     match field_type {
-        FieldDescriptorProto_Type::TYPE_INT32 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_INT64 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_UINT32 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_UINT64 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_SINT32 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_SINT64 => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_BOOL => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_ENUM => WireTypeVarint,
-        FieldDescriptorProto_Type::TYPE_FIXED32 => WireTypeFixed32,
-        FieldDescriptorProto_Type::TYPE_FIXED64 => WireTypeFixed64,
-        FieldDescriptorProto_Type::TYPE_SFIXED32 => WireTypeFixed32,
-        FieldDescriptorProto_Type::TYPE_SFIXED64 => WireTypeFixed64,
-        FieldDescriptorProto_Type::TYPE_FLOAT => WireTypeFixed32,
-        FieldDescriptorProto_Type::TYPE_DOUBLE => WireTypeFixed64,
-        FieldDescriptorProto_Type::TYPE_STRING => WireTypeLengthDelimited,
-        FieldDescriptorProto_Type::TYPE_BYTES => WireTypeLengthDelimited,
-        FieldDescriptorProto_Type::TYPE_MESSAGE => WireTypeLengthDelimited,
-        FieldDescriptorProto_Type::TYPE_GROUP => WireTypeLengthDelimited, // not true
+        FieldDescriptorProtoType::TypeInt32 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeInt64 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeUint32 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeUint64 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeSint32 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeSint64 => WireTypeVarint,
+        FieldDescriptorProtoType::TypeBool => WireTypeVarint,
+        FieldDescriptorProtoType::TypeEnum => WireTypeVarint,
+        FieldDescriptorProtoType::TypeFixed32 => WireTypeFixed32,
+        FieldDescriptorProtoType::TypeFixed64 => WireTypeFixed64,
+        FieldDescriptorProtoType::TypeSfixed32 => WireTypeFixed32,
+        FieldDescriptorProtoType::TypeSfixed64 => WireTypeFixed64,
+        FieldDescriptorProtoType::TypeFloat => WireTypeFixed32,
+        FieldDescriptorProtoType::TypeDouble => WireTypeFixed64,
+        FieldDescriptorProtoType::TypeString => WireTypeLengthDelimited,
+        FieldDescriptorProtoType::TypeBytes => WireTypeLengthDelimited,
+        FieldDescriptorProtoType::TypeMessage => WireTypeLengthDelimited,
+        FieldDescriptorProtoType::TypeGroup => WireTypeLengthDelimited, // not true
     }
 }
 
-fn type_protobuf_name(field_type: FieldDescriptorProto_Type) -> &'static str {
+fn type_protobuf_name(field_type: FieldDescriptorProtoType) -> &'static str {
     match field_type {
-        FieldDescriptorProto_Type::TYPE_INT32 => "int32",
-        FieldDescriptorProto_Type::TYPE_INT64 => "int64",
-        FieldDescriptorProto_Type::TYPE_UINT32 => "uint32",
-        FieldDescriptorProto_Type::TYPE_UINT64 => "uint64",
-        FieldDescriptorProto_Type::TYPE_SINT32 => "sint32",
-        FieldDescriptorProto_Type::TYPE_SINT64 => "sint64",
-        FieldDescriptorProto_Type::TYPE_BOOL => "bool",
-        FieldDescriptorProto_Type::TYPE_FIXED32 => "fixed32",
-        FieldDescriptorProto_Type::TYPE_FIXED64 => "fixed64",
-        FieldDescriptorProto_Type::TYPE_SFIXED32 => "sfixed32",
-        FieldDescriptorProto_Type::TYPE_SFIXED64 => "sfixed64",
-        FieldDescriptorProto_Type::TYPE_FLOAT => "float",
-        FieldDescriptorProto_Type::TYPE_DOUBLE => "double",
-        FieldDescriptorProto_Type::TYPE_STRING => "string",
-        FieldDescriptorProto_Type::TYPE_BYTES => "bytes",
-        FieldDescriptorProto_Type::TYPE_ENUM
-        | FieldDescriptorProto_Type::TYPE_MESSAGE
-        | FieldDescriptorProto_Type::TYPE_GROUP => panic!(),
+        FieldDescriptorProtoType::TypeInt32 => "int32",
+        FieldDescriptorProtoType::TypeInt64 => "int64",
+        FieldDescriptorProtoType::TypeUint32 => "uint32",
+        FieldDescriptorProtoType::TypeUint64 => "uint64",
+        FieldDescriptorProtoType::TypeSint32 => "sint32",
+        FieldDescriptorProtoType::TypeSint64 => "sint64",
+        FieldDescriptorProtoType::TypeBool => "bool",
+        FieldDescriptorProtoType::TypeFixed32 => "fixed32",
+        FieldDescriptorProtoType::TypeFixed64 => "fixed64",
+        FieldDescriptorProtoType::TypeSfixed32 => "sfixed32",
+        FieldDescriptorProtoType::TypeSfixed64 => "sfixed64",
+        FieldDescriptorProtoType::TypeFloat => "float",
+        FieldDescriptorProtoType::TypeDouble => "double",
+        FieldDescriptorProtoType::TypeString => "string",
+        FieldDescriptorProtoType::TypeBytes => "bytes",
+        FieldDescriptorProtoType::TypeEnum
+        | FieldDescriptorProtoType::TypeMessage
+        | FieldDescriptorProtoType::TypeGroup => panic!(),
     }
 }
 
@@ -110,9 +110,9 @@ fn field_type_protobuf_name<'a>(field: &'a FieldDescriptorProto) -> &'a str {
 }
 
 // size of value for type, None if variable
-fn field_type_size(field_type: FieldDescriptorProto_Type) -> Option<u32> {
+fn field_type_size(field_type: FieldDescriptorProtoType) -> Option<u32> {
     match field_type {
-        FieldDescriptorProto_Type::TYPE_BOOL => Some(1),
+        FieldDescriptorProtoType::TypeBool => Some(1),
         t if field_type_wire_type(t) == wire_format::WireTypeFixed32 => Some(4),
         t if field_type_wire_type(t) == wire_format::WireTypeFixed64 => Some(8),
         _ => None,
@@ -146,10 +146,10 @@ impl SingularField {
     fn rust_storage_type(&self) -> RustType {
         match self.flag {
             SingularFieldFlag::WithFlag { .. } => match self.elem.proto_type() {
-                FieldDescriptorProto_Type::TYPE_MESSAGE => {
+                FieldDescriptorProtoType::TypeMessage => {
                     RustType::SingularPtrField(Box::new(self.elem.rust_storage_type()))
                 }
-                FieldDescriptorProto_Type::TYPE_STRING | FieldDescriptorProto_Type::TYPE_BYTES
+                FieldDescriptorProtoType::TypeString | FieldDescriptorProtoType::TypeBytes
                     if self.elem.primitive_type_variant() == PrimitiveTypeVariant::Default =>
                 {
                     RustType::SingularField(Box::new(self.elem.rust_storage_type()))
@@ -221,7 +221,7 @@ pub struct EntryKeyValue(FieldElem, FieldElem);
 
 #[derive(Clone, Debug)]
 pub enum FieldElem {
-    Primitive(FieldDescriptorProto_Type, PrimitiveTypeVariant),
+    Primitive(FieldDescriptorProtoType, PrimitiveTypeVariant),
     // name, file name, entry
     Message(String, String, Option<Box<EntryKeyValue>>),
     // name, file name, default value
@@ -230,12 +230,12 @@ pub enum FieldElem {
 }
 
 impl FieldElem {
-    fn proto_type(&self) -> FieldDescriptorProto_Type {
+    fn proto_type(&self) -> FieldDescriptorProtoType {
         match *self {
             FieldElem::Primitive(t, ..) => t,
-            FieldElem::Group => FieldDescriptorProto_Type::TYPE_GROUP,
-            FieldElem::Message(..) => FieldDescriptorProto_Type::TYPE_MESSAGE,
-            FieldElem::Enum(..) => FieldDescriptorProto_Type::TYPE_ENUM,
+            FieldElem::Group => FieldDescriptorProtoType::TypeGroup,
+            FieldElem::Message(..) => FieldDescriptorProtoType::TypeMessage,
+            FieldElem::Enum(..) => FieldDescriptorProtoType::TypeEnum,
         }
     }
 
@@ -247,11 +247,11 @@ impl FieldElem {
         match *self {
             FieldElem::Primitive(t, PrimitiveTypeVariant::Default) => rust_name(t),
             FieldElem::Primitive(
-                FieldDescriptorProto_Type::TYPE_STRING,
+                FieldDescriptorProtoType::TypeString,
                 PrimitiveTypeVariant::Carllerche,
             ) => RustType::Chars,
             FieldElem::Primitive(
-                FieldDescriptorProto_Type::TYPE_BYTES,
+                FieldDescriptorProtoType::TypeBytes,
                 PrimitiveTypeVariant::Carllerche,
             ) => RustType::Bytes,
             FieldElem::Primitive(.., PrimitiveTypeVariant::Carllerche) => unreachable!(),
@@ -291,7 +291,7 @@ fn field_elem(
     parse_map: bool,
     customize: &Customize,
 ) -> (FieldElem, Option<EnumValueGen>) {
-    if field.field.get_field_type() == FieldDescriptorProto_Type::TYPE_GROUP {
+    if field.field.get_field_type() == FieldDescriptorProtoType::TypeGroup {
         (FieldElem::Group, None)
     } else if field.field.has_type_name() {
         let message_or_enum = root_scope.find_message_or_enum(field.field.get_type_name());
@@ -309,7 +309,7 @@ fn field_elem(
         );
         match (field.field.get_field_type(), message_or_enum) {
             (
-                FieldDescriptorProto_Type::TYPE_MESSAGE,
+                FieldDescriptorProtoType::TypeMessage,
                 MessageOrEnumWithScope::Message(message_with_scope),
             ) => {
                 let entry_key_value = if let (true, Some((key, value))) =
@@ -328,7 +328,7 @@ fn field_elem(
                 )
             }
             (
-                FieldDescriptorProto_Type::TYPE_ENUM,
+                FieldDescriptorProtoType::TypeEnum,
                 MessageOrEnumWithScope::Enum(enum_with_scope),
             ) => {
                 let e = EnumGen::new(
@@ -358,14 +358,14 @@ fn field_elem(
         let carllerche_for_string = customize.carllerche_bytes_for_string.unwrap_or(false);
 
         let elem = match field.field.get_field_type() {
-            FieldDescriptorProto_Type::TYPE_STRING if carllerche_for_string => {
+            FieldDescriptorProtoType::TypeString if carllerche_for_string => {
                 FieldElem::Primitive(
-                    FieldDescriptorProto_Type::TYPE_STRING,
+                    FieldDescriptorProtoType::TypeString,
                     PrimitiveTypeVariant::Carllerche,
                 )
             }
-            FieldDescriptorProto_Type::TYPE_BYTES if carllerche_for_bytes => FieldElem::Primitive(
-                FieldDescriptorProto_Type::TYPE_BYTES,
+            FieldDescriptorProtoType::TypeBytes if carllerche_for_bytes => FieldElem::Primitive(
+                FieldDescriptorProtoType::TypeBytes,
                 PrimitiveTypeVariant::Carllerche,
             ),
             t => FieldElem::Primitive(t, PrimitiveTypeVariant::Default),
@@ -412,7 +412,7 @@ pub struct FieldGen<'a> {
     // field name in generated code
     pub rust_name: String,
     pub unesc_rust_name: String,
-    pub proto_type: FieldDescriptorProto_Type,
+    pub proto_type: FieldDescriptorProtoType,
     wire_type: wire_format::WireType,
     enum_default_value: Option<EnumValueGen>,
     pub kind: FieldKind,
@@ -441,7 +441,7 @@ impl<'a> FieldGen<'a> {
 
         let expose_field = customize.expose_fields.unwrap_or(default_expose_field);
 
-        let kind = if field.field.get_label() == FieldDescriptorProto_Label::LABEL_REPEATED {
+        let kind = if field.field.get_label() == FieldDescriptorProtoLabel::LabelRepeated {
             match (elem, true) {
                 // map field
                 (FieldElem::Message(name, _, Some(key_value)), true) => FieldKind::Map(MapField {
@@ -459,12 +459,12 @@ impl<'a> FieldGen<'a> {
             FieldKind::Oneof(OneofField::parse(&oneof, &field, elem, root_scope))
         } else {
             let flag = if field.message.scope.file_scope.syntax() == Syntax::PROTO3
-                && field.field.get_field_type() != FieldDescriptorProto_Type::TYPE_MESSAGE
+                && field.field.get_field_type() != FieldDescriptorProtoType::TypeMessage
             {
                 SingularFieldFlag::WithoutFlag
             } else {
                 SingularFieldFlag::WithFlag {
-                    required: field.field.get_label() == FieldDescriptorProto_Label::LABEL_REQUIRED,
+                    required: field.field.get_label() == FieldDescriptorProtoLabel::LabelRequired,
                 }
             };
             FieldKind::Singular(SingularField { elem, flag })
@@ -605,11 +605,11 @@ impl<'a> FieldGen<'a> {
     // type of `v` in `os.write_xxx_no_tag(v)`
     fn os_write_fn_param_type(&self) -> RustType {
         match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_STRING => RustType::Ref(Box::new(RustType::Str)),
-            FieldDescriptorProto_Type::TYPE_BYTES => {
+            FieldDescriptorProtoType::TypeString => RustType::Ref(Box::new(RustType::Str)),
+            FieldDescriptorProtoType::TypeBytes => {
                 RustType::Ref(Box::new(RustType::Slice(Box::new(RustType::Int(false, 8)))))
             }
-            FieldDescriptorProto_Type::TYPE_ENUM => RustType::Int(true, 32),
+            FieldDescriptorProtoType::TypeEnum => RustType::Int(true, 32),
             t => rust_name(t),
         }
     }
@@ -668,7 +668,7 @@ impl<'a> FieldGen<'a> {
     // must use zigzag encoding?
     fn is_zigzag(&self) -> bool {
         match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_SINT32 | FieldDescriptorProto_Type::TYPE_SINT64 => true,
+            FieldDescriptorProtoType::TypeSint32 | FieldDescriptorProtoType::TypeSint64 => true,
             _ => false,
         }
     }
@@ -676,7 +676,7 @@ impl<'a> FieldGen<'a> {
     // data is enum
     fn is_enum(&self) -> bool {
         match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_ENUM => true,
+            FieldDescriptorProtoType::TypeEnum => true,
             _ => false,
         }
     }
@@ -690,8 +690,8 @@ impl<'a> FieldGen<'a> {
         assert!(self.proto_field.field.has_default_value());
 
         let type_name = match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_FLOAT => "f32",
-            FieldDescriptorProto_Type::TYPE_DOUBLE => "f64",
+            FieldDescriptorProtoType::TypeFloat => "f32",
+            FieldDescriptorProtoType::TypeDouble => "f64",
             _ => unreachable!(),
         };
         let proto_default = self.proto_field.field.get_default_value();
@@ -720,33 +720,33 @@ impl<'a> FieldGen<'a> {
             let proto_default = self.proto_field.field.get_default_value();
             Some(match self.proto_type {
                 // For numeric types, contains the original text representation of the value
-                FieldDescriptorProto_Type::TYPE_DOUBLE | FieldDescriptorProto_Type::TYPE_FLOAT => {
+                FieldDescriptorProtoType::TypeDouble | FieldDescriptorProtoType::TypeFloat => {
                     self.defaut_value_from_proto_float()
                 }
-                FieldDescriptorProto_Type::TYPE_INT32
-                | FieldDescriptorProto_Type::TYPE_SINT32
-                | FieldDescriptorProto_Type::TYPE_SFIXED32 => format!("{}i32", proto_default),
-                FieldDescriptorProto_Type::TYPE_UINT32
-                | FieldDescriptorProto_Type::TYPE_FIXED32 => format!("{}u32", proto_default),
-                FieldDescriptorProto_Type::TYPE_INT64
-                | FieldDescriptorProto_Type::TYPE_SINT64
-                | FieldDescriptorProto_Type::TYPE_SFIXED64 => format!("{}i64", proto_default),
-                FieldDescriptorProto_Type::TYPE_UINT64
-                | FieldDescriptorProto_Type::TYPE_FIXED64 => format!("{}u64", proto_default),
+                FieldDescriptorProtoType::TypeInt32
+                | FieldDescriptorProtoType::TypeSint32
+                | FieldDescriptorProtoType::TypeSfixed32 => format!("{}i32", proto_default),
+                FieldDescriptorProtoType::TypeUint32
+                | FieldDescriptorProtoType::TypeFixed32 => format!("{}u32", proto_default),
+                FieldDescriptorProtoType::TypeInt64
+                | FieldDescriptorProtoType::TypeSint64
+                | FieldDescriptorProtoType::TypeSfixed64 => format!("{}i64", proto_default),
+                FieldDescriptorProtoType::TypeUint64
+                | FieldDescriptorProtoType::TypeFixed64 => format!("{}u64", proto_default),
 
                 // For booleans, "true" or "false"
-                FieldDescriptorProto_Type::TYPE_BOOL => format!("{}", proto_default),
+                FieldDescriptorProtoType::TypeBool => format!("{}", proto_default),
                 // For strings, contains the default text contents (not escaped in any way)
-                FieldDescriptorProto_Type::TYPE_STRING => rust::quote_escape_str(proto_default),
+                FieldDescriptorProtoType::TypeString => rust::quote_escape_str(proto_default),
                 // For bytes, contains the C escaped value.  All bytes >= 128 are escaped
-                FieldDescriptorProto_Type::TYPE_BYTES => {
+                FieldDescriptorProtoType::TypeBytes => {
                     rust::quote_escape_bytes(&text_format::unescape_string(proto_default))
                 }
                 // TODO: resolve outer message prefix
-                FieldDescriptorProto_Type::TYPE_GROUP | FieldDescriptorProto_Type::TYPE_ENUM => {
+                FieldDescriptorProtoType::TypeGroup | FieldDescriptorProtoType::TypeEnum => {
                     unreachable!()
                 }
-                FieldDescriptorProto_Type::TYPE_MESSAGE => panic!(
+                FieldDescriptorProtoType::TypeMessage => panic!(
                     "default value is not implemented for type: {:?}",
                     self.proto_type
                 ),
@@ -759,8 +759,8 @@ impl<'a> FieldGen<'a> {
     fn default_value_from_proto_typed(&self) -> Option<RustValueTyped> {
         self.default_value_from_proto().map(|v| {
             let default_value_type = match self.proto_type {
-                FieldDescriptorProto_Type::TYPE_STRING => RustType::Ref(Box::new(RustType::Str)),
-                FieldDescriptorProto_Type::TYPE_BYTES => {
+                FieldDescriptorProtoType::TypeString => RustType::Ref(Box::new(RustType::Str)),
+                FieldDescriptorProtoType::TypeBytes => {
                     RustType::Ref(Box::new(RustType::Slice(Box::new(RustType::u8()))))
                 }
                 _ => self.full_storage_iter_elem_type(),
@@ -796,10 +796,10 @@ impl<'a> FieldGen<'a> {
 
     pub fn reconstruct_def(&self) -> String {
         let prefix = match (self.proto_field.field.get_label(), self.syntax) {
-            (FieldDescriptorProto_Label::LABEL_REPEATED, _) => "repeated ",
+            (FieldDescriptorProtoLabel::LabelRepeated, _) => "repeated ",
             (_, Syntax::PROTO3) => "",
-            (FieldDescriptorProto_Label::LABEL_OPTIONAL, _) => "optional ",
-            (FieldDescriptorProto_Label::LABEL_REQUIRED, _) => "required ",
+            (FieldDescriptorProtoLabel::LabelOptional, _) => "optional ",
+            (FieldDescriptorProtoLabel::LabelRequired, _) => "required ",
         };
         format!(
             "{}{} {} = {}",
@@ -925,18 +925,18 @@ impl<'a> FieldGen<'a> {
         match field_type_size(self.proto_type) {
             Some(data_size) => format!("{}", data_size + self.tag_size()),
             None => match self.proto_type {
-                FieldDescriptorProto_Type::TYPE_MESSAGE => panic!("not a single-liner"),
-                FieldDescriptorProto_Type::TYPE_BYTES => format!(
+                FieldDescriptorProtoType::TypeMessage => panic!("not a single-liner"),
+                FieldDescriptorProtoType::TypeBytes => format!(
                     "::protobuf::rt::bytes_size({}, &{})",
                     self.proto_field.number(),
                     var
                 ),
-                FieldDescriptorProto_Type::TYPE_STRING => format!(
+                FieldDescriptorProtoType::TypeString => format!(
                     "::protobuf::rt::string_size({}, &{})",
                     self.proto_field.number(),
                     var
                 ),
-                FieldDescriptorProto_Type::TYPE_ENUM => {
+                FieldDescriptorProtoType::TypeEnum => {
                     let param_type = match var_type {
                         &RustType::Ref(ref t) => (**t).clone(),
                         t => t.clone(),
@@ -978,7 +978,7 @@ impl<'a> FieldGen<'a> {
         };
 
         match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_MESSAGE => {
+            FieldDescriptorProtoType::TypeMessage => {
                 w.write_line(&format!(
                     "{}.write_tag({}, ::protobuf::wire_format::{:?})?;",
                     os,
@@ -1080,8 +1080,8 @@ impl<'a> FieldGen<'a> {
                 flag: SingularFieldFlag::WithoutFlag,
                 ref elem,
             }) => match *elem {
-                FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_STRING, ..)
-                | FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_BYTES, ..) => {
+                FieldElem::Primitive(FieldDescriptorProtoType::TypeString, ..)
+                | FieldElem::Primitive(FieldDescriptorProtoType::TypeBytes, ..) => {
                     w.if_stmt(format!("!{}.is_empty()", self.self_field()), |w| {
                         cb(&self.self_field(), &self.full_storage_type(), w);
                     });
@@ -1396,8 +1396,8 @@ impl<'a> FieldGen<'a> {
 
         match field.elem {
             FieldElem::Message(..)
-            | FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_STRING, ..)
-            | FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_BYTES, ..) => {
+            | FieldElem::Primitive(FieldDescriptorProtoType::TypeString, ..)
+            | FieldElem::Primitive(FieldDescriptorProtoType::TypeBytes, ..) => {
                 self.write_merge_from_field_message_string_bytes(w);
             }
             FieldElem::Enum(..) => {
@@ -1435,8 +1435,8 @@ impl<'a> FieldGen<'a> {
 
         match field.elem {
             FieldElem::Message(..)
-            | FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_STRING, ..)
-            | FieldElem::Primitive(FieldDescriptorProto_Type::TYPE_BYTES, ..) => {
+            | FieldElem::Primitive(FieldDescriptorProtoType::TypeString, ..)
+            | FieldElem::Primitive(FieldDescriptorProtoType::TypeBytes, ..) => {
                 self.write_merge_from_field_message_string_bytes(w);
             }
             FieldElem::Enum(..) => {
@@ -1495,7 +1495,7 @@ impl<'a> FieldGen<'a> {
         assert!(!self.is_repeated_packed());
 
         match self.proto_type {
-            FieldDescriptorProto_Type::TYPE_MESSAGE => {
+            FieldDescriptorProtoType::TypeMessage => {
                 w.write_line(&format!("let len = {}.compute_size();", item_var));
                 let tag_size = self.tag_size();
                 w.write_line(&format!(
@@ -1623,7 +1623,7 @@ impl<'a> FieldGen<'a> {
     fn write_message_field_get_singular(&self, w: &mut CodeWriter) {
         let get_xxx_return_type = self.get_xxx_return_type();
 
-        if self.proto_type == FieldDescriptorProto_Type::TYPE_MESSAGE {
+        if self.proto_type == FieldDescriptorProtoType::TypeMessage {
             let self_field = self.self_field();
             let ref field_type_name = self.elem().rust_storage_type();
             w.write_line(&format!(
@@ -1965,9 +1965,9 @@ impl<'a> FieldGen<'a> {
 
     fn is_offset_field_type(&self) -> bool {
         let ftype = self.proto_field.field.get_field_type();
-        return ftype == FieldDescriptorProto_Type::TYPE_STRING ||
-            ftype == FieldDescriptorProto_Type::TYPE_BYTES ||
-            ftype == FieldDescriptorProto_Type::TYPE_MESSAGE
+        return ftype == FieldDescriptorProtoType::TypeString ||
+            ftype == FieldDescriptorProtoType::TypeBytes ||
+            ftype == FieldDescriptorProtoType::TypeMessage
     }
 
     fn is_offset_field_kind(&self) -> bool {

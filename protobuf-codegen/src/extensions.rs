@@ -18,9 +18,9 @@ impl<'a> ExtGen<'a> {
 
     fn repeated(&self) -> bool {
         match self.field.get_label() {
-            FieldDescriptorProto_Label::LABEL_REPEATED => true,
-            FieldDescriptorProto_Label::LABEL_OPTIONAL => false,
-            FieldDescriptorProto_Label::LABEL_REQUIRED => {
+            FieldDescriptorProtoLabel::LabelRepeated => true,
+            FieldDescriptorProtoLabel::LabelOptional => false,
+            FieldDescriptorProtoLabel::LabelRequired => {
                 panic!("required ext field: {}", self.field.get_name())
             }
         }
@@ -35,10 +35,10 @@ impl<'a> ExtGen<'a> {
                 self.root_scope,
             );
             match self.field.get_field_type() {
-                FieldDescriptorProto_Type::TYPE_MESSAGE => {
+                FieldDescriptorProtoType::TypeMessage => {
                     ProtobufTypeGen::Message(rust_name_relative)
                 }
-                FieldDescriptorProto_Type::TYPE_ENUM => ProtobufTypeGen::Enum(rust_name_relative),
+                FieldDescriptorProtoType::TypeEnum => ProtobufTypeGen::Enum(rust_name_relative),
                 t => panic!("unknown type: {:?}", t),
             }
         } else {
@@ -85,7 +85,7 @@ pub(crate) fn write_extensions(
         w.write_line("use protobuf::Message as Message_imported_for_functions;");
 
         for field in file.get_extension() {
-            if field.get_field_type() == FieldDescriptorProto_Type::TYPE_GROUP {
+            if field.get_field_type() == FieldDescriptorProtoType::TypeGroup {
                 continue;
             }
 

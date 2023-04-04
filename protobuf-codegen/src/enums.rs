@@ -74,7 +74,7 @@ impl<'a> EnumGen<'a> {
                 .get_file_descriptor()
                 .get_options()
                 .get_optimize_for()
-                == FileOptions_OptimizeMode::LITE_RUNTIME
+                == FileOptionsOptimizeMode::LiteRuntime
         });
 
         EnumGen {

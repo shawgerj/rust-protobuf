@@ -137,7 +137,7 @@ fn gen_file(
     }
     .to_scope();
     let lite_runtime = customize.lite_runtime.unwrap_or_else(|| {
-        file.get_options().get_optimize_for() == FileOptions_OptimizeMode::LITE_RUNTIME
+        file.get_options().get_optimize_for() == FileOptionsOptimizeMode::LiteRuntime
     });
 
     let mut v = Vec::new();
