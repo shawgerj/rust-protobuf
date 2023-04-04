@@ -12,4 +12,4 @@ Cannot write uninitialized bytes to a =&mut UninitSlice= in safe mode, but you c
 ** Solutions
 Best solution is in newer versions of =rust-protobuf=. They refactor a lot of this code.
 
-I just want it to work for now. So I will convert buf to a =&[u8]= and cross my fingers. 
+I just want it to work for now. So I will transmute buf to a =&[u8]= and cross my fingers. 
